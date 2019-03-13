@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="report:phpmetrics">
+
+
+    <property name="report.phpmetrics.description" value="phpmetrics scanner" override="true"/>
+    <property name="report.phpmetrics.output" value="${project.dir.build.reports}/phpmetrics" override="true"/>
+
+
+    <target name="report:phpmetrics:help">
+        <echo message="${report.phpmetrics.description}"/>
+    </target>
+
+
+    <target name="report:phpmetrics" depends="report:phpmetrics1, report:phpmetrics2"/>
+
+
+</project>

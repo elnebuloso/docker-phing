@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="npm:install">
+
+
+    <property name="npm.install.description" value="npm install dependencies" override="true"/>
+    <property name="npm.executable" value="npm"/>
+
+
+    <target name="npm:install:help">
+        <echo message="${npm.install.description}"/>
+
+        <echo message=""/>
+        <echo message="property          value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="npm.executable    ${npm.executable}"/>
+    </target>
+
+
+    <target name="npm:install">
+        <exec command="npm install" passthru="true" checkreturn="true" level="info" dir="${project.dir.main.npm}"/>
+    </target>
+
+
+</project>

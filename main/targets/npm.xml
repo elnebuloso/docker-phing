@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project>
+
+
+    <import file="${phing.commons.root}/targets/npm/build/development.xml"/>
+    <import file="${phing.commons.root}/targets/npm/build/production.xml"/>
+    <import file="${phing.commons.root}/targets/npm/install.xml"/>
+    <import file="${phing.commons.root}/targets/npm/run.xml"/>
+
+
+    <target name="npm:help">
+        <echo message="target                   description"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="npm:build:development    ${npm.build.development.description}"/>
+        <echo message="npm:build:production     ${npm.build.production.description}"/>
+        <echo message="npm:install              ${npm.install.description}"/>
+        <echo message="npm:run                  ${npm.run.description}"/>
+    </target>
+
+
+</project>

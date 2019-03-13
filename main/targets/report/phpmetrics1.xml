@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="report:phpmetrics1">
+
+
+    <property name="report.phpmetrics1.description" value="phpmetrics version 1 scanner" override="true"/>
+    <property name="report.phpmetrics1.output.tmp" value="${project.dir.main}/.phpmetrics1" override="true"/>
+    <property name="report.phpmetrics1.output" value="${project.dir.build.reports}/phpmetrics1" override="true"/>
+
+
+    <target name="report:phpmetrics1:help">
+        <echo message="${report.phpmetrics1.description}"/>
+    </target>
+
+
+    <target name="report:phpmetrics1">
+        <fail unless="report.phpmetrics.directories" message="missing property report.phpmetrics.directories"/>
+        <my-php-metrics1-directories excluded="report.phpmetrics1.excluded" dir="${project.dir.main}"/>
+
+        <delete dir="${report.phpmetrics1.output.tmp}"/>
+        <mkdir dir="${report.phpmetrics1.output.tmp}"/>
+
+        <delete dir="${report.phpmetrics1.output}"/>
+        <mkdir dir="${report.phpmetrics1.output}"/>
+
+        <exec executable="phpmetrics1" passthru="true" checkreturn="true" level="info" dir="${project.dir.main}">
+            <arg line="--excluded-dirs=${report.phpmetrics1.excluded}"/>
+            <arg line="--report-html=${report.phpmetrics1.output.tmp}/index.html"/>
+            <arg line="--report-xml=${report.phpmetrics1.output.tmp}/phpmetrics1.xml"/>
+            <arg line="--report-csv=${report.phpmetrics1.output.tmp}/phpmetrics1.csv"/>
+            <arg line="--report-json=${report.phpmetrics1.output.tmp}/phpmetrics1.json"/>
+            <arg line="--violations-xml=${report.phpmetrics1.output.tmp}/phpmetrics1-violations.xml"/>
+            <arg line="."/>
+        </exec>
+
+        <copy todir="${report.phpmetrics1.output}">
+            <fileset dir="${report.phpmetrics1.output.tmp}">
+                <include name="**/**"/>
+            </fileset>
+        </copy>
+
+        <delete dir="${report.phpmetrics1.output.tmp}"/>
+    </target>
+
+
+</project>

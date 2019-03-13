@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="report:phpmetrics2">
+
+
+    <property name="report.phpmetrics2.description" value="phpmetrics version 2 scanner" override="true"/>
+    <property name="report.phpmetrics2.output.tmp" value="${project.dir.main}/.phpmetrics2" override="true"/>
+    <property name="report.phpmetrics2.output" value="${project.dir.build.reports}/phpmetrics2" override="true"/>
+
+
+    <target name="report:phpmetrics2:help">
+        <echo message="${report.phpmetrics2.description}"/>
+    </target>
+
+
+    <target name="report:phpmetrics2">
+        <fail unless="report.phpmetrics.directories" message="missing property report.phpmetrics.directories"/>
+        <my-php-metrics2-directories included="report.phpmetrics2.included" dir="${project.dir.main}"/>
+
+        <delete dir="${report.phpmetrics2.output.tmp}"/>
+        <mkdir dir="${report.phpmetrics2.output.tmp}"/>
+
+        <delete dir="${report.phpmetrics2.output}"/>
+        <mkdir dir="${report.phpmetrics2.output}"/>
+
+        <exec executable="phpmetrics2" passthru="true" checkreturn="true" level="info" dir="${project.dir.main}">
+            <arg line="--report-html=${report.phpmetrics2.output.tmp}"/>
+            <arg line="--report-csv=${report.phpmetrics2.output.tmp}/phpmetrics2.csv"/>
+            <arg line="--report-json=${report.phpmetrics2.output.tmp}/phpmetrics2.json"/>
+            <arg line="--report-violations=${report.phpmetrics2.output.tmp}/phpmetrics2-violations.xml"/>
+            <arg line="${report.phpmetrics2.included}"/>
+        </exec>
+
+        <copy todir="${report.phpmetrics2.output}">
+            <fileset dir="${report.phpmetrics2.output.tmp}">
+                <include name="**/**"/>
+            </fileset>
+        </copy>
+
+        <delete dir="${report.phpmetrics2.output.tmp}"/>
+    </target>
+
+
+</project>

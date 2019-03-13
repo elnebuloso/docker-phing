@@ -80,7 +80,7 @@
     </target>
 
 
-    <target name="commons:help" depends="commons:help:version, bundle:help, clean:help, compass:help, composer:help, docker:help, git:help, npm:help, yarn:help, report:help, test:help, project:help"/>
+    <target name="commons:help" depends="commons:help:version, bundle:help, clean:help, compass:help, composer:help, docker:help, git:help, npm:help, report:help, test:help, project:help"/>
 
 
 </project>

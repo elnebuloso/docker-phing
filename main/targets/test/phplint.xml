@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="test:phplint">
+
+
+    <property name="test.phplint.description" value="php code validation and linting" override="true"/>
+    <property name="test.phplint.output" value="${project.dir.build.reports}/phplint" override="true"/>
+    <property name="test.phplint.interpreter" value="7.3"/>
+    <property name="test.phplint.haltonfailure" value="1"/>
+
+
+    <target name="test:phplint:help">
+        <echo message="${test.phplint.description}"/>
+
+        <echo message=""/>
+        <echo message="property                      value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="test.phplint.interpreter      ${test.phplint.interpreter}"/>
+        <echo message="test.phplint.haltonfailure    ${test.phplint.haltonfailure}"/>
+    </target>
+
+
+    <target name="test:phplint">
+        <delete dir="${test.phplint.output}"/>
+        <mkdir dir="${test.phplint.output}"/>
+        <mkdir dir="${project.dir.build.tmp}"/>
+
+        <phplint interpreter="php${test.phplint.interpreter}" tofile="${test.phplint.output}/report.txt" haltonfailure="${test.phplint.haltonfailure}" cachefile="${project.dir.build.tmp}/phplint.cache" level="info">
+            <fileset dir="${project.dir.main}">
+                <patternset refid="patternset.test.phplint"/>
+            </fileset>
+        </phplint>
+    </target>
+
+
+</project>

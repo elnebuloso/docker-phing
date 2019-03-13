@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project>
+
+
+    <import file="${phing.commons.root}/targets/report/phpcpd.xml"/>
+    <import file="${phing.commons.root}/targets/report/phpdepend.xml"/>
+    <import file="${phing.commons.root}/targets/report/phploc.xml"/>
+    <import file="${phing.commons.root}/targets/report/phpmd.xml"/>
+    <import file="${phing.commons.root}/targets/report/phpmetrics.xml"/>
+    <import file="${phing.commons.root}/targets/report/phpmetrics1.xml"/>
+    <import file="${phing.commons.root}/targets/report/phpmetrics2.xml"/>
+
+
+    <target name="report:help">
+        <echo message="target                description"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="report:phpcpd         ${report.phpcpd.description}"/>
+        <echo message="report:phpdepend      ${report.phpdepend.description}"/>
+        <echo message="report:phploc         ${report.phploc.description}"/>
+        <echo message="report:phpmd          ${report.phpmd.description}"/>
+        <echo message="report:phpmetrics     ${report.phpmetrics.description}"/>
+        <echo message="report:phpmetrics1    ${report.phpmetrics1.description}"/>
+        <echo message="report:phpmetrics2    ${report.phpmetrics2.description}"/>
+    </target>
+
+
+</project>

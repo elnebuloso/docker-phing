@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="report:phpdepend">
+
+
+    <property name="report.phpdepend.description" value="php software metrics" override="true"/>
+    <property name="report.phpdepend.output" value="${project.dir.build.reports}/phpdepend" override="true"/>
+
+
+    <target name="report:phpdepend:help">
+        <echo message="${report.phpdepend.description}"/>
+    </target>
+
+
+    <target name="report:phpdepend">
+        <delete dir="${report.phpdepend.output}"/>
+        <mkdir dir="${report.phpdepend.output}"/>
+
+        <phpdepend pharlocation="${phing.commons.root}/resources/phar/pdepend-2.5.0.phar">
+            <fileset dir="${project.dir.main}">
+                <patternset refid="patternset.report.phpdepend"/>
+            </fileset>
+            <logger type="jdepend-xml" outfile="${report.phpdepend.output}/report.xml"/>
+            <logger type="jdepend-chart" outfile="${report.phpdepend.output}/assets/chart.svg"/>
+            <logger type="overview-pyramid" outfile="${report.phpdepend.output}/assets/pyramid.svg"/>
+            <analyzer type="coderank-mode" value="method"/>
+        </phpdepend>
+
+        <xslt file="${report.phpdepend.output}/report.xml" tofile="${report.phpdepend.output}/report-v1.html" style="${phing.commons.root}/resources/xsl/phpdepend-v1.xsl"/>
+        <xslt file="${report.phpdepend.output}/report.xml" tofile="${report.phpdepend.output}/report-v2.html" style="${phing.commons.root}/resources/xsl/phpdepend-v2.xsl"/>
+        <copy file="${report.phpdepend.output}/report-v2.html" tofile="${report.phpdepend.output}/index.html"/>
+    </target>
+
+
+</project>

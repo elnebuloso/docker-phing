@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project>
+
+
+    <target name="project:help">
+        <echo message="property                        value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="project.name                    ${project.name}"/>
+        <echo message="project.folder.main             ${project.folder.main}"/>
+        <echo message="project.folder.main.composer    ${project.folder.main.composer}"/>
+        <echo message="project.folder.main.compass     ${project.folder.main.compass}"/>
+        <echo message="project.folder.main.npm         ${project.folder.main.npm}"/>
+        <echo message="project.folder.build            ${project.folder.build}"/>
+        <echo message=""/>
+        <echo message="property                        value [do not edit directly]"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="project.version                 ${project.version}" level="warning"/>
+        <echo message="project.root                    ${project.root}" level="warning"/>
+        <echo message="project.dir.main                ${project.dir.main}" level="warning"/>
+        <echo message="project.dir.main.composer       ${project.dir.main.composer}" level="warning"/>
+        <echo message="project.dir.main.compass        ${project.dir.main.compass}" level="warning"/>
+        <echo message="project.dir.main.npm            ${project.dir.main.npm}" level="warning"/>
+        <echo message="project.dir.build               ${project.dir.build}" level="warning"/>
+        <echo message="project.dir.build.tmp           ${project.dir.build.tmp}" level="warning"/>
+        <echo message="project.dir.build.dist          ${project.dir.build.dist}" level="warning"/>
+        <echo message="project.dir.build.reports       ${project.dir.build.reports}" level="warning"/>
+    </target>
+
+
+</project>

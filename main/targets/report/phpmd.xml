@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="report:phpmd">
+
+
+    <property name="report.phpmd.description" value="php mess detection" override="true"/>
+    <property name="report.phpmd.output" value="${project.dir.build.reports}/phpmd" override="true"/>
+    <property name="report.phpmd.rulesets" value="cleancode,codesize,design,unusedcode"/>
+    <property name="report.phpmd.allowedFileExtensions" value="php,phtml"/>
+
+
+    <target name="report:phpmd:help">
+        <echo message="${report.phpmd.description}"/>
+
+        <echo message=""/>
+        <echo message="property                                  value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="report.phpmd.rulesets                     ${report.phpmd.rulesets}"/>
+        <echo message="report.phpmd.allowedFileExtensions        ${report.phpmd.allowedFileExtensions}"/>
+    </target>
+
+
+    <target name="report:phpmd">
+        <delete dir="${report.phpmd.output}"/>
+        <mkdir dir="${report.phpmd.output}"/>
+
+        <phpmd pharlocation="${phing.commons.root}/resources/phar/phpmd-2.6.0.phar" rulesets="${report.phpmd.rulesets}" allowedFileExtensions="${report.phpmd.allowedFileExtensions}">
+            <fileset dir="${project.dir.main}">
+                <patternset refid="patternset.report.phpmd"/>
+            </fileset>
+            <formatter type="xml" outfile="${report.phpmd.output}/report.xml"/>
+        </phpmd>
+
+        <xslt file="${report.phpmd.output}/report.xml" tofile="${report.phpmd.output}/report-v1.html" style="${phing.commons.root}/resources/xsl/phpmd-v1.xsl"/>
+        <xslt file="${report.phpmd.output}/report.xml" tofile="${report.phpmd.output}/report-v2.html" style="${phing.commons.root}/resources/xsl/phpmd-v2.xsl"/>
+        <copy file="${report.phpmd.output}/report-v2.html" tofile="${report.phpmd.output}/index.html"/>
+    </target>
+
+
+</project>
