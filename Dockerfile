@@ -68,8 +68,14 @@ RUN echo "install docker" \
     && apt-get -y clean \
     && rm -rf /tmp/*
 
+COPY docker/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 COPY docker/bin /usr/local/bin
 COPY build/dist /srv/phing
+COPY VERSION /srv/VERSION
+
+RUN echo "configure /usr/local/bin" \
+    && find /usr/local/bin -type f -name '*.sh' | while read f; do mv "$f" "${f%.sh}"; done \
+    && chmod +x /usr/local/bin/*
 
 ENTRYPOINT ["docker-entrypoint"]
 CMD ["phing"]

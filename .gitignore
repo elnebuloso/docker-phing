@@ -1,6 +1,7 @@
 .idea
 
-
+build/*
+!build/dist/.gitignore
 
 main/vendor
 
