@@ -17,7 +17,7 @@ pipeline {
         stage('build') {
             steps {
                 script {
-                    image = docker.build("${IMAGE_NAME}", "--pull --rm --build-arg PASSPHRASE_SSH=${PASSPHRASE_SSH} --build-arg DOCKER_THOEMO_PASSWORD=${DOCKER_THOEMO_PASSWORD} --file Dockerfile .")
+                    image = docker.build("elnebuloso/phing", "--pull --rm --no-cache -f Dockerfile.${type} .")
                 }
             }
         }

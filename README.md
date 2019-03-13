@@ -1,3 +1,3 @@
 # docker-phing
 
-Dockerized Phing + Commons
+Docker Phing + Commons
