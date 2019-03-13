@@ -2,6 +2,10 @@
 
 Docker Phing + Commons
 
+## docker hub
+
+- see Supported Tags at https://hub.docker.com/r/elnebuloso/phing/tags/
+
 ## usage
 
 ### configure
