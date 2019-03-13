@@ -24,6 +24,7 @@
 
     <target name="test">
         <phingcall target="test:run:bin"/>
+        <phingcall target="test:run:phing"/>
     </target>
 
 
@@ -43,6 +44,31 @@
         <exec command="phpmetrics2 --version" passthru="true" checkreturn="true" level="info"/>
         <exec command="phpunit --version" passthru="true" checkreturn="true" level="info"/>
         <exec command="yarn --version" passthru="true" checkreturn="true" level="info"/>
+    </target>
+
+
+    <target name="test:run:phing">
+        <phingcall target="clean:dist"/>
+        <phingcall target="clean:reports"/>
+
+        <phingcall target="test:run:phing:TarTask"/>
+        <phingcall target="test:run:phing:ZipTask"/>
+        <phingcall target="test:run:phing:HttpGetTask"/>
+    </target>
+
+
+    <target name="test:run:phing:TarTask" hidden="true">
+        <tar destfile="${project.dir.build.tmp}/dist.tar.gz" basedir="${project.dir.build.dist}" compression="gzip"/>
+    </target>
+
+
+    <target name="test:run:phing:ZipTask" hidden="true">
+        <tar destfile="${project.dir.build.tmp}/dist.zip" basedir="${project.dir.build.dist}"/>
+    </target>
+
+
+    <target name="test:run:phing:HttpGetTask" hidden="true">
+        <httpget url="http://via.placeholder.com/350x150.jpg" dir="${project.dir.build.tmp}"/>
     </target>
 
 
