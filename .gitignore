@@ -8,3 +8,5 @@ main/vendor
 test/build/*
 test/main/node_modules
 test/main/vendor
+
+phing-2.16.1.phar
