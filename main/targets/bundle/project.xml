@@ -47,7 +47,7 @@
             <fileset dir="${project.dir.main}">
                 <patternset refid="patternset.bundle.project"/>
 
-                <!-- exclude npm files -->
+                <!-- exclude compass files -->
                 <exclude name="${bundle.project.npm.prefix}.sass-cache/**"/>
 
                 <!-- exclude npm files -->
