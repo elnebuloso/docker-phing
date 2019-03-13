@@ -74,14 +74,14 @@
     <fail unless="project.version" message="missing project.version"/>
 
 
-    <target name="commons:help">
+    <target name="commons:help:version">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="phing commons version: ${phing.commons.version}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
-    <target name="help" depends="commons:help, bundle:help, clean:help, compass:help, composer:help, docker:help, git:help, init:help, npm:help, yarn:help, report:help, test:help, project:help"/>
+    <target name="commons:help" depends="commons:help:version, bundle:help, clean:help, compass:help, composer:help, docker:help, git:help, init:help, npm:help, yarn:help, report:help, test:help, project:help"/>
 
 
 </project>
