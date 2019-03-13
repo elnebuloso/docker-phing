@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="docker:compose:ps">
+
+
+    <property name="docker.compose.ps.description" value="show docker compose stack status" override="true"/>
+
+
+    <target name="docker:compose:ps:help">
+        <echo message="${docker.compose.ps.description}"/>
+    </target>
+
+
+    <target name="docker:compose:ps">
+        <exec command="docker-compose ps" passthru="true" checkreturn="true" level="info"/>
+    </target>
+
+
+</project>

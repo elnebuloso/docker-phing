@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="compass:clean">
+
+
+    <property name="compass.clean.description" value="compass clean scss" override="true"/>
+
+
+    <target name="compass:clean:help">
+        <echo message="${compass.clean.description}"/>
+    </target>
+
+
+    <target name="compass:clean">
+        <exec command="compass clean" passthru="true" checkreturn="true" level="info" dir="${project.dir.main.compass}"/>
+    </target>
+
+
+</project>

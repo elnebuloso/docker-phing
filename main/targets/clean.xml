@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project>
+
+
+    <import file="${phing.commons.root}/targets/clean/tmp.xml"/>
+    <import file="${phing.commons.root}/targets/clean/dist.xml"/>
+    <import file="${phing.commons.root}/targets/clean/reports.xml"/>
+
+
+    <target name="clean:help">
+        <echo message="target           description"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="clean:tmp        ${clean.tmp.description}"/>
+        <echo message="clean:dist       ${clean.dist.description}"/>
+        <echo message="clean:reports    ${clean.reports.description}"/>
+    </target>
+
+
+</project>

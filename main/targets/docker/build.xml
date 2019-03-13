@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="docker:build">
+
+
+    <property name="docker.build.description" value="build an image from the projects dockerfile" override="true"/>
+
+
+    <target name="docker:build:help">
+        <echo message="${docker.build.description}"/>
+    </target>
+
+
+    <target name="docker:build">
+        <if>
+            <isset property="env.DOCKER_BUILD_OPTIONS"/>
+            <then>
+                <property name="docker.build.options" value="${env.DOCKER_BUILD_OPTIONS}" override="true"/>
+            </then>
+            <else>
+                <property name="docker.build.options" value="--no-cache" override="true"/>
+            </else>
+        </if>
+
+        <exec command="docker build --pull --rm ${docker.build.options} --tag ${project.name} --file Dockerfile ." passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+    </target>
+
+
+</project>

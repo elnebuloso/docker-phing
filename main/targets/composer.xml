@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project>
+
+
+    <import file="${phing.commons.root}/targets/composer/install/production.xml"/>
+    <import file="${phing.commons.root}/targets/composer/install.xml"/>
+    <import file="${phing.commons.root}/targets/composer/remove.xml"/>
+    <import file="${phing.commons.root}/targets/composer/require.xml"/>
+    <import file="${phing.commons.root}/targets/composer/update.xml"/>
+
+
+    <target name="composer:help">
+        <echo message="target                         description"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="composer:install:production    ${composer.install.production.description}"/>
+        <echo message="composer:install               ${composer.install.description}"/>
+        <echo message="composer:remove                ${composer.require.description}"/>
+        <echo message="composer:require               ${composer.require.description}"/>
+        <echo message="composer:update                ${composer.update.description}"/>
+    </target>
+
+
+</project>

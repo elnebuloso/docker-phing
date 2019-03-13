@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project>
+
+
+    <import file="${phing.commons.root}/targets/docker/compose/down.xml"/>
+    <import file="${phing.commons.root}/targets/docker/compose/ps.xml"/>
+    <import file="${phing.commons.root}/targets/docker/compose/pull.xml"/>
+    <import file="${phing.commons.root}/targets/docker/compose/up.xml"/>
+    <import file="${phing.commons.root}/targets/docker/build.xml"/>
+    <import file="${phing.commons.root}/targets/docker/push.xml"/>
+
+
+    <target name="docker:help">
+        <echo message="target                 description"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="docker:compose:down    ${docker.compose.down.description}"/>
+        <echo message="docker:compose:ps      ${docker.compose.ps.description}"/>
+        <echo message="docker:compose:pull    ${docker.compose.pull.description}"/>
+        <echo message="docker:compose:up      ${docker.compose.up.description}"/>
+        <echo message="docker:build           ${docker.build.description}"/>
+        <echo message="docker:push            ${docker.push.description}"/>
+    </target>
+
+
+</project>

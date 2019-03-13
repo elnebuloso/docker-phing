@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="docker:push">
+
+
+    <property name="docker.push.description" value="push project image to a registry" override="true"/>
+
+
+    <target name="docker:push:help">
+        <echo message="${docker.push.description}"/>
+    </target>
+
+
+    <target name="docker:push">
+        <fail unless="env.REGISTRY_HOST" message="missing environment variable REGISTRY_HOST"/>
+
+        <if>
+            <isset property="env.PHING_VERSION_SUFFIX"/>
+            <then>
+                <property name="project.env.version" value="${project.version}-${env.PHING_VERSION_SUFFIX}" override="true"/>
+            </then>
+            <else>
+                <property name="project.env.version" value="${project.version}" override="true"/>
+            </else>
+        </if>
+
+        <exec command="docker tag ${project.name} ${env.REGISTRY_HOST}/${project.name}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+        <exec command="docker tag ${project.name} ${env.REGISTRY_HOST}/${project.name}:${project.env.version}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+        <exec command="docker push ${env.REGISTRY_HOST}/${project.name}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+        <exec command="docker push ${env.REGISTRY_HOST}/${project.name}:${project.env.version}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+    </target>
+
+
+</project>

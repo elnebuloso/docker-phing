@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="clean:dist">
+
+
+    <property name="clean.dist.description" value="cleanup project distribution directory" override="true"/>
+
+
+    <target name="clean:dist:help">
+        <echo message="${clean.dist.description}"/>
+    </target>
+
+
+    <target name="clean:dist">
+        <delete dir="${project.dir.build.dist}"/>
+        <mkdir dir="${project.dir.build.dist}"/>
+    </target>
+
+
+</project>

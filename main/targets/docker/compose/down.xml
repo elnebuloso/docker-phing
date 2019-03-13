@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="docker:compose:down">
+
+
+    <property name="docker.compose.down.description" value="stop docker compose stack" override="true"/>
+    <property name="docker.compose.down.options" value="--remove-orphans"/>
+
+
+    <target name="docker:compose:down:help">
+        <echo message="${docker.compose.down.description}"/>
+
+        <echo message=""/>
+        <echo message="property                       value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="docker.compose.down.options    ${docker.compose.down.options}"/>
+    </target>
+
+
+    <target name="docker:compose:down">
+        <exec command="docker-compose down ${docker.compose.down.options}" passthru="true" checkreturn="true" level="info"/>
+    </target>
+
+
+</project>

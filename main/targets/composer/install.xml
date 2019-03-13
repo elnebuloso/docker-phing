@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="composer:install">
+
+
+    <property name="composer.install.description" value="composer install" override="true"/>
+    <property name="composer.install.options" value=""/>
+
+
+    <target name="composer:install:help">
+        <echo message="${composer.install.description}"/>
+
+        <echo message=""/>
+        <echo message="property                    value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="composer.install.options    ${composer.install.options}"/>
+    </target>
+
+
+    <target name="composer:install">
+        <exec command="composer install --no-suggest --no-ansi --no-interaction ${composer.install.options}" passthru="true" checkreturn="true" level="info" dir="${project.dir.main.composer}"/>
+    </target>
+
+
+</project>

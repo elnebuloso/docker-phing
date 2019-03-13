@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="clean:tmp">
+
+
+    <property name="clean.tmp.description" value="cleanup project temporary build directory" override="true"/>
+
+
+    <target name="clean:tmp:help">
+        <echo message="${clean.tmp.description}"/>
+    </target>
+
+
+    <target name="clean:tmp">
+        <delete dir="${project.dir.build.tmp}"/>
+        <mkdir dir="${project.dir.build.tmp}"/>
+    </target>
+
+
+</project>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="git:auto:version">
+
+
+    <property name="git.auto.version.description" value="automatic project version handling" override="true"/>
+    <property name="git.auto.version.tagging" value="1"/>
+
+
+    <target name="git:auto:version:help">
+        <echo message="${git.auto.commit.version.description}"/>
+
+        <echo message=""/>
+        <echo message="property                    value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="git.auto.version.tagging    ${git.auto.version.tagging}"/>
+    </target>
+
+
+    <target name="git:auto:version">
+        <echo message="version [curr]: ${project.version}"/>
+
+        <version releasetype="Bugfix" file="${project.root}/VERSION" property="project.version"/>
+
+        <echo message="version [next]: ${project.version}"/>
+        <echo message="major: ${project.version.major}"/>
+        <echo message="minor: ${project.version.minor}"/>
+        <echo message="patch: ${project.version.patch}"/>
+
+        <exec command="git pull origin master" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+        <exec command="git add VERSION" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+        <exec command="git commit -m &quot;git:auto:version ${project.version}&quot;" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+        <exec command="git push origin HEAD:master" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+
+        <if>
+            <equals arg1="${git.auto.version.tagging}" arg2="1"/>
+            <then>
+                <exec command="git tag -f -a ${project.version} -m &quot;git:auto:version tagging&quot;" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+                <exec command="git push origin ${project.version} --force" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+            </then>
+        </if>
+    </target>
+
+
+</project>

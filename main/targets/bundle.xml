@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project>
+
+
+    <import file="${phing.commons.root}/targets/bundle/project.xml"/>
+
+
+    <target name="bundle:help">
+        <echo message="target            description"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="bundle:project    ${bundle.project.description}"/>
+    </target>
+
+
+</project>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="clean:reports">
+
+
+    <property name="clean.reports.description" value="cleanup project reports directory" override="true"/>
+
+
+    <target name="clean:reports:help">
+        <echo message="${clean.reports.description}"/>
+    </target>
+
+
+    <target name="clean:reports">
+        <delete dir="${project.dir.build.reports}"/>
+        <mkdir dir="${project.dir.build.reports}"/>
+    </target>
+
+
+</project>

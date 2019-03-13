@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="bundle:project">
+
+
+    <property name="bundle.project.description" value="bundle files defined by patternset to dist" override="true"/>
+
+
+    <target name="bundle:project:help">
+        <echo message="${bundle.project.description}"/>
+    </target>
+
+
+    <target name="bundle:project">
+        <if>
+            <equals arg1="${project.folder.main.composer}" arg2=""/>
+            <then>
+                <property name="bundle.project.composer.prefix" value="" override="true"/>
+            </then>
+            <else>
+                <property name="bundle.project.composer.prefix" value="${project.folder.main.composer}/" override="true"/>
+            </else>
+        </if>
+
+        <if>
+            <equals arg1="${project.folder.main.compass}" arg2=""/>
+            <then>
+                <property name="bundle.project.compass.prefix" value="" override="true"/>
+            </then>
+            <else>
+                <property name="bundle.project.compass.prefix" value="${project.folder.main.compass}/" override="true"/>
+            </else>
+        </if>
+
+        <if>
+            <equals arg1="${project.folder.main.npm}" arg2=""/>
+            <then>
+                <property name="bundle.project.npm.prefix" value="" override="true"/>
+            </then>
+            <else>
+                <property name="bundle.project.npm.prefix" value="${project.folder.main.npm}/" override="true"/>
+            </else>
+        </if>
+
+        <copy todir="${project.dir.build.dist}">
+            <fileset dir="${project.dir.main}">
+                <patternset refid="patternset.bundle.project"/>
+
+                <!-- exclude npm files -->
+                <exclude name="${bundle.project.npm.prefix}.sass-cache/**"/>
+
+                <!-- exclude npm files -->
+                <exclude name="${bundle.project.npm.prefix}node_modules/**"/>
+
+                <!-- exclude composer configuration file -->
+                <exclude name="${bundle.project.composer.prefix}vendor/**/.coveralls.yml"/>
+                <exclude name="${bundle.project.composer.prefix}vendor/**/.editorconfig"/>
+                <exclude name="${bundle.project.composer.prefix}vendor/**/.gitignore"/>
+                <exclude name="${bundle.project.composer.prefix}vendor/**/.gitmodules"/>
+                <exclude name="${bundle.project.composer.prefix}vendor/**/.travis.yml"/>
+
+                <!-- exclude composer continuous integration files -->
+                <exclude name="${bundle.project.composer.prefix}vendor/**/build.properties"/>
+                <exclude name="${bundle.project.composer.prefix}vendor/**/build.xml"/>
+                <exclude name="${bundle.project.composer.prefix}vendor/**/phpunit.xml.dist"/>
+                <exclude name="${bundle.project.composer.prefix}vendor/**/travis.phpunit.xml"/>
+
+                <!-- exclude composer documentation files -->
+                <exclude name="${bundle.project.composer.prefix}vendor/**/CHANGELOG"/>
+                <exclude name="${bundle.project.composer.prefix}vendor/**/CHANGELOG.md"/>
+                <exclude name="${bundle.project.composer.prefix}vendor/**/README"/>
+                <exclude name="${bundle.project.composer.prefix}vendor/**/README.md"/>
+                <exclude name="${bundle.project.composer.prefix}vendor/**/LICENSE"/>
+                <exclude name="${bundle.project.composer.prefix}vendor/**/LICENSE.md"/>
+                <exclude name="${bundle.project.composer.prefix}vendor/**/UPGRADE"/>
+                <exclude name="${bundle.project.composer.prefix}vendor/**/UPGRADE.md"/>
+                <exclude name="${bundle.project.composer.prefix}vendor/**/CONDUCT"/>
+                <exclude name="${bundle.project.composer.prefix}vendor/**/CONDUCT.md"/>
+                <exclude name="${bundle.project.composer.prefix}vendor/**/CONTRIBUTING"/>
+                <exclude name="${bundle.project.composer.prefix}vendor/**/CONTRIBUTING.md"/>
+            </fileset>
+        </copy>
+    </target>
+
+
+</project>

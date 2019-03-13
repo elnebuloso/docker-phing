@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="docker:compose:pull">
+
+
+    <property name="docker.compose.pull.description" value="pull the newest images of the docker compose stack" override="true"/>
+
+
+    <target name="docker:compose:pull:help">
+        <echo message="${docker.compose.pull.description}"/>
+    </target>
+
+
+    <target name="docker:compose:pull">
+        <exec command="docker-compose pull" passthru="true" checkreturn="true" level="info"/>
+    </target>
+
+
+</project>

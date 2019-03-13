@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="composer:require">
+
+
+    <property name="composer.require.description" value="composer require a dependency" override="true"/>
+
+
+    <target name="composer:require:help">
+        <echo message="${composer.require.description}"/>
+    </target>
+
+
+    <target name="composer:require">
+        <input propertyname="composer.require.package" defaultValue="">package (vendor/package)</input>
+        <input propertyname="composer.require.options" defaultValue="">options</input>
+
+        <if>
+            <not>
+                <equals arg1="${composer.require.package}" arg2=""/>
+            </not>
+            <then>
+                <exec command="composer require ${composer.require.package} ${composer.require.options}" passthru="true" checkreturn="true" level="info" dir="${project.dir.main.composer}"/>
+            </then>
+        </if>
+    </target>
+
+
+</project>

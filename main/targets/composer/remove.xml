@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="composer:remove">
+
+
+    <property name="composer.remove.description" value="composer remove a dependency" override="true"/>
+
+
+    <target name="composer:remove:help">
+        <echo message="${composer.remove.description}"/>
+    </target>
+
+
+    <target name="composer:remove">
+        <input propertyname="composer.remove.package" defaultValue="">package (vendor/package)</input>
+        <input propertyname="composer.remove.options" defaultValue="">options</input>
+
+        <if>
+            <not>
+                <equals arg1="${composer.remove.package}" arg2=""/>
+            </not>
+            <then>
+                <exec command="composer remove ${composer.remove.package} ${composer.remove.options}" passthru="true" checkreturn="true" level="info" dir="${project.dir.main.composer}"/>
+            </then>
+        </if>
+    </target>
+
+
+</project>
