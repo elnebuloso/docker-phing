@@ -29,7 +29,7 @@ pipeline {
                     def version = readFile "${env.WORKSPACE}/VERSION"
 
                     docker.withRegistry("https://registry.hub.docker.com", '061d45cc-bc11-4490-ac21-3b2276f1dd05'){
-                        image.push("")
+                        image.push()
                         image.push("${version}")
                     }
                 }
