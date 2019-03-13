@@ -17,7 +17,7 @@ pipeline {
         stage('build') {
             steps {
                 script {
-                    image = docker.build("elnebuloso/phing", "--pull --rm --no-cache -f Dockerfile.${type} .")
+                    image = docker.build("elnebuloso/phing", "--pull --rm --no-cache --file Dockerfile .")
                 }
             }
         }
