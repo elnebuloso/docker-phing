@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 
-<project name="application" basedir="." default="commons:help">
+<project name="application" basedir="." default="help">
 
 
     <property file="build.properties"/>
@@ -9,6 +9,41 @@
 
 
     <import file="/srv/phing/commons/standard.xml"/>
+
+
+    <target name="help" depends="commons:help">
+        <echo message="target                              description"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="test                                test phing installation with all run targets"/>
+        <echo message="test:run:bin                        test binaries"/>
+        <echo message="test:run:phing                      test phing targets"/>
+        <echo message="test:run:phing:commons              test phing common targets"/>
+        <echo message="test:run:phing:commons:composer     test phing common composer targets"/>
+    </target>
+
+
+    <target name="test">
+        <phingcall target="test:run:bin"/>
+    </target>
+
+
+    <target name="test:run:bin">
+        <exec command="closure-compiler --version" passthru="true" checkreturn="true" level="info"/>
+        <exec command="compass --version" passthru="true" checkreturn="true" level="info"/>
+        <exec command="composer --version" passthru="true" checkreturn="true" level="info"/>
+        <exec command="csso --version" passthru="true" checkreturn="true" level="info"/>
+        <exec command="npm --version" passthru="true" checkreturn="true" level="info"/>
+        <exec command="pdepend --version" passthru="true" checkreturn="true" level="info"/>
+        <exec command="phpcbf --version" passthru="true" checkreturn="true" level="info"/>
+        <exec command="phpcpd --version" passthru="true" checkreturn="true" level="info"/>
+        <exec command="phpcs --version" passthru="true" checkreturn="true" level="info"/>
+        <exec command="phploc --version" passthru="true" checkreturn="true" level="info"/>
+        <exec command="phpmd --version" passthru="true" checkreturn="true" level="info"/>
+        <exec command="phpmetrics1 --version" passthru="true" checkreturn="true" level="info"/>
+        <exec command="phpmetrics2 --version" passthru="true" checkreturn="true" level="info"/>
+        <exec command="phpunit --version" passthru="true" checkreturn="true" level="info"/>
+        <exec command="yarn --version" passthru="true" checkreturn="true" level="info"/>
+    </target>
 
 
 </project>

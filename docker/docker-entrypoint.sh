@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-# first arg is `-f` or `--some-option`
-if [[ "${1#-}" != "$1" ]]; then
+if [[ "${1#-}" != "phing" && "${1#-}" != "bash" ]]; then
 	set -- phing "$@"
 fi
 
