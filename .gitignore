@@ -6,7 +6,11 @@ build/*
 main/vendor
 
 test/build/*
+test/main/.sass-cache
+test/main/css
 test/main/node_modules
 test/main/vendor
+test/main/composer.lock
+test/main/package-lock.json
 
 phing-2.16.1.phar
