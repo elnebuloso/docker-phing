@@ -5,9 +5,6 @@ build/*
 
 main/vendor
 
-passphrase.ssh.txt
-passphrase.docker.txt
-
 test/build/*
 test/main/yarn.lock
 test/main/yarn-error.log
@@ -23,19 +20,3 @@ test-sf4/*
 !test-sf4/build.properties
 !test-sf4/build.xml
 !test-sf4/VERSION
-
-project/build/*
-project/main/yarn.lock
-project/main/yarn-error.log
-project/main/package-lock.json
-project/main/composer.lock
-project/main/.sass-cache
-project/main/css
-project/main/node_modules
-project/main/vendor
-
-sf4/*
-!sf4/build.env
-!sf4/build.properties
-!sf4/build.xml
-!sf4/VERSION
