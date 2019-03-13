@@ -1,0 +1,17 @@
+{
+    "name": "elnebuloso/test",
+    "description": "Test Project",
+    "license": "proprietary",
+    "type": "project",
+    "require": {
+        "php": ">=7.1.0",
+        "symfony/yaml": "^4.0"
+    },
+    "require-dev": {
+    },
+    "config": {
+        "platform": {
+            "php": "7.2"
+        }
+    }
+}

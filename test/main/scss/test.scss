@@ -1,0 +1,45 @@
+@import "variables/_colors";
+
+.text1 {
+    color: $color-red;
+}
+
+.text2 {
+    color: $color-green;
+}
+
+.text3 {
+    color: $color-blue;
+}
+
+.text4 {
+    color: $color-blue;
+}
+
+.text5 {
+    color: $color-blue;
+}
+
+.image1 {
+    background: #cccccc image-url("350x150.png") repeat-x scroll top center;
+}
+
+.image2 {
+    background: #cccccc image-url("350x150.png") repeat-x scroll top center;
+}
+
+.image3 {
+    background: #cccccc image-url("350x150.png") repeat-x scroll top center;
+}
+
+.foo {
+    color: $color-red;
+
+    .bar {
+        color: $color-green;
+    }
+
+    .baz {
+        color: $color-blue;
+    }
+}
