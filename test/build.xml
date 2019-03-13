@@ -12,19 +12,19 @@
 
 
     <target name="help" depends="commons:help">
-        <echo message="target                              description"/>
+        <echo message="target                    description"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="test                                test phing installation with all run targets"/>
-        <echo message="test:run:bin                        test binaries"/>
-        <echo message="test:run:phing                      test phing targets"/>
-        <echo message="test:run:phing:commons              test phing common targets"/>
-        <echo message="test:run:phing:commons:composer     test phing common composer targets"/>
+        <echo message="test                      test phing installation with all run targets"/>
+        <echo message="test:run:bin              test binaries"/>
+        <echo message="test:run:phing            test phing targets"/>
+        <echo message="test:run:phing:commons    test phing common targets"/>
     </target>
 
 
     <target name="test">
         <phingcall target="test:run:bin"/>
         <phingcall target="test:run:phing"/>
+        <phingcall target="test:run:phing:commons"/>
     </target>
 
 
@@ -49,6 +49,7 @@
 
     <target name="test:run:phing">
         <phingcall target="clean:dist"/>
+        <phingcall target="clean:tmp"/>
         <phingcall target="clean:reports"/>
 
         <phingcall target="test:run:phing:TarTask"/>
@@ -69,6 +70,43 @@
 
     <target name="test:run:phing:HttpGetTask" hidden="true">
         <httpget url="http://via.placeholder.com/350x150.jpg" dir="${project.dir.build.tmp}"/>
+    </target>
+
+
+    <target name="test:run:phing:commons">
+        <phingcall target="test:run:phing:commons:composer"/>
+        <phingcall target="test:run:phing:commons:compass"/>
+        <phingcall target="test:run:phing:commons:npm"/>
+        <phingcall target="test:run:phing:commons:bundle"/>
+    </target>
+
+
+    <target name="test:run:phing:commons:composer">
+        <delete dir="${project.dir.main.composer}/vendor"/>
+        <delete file="${project.dir.main.composer}/composer.lock"/>
+        <phingcall target="composer:update"/>
+        <phingcall target="composer:install"/>
+        <phingcall target="composer:install:production"/>
+    </target>
+
+
+    <target name="test:run:phing:commons:compass">
+        <delete dir="${project.dir.main.npm}/.sass-cache"/>
+        <phingcall target="compass:clean"/>
+        <phingcall target="compass:compile"/>
+    </target>
+
+
+    <target name="test:run:phing:commons:npm">
+        <delete dir="${project.dir.main.npm}/node_modules"/>
+        <delete file="${project.dir.main.npm}/package-lock.json"/>
+        <phingcall target="npm:install"/>
+    </target>
+
+
+    <target name="test:run:phing:commons:bundle">
+        <phingcall target="clean:dist"/>
+        <phingcall target="bundle:project"/>
     </target>
 
 
