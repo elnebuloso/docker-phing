@@ -6,17 +6,5 @@ build/*
 main/vendor
 
 test/build/*
-test/main/yarn.lock
-test/main/yarn-error.log
-test/main/package-lock.json
-test/main/composer.lock
-test/main/.sass-cache
-test/main/css
 test/main/node_modules
 test/main/vendor
-
-test-sf4/*
-!test-sf4/build.env
-!test-sf4/build.properties
-!test-sf4/build.xml
-!test-sf4/VERSION
