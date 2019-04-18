@@ -24,7 +24,7 @@
             </condition>
         </fail>
 
-        <exec command="composer create-project --prefer-dist laravel/lumen:^5 ${project.dir.main}" passthru="true" checkreturn="true" level="info"/>
+        <exec command="composer create-project --prefer-dist --no-dev --remove-vcs laravel/lumen ${project.dir.main} ^5" passthru="true" checkreturn="true" level="info"/>
         <delete dir="${project.dir.main}/.git" quiet="true"/>
 
         <copy todir="${project.root}" overwrite="true">

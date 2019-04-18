@@ -24,7 +24,7 @@
             </condition>
         </fail>
 
-        <exec command="composer create-project --prefer-dist symfony/skeleton:^4 ${project.dir.main}" passthru="true" checkreturn="true" level="info"/>
+        <exec command="composer create-project --prefer-dist --no-dev --remove-vcs symfony/skeleton ${project.dir.main} ^4" passthru="true" checkreturn="true" level="info"/>
         <delete dir="${project.dir.main}/.git" quiet="true"/>
 
         <copy todir="${project.root}" overwrite="true">
