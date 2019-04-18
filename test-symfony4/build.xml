@@ -12,12 +12,27 @@
 
 
     <target name="help" depends="commons:help">
-        <echo message="target                    description"/>
-        <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="test                      test phing installation with all run targets"/>
-        <echo message="test:run:bin              test binaries"/>
-        <echo message="test:run:phing            test phing targets"/>
-        <echo message="test:run:phing:commons    test phing common targets"/>
+        <echo message="install    installs all and prepares the project for development"/>
+        <echo message="start      start the project"/>
+        <echo message="stop       stops the project"/>
+    </target>
+
+
+    <target name="install">
+        <phingcall target="clean:dist"/>
+        <phingcall target="composer:install"/>
+    </target>
+
+
+    <target name="start">
+        <phingcall target="clean:dist"/>
+        <phingcall target="docker:compose:up"/>
+        <phingcall target="docker:compose:ps"/>
+    </target>
+
+
+    <target name="stop">
+        <phingcall target="docker:compose:down"/>
     </target>
 
 
