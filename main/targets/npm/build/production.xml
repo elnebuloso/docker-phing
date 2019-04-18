@@ -21,7 +21,7 @@
 
 
     <target name="npm:build:production">
-        <exec command="npm run ${npm.build.production.run}" passthru="true" checkreturn="true" level="info" dir="${project.dir.main.npm}"/>
+        <exec command="${npm.executable} run ${npm.build.production.run}" passthru="true" checkreturn="true" level="info" dir="${project.dir.main.npm}"/>
     </target>
 
 
