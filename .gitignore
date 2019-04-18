@@ -1,17 +1,18 @@
 .idea
 
-build/*
-!build/dist/.gitignore
+/build/*
+!/build/dist/.gitignore
 
-main/vendor
+/main/vendor
 
-test/build/*
-test/main/.sass-cache
-test/main/css
-test/main/node_modules
-test/main/vendor
-test/main/composer.lock
-test/main/package-lock.json
-test/sonar-project.properties
+/test/build/*
+/test/main/.sass-cache
+/test/main/css
+/test/main/node_modules
+/test/main/vendor
+/test/main/composer.lock
+/test/main/package-lock.json
+/test/sonar-project.properties
+/test/.scannerwork
 
-phing-2.16.1.phar
+/phing-2.16.1.phar
