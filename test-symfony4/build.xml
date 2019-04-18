@@ -12,9 +12,25 @@
 
 
     <target name="help" depends="commons:help">
-        <echo message="install    installs all and prepares the project for development"/>
+        <echo message="init       init from skeleton"/>
+        <echo message="install    installs all dependencies and prepares the project for development"/>
         <echo message="start      start the project"/>
         <echo message="stop       stops the project"/>
+    </target>
+
+
+    <target name="init">
+        <delete includeemptydirs="true">
+            <fileset dir="${project.root}">
+                <exclude name="build.env"/>
+                <exclude name="build.properties"/>
+                <exclude name="build.xml"/>
+                <exclude name="VERSION"/>
+            </fileset>
+        </delete>
+        <delete dir="${project.root}/main"/>
+
+        <phingcall target="init:symfony4"/>
     </target>
 
 
