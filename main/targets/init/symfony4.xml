@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="init:symfony4">
+
+
+    <property name="init.symfony4.description" value="init symfony4 application" override="true"/>
+
+
+    <target name="init:symfony4:help">
+        <echo message="${init.symfony4.description}"/>
+    </target>
+
+
+    <target name="init:symfony4:before">
+        <echo message="not implemented"/>
+    </target>
+
+
+    <target name="init:symfony4" depends="init:symfony4:before">
+        <fail message="${project.dir.main} exists for creating symfony4 application">
+            <condition>
+                <available file="${project.dir.main}" type="dir"/>
+            </condition>
+        </fail>
+
+        <exec command="composer create-project --prefer-dist --no-scripts symfony/skeleton ${project.dir.main}" passthru="true" checkreturn="true" level="info"/>
+        <delete dir="${project.dir.main}/.git" quiet="true"/>
+
+        <copy todir="${project.root}" overwrite="true">
+            <fileset dir="${phing.commons.root}/resources/init/symfony4/0">
+                <include name="**"/>
+            </fileset>
+        </copy>
+    </target>
+
+
+</project>

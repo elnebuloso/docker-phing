@@ -15,4 +15,10 @@
 /test/sonar-project.properties
 /test/.scannerwork
 
+/test-symfony4/*
+!/test-symfony4/build.env
+!/test-symfony4/build.properties
+!/test-symfony4/build.xml
+!/test-symfony4/VERSION
+
 /phing-2.16.1.phar
