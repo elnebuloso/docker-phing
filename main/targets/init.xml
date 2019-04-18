@@ -7,7 +7,7 @@
     <import file="${phing.commons.root}/targets/init/symfony4.xml"/>
 
 
-    <target name="git:help">
+    <target name="init:help">
         <echo message="target           description"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="init:symfony4    ${init.symfony4.description}"/>

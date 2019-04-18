@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project name="application" basedir="." default="help">
+
+
+    <property file="build.properties"/>
+    <property file="build.properties.local"/>
+
+
+    <import file="/srv/phing/commons/symfony4.xml"/>
+
+
+    <target name="help" depends="commons:help">
+        <echo message="target                    description"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="test                      test phing installation with all run targets"/>
+        <echo message="test:run:bin              test binaries"/>
+        <echo message="test:run:phing            test phing targets"/>
+        <echo message="test:run:phing:commons    test phing common targets"/>
+    </target>
+
+
+</project>

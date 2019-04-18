@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 
-<project name="commons:template:standard">
+<project name="commons:template:symfony4">
 
 
-    <property name="project.type" value="standard"/>
+    <property name="project.type" value="symfony4"/>
 
 
     <!-- extending commons -->
@@ -14,53 +14,45 @@
     <!-- bundle:project -->
     <patternset id="patternset.bundle.project">
         <include name="**"/>
+        <exclude name=".env"/>
+        <exclude name=".env.dist"/>
     </patternset>
 
 
     <!-- test:phplint -->
     <patternset id="patternset.test.phplint">
-        <include name="**/*.php"/>
-        <include name="tests/**"/>
-        <exclude name="vendor/**"/>
+        <include name="src/**/*.php"/>
     </patternset>
 
 
     <!-- report:phpcpd -->
     <patternset id="patternset.report.phpcpd">
-        <include name="**/*.php"/>
-        <exclude name="tests/**"/>
-        <exclude name="vendor/**"/>
+        <include name="src/**/*.php"/>
     </patternset>
 
 
     <!-- report:phpcs -->
     <patternset id="patternset.report.phpcs">
-        <include name="**/*.php"/>
-        <exclude name="tests/**"/>
-        <exclude name="vendor/**"/>
+        <include name="src/**/*.php"/>
     </patternset>
 
 
     <!-- report:phpdepend -->
     <patternset id="patternset.report.phpdepend">
-        <include name="**/*.php"/>
-        <exclude name="tests/**"/>
-        <exclude name="vendor/**"/>
+        <include name="src/**/*.php"/>
     </patternset>
 
 
     <!-- report:phploc -->
     <patternset id="patternset.report.phploc">
-        <include name="**/*.php"/>
-        <exclude name="vendor/**"/>
+        <include name="src/**/*.php"/>
+        <include name="tests/**/*.php"/>
     </patternset>
 
 
     <!-- report:phpmd -->
     <patternset id="patternset.report.phpmd">
-        <include name="**/*.php"/>
-        <exclude name="tests/**"/>
-        <exclude name="vendor/**"/>
+        <include name="src/**/*.php"/>
     </patternset>
 
 
