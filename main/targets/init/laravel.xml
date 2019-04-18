@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="init:laravel">
+
+
+    <property name="init.laravel.description" value="init laravel application" override="true"/>
+
+
+    <target name="init:laravel:help">
+        <echo message="${init.laravel.description}"/>
+    </target>
+
+
+    <target name="init:laravel:before">
+        <echo message="not implemented"/>
+    </target>
+
+
+    <target name="init:laravel" depends="init:laravel:before">
+        <fail message="${project.dir.main} exists for creating laravel application">
+            <condition>
+                <available file="${project.dir.main}" type="dir"/>
+            </condition>
+        </fail>
+
+        <exec command="composer create-project --prefer-dist --no-dev --remove-vcs laravel/laravel ${project.dir.main} ^5" passthru="true" checkreturn="true" level="info"/>
+        <delete dir="${project.dir.main}/.git" quiet="true"/>
+
+        <copy todir="${project.root}" overwrite="true">
+            <fileset dir="${phing.commons.root}/resources/init/laravel/0">
+                <include name="**"/>
+            </fileset>
+        </copy>
+    </target>
+
+
+</project>
