@@ -15,16 +15,22 @@
 /test/sonar-project.properties
 /test/.scannerwork
 
-/test-symfony4/*
-!/test-symfony4/build.env
-!/test-symfony4/build.properties
-!/test-symfony4/build.xml
-!/test-symfony4/VERSION
+/test-laravel/*
+!/test-laravel/build.env
+!/test-laravel/build.properties
+!/test-laravel/build.xml
+!/test-laravel/VERSION
 
 /test-laravel-lumen5/*
 !/test-laravel-lumen5/build.env
 !/test-laravel-lumen5/build.properties
 !/test-laravel-lumen5/build.xml
 !/test-laravel-lumen5/VERSION
+
+/test-symfony4/*
+!/test-symfony4/build.env
+!/test-symfony4/build.properties
+!/test-symfony4/build.xml
+!/test-symfony4/VERSION
 
 /phing-2.16.1.phar
