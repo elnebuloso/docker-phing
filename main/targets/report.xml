@@ -11,6 +11,7 @@
     <import file="${phing.commons.root}/targets/report/phpmetrics.xml"/>
     <import file="${phing.commons.root}/targets/report/phpmetrics1.xml"/>
     <import file="${phing.commons.root}/targets/report/phpmetrics2.xml"/>
+    <import file="${phing.commons.root}/targets/report/sonarqube.xml"/>
 
 
     <target name="report:help">
@@ -23,6 +24,7 @@
         <echo message="report:phpmetrics     ${report.phpmetrics.description}"/>
         <echo message="report:phpmetrics1    ${report.phpmetrics1.description}"/>
         <echo message="report:phpmetrics2    ${report.phpmetrics2.description}"/>
+        <echo message="report:sonarqube      ${report.sonarqube.description}"/>
     </target>
 
 

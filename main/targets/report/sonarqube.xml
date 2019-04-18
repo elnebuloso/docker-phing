@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="report:sonarqube">
+
+
+    <property name="report.sonarqube.description" value="sonarqube scanner code analysis" override="true"/>
+    <property name="report.sonarqube.executable" value="sonarqube-scanner"/>
+    <property name="report.sonarqube.config" value="${project.root}/sonar-project.properties"/>
+
+
+    <target name="report:sonarqube:help">
+        <echo message="${report.sonarqube.description}"/>
+
+        <echo message=""/>
+        <echo message="property                       value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="report.sonarqube.executable    ${report.sonarqube.executable}"/>
+        <echo message="report.sonarqube.config        ${report.sonarqube.config}"/>
+    </target>
+
+
+    <target name="report:sonarqube">
+        <exec executable="${report.sonarqube.executable}" passthru="true" checkreturn="true" level="info" dir="${project.root}">
+            <arg line="--define sonar.projectName=${project.name}"/>
+            <arg line="--define sonar.projectVersion=${project.version}"/>
+        </exec>
+    </target>
+
+
+</project>
