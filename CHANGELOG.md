@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [1.3.0] - 2019-04-19
+### Changed
+- added init target for symfony4 projects
+
+
 ## [1.2.0] - 2019-04-19
 ### Changed
 - added sonarqube report scanner target
