@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 
-<project name="commons:template:laravel-lumen5">
+<project name="commons:template:laravel">
 
 
-    <property name="project.type" value="laravel-lumen5"/>
+    <property name="project.type" value="laravel"/>
 
 
     <!-- extending commons -->
