@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project name="commons:template:laravel-lumen5">
+
+
+    <property name="project.type" value="laravel-lumen5"/>
+
+
+    <!-- extending commons -->
+    <import file="/srv/phing/commons.xml"/>
+
+
+    <!-- bundle:project -->
+    <patternset id="patternset.bundle.project">
+        <include name="**"/>
+        <exclude name=".env"/>
+        <exclude name=".env.dist"/>
+    </patternset>
+
+
+    <!-- test:phplint -->
+    <patternset id="patternset.test.phplint">
+        <include name="src/**/*.php"/>
+    </patternset>
+
+
+    <!-- report:phpcpd -->
+    <patternset id="patternset.report.phpcpd">
+        <include name="src/**/*.php"/>
+    </patternset>
+
+
+    <!-- report:phpcs -->
+    <patternset id="patternset.report.phpcs">
+        <include name="src/**/*.php"/>
+    </patternset>
+
+
+    <!-- report:phpdepend -->
+    <patternset id="patternset.report.phpdepend">
+        <include name="src/**/*.php"/>
+    </patternset>
+
+
+    <!-- report:phploc -->
+    <patternset id="patternset.report.phploc">
+        <include name="src/**/*.php"/>
+        <include name="tests/**/*.php"/>
+    </patternset>
+
+
+    <!-- report:phpmd -->
+    <patternset id="patternset.report.phpmd">
+        <include name="src/**/*.php"/>
+    </patternset>
+
+
+    <!-- report:phpmetrics -->
+    <property name="report.phpmetrics.directories" value="src"/>
+
+
+</project>

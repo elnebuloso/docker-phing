@@ -4,13 +4,15 @@
 <project>
 
 
+    <import file="${phing.commons.root}/targets/init/laravel-lumen5.xml"/>
     <import file="${phing.commons.root}/targets/init/symfony4.xml"/>
 
 
     <target name="init:help">
-        <echo message="target           description"/>
+        <echo message="target                 description"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="init:symfony4    ${init.symfony4.description}"/>
+        <echo message="init:laravel-lumen5    ${init.laravel-lumen5.description}"/>
+        <echo message="init:symfony4          ${init.symfony4.description}"/>
     </target>
 
 
