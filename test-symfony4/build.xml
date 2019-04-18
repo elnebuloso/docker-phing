@@ -29,7 +29,6 @@
             </fileset>
         </delete>
         <delete dir="${project.root}/main"/>
-
         <phingcall target="init:symfony4"/>
     </target>
 
