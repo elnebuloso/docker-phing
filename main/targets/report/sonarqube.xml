@@ -17,12 +17,14 @@
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="report.sonarqube.executable    ${report.sonarqube.executable}"/>
         <echo message="report.sonarqube.config        ${report.sonarqube.config}"/>
+        <echo message="report.sonarqube.project.key   ${project.name}"/>
     </target>
 
 
     <target name="report:sonarqube">
         <exec executable="${report.sonarqube.executable}" passthru="true" checkreturn="true" level="info" dir="${project.root}">
-            <arg line="--define sonar.projectName=${project.name}"/>
+            <arg line="--define project.settings=${report.sonarqube.config}"/>
+            <arg line="--define sonar.projectKey=${project.name}"/>
             <arg line="--define sonar.projectVersion=${project.version}"/>
         </exec>
     </target>
