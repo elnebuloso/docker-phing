@@ -12,8 +12,6 @@
 
 
     <target name="help" depends="commons:help">
-        <echo message="target                    description"/>
-        <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="test                      test phing installation with all run targets"/>
         <echo message="test:run:bin              test binaries"/>
         <echo message="test:run:phing            test phing targets"/>
