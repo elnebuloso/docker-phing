@@ -6,7 +6,7 @@
 
     <property name="report.sonarqube.description" value="sonarqube scanner code analysis" override="true"/>
     <property name="report.sonarqube.executable" value="sonarqube-scanner"/>
-    <property name="report.sonarqube.config" value="${project.root}/sonar-project.properties"/>
+    <property name="report.sonarqube.config" value="${projectRoot}/sonar-project.properties"/>
 
 
     <target name="report:sonarqube:help">
@@ -21,7 +21,7 @@
 
 
     <target name="report:sonarqube">
-        <exec executable="${report.sonarqube.executable}" passthru="true" checkreturn="true" level="info" dir="${project.root}">
+        <exec executable="${report.sonarqube.executable}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}">
             <arg line="--define sonar.projectName=${project.name}"/>
             <arg line="--define sonar.projectVersion=${project.version}"/>
         </exec>

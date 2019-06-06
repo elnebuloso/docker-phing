@@ -23,7 +23,7 @@
             </else>
         </if>
 
-        <exec command="docker build --pull --rm ${docker.build.options} --tag ${project.name} --file Dockerfile ." passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+        <exec command="docker build --pull --rm ${docker.build.options} --tag ${project.name} --file Dockerfile ." passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
     </target>
 
 

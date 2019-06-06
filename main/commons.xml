@@ -13,13 +13,13 @@
     </php>
 
 
-    <php function="dirname" returnProperty="project.root" level="debug">
+    <php function="dirname" returnProperty="projectRoot" level="debug">
         <param value="${phing.file}"/>
     </php>
-    <resolvepath propertyName="project.root" file="${project.root}"/>
+    <resolvepath propertyName="projectRoot" file="${projectRoot}"/>
 
 
-    <loadfile property="project.version" file="${project.root}/VERSION"/>
+    <loadfile property="project.version" file="${projectRoot}/VERSION"/>
     <php function="trim" returnProperty="project.version" level="debug">
         <param value="${project.version}"/>
     </php>
@@ -32,14 +32,14 @@
     <property name="project.folder.build" value="build"/>
 
 
-    <property name="project.dir.main" value="${project.root}/${project.folder.main}"/>
-    <property name="project.dir.main.composer" value="${project.root}/${project.folder.main}/${project.folder.main.composer}"/>
-    <property name="project.dir.main.compass" value="${project.root}/${project.folder.main}/${project.folder.main.compass}"/>
-    <property name="project.dir.main.npm" value="${project.root}/${project.folder.main}/${project.folder.main.npm}"/>
-    <property name="project.dir.build" value="${project.root}/${project.folder.build}"/>
-    <property name="project.dir.build.tmp" value="${project.root}/${project.folder.build}/tmp"/>
-    <property name="project.dir.build.dist" value="${project.root}/${project.folder.build}/dist"/>
-    <property name="project.dir.build.reports" value="${project.root}/${project.folder.build}/reports"/>
+    <property name="project.dir.main" value="${projectRoot}/${project.folder.main}"/>
+    <property name="project.dir.main.composer" value="${projectRoot}/${project.folder.main}/${project.folder.main.composer}"/>
+    <property name="project.dir.main.compass" value="${projectRoot}/${project.folder.main}/${project.folder.main.compass}"/>
+    <property name="project.dir.main.npm" value="${projectRoot}/${project.folder.main}/${project.folder.main.npm}"/>
+    <property name="project.dir.build" value="${projectRoot}/${project.folder.build}"/>
+    <property name="project.dir.build.tmp" value="${projectRoot}/${project.folder.build}/tmp"/>
+    <property name="project.dir.build.dist" value="${projectRoot}/${project.folder.build}/dist"/>
+    <property name="project.dir.build.reports" value="${projectRoot}/${project.folder.build}/reports"/>
 
 
     <resolvepath propertyName="project.dir.main" file="${project.dir.main}"/>

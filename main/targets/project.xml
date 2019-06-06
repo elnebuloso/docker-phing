@@ -17,7 +17,7 @@
         <echo message="property                        value [do not edit directly]"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="project.version                 ${project.version}" level="warning"/>
-        <echo message="project.root                    ${project.root}" level="warning"/>
+        <echo message="projectRoot                    ${projectRoot}" level="warning"/>
         <echo message="project.dir.main                ${project.dir.main}" level="warning"/>
         <echo message="project.dir.main.composer       ${project.dir.main.composer}" level="warning"/>
         <echo message="project.dir.main.compass        ${project.dir.main.compass}" level="warning"/>

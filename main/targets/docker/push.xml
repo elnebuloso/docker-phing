@@ -25,10 +25,10 @@
             </else>
         </if>
 
-        <exec command="docker tag ${project.name} ${env.REGISTRY_HOST}/${project.name}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
-        <exec command="docker tag ${project.name} ${env.REGISTRY_HOST}/${project.name}:${project.env.version}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
-        <exec command="docker push ${env.REGISTRY_HOST}/${project.name}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
-        <exec command="docker push ${env.REGISTRY_HOST}/${project.name}:${project.env.version}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+        <exec command="docker tag ${project.name} ${env.REGISTRY_HOST}/${project.name}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
+        <exec command="docker tag ${project.name} ${env.REGISTRY_HOST}/${project.name}:${project.env.version}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
+        <exec command="docker push ${env.REGISTRY_HOST}/${project.name}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
+        <exec command="docker push ${env.REGISTRY_HOST}/${project.name}:${project.env.version}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
     </target>
 
 

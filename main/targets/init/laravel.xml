@@ -27,7 +27,7 @@
         <exec command="composer create-project --prefer-dist --no-dev --remove-vcs laravel/laravel ${project.dir.main} ^5" passthru="true" checkreturn="true" level="info"/>
         <delete dir="${project.dir.main}/.git" quiet="true"/>
 
-        <copy todir="${project.root}" overwrite="true">
+        <copy todir="${projectRoot}" overwrite="true">
             <fileset dir="${phingCommonsRoot}/resources/init/laravel/0">
                 <include name="**"/>
             </fileset>
