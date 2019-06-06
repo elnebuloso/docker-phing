@@ -15,12 +15,6 @@
 /test/sonar-project.properties
 /test/.scannerwork
 
-/test-laravel/*
-!/test-laravel/build.env
-!/test-laravel/build.properties
-!/test-laravel/build.xml
-!/test-laravel/VERSION
-
 /test-laravel5/*
 !/test-laravel5/build.env
 !/test-laravel5/build.properties
