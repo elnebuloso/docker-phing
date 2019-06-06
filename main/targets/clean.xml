@@ -14,7 +14,7 @@
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="clean:tmp        ${clean.tmp.description}"/>
         <echo message="clean:dist       ${cleanDistDescription}"/>
-        <echo message="clean:reports    ${clean.reports.description}"/>
+        <echo message="clean:reports    ${cleanReportsDescription}"/>
     </target>
 
 

@@ -4,15 +4,30 @@
 <project default="clean:reports">
 
 
-    <property name="clean.reports.description" value="cleanup project reports directory" override="true"/>
+    <property name="cleanReportsDescription" value="cleanup project reports directory" override="true"/>
 
 
     <target name="clean:reports:help">
-        <echo message="${clean.reports.description}"/>
+        <echo message="${cleanReportsDescription}"/>
     </target>
 
 
-    <target name="clean:reports">
+    <target name="clean:reports" depends="clean:reports:before, clean:reports:main, clean:reports:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="clean:reports:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="clean:reports:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="clean:reports:main">
         <delete dir="${projectDirBuildReports}"/>
         <mkdir dir="${projectDirBuildReports}"/>
     </target>
