@@ -19,7 +19,7 @@
 
         <phpdepend pharlocation="${phingCommonsRoot}/resources/phar/pdepend-2.5.0.phar">
             <fileset dir="${projectDirMain}">
-                <patternset refid="patternset.report.phpdepend"/>
+                <patternset refid="patternsetReportPhpDepend"/>
             </fileset>
             <logger type="jdepend-xml" outfile="${report.phpdepend.output}/report.xml"/>
             <logger type="jdepend-chart" outfile="${report.phpdepend.output}/assets/chart.svg"/>

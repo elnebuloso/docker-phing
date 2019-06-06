@@ -19,7 +19,7 @@
 
         <phpcpd pharlocation="${phingCommonsRoot}/resources/phar/phpcpd-2.0.4.phar">
             <fileset dir="${projectDirMain}">
-                <patternset refid="patternset.report.phpcpd"/>
+                <patternset refid="patternsetReportPhpCpd"/>
             </fileset>
             <formatter type="pmd" outfile="${report.phpcpd.output}/report.xml"/>
         </phpcpd>

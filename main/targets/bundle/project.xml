@@ -60,7 +60,7 @@
 
         <copy todir="${projectDirBuildDist}">
             <fileset dir="${projectDirMain}">
-                <patternset refid="patternset.bundle.project"/>
+                <patternset refid="patternsetBundleProject"/>
 
                 <!-- exclude compass files -->
                 <exclude name="${bundle.project.npm.prefix}.sass-cache/**"/>

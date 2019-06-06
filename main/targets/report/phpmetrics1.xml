@@ -15,7 +15,7 @@
 
 
     <target name="report:phpmetrics1">
-        <fail unless="report.phpmetrics.directories" message="missing property report.phpmetrics.directories"/>
+        <fail unless="reportPhpMetricsDirectories" message="missing property reportPhpMetricsDirectories"/>
         <my-php-metrics1-directories excluded="report.phpmetrics1.excluded" dir="${projectDirMain}"/>
 
         <delete dir="${report.phpmetrics1.output.tmp}"/>

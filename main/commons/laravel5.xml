@@ -9,7 +9,7 @@
 
 
     <!-- bundle:project -->
-    <patternset id="patternset.bundle.project">
+    <patternset id="patternsetBundleProject">
         <include name="**"/>
         <exclude name=".env"/>
         <exclude name=".env.example"/>
@@ -17,7 +17,7 @@
 
 
     <!-- test:phplint -->
-    <patternset id="patternset.test.phplint">
+    <patternset id="patternsetTestPhpLint">
         <include name="**/*.php"/>
         <include name="tests/**"/>
         <exclude name="vendor/**"/>
@@ -25,7 +25,7 @@
 
 
     <!-- report:phpcpd -->
-    <patternset id="patternset.report.phpcpd">
+    <patternset id="patternsetReportPhpCpd">
         <include name="**/*.php"/>
         <exclude name="tests/**"/>
         <exclude name="vendor/**"/>
@@ -33,7 +33,7 @@
 
 
     <!-- report:phpcs -->
-    <patternset id="patternset.report.phpcs">
+    <patternset id="patternsetReportPhpCs">
         <include name="**/*.php"/>
         <exclude name="tests/**"/>
         <exclude name="vendor/**"/>
@@ -41,7 +41,7 @@
 
 
     <!-- report:phpdepend -->
-    <patternset id="patternset.report.phpdepend">
+    <patternset id="patternsetReportPhpDepend">
         <include name="**/*.php"/>
         <exclude name="tests/**"/>
         <exclude name="vendor/**"/>
@@ -49,14 +49,14 @@
 
 
     <!-- report:phploc -->
-    <patternset id="patternset.report.phploc">
+    <patternset id="patternsetReportPhpLoc">
         <include name="**/*.php"/>
         <exclude name="vendor/**"/>
     </patternset>
 
 
     <!-- report:phpmd -->
-    <patternset id="patternset.report.phpmd">
+    <patternset id="patternsetReportPhpMd">
         <include name="**/*.php"/>
         <exclude name="tests/**"/>
         <exclude name="vendor/**"/>
@@ -64,7 +64,7 @@
 
 
     <!-- report:phpmetrics -->
-    <property name="report.phpmetrics.directories" value="src"/>
+    <property name="reportPhpMetricsDirectories" value="src"/>
 
 
 </project>

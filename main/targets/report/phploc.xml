@@ -19,7 +19,7 @@
 
         <phploc pharlocation="${phingCommonsRoot}/resources/phar/phploc-2.1.5.phar" reportType="xml" reportName="report" reportDirectory="${report.phploc.output}">
             <fileset dir="${projectDirMain}">
-                <patternset refid="patternset.report.phploc"/>
+                <patternset refid="patternsetReportPhpLoc"/>
             </fileset>
         </phploc>
 

@@ -27,7 +27,7 @@
 
         <phpmd pharlocation="${phingCommonsRoot}/resources/phar/phpmd-2.6.0.phar" rulesets="${report.phpmd.rulesets}" allowedFileExtensions="${report.phpmd.allowedFileExtensions}">
             <fileset dir="${projectDirMain}">
-                <patternset refid="patternset.report.phpmd"/>
+                <patternset refid="patternsetReportPhpMd"/>
             </fileset>
             <formatter type="xml" outfile="${report.phpmd.output}/report.xml"/>
         </phpmd>

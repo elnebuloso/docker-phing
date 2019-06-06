@@ -9,7 +9,7 @@
 
 
     <!-- bundle:project -->
-    <patternset id="patternset.bundle.project">
+    <patternset id="patternsetBundleProject">
         <include name="**"/>
         <exclude name=".env"/>
         <exclude name=".env.dist"/>
@@ -17,44 +17,44 @@
 
 
     <!-- test:phplint -->
-    <patternset id="patternset.test.phplint">
+    <patternset id="patternsetTestPhpLint">
         <include name="src/**/*.php"/>
     </patternset>
 
 
     <!-- report:phpcpd -->
-    <patternset id="patternset.report.phpcpd">
+    <patternset id="patternsetReportPhpCpd">
         <include name="src/**/*.php"/>
     </patternset>
 
 
     <!-- report:phpcs -->
-    <patternset id="patternset.report.phpcs">
+    <patternset id="patternsetReportPhpCs">
         <include name="src/**/*.php"/>
     </patternset>
 
 
     <!-- report:phpdepend -->
-    <patternset id="patternset.report.phpdepend">
+    <patternset id="patternsetReportPhpDepend">
         <include name="src/**/*.php"/>
     </patternset>
 
 
     <!-- report:phploc -->
-    <patternset id="patternset.report.phploc">
+    <patternset id="patternsetReportPhpLoc">
         <include name="src/**/*.php"/>
         <include name="tests/**/*.php"/>
     </patternset>
 
 
     <!-- report:phpmd -->
-    <patternset id="patternset.report.phpmd">
+    <patternset id="patternsetReportPhpMd">
         <include name="src/**/*.php"/>
     </patternset>
 
 
     <!-- report:phpmetrics -->
-    <property name="report.phpmetrics.directories" value="src"/>
+    <property name="reportPhpMetricsDirectories" value="src"/>
 
 
 </project>

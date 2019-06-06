@@ -28,7 +28,7 @@
 
         <phplint interpreter="php${test.phplint.interpreter}" tofile="${test.phplint.output}/report.txt" haltonfailure="${test.phplint.haltonfailure}" cachefile="${projectDirBuildTmp}/phplint.cache" level="info">
             <fileset dir="${projectDirMain}">
-                <patternset refid="patternset.test.phplint"/>
+                <patternset refid="patternsetTestPhpLint"/>
             </fileset>
         </phplint>
     </target>
