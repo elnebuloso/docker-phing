@@ -4,11 +4,26 @@
 <project default="compass:watch">
 
 
-    <property name="compass.watch.description" value="compass watch scss" override="true"/>
+    <property name="compassWatchDescription" value="compass watch scss" override="true"/>
 
 
     <target name="compass:watch:help">
-        <echo message="${compass.watch.description}"/>
+        <echo message="${compassWatchDescription}"/>
+    </target>
+
+
+    <target name="compass:watch" depends="compass:watch:before, compass:watch:main, compass:watch:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="compass:watch:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="compass:watch:after" hidden="true">
+        <echo message="no actions defined"/>
     </target>
 
 

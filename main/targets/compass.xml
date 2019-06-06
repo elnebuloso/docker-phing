@@ -14,7 +14,7 @@
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="compass:clean      ${compassCleanDescription}"/>
         <echo message="compass:compile    ${compassCompileDescription}"/>
-        <echo message="compass:watch      ${compass.watch.description}"/>
+        <echo message="compass:watch      ${compassWatchDescription}"/>
     </target>
 
 
