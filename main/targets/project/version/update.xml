@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="project:version:update">
+
+
+    <property name="project.version.update.description" value="update the project version in major/minor/patch level" override="true"/>
+    <property name="releaseType" value="Bugfix"/>
+
+
+    <target name="project:version:update:help">
+        <echo message="${project.version.update.description}"/>
+
+        <echo message=""/>
+        <echo message="property       value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="releaseType    ${releaseType} [Major|Minor|Bugfix]"/>
+    </target>
+
+
+    <target name="project:version:update">
+        <echo message="version [curr]: ${project.version}"/>
+        <echo message="major: ${project.version.major}"/>
+        <echo message="minor: ${project.version.minor}"/>
+        <echo message="patch: ${project.version.patch}"/>
+
+        <version releasetype="${releaseType}" file="${project.root}/VERSION" property="project.version"/>
+        <cbc-semver string="${project.version}" version="project.version" major="project.version.major" minor="project.version.minor" patch="project.version.patch"/>
+
+        <echo message="version [next]: ${project.version}"/>
+        <echo message="major: ${project.version.major}"/>
+        <echo message="minor: ${project.version.minor}"/>
+        <echo message="patch: ${project.version.patch}"/>
+    </target>
+
+
+</project>

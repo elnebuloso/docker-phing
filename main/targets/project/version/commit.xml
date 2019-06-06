@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="project:version:commit">
+
+
+    <property name="project.version.commit.description" value="commit the project version back to the repository" override="true"/>
+    <property name="createTag" value="1"/>
+
+
+    <target name="project:version:commit:help">
+        <echo message="${project.version.commit.description}"/>
+
+        <echo message=""/>
+        <echo message="property     value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="createTag    ${createTag} [1|0]"/>
+    </target>
+
+
+    <target name="project:version:commit">
+        <exec command="git pull origin master" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+        <exec command="git add VERSION" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+        <exec command="git commit -m &quot;git:auto:version ${project.version}&quot;" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+        <exec command="git push origin HEAD:master" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+
+        <if>
+            <equals arg1="${createTag}" arg2="1"/>
+            <then>
+                <exec command="git tag -f -a ${project.version} -m &quot;git:auto:version tagging&quot;" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+                <exec command="git push origin ${project.version} --force" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+            </then>
+        </if>
+    </target>
+
+
+</project>
