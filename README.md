@@ -27,6 +27,11 @@ Dockerized Phing + Commons for Continuous Integration
 </project>
 ```
 
+####  create build.env file
+
+- build.env file will be placed in your project root directory
+- will hold environment configurations for phing
+
 ####  create build.properties file
 
 - build.properties file will be placed in your project root directory
