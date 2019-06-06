@@ -55,6 +55,7 @@
     <autoloader autoloaderpath="${phingCommonsRoot}/vendor/autoload.php"/>
     <taskdef classname="\elnebuloso\Phing\PHPMetrics1DirectoriesTask" name="my-php-metrics1-directories"/>
     <taskdef classname="\elnebuloso\Phing\PHPMetrics2DirectoriesTask" name="my-php-metrics2-directories"/>
+    <taskdef classname="\elnebuloso\Phing\Semver" name="my-semver"/>
 
 
     <import file="${phingCommonsRoot}/targets/bundle.xml"/>

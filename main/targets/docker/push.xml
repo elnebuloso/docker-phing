@@ -89,15 +89,15 @@
                 </not>
             </and>
             <then>
-                <exec command="docker tag ${dockerImageName} ${dockerRegistry}/${dockerImageNamespace}${projectName}:${dockerImageVersion}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
-                <exec command="docker push ${dockerRegistry}/${dockerImageNamespace}${projectName}:${dockerImageVersion}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+                <exec command="docker tag ${dockerImageName} ${dockerRegistry}/${dockerImageNamespace}${projectName}:${dockerImageVersion}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
+                <exec command="docker push ${dockerRegistry}/${dockerImageNamespace}${projectName}:${dockerImageVersion}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
             </then>
             <else>
-                <exec command="docker tag ${dockerImageName} ${dockerRegistry}/${dockerImageNamespace}${projectName}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
-                <exec command="docker push ${dockerRegistry}/${dockerImageNamespace}${projectName}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+                <exec command="docker tag ${dockerImageName} ${dockerRegistry}/${dockerImageNamespace}${projectName}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
+                <exec command="docker push ${dockerRegistry}/${dockerImageNamespace}${projectName}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
 
-                <exec command="docker tag ${dockerImageName} ${dockerRegistry}/${dockerImageNamespace}${projectName}:${dockerImageVersion}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
-                <exec command="docker push ${dockerRegistry}/${dockerImageNamespace}${projectName}:${dockerImageVersion}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+                <exec command="docker tag ${dockerImageName} ${dockerRegistry}/${dockerImageNamespace}${projectName}:${dockerImageVersion}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
+                <exec command="docker push ${dockerRegistry}/${dockerImageNamespace}${projectName}:${dockerImageVersion}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
             </else>
         </if>
     </target>
