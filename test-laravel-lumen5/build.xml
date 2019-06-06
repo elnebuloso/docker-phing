@@ -12,7 +12,7 @@
 
 
     <target name="help" depends="commons:help">
-        <echo message="init       init for skeleton install"/>
+        <echo message="init       init laravel lumen5 project"/>
         <echo message="install    installs all dependencies and prepares the project for development"/>
         <echo message="start      start the project"/>
         <echo message="stop       stops the project"/>
@@ -30,6 +30,7 @@
         </delete>
         <delete dir="${projectRoot}/main"/>
         <phingcall target="init:laravel:lumen5"/>
+        <phingcall target="install"/>
     </target>
 
 

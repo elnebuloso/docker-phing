@@ -12,22 +12,7 @@
     </target>
 
 
-    <target name="docker:compose:ps" depends="docker:compose:ps:before, docker:compose:ps:main, docker:compose:ps:after">
-        <echo message="successful"/>
-    </target>
-
-
-    <target name="docker:compose:ps:before" hidden="true">
-        <echo message="no actions defined"/>
-    </target>
-
-
-    <target name="docker:compose:ps:after" hidden="true">
-        <echo message="no actions defined"/>
-    </target>
-
-
-    <target name="docker:compose:ps:main">
+    <target name="docker:compose:ps">
         <exec command="docker-compose ps" passthru="true" checkreturn="true" level="info"/>
     </target>
 
