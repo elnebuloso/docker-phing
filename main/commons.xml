@@ -7,9 +7,9 @@
     <property name="phingCommonsRoot" value="/srv/phing"/>
 
 
-    <loadfile property="phing.commons.version" file="/srv/VERSION"/>
-    <php function="trim" returnProperty="phing.commons.version" level="debug">
-        <param value="${phing.commons.version}"/>
+    <loadfile property="phingCommonsVersion" file="/srv/VERSION"/>
+    <php function="trim" returnProperty="phingCommonsVersion" level="debug">
+        <param value="${phingCommonsVersion}"/>
     </php>
 
 
@@ -76,7 +76,7 @@
 
     <target name="commons:help:version">
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="phing commons version: ${phing.commons.version}"/>
+        <echo message="phing commons version: ${phingCommonsVersion}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
