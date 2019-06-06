@@ -19,7 +19,7 @@
 
 
     <target name="npm:install">
-        <exec command="${npm.executable} install" passthru="true" checkreturn="true" level="info" dir="${project.dir.main.npm}"/>
+        <exec command="${npm.executable} install" passthru="true" checkreturn="true" level="info" dir="${projectDirMainNpm}"/>
     </target>
 
 

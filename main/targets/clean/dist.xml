@@ -13,8 +13,8 @@
 
 
     <target name="clean:dist">
-        <delete dir="${project.dir.build.dist}"/>
-        <mkdir dir="${project.dir.build.dist}"/>
+        <delete dir="${projectDirBuildDist}"/>
+        <mkdir dir="${projectDirBuildDist}"/>
     </target>
 
 

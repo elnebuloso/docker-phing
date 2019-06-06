@@ -59,17 +59,17 @@
 
 
     <target name="test:run:phing:TarTask" hidden="true">
-        <tar destfile="${project.dir.build.tmp}/dist.tar.gz" basedir="${project.dir.build.dist}" compression="gzip"/>
+        <tar destfile="${projectDirBuildTmp}/dist.tar.gz" basedir="${projectDirBuildDist}" compression="gzip"/>
     </target>
 
 
     <target name="test:run:phing:ZipTask" hidden="true">
-        <tar destfile="${project.dir.build.tmp}/dist.zip" basedir="${project.dir.build.dist}"/>
+        <tar destfile="${projectDirBuildTmp}/dist.zip" basedir="${projectDirBuildDist}"/>
     </target>
 
 
     <target name="test:run:phing:HttpGetTask" hidden="true">
-        <httpget url="http://via.placeholder.com/350x150.jpg" dir="${project.dir.build.tmp}"/>
+        <httpget url="http://via.placeholder.com/350x150.jpg" dir="${projectDirBuildTmp}"/>
     </target>
 
 
@@ -82,8 +82,8 @@
 
 
     <target name="test:run:phing:commons:composer">
-        <delete dir="${project.dir.main.composer}/vendor"/>
-        <delete file="${project.dir.main.composer}/composer.lock"/>
+        <delete dir="${projectDirMainComposer}/vendor"/>
+        <delete file="${projectDirMainComposer}/composer.lock"/>
         <phingcall target="composer:update"/>
         <phingcall target="composer:install"/>
         <phingcall target="composer:install:production"/>
@@ -91,15 +91,15 @@
 
 
     <target name="test:run:phing:commons:compass">
-        <delete dir="${project.dir.main.npm}/.sass-cache"/>
+        <delete dir="${projectDirMainNpm}/.sass-cache"/>
         <phingcall target="compass:clean"/>
         <phingcall target="compass:compile"/>
     </target>
 
 
     <target name="test:run:phing:commons:npm">
-        <delete dir="${project.dir.main.npm}/node_modules"/>
-        <delete file="${project.dir.main.npm}/package-lock.json"/>
+        <delete dir="${projectDirMainNpm}/node_modules"/>
+        <delete file="${projectDirMainNpm}/package-lock.json"/>
         <phingcall target="npm:install"/>
     </target>
 

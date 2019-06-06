@@ -18,14 +18,14 @@
 
 
     <target name="init:laravel-lumen5" depends="init:laravel-lumen5:before">
-        <fail message="${project.dir.main} exists for creating laravel-lumen5 application">
+        <fail message="${projectDirMain} exists for creating laravel-lumen5 application">
             <condition>
-                <available file="${project.dir.main}" type="dir"/>
+                <available file="${projectDirMain}" type="dir"/>
             </condition>
         </fail>
 
-        <exec command="composer create-project --prefer-dist --no-dev --remove-vcs laravel/lumen ${project.dir.main} ^5" passthru="true" checkreturn="true" level="info"/>
-        <delete dir="${project.dir.main}/.git" quiet="true"/>
+        <exec command="composer create-project --prefer-dist --no-dev --remove-vcs laravel/lumen ${projectDirMain} ^5" passthru="true" checkreturn="true" level="info"/>
+        <delete dir="${projectDirMain}/.git" quiet="true"/>
 
         <copy todir="${projectRoot}" overwrite="true">
             <fileset dir="${phingCommonsRoot}/resources/init/laravel-lumen5/0">

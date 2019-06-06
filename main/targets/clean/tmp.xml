@@ -13,8 +13,8 @@
 
 
     <target name="clean:tmp">
-        <delete dir="${project.dir.build.tmp}"/>
-        <mkdir dir="${project.dir.build.tmp}"/>
+        <delete dir="${projectDirBuildTmp}"/>
+        <mkdir dir="${projectDirBuildTmp}"/>
     </target>
 
 

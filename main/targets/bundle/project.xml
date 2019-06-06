@@ -58,8 +58,8 @@
             </else>
         </if>
 
-        <copy todir="${project.dir.build.dist}">
-            <fileset dir="${project.dir.main}">
+        <copy todir="${projectDirBuildDist}">
+            <fileset dir="${projectDirMain}">
                 <patternset refid="patternset.bundle.project"/>
 
                 <!-- exclude compass files -->

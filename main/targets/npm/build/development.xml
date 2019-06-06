@@ -21,7 +21,7 @@
 
 
     <target name="npm:build:development">
-        <exec command="${npm.executable} run ${npm.build.development.run}" passthru="true" checkreturn="true" level="info" dir="${project.dir.main.npm}"/>
+        <exec command="${npm.executable} run ${npm.build.development.run}" passthru="true" checkreturn="true" level="info" dir="${projectDirMainNpm}"/>
     </target>
 
 

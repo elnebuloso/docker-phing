@@ -19,7 +19,7 @@
 
 
     <target name="composer:install:production">
-        <exec command="composer install --no-suggest --no-ansi --no-interaction --no-dev --optimize-autoloader ${composer.install.production.options}" passthru="true" checkreturn="true" level="info" dir="${project.dir.main.composer}"/>
+        <exec command="composer install --no-suggest --no-ansi --no-interaction --no-dev --optimize-autoloader ${composer.install.production.options}" passthru="true" checkreturn="true" level="info" dir="${projectDirMainComposer}"/>
     </target>
 
 

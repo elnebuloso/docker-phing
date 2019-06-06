@@ -19,7 +19,7 @@
 
 
     <target name="composer:update">
-        <exec command="composer update --no-suggest --no-ansi --no-interaction ${composer.update.options}" passthru="true" checkreturn="true" level="info" dir="${project.dir.main.composer}"/>
+        <exec command="composer update --no-suggest --no-ansi --no-interaction ${composer.update.options}" passthru="true" checkreturn="true" level="info" dir="${projectDirMainComposer}"/>
     </target>
 
 

@@ -13,7 +13,7 @@
 
 
     <target name="compass:compile">
-        <exec command="compass compile" passthru="true" checkreturn="true" level="info" dir="${project.dir.main.compass}"/>
+        <exec command="compass compile" passthru="true" checkreturn="true" level="info" dir="${projectDirMainCompass}"/>
     </target>
 
 

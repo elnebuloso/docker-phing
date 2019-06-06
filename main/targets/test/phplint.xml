@@ -5,7 +5,7 @@
 
 
     <property name="test.phplint.description" value="php code validation and linting" override="true"/>
-    <property name="test.phplint.output" value="${project.dir.build.reports}/phplint" override="true"/>
+    <property name="test.phplint.output" value="${projectDirBuildReports}/phplint" override="true"/>
     <property name="test.phplint.interpreter" value="7.3"/>
     <property name="test.phplint.haltonfailure" value="1"/>
 
@@ -24,10 +24,10 @@
     <target name="test:phplint">
         <delete dir="${test.phplint.output}"/>
         <mkdir dir="${test.phplint.output}"/>
-        <mkdir dir="${project.dir.build.tmp}"/>
+        <mkdir dir="${projectDirBuildTmp}"/>
 
-        <phplint interpreter="php${test.phplint.interpreter}" tofile="${test.phplint.output}/report.txt" haltonfailure="${test.phplint.haltonfailure}" cachefile="${project.dir.build.tmp}/phplint.cache" level="info">
-            <fileset dir="${project.dir.main}">
+        <phplint interpreter="php${test.phplint.interpreter}" tofile="${test.phplint.output}/report.txt" haltonfailure="${test.phplint.haltonfailure}" cachefile="${projectDirBuildTmp}/phplint.cache" level="info">
+            <fileset dir="${projectDirMain}">
                 <patternset refid="patternset.test.phplint"/>
             </fileset>
         </phplint>

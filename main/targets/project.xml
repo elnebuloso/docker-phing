@@ -18,14 +18,14 @@
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="projectVersion                 ${projectVersion}" level="warning"/>
         <echo message="projectRoot                    ${projectRoot}" level="warning"/>
-        <echo message="project.dir.main                ${project.dir.main}" level="warning"/>
-        <echo message="project.dir.main.composer       ${project.dir.main.composer}" level="warning"/>
-        <echo message="project.dir.main.compass        ${project.dir.main.compass}" level="warning"/>
-        <echo message="project.dir.main.npm            ${project.dir.main.npm}" level="warning"/>
-        <echo message="project.dir.build               ${project.dir.build}" level="warning"/>
-        <echo message="project.dir.build.tmp           ${project.dir.build.tmp}" level="warning"/>
-        <echo message="project.dir.build.dist          ${project.dir.build.dist}" level="warning"/>
-        <echo message="project.dir.build.reports       ${project.dir.build.reports}" level="warning"/>
+        <echo message="projectDirMain                ${projectDirMain}" level="warning"/>
+        <echo message="projectDirMainComposer       ${projectDirMainComposer}" level="warning"/>
+        <echo message="projectDirMainCompass        ${projectDirMainCompass}" level="warning"/>
+        <echo message="projectDirMainNpm            ${projectDirMainNpm}" level="warning"/>
+        <echo message="projectDirBuild               ${projectDirBuild}" level="warning"/>
+        <echo message="projectDirBuildTmp           ${projectDirBuildTmp}" level="warning"/>
+        <echo message="projectDirBuildDist          ${projectDirBuildDist}" level="warning"/>
+        <echo message="projectDirBuildReports       ${projectDirBuildReports}" level="warning"/>
     </target>
 
 

@@ -13,8 +13,8 @@
 
 
     <target name="clean:reports">
-        <delete dir="${project.dir.build.reports}"/>
-        <mkdir dir="${project.dir.build.reports}"/>
+        <delete dir="${projectDirBuildReports}"/>
+        <mkdir dir="${projectDirBuildReports}"/>
     </target>
 
 

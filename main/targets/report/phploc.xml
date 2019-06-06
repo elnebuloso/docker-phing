@@ -5,7 +5,7 @@
 
 
     <property name="report.phploc.description" value="php lines of code" override="true"/>
-    <property name="report.phploc.output" value="${project.dir.build.reports}/phploc" override="true"/>
+    <property name="report.phploc.output" value="${projectDirBuildReports}/phploc" override="true"/>
 
 
     <target name="report:phploc:help">
@@ -18,7 +18,7 @@
         <mkdir dir="${report.phploc.output}"/>
 
         <phploc pharlocation="${phingCommonsRoot}/resources/phar/phploc-2.1.5.phar" reportType="xml" reportName="report" reportDirectory="${report.phploc.output}">
-            <fileset dir="${project.dir.main}">
+            <fileset dir="${projectDirMain}">
                 <patternset refid="patternset.report.phploc"/>
             </fileset>
         </phploc>

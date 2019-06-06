@@ -18,14 +18,14 @@
 
 
     <target name="init:symfony4" depends="init:symfony4:before">
-        <fail message="${project.dir.main} exists for creating symfony4 application">
+        <fail message="${projectDirMain} exists for creating symfony4 application">
             <condition>
-                <available file="${project.dir.main}" type="dir"/>
+                <available file="${projectDirMain}" type="dir"/>
             </condition>
         </fail>
 
-        <exec command="composer create-project --prefer-dist --no-dev --remove-vcs symfony/skeleton ${project.dir.main} ^4" passthru="true" checkreturn="true" level="info"/>
-        <delete dir="${project.dir.main}/.git" quiet="true"/>
+        <exec command="composer create-project --prefer-dist --no-dev --remove-vcs symfony/skeleton ${projectDirMain} ^4" passthru="true" checkreturn="true" level="info"/>
+        <delete dir="${projectDirMain}/.git" quiet="true"/>
 
         <copy todir="${projectRoot}" overwrite="true">
             <fileset dir="${phingCommonsRoot}/resources/init/symfony4/0">

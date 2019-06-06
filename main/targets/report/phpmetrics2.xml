@@ -5,8 +5,8 @@
 
 
     <property name="report.phpmetrics2.description" value="phpmetrics version 2 scanner" override="true"/>
-    <property name="report.phpmetrics2.output.tmp" value="${project.dir.main}/.phpmetrics2" override="true"/>
-    <property name="report.phpmetrics2.output" value="${project.dir.build.reports}/phpmetrics2" override="true"/>
+    <property name="report.phpmetrics2.output.tmp" value="${projectDirMain}/.phpmetrics2" override="true"/>
+    <property name="report.phpmetrics2.output" value="${projectDirBuildReports}/phpmetrics2" override="true"/>
 
 
     <target name="report:phpmetrics2:help">
@@ -16,7 +16,7 @@
 
     <target name="report:phpmetrics2">
         <fail unless="report.phpmetrics.directories" message="missing property report.phpmetrics.directories"/>
-        <my-php-metrics2-directories included="report.phpmetrics2.included" dir="${project.dir.main}"/>
+        <my-php-metrics2-directories included="report.phpmetrics2.included" dir="${projectDirMain}"/>
 
         <delete dir="${report.phpmetrics2.output.tmp}"/>
         <mkdir dir="${report.phpmetrics2.output.tmp}"/>
@@ -24,7 +24,7 @@
         <delete dir="${report.phpmetrics2.output}"/>
         <mkdir dir="${report.phpmetrics2.output}"/>
 
-        <exec executable="phpmetrics2" passthru="true" checkreturn="true" level="info" dir="${project.dir.main}">
+        <exec executable="phpmetrics2" passthru="true" checkreturn="true" level="info" dir="${projectDirMain}">
             <arg line="--report-html=${report.phpmetrics2.output.tmp}"/>
             <arg line="--report-csv=${report.phpmetrics2.output.tmp}/phpmetrics2.csv"/>
             <arg line="--report-json=${report.phpmetrics2.output.tmp}/phpmetrics2.json"/>

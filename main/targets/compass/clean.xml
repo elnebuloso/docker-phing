@@ -13,7 +13,7 @@
 
 
     <target name="compass:clean">
-        <exec command="compass clean" passthru="true" checkreturn="true" level="info" dir="${project.dir.main.compass}"/>
+        <exec command="compass clean" passthru="true" checkreturn="true" level="info" dir="${projectDirMainCompass}"/>
     </target>
 
 

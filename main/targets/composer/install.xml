@@ -19,7 +19,7 @@
 
 
     <target name="composer:install">
-        <exec command="composer install --no-suggest --no-ansi --no-interaction ${composer.install.options}" passthru="true" checkreturn="true" level="info" dir="${project.dir.main.composer}"/>
+        <exec command="composer install --no-suggest --no-ansi --no-interaction ${composer.install.options}" passthru="true" checkreturn="true" level="info" dir="${projectDirMainComposer}"/>
     </target>
 
 

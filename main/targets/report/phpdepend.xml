@@ -5,7 +5,7 @@
 
 
     <property name="report.phpdepend.description" value="php software metrics" override="true"/>
-    <property name="report.phpdepend.output" value="${project.dir.build.reports}/phpdepend" override="true"/>
+    <property name="report.phpdepend.output" value="${projectDirBuildReports}/phpdepend" override="true"/>
 
 
     <target name="report:phpdepend:help">
@@ -18,7 +18,7 @@
         <mkdir dir="${report.phpdepend.output}"/>
 
         <phpdepend pharlocation="${phingCommonsRoot}/resources/phar/pdepend-2.5.0.phar">
-            <fileset dir="${project.dir.main}">
+            <fileset dir="${projectDirMain}">
                 <patternset refid="patternset.report.phpdepend"/>
             </fileset>
             <logger type="jdepend-xml" outfile="${report.phpdepend.output}/report.xml"/>

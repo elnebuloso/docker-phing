@@ -32,24 +32,24 @@
     <property name="projectFolderBuild" value="build"/>
 
 
-    <property name="project.dir.main" value="${projectRoot}/${projectFolderMain}"/>
-    <property name="project.dir.main.composer" value="${projectRoot}/${projectFolderMain}/${projectFolderMainComposer}"/>
-    <property name="project.dir.main.compass" value="${projectRoot}/${projectFolderMain}/${projectFolderMainCompass}"/>
-    <property name="project.dir.main.npm" value="${projectRoot}/${projectFolderMain}/${projectFolderMainNpm}"/>
-    <property name="project.dir.build" value="${projectRoot}/${projectFolderBuild}"/>
-    <property name="project.dir.build.tmp" value="${projectRoot}/${projectFolderBuild}/tmp"/>
-    <property name="project.dir.build.dist" value="${projectRoot}/${projectFolderBuild}/dist"/>
-    <property name="project.dir.build.reports" value="${projectRoot}/${projectFolderBuild}/reports"/>
+    <property name="projectDirMain" value="${projectRoot}/${projectFolderMain}"/>
+    <property name="projectDirMainComposer" value="${projectRoot}/${projectFolderMain}/${projectFolderMainComposer}"/>
+    <property name="projectDirMainCompass" value="${projectRoot}/${projectFolderMain}/${projectFolderMainCompass}"/>
+    <property name="projectDirMainNpm" value="${projectRoot}/${projectFolderMain}/${projectFolderMainNpm}"/>
+    <property name="projectDirBuild" value="${projectRoot}/${projectFolderBuild}"/>
+    <property name="projectDirBuildTmp" value="${projectRoot}/${projectFolderBuild}/tmp"/>
+    <property name="projectDirBuildDist" value="${projectRoot}/${projectFolderBuild}/dist"/>
+    <property name="projectDirBuildReports" value="${projectRoot}/${projectFolderBuild}/reports"/>
 
 
-    <resolvepath propertyName="project.dir.main" file="${project.dir.main}"/>
-    <resolvepath propertyName="project.dir.main.composer" file="${project.dir.main.composer}"/>
-    <resolvepath propertyName="project.dir.main.compass" file="${project.dir.main.compass}"/>
-    <resolvepath propertyName="project.dir.main.npm" file="${project.dir.main.npm}"/>
-    <resolvepath propertyName="project.dir.build" file="${project.dir.build}"/>
-    <resolvepath propertyName="project.dir.build.tmp" file="${project.dir.build.tmp}"/>
-    <resolvepath propertyName="project.dir.build.dist" file="${project.dir.build.dist}"/>
-    <resolvepath propertyName="project.dir.build.reports" file="${project.dir.build.reports}"/>
+    <resolvepath propertyName="projectDirMain" file="${projectDirMain}"/>
+    <resolvepath propertyName="projectDirMainComposer" file="${projectDirMainComposer}"/>
+    <resolvepath propertyName="projectDirMainCompass" file="${projectDirMainCompass}"/>
+    <resolvepath propertyName="projectDirMainNpm" file="${projectDirMainNpm}"/>
+    <resolvepath propertyName="projectDirBuild" file="${projectDirBuild}"/>
+    <resolvepath propertyName="projectDirBuildTmp" file="${projectDirBuildTmp}"/>
+    <resolvepath propertyName="projectDirBuildDist" file="${projectDirBuildDist}"/>
+    <resolvepath propertyName="projectDirBuildReports" file="${projectDirBuildReports}"/>
 
 
     <autoloader autoloaderpath="${phingCommonsRoot}/vendor/autoload.php"/>

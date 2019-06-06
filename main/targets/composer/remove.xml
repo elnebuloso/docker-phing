@@ -21,7 +21,7 @@
                 <equals arg1="${composer.remove.package}" arg2=""/>
             </not>
             <then>
-                <exec command="composer remove ${composer.remove.package} ${composer.remove.options}" passthru="true" checkreturn="true" level="info" dir="${project.dir.main.composer}"/>
+                <exec command="composer remove ${composer.remove.package} ${composer.remove.options}" passthru="true" checkreturn="true" level="info" dir="${projectDirMainComposer}"/>
             </then>
         </if>
     </target>

@@ -5,7 +5,7 @@
 
 
     <property name="report.phpmd.description" value="php mess detection" override="true"/>
-    <property name="report.phpmd.output" value="${project.dir.build.reports}/phpmd" override="true"/>
+    <property name="report.phpmd.output" value="${projectDirBuildReports}/phpmd" override="true"/>
     <property name="report.phpmd.rulesets" value="cleancode,codesize,design,unusedcode"/>
     <property name="report.phpmd.allowedFileExtensions" value="php,phtml"/>
 
@@ -26,7 +26,7 @@
         <mkdir dir="${report.phpmd.output}"/>
 
         <phpmd pharlocation="${phingCommonsRoot}/resources/phar/phpmd-2.6.0.phar" rulesets="${report.phpmd.rulesets}" allowedFileExtensions="${report.phpmd.allowedFileExtensions}">
-            <fileset dir="${project.dir.main}">
+            <fileset dir="${projectDirMain}">
                 <patternset refid="patternset.report.phpmd"/>
             </fileset>
             <formatter type="xml" outfile="${report.phpmd.output}/report.xml"/>

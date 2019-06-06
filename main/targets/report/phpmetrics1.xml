@@ -5,8 +5,8 @@
 
 
     <property name="report.phpmetrics1.description" value="phpmetrics version 1 scanner" override="true"/>
-    <property name="report.phpmetrics1.output.tmp" value="${project.dir.main}/.phpmetrics1" override="true"/>
-    <property name="report.phpmetrics1.output" value="${project.dir.build.reports}/phpmetrics1" override="true"/>
+    <property name="report.phpmetrics1.output.tmp" value="${projectDirMain}/.phpmetrics1" override="true"/>
+    <property name="report.phpmetrics1.output" value="${projectDirBuildReports}/phpmetrics1" override="true"/>
 
 
     <target name="report:phpmetrics1:help">
@@ -16,7 +16,7 @@
 
     <target name="report:phpmetrics1">
         <fail unless="report.phpmetrics.directories" message="missing property report.phpmetrics.directories"/>
-        <my-php-metrics1-directories excluded="report.phpmetrics1.excluded" dir="${project.dir.main}"/>
+        <my-php-metrics1-directories excluded="report.phpmetrics1.excluded" dir="${projectDirMain}"/>
 
         <delete dir="${report.phpmetrics1.output.tmp}"/>
         <mkdir dir="${report.phpmetrics1.output.tmp}"/>
@@ -24,7 +24,7 @@
         <delete dir="${report.phpmetrics1.output}"/>
         <mkdir dir="${report.phpmetrics1.output}"/>
 
-        <exec executable="phpmetrics1" passthru="true" checkreturn="true" level="info" dir="${project.dir.main}">
+        <exec executable="phpmetrics1" passthru="true" checkreturn="true" level="info" dir="${projectDirMain}">
             <arg line="--excluded-dirs=${report.phpmetrics1.excluded}"/>
             <arg line="--report-html=${report.phpmetrics1.output.tmp}/index.html"/>
             <arg line="--report-xml=${report.phpmetrics1.output.tmp}/phpmetrics1.xml"/>

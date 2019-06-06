@@ -5,7 +5,7 @@
 
 
     <property name="report.phpcpd.description" value="php copy and paste detection" override="true"/>
-    <property name="report.phpcpd.output" value="${project.dir.build.reports}/phpcpd" override="true"/>
+    <property name="report.phpcpd.output" value="${projectDirBuildReports}/phpcpd" override="true"/>
 
 
     <target name="report:phpcpd:help">
@@ -18,7 +18,7 @@
         <mkdir dir="${report.phpcpd.output}"/>
 
         <phpcpd pharlocation="${phingCommonsRoot}/resources/phar/phpcpd-2.0.4.phar">
-            <fileset dir="${project.dir.main}">
+            <fileset dir="${projectDirMain}">
                 <patternset refid="patternset.report.phpcpd"/>
             </fileset>
             <formatter type="pmd" outfile="${report.phpcpd.output}/report.xml"/>

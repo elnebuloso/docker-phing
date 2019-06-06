@@ -21,7 +21,7 @@
                 <equals arg1="${composer.require.package}" arg2=""/>
             </not>
             <then>
-                <exec command="composer require ${composer.require.package} ${composer.require.options}" passthru="true" checkreturn="true" level="info" dir="${project.dir.main.composer}"/>
+                <exec command="composer require ${composer.require.package} ${composer.require.options}" passthru="true" checkreturn="true" level="info" dir="${projectDirMainComposer}"/>
             </then>
         </if>
     </target>
