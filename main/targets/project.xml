@@ -4,6 +4,10 @@
 <project>
 
 
+    <import file="${phingCommonsRoot}/targets/project/version/update.xml"/>
+    <import file="${phingCommonsRoot}/targets/project/version/commit.xml"/>
+
+
     <target name="project:help">
         <echo message="property                     value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>

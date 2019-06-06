@@ -18,6 +18,7 @@
         <echo message="test:run:bin              test binaries"/>
         <echo message="test:run:phing            test phing targets"/>
         <echo message="test:run:phing:commons    test phing common targets"/>
+        <echo message="test:run:phing:reports    test phing common report targets"/>
     </target>
 
 
@@ -25,6 +26,7 @@
         <phingcall target="test:run:bin"/>
         <phingcall target="test:run:phing"/>
         <phingcall target="test:run:phing:commons"/>
+        <phingcall target="test:run:phing:reports"/>
     </target>
 
 
@@ -34,15 +36,9 @@
         <exec command="composer --version" passthru="true" checkreturn="true" level="info"/>
         <exec command="csso --version" passthru="true" checkreturn="true" level="info"/>
         <exec command="npm --version" passthru="true" checkreturn="true" level="info"/>
-        <exec command="pdepend --version" passthru="true" checkreturn="true" level="info"/>
-        <exec command="phpcbf --version" passthru="true" checkreturn="true" level="info"/>
-        <exec command="phpcpd --version" passthru="true" checkreturn="true" level="info"/>
-        <exec command="phpcs --version" passthru="true" checkreturn="true" level="info"/>
-        <exec command="phploc --version" passthru="true" checkreturn="true" level="info"/>
-        <exec command="phpmd --version" passthru="true" checkreturn="true" level="info"/>
         <exec command="phpmetrics1 --version" passthru="true" checkreturn="true" level="info"/>
         <exec command="phpmetrics2 --version" passthru="true" checkreturn="true" level="info"/>
-        <exec command="phpunit --version" passthru="true" checkreturn="true" level="info"/>
+        <exec command="sonarqube-scanner --version" passthru="true" checkreturn="true" level="info"/>
         <exec command="yarn --version" passthru="true" checkreturn="true" level="info"/>
     </target>
 
@@ -107,6 +103,15 @@
     <target name="test:run:phing:commons:bundle">
         <phingcall target="clean:dist"/>
         <phingcall target="bundle:project"/>
+    </target>
+
+
+    <target name="test:run:phing:reports">
+        <phingcall target="report:phpcpd"/>
+        <phingcall target="report:phpdepend"/>
+        <phingcall target="report:phploc"/>
+        <phingcall target="report:phpmd"/>
+        <phingcall target="report:phpmetrics"/>
     </target>
 
 
