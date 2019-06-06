@@ -20,7 +20,22 @@
     </target>
 
 
-    <target name="npm:run">
+    <target name="npm:run" depends="npm:run:before, npm:run:main, npm:run:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="npm:run:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="npm:run:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+    
+    
+    <target name="npm:run:main">
         <exec command="${npmExecutable} run ${npmRunScript}" passthru="true" checkreturn="true" level="info" dir="${projectDirMainNpm}"/>
     </target>
 
