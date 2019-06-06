@@ -4,22 +4,37 @@
 <project default="composer:update">
 
 
-    <property name="composer.update.description" value="composer update dependencies" override="true"/>
-    <property name="composer.update.options" value=""/>
+    <property name="composerUpdateDescription" value="composer update dependencies" override="true"/>
+    <property name="composerUpdateOptions" value=""/>
 
 
     <target name="composer:update:help">
-        <echo message="${composer.update.description}"/>
+        <echo message="${composerUpdateDescription}"/>
 
         <echo message=""/>
-        <echo message="property                   value"/>
+        <echo message="property                 value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="composer.update.options    ${composer.update.options}"/>
+        <echo message="composerUpdateOptions    ${composerUpdateOptions}"/>
     </target>
 
 
-    <target name="composer:update">
-        <exec command="composer update --no-suggest --no-ansi --no-interaction ${composer.update.options}" passthru="true" checkreturn="true" level="info" dir="${projectDirMainComposer}"/>
+    <target name="composer:update" depends="composer:update:before, composer:update:main, composer:update:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="composer:update:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="composer:update:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+    
+
+    <target name="composer:update:main">
+        <exec command="composer update --no-suggest --no-ansi --no-interaction ${composerUpdateOptions}" passthru="true" checkreturn="true" level="info" dir="${projectDirMainComposer}"/>
     </target>
 
 

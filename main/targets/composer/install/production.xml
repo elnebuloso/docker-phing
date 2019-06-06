@@ -33,7 +33,7 @@
     </target>
 
 
-    <target name="composer:install:production">
+    <target name="composer:install:production:main">
         <exec command="composer install --no-suggest --no-ansi --no-interaction --no-dev --optimize-autoloader ${composerInstallProductionOptions}" passthru="true" checkreturn="true" level="info" dir="${projectDirMainComposer}"/>
     </target>
 

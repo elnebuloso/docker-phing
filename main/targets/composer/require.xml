@@ -4,15 +4,30 @@
 <project default="composer:require">
 
 
-    <property name="composer.require.description" value="composer require a dependency" override="true"/>
+    <property name="composerRequireDescription" value="composer require a dependency" override="true"/>
 
 
     <target name="composer:require:help">
-        <echo message="${composer.require.description}"/>
+        <echo message="${composerRequireDescription}"/>
     </target>
 
 
-    <target name="composer:require">
+    <target name="composer:require" depends="composer:require:before, composer:require:main, composer:require:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="composer:require:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="composer:require:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="composer:require:main">
         <input propertyname="composer.require.package" defaultValue="">package (vendor/package)</input>
         <input propertyname="composer.require.options" defaultValue="">options</input>
 

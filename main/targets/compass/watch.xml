@@ -27,7 +27,7 @@
     </target>
 
 
-    <target name="compass:watch">
+    <target name="compass:watch:main">
         <exec command="compass watch --poll" passthru="true" checkreturn="true" level="info" dir="${projectDirMainCompass}"/>
     </target>
 

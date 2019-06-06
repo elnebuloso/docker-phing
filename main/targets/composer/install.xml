@@ -4,22 +4,37 @@
 <project default="composer:install">
 
 
-    <property name="composer.install.description" value="composer install" override="true"/>
-    <property name="composer.install.options" value=""/>
+    <property name="composerInstallDescription" value="composer install" override="true"/>
+    <property name="composerInstallOptions" value=""/>
 
 
     <target name="composer:install:help">
-        <echo message="${composer.install.description}"/>
+        <echo message="${composerInstallDescription}"/>
 
         <echo message=""/>
-        <echo message="property                    value"/>
+        <echo message="property                  value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="composer.install.options    ${composer.install.options}"/>
+        <echo message="composerInstallOptions    ${composerInstallOptions}"/>
     </target>
 
 
-    <target name="composer:install">
-        <exec command="composer install --no-suggest --no-ansi --no-interaction ${composer.install.options}" passthru="true" checkreturn="true" level="info" dir="${projectDirMainComposer}"/>
+    <target name="composer:install" depends="composer:install:before, composer:install:main, composer:install:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="composer:install:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="composer:install:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="composer:install:main">
+        <exec command="composer install --no-suggest --no-ansi --no-interaction ${composerInstallOptions}" passthru="true" checkreturn="true" level="info" dir="${projectDirMainComposer}"/>
     </target>
 
 

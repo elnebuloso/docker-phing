@@ -15,10 +15,10 @@
         <echo message="target                         description"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="composer:install:production    ${composerInstallProductionDescription}"/>
-        <echo message="composer:install               ${composer.install.description}"/>
-        <echo message="composer:remove                ${composer.require.description}"/>
-        <echo message="composer:require               ${composer.require.description}"/>
-        <echo message="composer:update                ${composer.update.description}"/>
+        <echo message="composer:install               ${composerInstallDescription}"/>
+        <echo message="composer:remove                ${composerRequireDescription}"/>
+        <echo message="composer:require               ${composerRequireDescription}"/>
+        <echo message="composer:update                ${composerUpdateDescription}"/>
     </target>
 
 
