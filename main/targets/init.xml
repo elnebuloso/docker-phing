@@ -14,7 +14,7 @@
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="init:laravel           ${initLaravel5Description}"/>
         <echo message="init:laravel:lumen5    ${initLaravelLumen5Description}"/>
-        <echo message="init:symfony4          ${init.symfony4.description}"/>
+        <echo message="init:symfony4          ${initSymfony4Description}"/>
     </target>
 
 
