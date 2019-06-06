@@ -1,6 +1,10 @@
 # docker-phing
 
-Docker Phing + Commons
+[![Build Status](https://travis-ci.com/elnebuloso/docker-phing.svg?branch=master)](https://travis-ci.com/elnebuloso/docker-phing)
+[![Docker Pulls](https://img.shields.io/docker/pulls/elnebuloso/phing.svg)](https://hub.docker.com/r/elnebuloso/phing)
+[![GitHub](https://img.shields.io/github/license/elnebuloso/docker-ansible.svg)](https://github.com/elnebuloso/docker-phing)
+
+Dockerized Phing + Commons for Continuous Integration
 
 - https://github.com/elnebuloso/docker-phing
 - https://hub.docker.com/r/elnebuloso/phing/tags/
