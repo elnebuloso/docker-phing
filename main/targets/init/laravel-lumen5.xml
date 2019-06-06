@@ -4,20 +4,30 @@
 <project default="init:laravel-lumen5">
 
 
-    <property name="init.laravel-lumen5.description" value="init laravel-lumen5 application" override="true"/>
+    <property name="initLaravelLumen5Description" value="init laravel-lumen5 application" override="true"/>
 
 
     <target name="init:laravel-lumen5:help">
-        <echo message="${init.laravel-lumen5.description}"/>
+        <echo message="${initLaravelLumen5Description}"/>
     </target>
 
 
-    <target name="init:laravel-lumen5:before">
-        <echo message="not implemented"/>
+    <target name="init:laravel-lumen5" depends="init:laravel-lumen5:before, init:laravel-lumen5:main, init:laravel-lumen5:after">
+        <echo message="successful"/>
     </target>
 
 
-    <target name="init:laravel-lumen5" depends="init:laravel-lumen5:before">
+    <target name="init:laravel-lumen5:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="init:laravel-lumen5:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="init:laravel-lumen5:main">
         <fail message="${projectDirMain} exists for creating laravel-lumen5 application">
             <condition>
                 <available file="${projectDirMain}" type="dir"/>

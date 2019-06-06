@@ -1,23 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 
-<project default="init:laravel">
+<project default="init:laravel5">
 
 
-    <property name="init.laravel.description" value="init laravel application" override="true"/>
+    <property name="initLaravel5Description" value="init laravel application" override="true"/>
 
 
     <target name="init:laravel:help">
-        <echo message="${init.laravel.description}"/>
+        <echo message="${initLaravel5Description}"/>
     </target>
 
 
-    <target name="init:laravel:before">
-        <echo message="not implemented"/>
+    <target name="init:laravel" depends="init:laravel:before, init:laravel:main, init:laravel:after">
+        <echo message="successful"/>
     </target>
 
 
-    <target name="init:laravel" depends="init:laravel:before">
+    <target name="init:laravel:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="init:laravel:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="init:laravel:main">
         <fail message="${projectDirMain} exists for creating laravel application">
             <condition>
                 <available file="${projectDirMain}" type="dir"/>
@@ -28,7 +38,7 @@
         <delete dir="${projectDirMain}/.git" quiet="true"/>
 
         <copy todir="${projectRoot}" overwrite="true">
-            <fileset dir="${phingCommonsRoot}/resources/init/laravel/0">
+            <fileset dir="${phingCommonsRoot}/resources/init/laravel5/0">
                 <include name="**"/>
             </fileset>
         </copy>
