@@ -5,7 +5,7 @@
 
 
     <import file="${phingCommonsRoot}/targets/init/laravel.xml"/>
-    <import file="${phingCommonsRoot}/targets/init/laravel-lumen5.xml"/>
+    <import file="${phingCommonsRoot}/targets/init/laravel/lumen5.xml"/>
     <import file="${phingCommonsRoot}/targets/init/symfony4.xml"/>
 
 

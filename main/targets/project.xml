@@ -5,27 +5,32 @@
 
 
     <target name="project:help">
-        <echo message="property                        value"/>
+        <echo message="property                     value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="projectName                    ${projectName}"/>
-        <echo message="projectFolderMain             ${projectFolderMain}"/>
+        <echo message="projectName                  ${projectName}"/>
+        <echo message="projectFolderMain            ${projectFolderMain}"/>
         <echo message="projectFolderMainComposer    ${projectFolderMainComposer}"/>
         <echo message="projectFolderMainCompass     ${projectFolderMainCompass}"/>
         <echo message="projectFolderMainNpm         ${projectFolderMainNpm}"/>
-        <echo message="projectFolderBuild            ${projectFolderBuild}"/>
+        <echo message="projectFolderBuild           ${projectFolderBuild}"/>
         <echo message=""/>
-        <echo message="property                        value [do not edit directly]"/>
+        <echo message="property                     value [do not edit directly]"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="projectVersion                 ${projectVersion}" level="warning"/>
-        <echo message="projectRoot                    ${projectRoot}" level="warning"/>
-        <echo message="projectDirMain                ${projectDirMain}" level="warning"/>
+        <echo message="projectVersion               ${projectVersion}" level="warning"/>
+        <echo message="projectRoot                  ${projectRoot}" level="warning"/>
+        <echo message="projectDirMain               ${projectDirMain}" level="warning"/>
         <echo message="projectDirMainComposer       ${projectDirMainComposer}" level="warning"/>
         <echo message="projectDirMainCompass        ${projectDirMainCompass}" level="warning"/>
         <echo message="projectDirMainNpm            ${projectDirMainNpm}" level="warning"/>
-        <echo message="projectDirBuild               ${projectDirBuild}" level="warning"/>
+        <echo message="projectDirBuild              ${projectDirBuild}" level="warning"/>
         <echo message="projectDirBuildTmp           ${projectDirBuildTmp}" level="warning"/>
         <echo message="projectDirBuildDist          ${projectDirBuildDist}" level="warning"/>
         <echo message="projectDirBuildReports       ${projectDirBuildReports}" level="warning"/>
+        <echo message=""/>
+        <echo message="target                       description"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="project:version:update       ${projectVersionUpdateDescription}"/>
+        <echo message="project:version:commit       ${projectVersionCommitDescription}"/>
     </target>
 
 

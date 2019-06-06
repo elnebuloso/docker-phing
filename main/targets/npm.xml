@@ -4,19 +4,15 @@
 <project>
 
 
-    <import file="${phingCommonsRoot}/targets/npm/build/development.xml"/>
-    <import file="${phingCommonsRoot}/targets/npm/build/production.xml"/>
     <import file="${phingCommonsRoot}/targets/npm/install.xml"/>
     <import file="${phingCommonsRoot}/targets/npm/run.xml"/>
 
 
     <target name="npm:help">
-        <echo message="target                   description"/>
+        <echo message="target         description"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="npm:build:development    ${npm.build.development.description}"/>
-        <echo message="npm:build:production     ${npm.build.production.description}"/>
-        <echo message="npm:install              ${npmInstallDescription}"/>
-        <echo message="npm:run                  ${npmRunDescription}"/>
+        <echo message="npm:install    ${npmInstallDescription}"/>
+        <echo message="npm:run        ${npmRunDescription}"/>
     </target>
 
 
