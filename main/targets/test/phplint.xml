@@ -4,31 +4,31 @@
 <project default="test:phplint">
 
 
-    <property name="test.phplint.description" value="php code validation and linting" override="true"/>
-    <property name="test.phplint.output" value="${projectDirBuildReports}/phplint" override="true"/>
-    <property name="test.phplint.interpreter" value="7.3"/>
-    <property name="test.phplint.haltonfailure" value="1"/>
+    <property name="testPhpLintDescription" value="php code validation and linting" override="true"/>
+    <property name="testPhpLintOutput" value="${projectDirBuildReports}/phplint" override="true"/>
+    <property name="testPhpLintInterpreter" value="7.3"/>
+    <property name="testPhpLintHaltOnFailure" value="1"/>
 
 
     <target name="test:phplint:help">
-        <echo message="${test.phplint.description}"/>
+        <echo message="${testPhpLintDescription}"/>
 
         <echo message=""/>
-        <echo message="property                      value"/>
+        <echo message="property                    value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="test.phplint.interpreter      ${test.phplint.interpreter}"/>
-        <echo message="test.phplint.haltonfailure    ${test.phplint.haltonfailure}"/>
+        <echo message="testPhpLintInterpreter      ${testPhpLintInterpreter}"/>
+        <echo message="testPhpLintHaltOnFailure    ${testPhpLintHaltOnFailure}"/>
     </target>
 
 
     <target name="test:phplint">
-        <delete dir="${test.phplint.output}"/>
-        <mkdir dir="${test.phplint.output}"/>
+        <delete dir="${testPhpLintOutput}/${testPhpLintInterpreter}"/>
+        <mkdir dir="${testPhpLintOutput}/${testPhpLintInterpreter}"/>
         <mkdir dir="${projectDirBuildTmp}"/>
 
-        <phplint interpreter="php${test.phplint.interpreter}" tofile="${test.phplint.output}/report.txt" haltonfailure="${test.phplint.haltonfailure}" cachefile="${projectDirBuildTmp}/phplint.cache" level="info">
-            <fileset dir="${projectDirMain}">
-                <patternset refid="patternsetTestPhpLint"/>
+        <phplint interpreter="php${testPhpLintInterpreter}" tofile="${testPhpLintOutput}/${testPhpLintInterpreter}/report.txt" haltonfailure="${testPhpLintHaltOnFailure}" cachefile="${projectDirBuildTmp}/phplint.cache.${testPhpLintInterpreter}" level="info">
+            <fileset dir="${project.dir.main}">
+                <patternset refid="patternset.test.phplint"/>
             </fileset>
         </phplint>
     </target>

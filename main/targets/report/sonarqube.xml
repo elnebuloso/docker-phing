@@ -30,7 +30,22 @@
     </target>
 
 
-    <target name="report:sonarqube">
+    <target name="report:sonarqube" depends="report:sonarqube:before, report:sonarqube:main, report:sonarqube:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="report:sonarqube:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="report:sonarqube:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+    
+
+    <target name="report:sonarqube:main">
         <mkdir dir="${projectDirBuildTmp}"/>
 
         <if>

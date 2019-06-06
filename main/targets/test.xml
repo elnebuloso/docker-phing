@@ -10,7 +10,7 @@
     <target name="test:help">
         <echo message="target          description"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="test:phplint    ${test.phplint.description}"/>
+        <echo message="test:phplint    ${testPhpLintDescription}"/>
     </target>
 
 
