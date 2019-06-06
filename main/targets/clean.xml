@@ -13,7 +13,7 @@
         <echo message="target           description"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="clean:tmp        ${clean.tmp.description}"/>
-        <echo message="clean:dist       ${clean.dist.description}"/>
+        <echo message="clean:dist       ${cleanDistDescription}"/>
         <echo message="clean:reports    ${clean.reports.description}"/>
     </target>
 

@@ -4,15 +4,30 @@
 <project default="clean:dist">
 
 
-    <property name="clean.dist.description" value="cleanup project distribution directory" override="true"/>
+    <property name="cleanDistDescription" value="cleanup project distribution directory" override="true"/>
 
 
     <target name="clean:dist:help">
-        <echo message="${clean.dist.description}"/>
+        <echo message="${cleanDistDescription}"/>
     </target>
 
 
-    <target name="clean:dist">
+    <target name="clean:dist" depends="clean:dist:before, clean:dist:main, clean:dist:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="clean:dist:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="clean:dist:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="clean:dist:main">
         <delete dir="${projectDirBuildDist}"/>
         <mkdir dir="${projectDirBuildDist}"/>
     </target>
