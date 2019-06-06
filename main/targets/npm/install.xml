@@ -4,22 +4,37 @@
 <project default="npm:install">
 
 
-    <property name="npm.install.description" value="npm install dependencies" override="true"/>
-    <property name="npm.executable" value="npm"/>
+    <property name="npmInstallDescription" value="npm install dependencies" override="true"/>
+    <property name="npmExecutable" value="npm"/>
 
 
     <target name="npm:install:help">
-        <echo message="${npm.install.description}"/>
+        <echo message="${npmInstallDescription}"/>
 
         <echo message=""/>
-        <echo message="property          value"/>
+        <echo message="property         value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="npm.executable    ${npm.executable}"/>
+        <echo message="npmExecutable    ${npmExecutable}"/>
     </target>
 
 
-    <target name="npm:install">
-        <exec command="${npm.executable} install" passthru="true" checkreturn="true" level="info" dir="${projectDirMainNpm}"/>
+    <target name="npm:install" depends="npm:install:before, npm:install:main, npm:install:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="npm:install:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="npm:install:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="npm:install:main">
+        <exec command="${npmExecutable} install" passthru="true" checkreturn="true" level="info" dir="${projectDirMainNpm}"/>
     </target>
 
 

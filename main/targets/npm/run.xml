@@ -4,24 +4,24 @@
 <project default="npm:run">
 
 
-    <property name="npm.run.description" value="npm watch files" override="true"/>
-    <property name="npm.executable" value="npm"/>
-    <property name="npm.run.script" value=""/>
+    <property name="npmRunDescription" value="npm watch files" override="true"/>
+    <property name="npmRunScript" value=""/>
+    <property name="npmExecutable" value="npm"/>
 
 
     <target name="npm:run:help">
-        <echo message="${npm.run.description}"/>
+        <echo message="${npmRunDescription}"/>
 
         <echo message=""/>
-        <echo message="property          value"/>
+        <echo message="property         value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="npm.executable    ${npm.executable}"/>
-        <echo message="npm.run.script    ${npm.run.script}"/>
+        <echo message="npmRunScript     ${npmRunScript}"/>
+        <echo message="npmExecutable    ${npmExecutable}"/>
     </target>
 
 
     <target name="npm:run">
-        <exec command="${npm.executable} run ${npm.run.script}" passthru="true" checkreturn="true" level="info" dir="${projectDirMainNpm}"/>
+        <exec command="${npmExecutable} run ${npmRunScript}" passthru="true" checkreturn="true" level="info" dir="${projectDirMainNpm}"/>
     </target>
 
 

@@ -15,8 +15,8 @@
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="npm:build:development    ${npm.build.development.description}"/>
         <echo message="npm:build:production     ${npm.build.production.description}"/>
-        <echo message="npm:install              ${npm.install.description}"/>
-        <echo message="npm:run                  ${npm.run.description}"/>
+        <echo message="npm:install              ${npmInstallDescription}"/>
+        <echo message="npm:run                  ${npmRunDescription}"/>
     </target>
 
 
