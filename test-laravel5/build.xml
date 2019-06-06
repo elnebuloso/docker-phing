@@ -8,11 +8,11 @@
     <property file="build.properties.local"/>
 
 
-    <import file="/srv/phing/commons/laravel.xml"/>
+    <import file="/srv/phing/commons/laravel5.xml"/>
 
 
     <target name="help" depends="commons:help">
-        <echo message="init       init from skeleton"/>
+        <echo message="init       init laravel5 project"/>
         <echo message="install    installs all dependencies and prepares the project for development"/>
         <echo message="start      start the project"/>
         <echo message="stop       stops the project"/>
@@ -29,7 +29,8 @@
             </fileset>
         </delete>
         <delete dir="${projectRoot}/main"/>
-        <phingcall target="init:laravel"/>
+        <phingcall target="init:laravel5"/>
+        <phingcall target="install"/>
     </target>
 
 
