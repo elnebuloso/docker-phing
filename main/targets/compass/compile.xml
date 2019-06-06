@@ -4,15 +4,30 @@
 <project default="compass:compile">
 
 
-    <property name="compass.compile.description" value="compass compile scss" override="true"/>
+    <property name="compassCompileDescription" value="compass compile scss" override="true"/>
 
 
     <target name="compass:compile:help">
-        <echo message="${compass.compile.description}"/>
+        <echo message="${compassCompileDescription}"/>
     </target>
 
 
-    <target name="compass:compile">
+    <target name="compass:compile" depends="compass:compile:before, compass:compile:main, compass:compile:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="compass:compile:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="compass:compile:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="compass:compile:main">
         <exec command="compass compile" passthru="true" checkreturn="true" level="info" dir="${projectDirMainCompass}"/>
     </target>
 
