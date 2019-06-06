@@ -4,16 +4,30 @@
 <project default="report:phpmetrics">
 
 
-    <property name="report.phpmetrics.description" value="phpmetrics scanner" override="true"/>
-    <property name="report.phpmetrics.output" value="${projectDirBuildReports}/phpmetrics" override="true"/>
+    <property name="reportPhpMetricsDescription" value="phpmetrics scanner, reports of phpmetrics1, phpmetrics2" override="true"/>
 
 
     <target name="report:phpmetrics:help">
-        <echo message="${report.phpmetrics.description}"/>
+        <echo message="${reportPhpMetricsDescription}"/>
     </target>
 
 
-    <target name="report:phpmetrics" depends="report:phpmetrics1, report:phpmetrics2"/>
+    <target name="report:phpmetrics" depends="report:phpmetrics:before, report:phpmetrics:main, report:phpmetrics:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="report:phpmetrics:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="report:phpmetrics:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="report:phpmetrics:main" depends="report:phpmetrics1, report:phpmetrics2"/>
 
 
 </project>

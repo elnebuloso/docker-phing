@@ -17,14 +17,14 @@
     <target name="report:help">
         <echo message="target                description"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="report:phpcpd         ${report.phpcpd.description}"/>
-        <echo message="report:phpdepend      ${report.phpdepend.description}"/>
-        <echo message="report:phploc         ${report.phploc.description}"/>
-        <echo message="report:phpmd          ${report.phpmd.description}"/>
-        <echo message="report:phpmetrics     ${report.phpmetrics.description}"/>
-        <echo message="report:phpmetrics1    ${report.phpmetrics1.description}"/>
-        <echo message="report:phpmetrics2    ${report.phpmetrics2.description}"/>
-        <echo message="report:sonarqube      ${report.sonarqube.description}"/>
+        <echo message="report:phpcpd         ${reportPhpCpdDescription}"/>
+        <echo message="report:phpdepend      ${reportPhpDependDescription}"/>
+        <echo message="report:phploc         ${reportPhpLocDescription}"/>
+        <echo message="report:phpmd          ${reportPhpMdDescription}"/>
+        <echo message="report:phpmetrics     ${reportPhpMetricsDescription}"/>
+        <echo message="report:phpmetrics1    ${reportPhpMetrics1Description}"/>
+        <echo message="report:phpmetrics2    ${reportPhpMetrics2Description}"/>
+        <echo message="report:sonarqube      ${reportSonarqubeDescription}"/>
     </target>
 
 

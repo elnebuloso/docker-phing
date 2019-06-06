@@ -4,32 +4,47 @@
 <project default="report:phpdepend">
 
 
-    <property name="report.phpdepend.description" value="php software metrics" override="true"/>
-    <property name="report.phpdepend.output" value="${projectDirBuildReports}/phpdepend" override="true"/>
+    <property name="reportPhpDependDescription" value="php software metrics" override="true"/>
+    <property name="reportPhpDependOutput" value="${projectDirBuildReports}/phpdepend" override="true"/>
 
 
     <target name="report:phpdepend:help">
-        <echo message="${report.phpdepend.description}"/>
+        <echo message="${reportPhpDependDescription}"/>
     </target>
 
 
-    <target name="report:phpdepend">
-        <delete dir="${report.phpdepend.output}"/>
-        <mkdir dir="${report.phpdepend.output}"/>
+    <target name="report:phpdepend" depends="report:phpdepend:before, report:phpdepend:main, report:phpdepend:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="report:phpdepend:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="report:phpdepend:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+    
+
+    <target name="report:phpdepend:main">
+        <delete dir="${reportPhpDependOutput}"/>
+        <mkdir dir="${reportPhpDependOutput}"/>
 
         <phpdepend pharlocation="${phingCommonsRoot}/resources/phar/pdepend-2.5.0.phar">
             <fileset dir="${projectDirMain}">
                 <patternset refid="patternsetReportPhpDepend"/>
             </fileset>
-            <logger type="jdepend-xml" outfile="${report.phpdepend.output}/report.xml"/>
-            <logger type="jdepend-chart" outfile="${report.phpdepend.output}/assets/chart.svg"/>
-            <logger type="overview-pyramid" outfile="${report.phpdepend.output}/assets/pyramid.svg"/>
+            <logger type="jdepend-xml" outfile="${reportPhpDependOutput}/report.xml"/>
+            <logger type="jdepend-chart" outfile="${reportPhpDependOutput}/assets/chart.svg"/>
+            <logger type="overview-pyramid" outfile="${reportPhpDependOutput}/assets/pyramid.svg"/>
             <analyzer type="coderank-mode" value="method"/>
         </phpdepend>
 
-        <xslt file="${report.phpdepend.output}/report.xml" tofile="${report.phpdepend.output}/report-v1.html" style="${phingCommonsRoot}/resources/xsl/phpdepend-v1.xsl"/>
-        <xslt file="${report.phpdepend.output}/report.xml" tofile="${report.phpdepend.output}/report-v2.html" style="${phingCommonsRoot}/resources/xsl/phpdepend-v2.xsl"/>
-        <copy file="${report.phpdepend.output}/report-v2.html" tofile="${report.phpdepend.output}/index.html"/>
+        <xslt file="${reportPhpDependOutput}/report.xml" tofile="${reportPhpDependOutput}/report-v1.html" style="${phingCommonsRoot}/resources/xsl/phpdepend-v1.xsl"/>
+        <xslt file="${reportPhpDependOutput}/report.xml" tofile="${reportPhpDependOutput}/report-v2.html" style="${phingCommonsRoot}/resources/xsl/phpdepend-v2.xsl"/>
+        <copy file="${reportPhpDependOutput}/report-v2.html" tofile="${reportPhpDependOutput}/index.html"/>
     </target>
 
 

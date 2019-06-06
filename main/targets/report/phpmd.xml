@@ -4,37 +4,52 @@
 <project default="report:phpmd">
 
 
-    <property name="report.phpmd.description" value="php mess detection" override="true"/>
-    <property name="report.phpmd.output" value="${projectDirBuildReports}/phpmd" override="true"/>
-    <property name="report.phpmd.rulesets" value="cleancode,codesize,design,unusedcode"/>
-    <property name="report.phpmd.allowedFileExtensions" value="php,phtml"/>
+    <property name="reportPhpMdDescription" value="php mess detection" override="true"/>
+    <property name="reportPhpMdOutput" value="${projectDirBuildReports}/phpmd" override="true"/>
+    <property name="reportPhpMdRulesets" value="cleancode,codesize,design,unusedcode"/>
+    <property name="reportPhpMdAllowedFileExtensions" value="php,phtml"/>
 
 
     <target name="report:phpmd:help">
-        <echo message="${report.phpmd.description}"/>
+        <echo message="${reportPhpMdDescription}"/>
 
         <echo message=""/>
-        <echo message="property                                  value"/>
+        <echo message="property                            value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="report.phpmd.rulesets                     ${report.phpmd.rulesets}"/>
-        <echo message="report.phpmd.allowedFileExtensions        ${report.phpmd.allowedFileExtensions}"/>
+        <echo message="reportPhpMdRulesets                 ${reportPhpMdRulesets}"/>
+        <echo message="reportPhpMdAllowedFileExtensions    ${reportPhpMdAllowedFileExtensions}"/>
     </target>
 
 
-    <target name="report:phpmd">
-        <delete dir="${report.phpmd.output}"/>
-        <mkdir dir="${report.phpmd.output}"/>
+    <target name="report:phpmd" depends="report:phpmd:before, report:phpmd:main, report:phpmd:after">
+        <echo message="successful"/>
+    </target>
 
-        <phpmd pharlocation="${phingCommonsRoot}/resources/phar/phpmd-2.6.0.phar" rulesets="${report.phpmd.rulesets}" allowedFileExtensions="${report.phpmd.allowedFileExtensions}">
+
+    <target name="report:phpmd:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="report:phpmd:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+    
+
+    <target name="report:phpmd:main">
+        <delete dir="${reportPhpMdOutput}"/>
+        <mkdir dir="${reportPhpMdOutput}"/>
+
+        <phpmd pharlocation="${phingCommonsRoot}/resources/phar/phpmd-2.6.0.phar" rulesets="${reportPhpMdRulesets}" allowedFileExtensions="${reportPhpMdAllowedFileExtensions}">
             <fileset dir="${projectDirMain}">
                 <patternset refid="patternsetReportPhpMd"/>
             </fileset>
-            <formatter type="xml" outfile="${report.phpmd.output}/report.xml"/>
+            <formatter type="xml" outfile="${reportPhpMdOutput}/report.xml"/>
         </phpmd>
 
-        <xslt file="${report.phpmd.output}/report.xml" tofile="${report.phpmd.output}/report-v1.html" style="${phingCommonsRoot}/resources/xsl/phpmd-v1.xsl"/>
-        <xslt file="${report.phpmd.output}/report.xml" tofile="${report.phpmd.output}/report-v2.html" style="${phingCommonsRoot}/resources/xsl/phpmd-v2.xsl"/>
-        <copy file="${report.phpmd.output}/report-v2.html" tofile="${report.phpmd.output}/index.html"/>
+        <xslt file="${reportPhpMdOutput}/report.xml" tofile="${reportPhpMdOutput}/report-v1.html" style="${phingCommonsRoot}/resources/xsl/phpmd-v1.xsl"/>
+        <xslt file="${reportPhpMdOutput}/report.xml" tofile="${reportPhpMdOutput}/report-v2.html" style="${phingCommonsRoot}/resources/xsl/phpmd-v2.xsl"/>
+        <copy file="${reportPhpMdOutput}/report-v2.html" tofile="${reportPhpMdOutput}/index.html"/>
     </target>
 
 
