@@ -4,22 +4,37 @@
 <project default="composer:install:production">
 
 
-    <property name="composer.install.production.description" value="composer install for production" override="true"/>
-    <property name="composer.install.production.options" value=""/>
+    <property name="composerInstallProductionDescription" value="composer install for production" override="true"/>
+    <property name="composerInstallProductionOptions" value=""/>
 
 
     <target name="composer:install:production:help">
-        <echo message="${composer.install.production.description}"/>
+        <echo message="${composerInstallProductionDescription}"/>
 
         <echo message=""/>
-        <echo message="property                               value"/>
+        <echo message="property                            value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="composer.install.production.options    ${composer.install.production.options}"/>
+        <echo message="composerInstallProductionOptions    ${composerInstallProductionOptions}"/>
+    </target>
+
+
+    <target name="composer:install:production" depends="composer:install:production:before, composer:install:production:main, composer:install:production:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="composer:install:production:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="composer:install:production:after" hidden="true">
+        <echo message="no actions defined"/>
     </target>
 
 
     <target name="composer:install:production">
-        <exec command="composer install --no-suggest --no-ansi --no-interaction --no-dev --optimize-autoloader ${composer.install.production.options}" passthru="true" checkreturn="true" level="info" dir="${projectDirMainComposer}"/>
+        <exec command="composer install --no-suggest --no-ansi --no-interaction --no-dev --optimize-autoloader ${composerInstallProductionOptions}" passthru="true" checkreturn="true" level="info" dir="${projectDirMainComposer}"/>
     </target>
 
 

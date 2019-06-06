@@ -14,7 +14,7 @@
     <target name="composer:help">
         <echo message="target                         description"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="composer:install:production    ${composer.install.production.description}"/>
+        <echo message="composer:install:production    ${composerInstallProductionDescription}"/>
         <echo message="composer:install               ${composer.install.description}"/>
         <echo message="composer:remove                ${composer.require.description}"/>
         <echo message="composer:require               ${composer.require.description}"/>
