@@ -4,15 +4,30 @@
 <project default="compass:clean">
 
 
-    <property name="compass.clean.description" value="compass clean scss" override="true"/>
+    <property name="compassCleanDescription" value="compass clean scss" override="true"/>
 
 
     <target name="compass:clean:help">
-        <echo message="${compass.clean.description}"/>
+        <echo message="${compassCleanDescription}"/>
     </target>
 
 
-    <target name="compass:clean">
+    <target name="compass:clean" depends="compass:clean:before, compass:clean:main, compass:clean:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="compass:clean:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="compass:clean:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+    
+
+    <target name="compass:clean:main">
         <exec command="compass clean" passthru="true" checkreturn="true" level="info" dir="${projectDirMainCompass}"/>
     </target>
 

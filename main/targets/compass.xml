@@ -12,7 +12,7 @@
     <target name="compass:help">
         <echo message="target             description"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="compass:clean      ${compass.clean.description}"/>
+        <echo message="compass:clean      ${compassCleanDescription}"/>
         <echo message="compass:compile    ${compass.compile.description}"/>
         <echo message="compass:watch      ${compass.watch.description}"/>
     </target>
