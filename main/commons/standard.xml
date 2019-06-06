@@ -4,9 +4,6 @@
 <project name="commons:template:standard">
 
 
-    <property name="project.type" value="standard"/>
-
-
     <!-- extending commons -->
     <import file="/srv/phing/commons.xml"/>
 

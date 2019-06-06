@@ -4,9 +4,6 @@
 <project name="commons:template:symfony4">
 
 
-    <property name="project.type" value="symfony4"/>
-
-
     <!-- extending commons -->
     <import file="/srv/phing/commons.xml"/>
 

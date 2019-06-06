@@ -4,9 +4,6 @@
 <project name="commons:template:laravel-lumen5">
 
 
-    <property name="project.type" value="laravel-lumen5"/>
-
-
     <!-- extending commons -->
     <import file="/srv/phing/commons.xml"/>
 

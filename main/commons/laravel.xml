@@ -4,9 +4,6 @@
 <project name="commons:template:laravel">
 
 
-    <property name="project.type" value="laravel"/>
-
-
     <!-- extending commons -->
     <import file="/srv/phing/commons.xml"/>
 
