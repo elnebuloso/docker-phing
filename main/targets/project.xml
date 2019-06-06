@@ -7,7 +7,7 @@
     <target name="project:help">
         <echo message="property                        value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="project.name                    ${project.name}"/>
+        <echo message="projectName                    ${projectName}"/>
         <echo message="projectFolderMain             ${projectFolderMain}"/>
         <echo message="projectFolderMainComposer    ${projectFolderMainComposer}"/>
         <echo message="projectFolderMainCompass     ${projectFolderMainCompass}"/>

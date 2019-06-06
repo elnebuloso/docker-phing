@@ -29,7 +29,7 @@ Docker Phing + Commons
 ####  create build.properties file
 
 - build.properties file will be placed in your project root directory
-- project.name = the_name_of_your_project
+- projectName = the_name_of_your_project
 
 #### create VERSION file
 

@@ -70,7 +70,7 @@
     <import file="${phingCommonsRoot}/targets/test.xml"/>
 
 
-    <fail unless="project.name" message="missing project.name"/>
+    <fail unless="projectName" message="missing projectName"/>
     <fail unless="projectVersion" message="missing projectVersion"/>
 
 

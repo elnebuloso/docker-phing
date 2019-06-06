@@ -22,7 +22,7 @@
 
     <target name="report:sonarqube">
         <exec executable="${report.sonarqube.executable}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}">
-            <arg line="--define sonar.projectName=${project.name}"/>
+            <arg line="--define sonar.projectName=${projectName}"/>
             <arg line="--define sonar.projectVersion=${projectVersion}"/>
         </exec>
     </target>
