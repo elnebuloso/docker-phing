@@ -19,25 +19,25 @@
 
 
     <target name="git:auto:version">
-        <echo message="version [curr]: ${project.version}"/>
+        <echo message="version [curr]: ${projectVersion}"/>
 
-        <version releasetype="Bugfix" file="${projectRoot}/VERSION" property="project.version"/>
+        <version releasetype="Bugfix" file="${projectRoot}/VERSION" property="projectVersion"/>
 
-        <echo message="version [next]: ${project.version}"/>
-        <echo message="major: ${project.version.major}"/>
-        <echo message="minor: ${project.version.minor}"/>
-        <echo message="patch: ${project.version.patch}"/>
+        <echo message="version [next]: ${projectVersion}"/>
+        <echo message="major: ${projectVersion.major}"/>
+        <echo message="minor: ${projectVersion.minor}"/>
+        <echo message="patch: ${projectVersion.patch}"/>
 
         <exec command="git pull origin master" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
         <exec command="git add VERSION" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
-        <exec command="git commit -m &quot;git:auto:version ${project.version}&quot;" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
+        <exec command="git commit -m &quot;git:auto:version ${projectVersion}&quot;" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
         <exec command="git push origin HEAD:master" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
 
         <if>
             <equals arg1="${git.auto.version.tagging}" arg2="1"/>
             <then>
-                <exec command="git tag -f -a ${project.version} -m &quot;git:auto:version tagging&quot;" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
-                <exec command="git push origin ${project.version} --force" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
+                <exec command="git tag -f -a ${projectVersion} -m &quot;git:auto:version tagging&quot;" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
+                <exec command="git push origin ${projectVersion} --force" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
             </then>
         </if>
     </target>

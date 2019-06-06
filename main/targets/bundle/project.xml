@@ -29,32 +29,32 @@
 
     <target name="bundle:project:main">
         <if>
-            <equals arg1="${project.folder.main.composer}" arg2=""/>
+            <equals arg1="${projectFolderMainComposer}" arg2=""/>
             <then>
                 <property name="bundle.project.composer.prefix" value="" override="true"/>
             </then>
             <else>
-                <property name="bundle.project.composer.prefix" value="${project.folder.main.composer}/" override="true"/>
+                <property name="bundle.project.composer.prefix" value="${projectFolderMainComposer}/" override="true"/>
             </else>
         </if>
 
         <if>
-            <equals arg1="${project.folder.main.compass}" arg2=""/>
+            <equals arg1="${projectFolderMainCompass}" arg2=""/>
             <then>
                 <property name="bundle.project.compass.prefix" value="" override="true"/>
             </then>
             <else>
-                <property name="bundle.project.compass.prefix" value="${project.folder.main.compass}/" override="true"/>
+                <property name="bundle.project.compass.prefix" value="${projectFolderMainCompass}/" override="true"/>
             </else>
         </if>
 
         <if>
-            <equals arg1="${project.folder.main.npm}" arg2=""/>
+            <equals arg1="${projectFolderMainNpm}" arg2=""/>
             <then>
                 <property name="bundle.project.npm.prefix" value="" override="true"/>
             </then>
             <else>
-                <property name="bundle.project.npm.prefix" value="${project.folder.main.npm}/" override="true"/>
+                <property name="bundle.project.npm.prefix" value="${projectFolderMainNpm}/" override="true"/>
             </else>
         </if>
 

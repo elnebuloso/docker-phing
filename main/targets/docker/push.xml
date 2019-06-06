@@ -18,10 +18,10 @@
         <if>
             <isset property="env.PHING_VERSION_SUFFIX"/>
             <then>
-                <property name="project.env.version" value="${project.version}-${env.PHING_VERSION_SUFFIX}" override="true"/>
+                <property name="project.env.version" value="${projectVersion}-${env.PHING_VERSION_SUFFIX}" override="true"/>
             </then>
             <else>
-                <property name="project.env.version" value="${project.version}" override="true"/>
+                <property name="project.env.version" value="${projectVersion}" override="true"/>
             </else>
         </if>
 

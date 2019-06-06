@@ -8,15 +8,15 @@
         <echo message="property                        value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="project.name                    ${project.name}"/>
-        <echo message="project.folder.main             ${project.folder.main}"/>
-        <echo message="project.folder.main.composer    ${project.folder.main.composer}"/>
-        <echo message="project.folder.main.compass     ${project.folder.main.compass}"/>
-        <echo message="project.folder.main.npm         ${project.folder.main.npm}"/>
-        <echo message="project.folder.build            ${project.folder.build}"/>
+        <echo message="projectFolderMain             ${projectFolderMain}"/>
+        <echo message="projectFolderMainComposer    ${projectFolderMainComposer}"/>
+        <echo message="projectFolderMainCompass     ${projectFolderMainCompass}"/>
+        <echo message="projectFolderMainNpm         ${projectFolderMainNpm}"/>
+        <echo message="projectFolderBuild            ${projectFolderBuild}"/>
         <echo message=""/>
         <echo message="property                        value [do not edit directly]"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="project.version                 ${project.version}" level="warning"/>
+        <echo message="projectVersion                 ${projectVersion}" level="warning"/>
         <echo message="projectRoot                    ${projectRoot}" level="warning"/>
         <echo message="project.dir.main                ${project.dir.main}" level="warning"/>
         <echo message="project.dir.main.composer       ${project.dir.main.composer}" level="warning"/>

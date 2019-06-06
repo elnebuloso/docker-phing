@@ -19,27 +19,27 @@
     <resolvepath propertyName="projectRoot" file="${projectRoot}"/>
 
 
-    <loadfile property="project.version" file="${projectRoot}/VERSION"/>
-    <php function="trim" returnProperty="project.version" level="debug">
-        <param value="${project.version}"/>
+    <loadfile property="projectVersion" file="${projectRoot}/VERSION"/>
+    <php function="trim" returnProperty="projectVersion" level="debug">
+        <param value="${projectVersion}"/>
     </php>
 
 
-    <property name="project.folder.main" value="main"/>
-    <property name="project.folder.main.composer" value=""/>
-    <property name="project.folder.main.compass" value=""/>
-    <property name="project.folder.main.npm" value=""/>
-    <property name="project.folder.build" value="build"/>
+    <property name="projectFolderMain" value="main"/>
+    <property name="projectFolderMainComposer" value=""/>
+    <property name="projectFolderMainCompass" value=""/>
+    <property name="projectFolderMainNpm" value=""/>
+    <property name="projectFolderBuild" value="build"/>
 
 
-    <property name="project.dir.main" value="${projectRoot}/${project.folder.main}"/>
-    <property name="project.dir.main.composer" value="${projectRoot}/${project.folder.main}/${project.folder.main.composer}"/>
-    <property name="project.dir.main.compass" value="${projectRoot}/${project.folder.main}/${project.folder.main.compass}"/>
-    <property name="project.dir.main.npm" value="${projectRoot}/${project.folder.main}/${project.folder.main.npm}"/>
-    <property name="project.dir.build" value="${projectRoot}/${project.folder.build}"/>
-    <property name="project.dir.build.tmp" value="${projectRoot}/${project.folder.build}/tmp"/>
-    <property name="project.dir.build.dist" value="${projectRoot}/${project.folder.build}/dist"/>
-    <property name="project.dir.build.reports" value="${projectRoot}/${project.folder.build}/reports"/>
+    <property name="project.dir.main" value="${projectRoot}/${projectFolderMain}"/>
+    <property name="project.dir.main.composer" value="${projectRoot}/${projectFolderMain}/${projectFolderMainComposer}"/>
+    <property name="project.dir.main.compass" value="${projectRoot}/${projectFolderMain}/${projectFolderMainCompass}"/>
+    <property name="project.dir.main.npm" value="${projectRoot}/${projectFolderMain}/${projectFolderMainNpm}"/>
+    <property name="project.dir.build" value="${projectRoot}/${projectFolderBuild}"/>
+    <property name="project.dir.build.tmp" value="${projectRoot}/${projectFolderBuild}/tmp"/>
+    <property name="project.dir.build.dist" value="${projectRoot}/${projectFolderBuild}/dist"/>
+    <property name="project.dir.build.reports" value="${projectRoot}/${projectFolderBuild}/reports"/>
 
 
     <resolvepath propertyName="project.dir.main" file="${project.dir.main}"/>
@@ -71,7 +71,7 @@
 
 
     <fail unless="project.name" message="missing project.name"/>
-    <fail unless="project.version" message="missing project.version"/>
+    <fail unless="projectVersion" message="missing projectVersion"/>
 
 
     <target name="commons:help:version">
