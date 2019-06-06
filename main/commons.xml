@@ -63,7 +63,6 @@
     <import file="${phingCommonsRoot}/targets/compass.xml"/>
     <import file="${phingCommonsRoot}/targets/composer.xml"/>
     <import file="${phingCommonsRoot}/targets/docker.xml"/>
-    <import file="${phingCommonsRoot}/targets/git.xml"/>
     <import file="${phingCommonsRoot}/targets/init.xml"/>
     <import file="${phingCommonsRoot}/targets/npm.xml"/>
     <import file="${phingCommonsRoot}/targets/project.xml"/>
@@ -82,7 +81,7 @@
     </target>
 
 
-    <target name="commons:help" depends="commons:help:version, bundle:help, clean:help, compass:help, composer:help, docker:help, git:help, init:help, npm:help, report:help, test:help, project:help"/>
+    <target name="commons:help" depends="commons:help:version, bundle:help, clean:help, compass:help, composer:help, docker:help, init:help, npm:help, report:help, test:help, project:help"/>
 
 
 </project>
