@@ -31,30 +31,30 @@
         <if>
             <equals arg1="${projectFolderMainComposer}" arg2=""/>
             <then>
-                <property name="bundle.project.composer.prefix" value="" override="true"/>
+                <property name="bundleProjectComposerPrefix" value="" override="true"/>
             </then>
             <else>
-                <property name="bundle.project.composer.prefix" value="${projectFolderMainComposer}/" override="true"/>
+                <property name="bundleProjectComposerPrefix" value="${projectFolderMainComposer}/" override="true"/>
             </else>
         </if>
 
         <if>
             <equals arg1="${projectFolderMainCompass}" arg2=""/>
             <then>
-                <property name="bundle.project.compass.prefix" value="" override="true"/>
+                <property name="bundleProjectCompassPrefix" value="" override="true"/>
             </then>
             <else>
-                <property name="bundle.project.compass.prefix" value="${projectFolderMainCompass}/" override="true"/>
+                <property name="bundleProjectCompassPrefix" value="${projectFolderMainCompass}/" override="true"/>
             </else>
         </if>
 
         <if>
             <equals arg1="${projectFolderMainNpm}" arg2=""/>
             <then>
-                <property name="bundle.project.npm.prefix" value="" override="true"/>
+                <property name="bundleProjectNpmPrefix" value="" override="true"/>
             </then>
             <else>
-                <property name="bundle.project.npm.prefix" value="${projectFolderMainNpm}/" override="true"/>
+                <property name="bundleProjectNpmPrefix" value="${projectFolderMainNpm}/" override="true"/>
             </else>
         </if>
 
@@ -63,37 +63,37 @@
                 <patternset refid="patternsetBundleProject"/>
 
                 <!-- exclude compass files -->
-                <exclude name="${bundle.project.npm.prefix}.sass-cache/**"/>
+                <exclude name="${bundleProjectNpmPrefix}.sass-cache/**"/>
 
                 <!-- exclude npm files -->
-                <exclude name="${bundle.project.npm.prefix}node_modules/**"/>
+                <exclude name="${bundleProjectNpmPrefix}node_modules/**"/>
 
                 <!-- exclude composer configuration file -->
-                <exclude name="${bundle.project.composer.prefix}vendor/**/.coveralls.yml"/>
-                <exclude name="${bundle.project.composer.prefix}vendor/**/.editorconfig"/>
-                <exclude name="${bundle.project.composer.prefix}vendor/**/.gitignore"/>
-                <exclude name="${bundle.project.composer.prefix}vendor/**/.gitmodules"/>
-                <exclude name="${bundle.project.composer.prefix}vendor/**/.travis.yml"/>
+                <exclude name="${bundleProjectComposerPrefix}vendor/**/.coveralls.yml"/>
+                <exclude name="${bundleProjectComposerPrefix}vendor/**/.editorconfig"/>
+                <exclude name="${bundleProjectComposerPrefix}vendor/**/.gitignore"/>
+                <exclude name="${bundleProjectComposerPrefix}vendor/**/.gitmodules"/>
+                <exclude name="${bundleProjectComposerPrefix}vendor/**/.travis.yml"/>
 
                 <!-- exclude composer continuous integration files -->
-                <exclude name="${bundle.project.composer.prefix}vendor/**/build.properties"/>
-                <exclude name="${bundle.project.composer.prefix}vendor/**/build.xml"/>
-                <exclude name="${bundle.project.composer.prefix}vendor/**/phpunit.xml.dist"/>
-                <exclude name="${bundle.project.composer.prefix}vendor/**/travis.phpunit.xml"/>
+                <exclude name="${bundleProjectComposerPrefix}vendor/**/build.properties"/>
+                <exclude name="${bundleProjectComposerPrefix}vendor/**/build.xml"/>
+                <exclude name="${bundleProjectComposerPrefix}vendor/**/phpunit.xml.dist"/>
+                <exclude name="${bundleProjectComposerPrefix}vendor/**/travis.phpunit.xml"/>
 
                 <!-- exclude composer documentation files -->
-                <exclude name="${bundle.project.composer.prefix}vendor/**/CHANGELOG"/>
-                <exclude name="${bundle.project.composer.prefix}vendor/**/CHANGELOG.md"/>
-                <exclude name="${bundle.project.composer.prefix}vendor/**/README"/>
-                <exclude name="${bundle.project.composer.prefix}vendor/**/README.md"/>
-                <exclude name="${bundle.project.composer.prefix}vendor/**/LICENSE"/>
-                <exclude name="${bundle.project.composer.prefix}vendor/**/LICENSE.md"/>
-                <exclude name="${bundle.project.composer.prefix}vendor/**/UPGRADE"/>
-                <exclude name="${bundle.project.composer.prefix}vendor/**/UPGRADE.md"/>
-                <exclude name="${bundle.project.composer.prefix}vendor/**/CONDUCT"/>
-                <exclude name="${bundle.project.composer.prefix}vendor/**/CONDUCT.md"/>
-                <exclude name="${bundle.project.composer.prefix}vendor/**/CONTRIBUTING"/>
-                <exclude name="${bundle.project.composer.prefix}vendor/**/CONTRIBUTING.md"/>
+                <exclude name="${bundleProjectComposerPrefix}vendor/**/CHANGELOG"/>
+                <exclude name="${bundleProjectComposerPrefix}vendor/**/CHANGELOG.md"/>
+                <exclude name="${bundleProjectComposerPrefix}vendor/**/README"/>
+                <exclude name="${bundleProjectComposerPrefix}vendor/**/README.md"/>
+                <exclude name="${bundleProjectComposerPrefix}vendor/**/LICENSE"/>
+                <exclude name="${bundleProjectComposerPrefix}vendor/**/LICENSE.md"/>
+                <exclude name="${bundleProjectComposerPrefix}vendor/**/UPGRADE"/>
+                <exclude name="${bundleProjectComposerPrefix}vendor/**/UPGRADE.md"/>
+                <exclude name="${bundleProjectComposerPrefix}vendor/**/CONDUCT"/>
+                <exclude name="${bundleProjectComposerPrefix}vendor/**/CONDUCT.md"/>
+                <exclude name="${bundleProjectComposerPrefix}vendor/**/CONTRIBUTING"/>
+                <exclude name="${bundleProjectComposerPrefix}vendor/**/CONTRIBUTING.md"/>
             </fileset>
         </copy>
     </target>
