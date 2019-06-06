@@ -21,7 +21,22 @@
     </target>
 
 
-    <target name="test:phplint">
+    <target name="test:phplint" depends="test:phplint:before, test:phplint:main, test:phplint:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="test:phplint:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="test:phplint:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+    
+
+    <target name="test:phplint:main">
         <delete dir="${testPhpLintOutput}/${testPhpLintInterpreter}"/>
         <mkdir dir="${testPhpLintOutput}/${testPhpLintInterpreter}"/>
         <mkdir dir="${projectDirBuildTmp}"/>

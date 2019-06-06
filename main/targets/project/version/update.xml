@@ -18,7 +18,22 @@
     </target>
 
 
-    <target name="project:version:update">
+    <target name="project:version:update" depends="project:version:update:before, project:version:update:main, project:version:update:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="project:version:update:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="project:version:update:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+    
+
+    <target name="project:version:update:main">
         <echo message="version [curr]: ${projectVersion}"/>
         <echo message="major: ${projectVersionMajor}"/>
         <echo message="minor: ${projectVersionMinor}"/>
