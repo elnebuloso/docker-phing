@@ -4,15 +4,30 @@
 <project default="bundle:project">
 
 
-    <property name="bundle.project.description" value="bundle files defined by patternset to dist" override="true"/>
+    <property name="bundleProjectDescription" value="bundle files defined by patternset to dist" override="true"/>
 
 
     <target name="bundle:project:help">
-        <echo message="${bundle.project.description}"/>
+        <echo message="${bundleProjectDescription}"/>
     </target>
 
 
-    <target name="bundle:project">
+    <target name="bundle:project" depends="bundle:project:before, bundle:project:main, bundle:project:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="bundle:project:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="bundle:project:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="bundle:project:main">
         <if>
             <equals arg1="${project.folder.main.composer}" arg2=""/>
             <then>

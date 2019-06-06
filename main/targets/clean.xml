@@ -4,9 +4,9 @@
 <project>
 
 
-    <import file="${phing.commons.root}/targets/clean/tmp.xml"/>
-    <import file="${phing.commons.root}/targets/clean/dist.xml"/>
-    <import file="${phing.commons.root}/targets/clean/reports.xml"/>
+    <import file="${phingCommonsRoot}/targets/clean/tmp.xml"/>
+    <import file="${phingCommonsRoot}/targets/clean/dist.xml"/>
+    <import file="${phingCommonsRoot}/targets/clean/reports.xml"/>
 
 
     <target name="clean:help">

@@ -4,7 +4,7 @@
 <project>
 
 
-    <import file="${phing.commons.root}/targets/git/auto/version.xml"/>
+    <import file="${phingCommonsRoot}/targets/git/auto/version.xml"/>
 
 
     <target name="git:help">

@@ -28,7 +28,7 @@
         <delete dir="${project.dir.main}/.git" quiet="true"/>
 
         <copy todir="${project.root}" overwrite="true">
-            <fileset dir="${phing.commons.root}/resources/init/laravel-lumen5/0">
+            <fileset dir="${phingCommonsRoot}/resources/init/laravel-lumen5/0">
                 <include name="**"/>
             </fileset>
         </copy>

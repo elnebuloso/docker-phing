@@ -4,7 +4,7 @@
 <project name="commons">
 
 
-    <property name="phing.commons.root" value="/srv/phing"/>
+    <property name="phingCommonsRoot" value="/srv/phing"/>
 
 
     <loadfile property="phing.commons.version" file="/srv/VERSION"/>
@@ -52,22 +52,22 @@
     <resolvepath propertyName="project.dir.build.reports" file="${project.dir.build.reports}"/>
 
 
-    <autoloader autoloaderpath="${phing.commons.root}/vendor/autoload.php"/>
+    <autoloader autoloaderpath="${phingCommonsRoot}/vendor/autoload.php"/>
     <taskdef classname="\elnebuloso\Phing\PHPMetrics1DirectoriesTask" name="my-php-metrics1-directories"/>
     <taskdef classname="\elnebuloso\Phing\PHPMetrics2DirectoriesTask" name="my-php-metrics2-directories"/>
 
 
-    <import file="${phing.commons.root}/targets/bundle.xml"/>
-    <import file="${phing.commons.root}/targets/clean.xml"/>
-    <import file="${phing.commons.root}/targets/compass.xml"/>
-    <import file="${phing.commons.root}/targets/composer.xml"/>
-    <import file="${phing.commons.root}/targets/docker.xml"/>
-    <import file="${phing.commons.root}/targets/git.xml"/>
-    <import file="${phing.commons.root}/targets/init.xml"/>
-    <import file="${phing.commons.root}/targets/npm.xml"/>
-    <import file="${phing.commons.root}/targets/project.xml"/>
-    <import file="${phing.commons.root}/targets/report.xml"/>
-    <import file="${phing.commons.root}/targets/test.xml"/>
+    <import file="${phingCommonsRoot}/targets/bundle.xml"/>
+    <import file="${phingCommonsRoot}/targets/clean.xml"/>
+    <import file="${phingCommonsRoot}/targets/compass.xml"/>
+    <import file="${phingCommonsRoot}/targets/composer.xml"/>
+    <import file="${phingCommonsRoot}/targets/docker.xml"/>
+    <import file="${phingCommonsRoot}/targets/git.xml"/>
+    <import file="${phingCommonsRoot}/targets/init.xml"/>
+    <import file="${phingCommonsRoot}/targets/npm.xml"/>
+    <import file="${phingCommonsRoot}/targets/project.xml"/>
+    <import file="${phingCommonsRoot}/targets/report.xml"/>
+    <import file="${phingCommonsRoot}/targets/test.xml"/>
 
 
     <fail unless="project.name" message="missing project.name"/>

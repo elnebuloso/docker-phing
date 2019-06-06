@@ -4,9 +4,9 @@
 <project>
 
 
-    <import file="${phing.commons.root}/targets/init/laravel.xml"/>
-    <import file="${phing.commons.root}/targets/init/laravel-lumen5.xml"/>
-    <import file="${phing.commons.root}/targets/init/symfony4.xml"/>
+    <import file="${phingCommonsRoot}/targets/init/laravel.xml"/>
+    <import file="${phingCommonsRoot}/targets/init/laravel-lumen5.xml"/>
+    <import file="${phingCommonsRoot}/targets/init/symfony4.xml"/>
 
 
     <target name="init:help">

@@ -4,12 +4,12 @@
 <project>
 
 
-    <import file="${phing.commons.root}/targets/docker/compose/down.xml"/>
-    <import file="${phing.commons.root}/targets/docker/compose/ps.xml"/>
-    <import file="${phing.commons.root}/targets/docker/compose/pull.xml"/>
-    <import file="${phing.commons.root}/targets/docker/compose/up.xml"/>
-    <import file="${phing.commons.root}/targets/docker/build.xml"/>
-    <import file="${phing.commons.root}/targets/docker/push.xml"/>
+    <import file="${phingCommonsRoot}/targets/docker/compose/down.xml"/>
+    <import file="${phingCommonsRoot}/targets/docker/compose/ps.xml"/>
+    <import file="${phingCommonsRoot}/targets/docker/compose/pull.xml"/>
+    <import file="${phingCommonsRoot}/targets/docker/compose/up.xml"/>
+    <import file="${phingCommonsRoot}/targets/docker/build.xml"/>
+    <import file="${phingCommonsRoot}/targets/docker/push.xml"/>
 
 
     <target name="docker:help">

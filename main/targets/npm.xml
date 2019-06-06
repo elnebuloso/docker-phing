@@ -4,10 +4,10 @@
 <project>
 
 
-    <import file="${phing.commons.root}/targets/npm/build/development.xml"/>
-    <import file="${phing.commons.root}/targets/npm/build/production.xml"/>
-    <import file="${phing.commons.root}/targets/npm/install.xml"/>
-    <import file="${phing.commons.root}/targets/npm/run.xml"/>
+    <import file="${phingCommonsRoot}/targets/npm/build/development.xml"/>
+    <import file="${phingCommonsRoot}/targets/npm/build/production.xml"/>
+    <import file="${phingCommonsRoot}/targets/npm/install.xml"/>
+    <import file="${phingCommonsRoot}/targets/npm/run.xml"/>
 
 
     <target name="npm:help">

@@ -4,11 +4,11 @@
 <project>
 
 
-    <import file="${phing.commons.root}/targets/composer/install/production.xml"/>
-    <import file="${phing.commons.root}/targets/composer/install.xml"/>
-    <import file="${phing.commons.root}/targets/composer/remove.xml"/>
-    <import file="${phing.commons.root}/targets/composer/require.xml"/>
-    <import file="${phing.commons.root}/targets/composer/update.xml"/>
+    <import file="${phingCommonsRoot}/targets/composer/install/production.xml"/>
+    <import file="${phingCommonsRoot}/targets/composer/install.xml"/>
+    <import file="${phingCommonsRoot}/targets/composer/remove.xml"/>
+    <import file="${phingCommonsRoot}/targets/composer/require.xml"/>
+    <import file="${phingCommonsRoot}/targets/composer/update.xml"/>
 
 
     <target name="composer:help">

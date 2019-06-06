@@ -4,13 +4,13 @@
 <project>
 
 
-    <import file="${phing.commons.root}/targets/bundle/project.xml"/>
+    <import file="${phingCommonsRoot}/targets/bundle/project.xml"/>
 
 
     <target name="bundle:help">
         <echo message="target            description"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="bundle:project    ${bundle.project.description}"/>
+        <echo message="bundle:project    ${bundleProjectDescription}"/>
     </target>
 
 

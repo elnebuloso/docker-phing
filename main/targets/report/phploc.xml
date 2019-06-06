@@ -17,14 +17,14 @@
         <delete dir="${report.phploc.output}"/>
         <mkdir dir="${report.phploc.output}"/>
 
-        <phploc pharlocation="${phing.commons.root}/resources/phar/phploc-2.1.5.phar" reportType="xml" reportName="report" reportDirectory="${report.phploc.output}">
+        <phploc pharlocation="${phingCommonsRoot}/resources/phar/phploc-2.1.5.phar" reportType="xml" reportName="report" reportDirectory="${report.phploc.output}">
             <fileset dir="${project.dir.main}">
                 <patternset refid="patternset.report.phploc"/>
             </fileset>
         </phploc>
 
-        <xslt file="${report.phploc.output}/report.xml" tofile="${report.phploc.output}/report-v1.html" style="${phing.commons.root}/resources/xsl/phploc-v1.xsl"/>
-        <xslt file="${report.phploc.output}/report.xml" tofile="${report.phploc.output}/report-v2.html" style="${phing.commons.root}/resources/xsl/phploc-v2.xsl"/>
+        <xslt file="${report.phploc.output}/report.xml" tofile="${report.phploc.output}/report-v1.html" style="${phingCommonsRoot}/resources/xsl/phploc-v1.xsl"/>
+        <xslt file="${report.phploc.output}/report.xml" tofile="${report.phploc.output}/report-v2.html" style="${phingCommonsRoot}/resources/xsl/phploc-v2.xsl"/>
         <copy file="${report.phploc.output}/report-v2.html" tofile="${report.phploc.output}/index.html"/>
     </target>
 

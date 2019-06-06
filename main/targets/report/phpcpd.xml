@@ -17,15 +17,15 @@
         <delete dir="${report.phpcpd.output}"/>
         <mkdir dir="${report.phpcpd.output}"/>
 
-        <phpcpd pharlocation="${phing.commons.root}/resources/phar/phpcpd-2.0.4.phar">
+        <phpcpd pharlocation="${phingCommonsRoot}/resources/phar/phpcpd-2.0.4.phar">
             <fileset dir="${project.dir.main}">
                 <patternset refid="patternset.report.phpcpd"/>
             </fileset>
             <formatter type="pmd" outfile="${report.phpcpd.output}/report.xml"/>
         </phpcpd>
 
-        <xslt file="${report.phpcpd.output}/report.xml" tofile="${report.phpcpd.output}/report-v1.html" style="${phing.commons.root}/resources/xsl/phpcpd-v1.xsl"/>
-        <xslt file="${report.phpcpd.output}/report.xml" tofile="${report.phpcpd.output}/report-v2.html" style="${phing.commons.root}/resources/xsl/phpcpd-v2.xsl"/>
+        <xslt file="${report.phpcpd.output}/report.xml" tofile="${report.phpcpd.output}/report-v1.html" style="${phingCommonsRoot}/resources/xsl/phpcpd-v1.xsl"/>
+        <xslt file="${report.phpcpd.output}/report.xml" tofile="${report.phpcpd.output}/report-v2.html" style="${phingCommonsRoot}/resources/xsl/phpcpd-v2.xsl"/>
         <copy file="${report.phpcpd.output}/report-v2.html" tofile="${report.phpcpd.output}/index.html"/>
     </target>
 

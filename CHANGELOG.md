@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [2.0.0] - 2019-06-06
+### Changed
+- rewritten properties to camelCase
+- added target before and target after to targets
+
+
 ## [1.5.0] - 2019-04-19
 ### Changed
 - added init target for laravel projects
