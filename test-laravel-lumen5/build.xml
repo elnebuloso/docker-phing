@@ -29,7 +29,7 @@
             </fileset>
         </delete>
         <delete dir="${projectRoot}/main"/>
-        <phingcall target="init:laravel-lumen5"/>
+        <phingcall target="init:laravel:lumen5"/>
     </target>
 
 
