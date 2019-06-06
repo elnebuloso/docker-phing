@@ -4,22 +4,37 @@
 <project default="docker:compose:up">
 
 
-    <property name="docker.compose.up.description" value="start docker compose stack" override="true"/>
-    <property name="docker.compose.up.options" value="--build --remove-orphans -d"/>
+    <property name="dockerComposeUpDescription" value="start docker compose stack" override="true"/>
+    <property name="dockerComposeUpOptions" value="--build --remove-orphans -d"/>
 
 
     <target name="docker:compose:up:help">
-        <echo message="${docker.compose.up.description}"/>
+        <echo message="${dockerComposeUpDescription}"/>
 
         <echo message=""/>
-        <echo message="property                     value"/>
+        <echo message="property                  value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="docker.compose.up.options    ${docker.compose.up.options}"/>
+        <echo message="dockerComposeUpOptions    ${dockerComposeUpOptions}"/>
     </target>
 
 
-    <target name="docker:compose:up">
-        <exec command="docker-compose up ${docker.compose.up.options}" passthru="true" checkreturn="true" level="info"/>
+    <target name="docker:compose:up" depends="docker:compose:up:before, docker:compose:up:main, docker:compose:up:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="docker:compose:up:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="docker:compose:up:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="docker:compose:up:main">
+        <exec command="docker-compose up ${dockerComposeUpOptions}" passthru="true" checkreturn="true" level="info"/>
     </target>
 
 

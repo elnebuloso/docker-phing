@@ -4,26 +4,60 @@
 <project default="docker:build">
 
 
-    <property name="docker.build.description" value="build an image from the projects dockerfile" override="true"/>
+    <property name="dockerBuildDescription" value="build an image from the projects dockerfile" override="true"/>
+    <property name="dockerImageName" value="${projectName}"/>
+    <property name="dockerBuildOptions" value="--pull --rm"/>
+    <property name="dockerBuildFile" value="Dockerfile"/>
+    <property name="dockerBuildContext" value="."/>
 
 
     <target name="docker:build:help">
-        <echo message="${docker.build.description}"/>
+        <echo message="${dockerBuildDescription}"/>
+
+        <echo message=""/>
+        <echo message="property              value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="dockerImageName       ${dockerImageName}"/>
+        <echo message="dockerBuildOptions    ${dockerImageName}"/>
+        <echo message="dockerBuildFile       ${docker.image.file}"/>
+        <echo message="dockerBuildContext    ${docker.image.ctx}"/>
+        <echo message="branchName            - adhoc property"/>
+        <echo message="buildNumber           - adhoc property"/>
     </target>
 
 
-    <target name="docker:build">
+    <target name="docker:build" depends="docker:build:before, docker:build:main, docker:build:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="docker:build:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="docker:build:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="docker:build:main">
         <if>
-            <isset property="env.DOCKER_BUILD_OPTIONS"/>
+            <and>
+                <isset property="branchName"/>
+            </and>
             <then>
-                <property name="docker.build.options" value="${env.DOCKER_BUILD_OPTIONS}" override="true"/>
+                <property name="dockerImageName" value="${dockerImageName}:${branchName}" override="true"/>
+                <if>
+                    <isset property="buildNumber"/>
+                    <then>
+                        <property name="dockerImageName" value="${dockerImageName}-${buildNumber}" override="true"/>
+                    </then>
+                </if>
             </then>
-            <else>
-                <property name="docker.build.options" value="--no-cache" override="true"/>
-            </else>
         </if>
 
-        <exec command="docker build --pull --rm ${docker.build.options} --tag ${projectName} --file Dockerfile ." passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
+        <exec command="docker build ${dockerBuildOptions} --tag ${dockerImageName} --file ${dockerBuildFile} ${dockerBuildContext}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
     </target>
 
 

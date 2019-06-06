@@ -4,22 +4,37 @@
 <project default="docker:compose:down">
 
 
-    <property name="docker.compose.down.description" value="stop docker compose stack" override="true"/>
-    <property name="docker.compose.down.options" value="--remove-orphans"/>
+    <property name="dockerComposeDownDescription" value="stop docker compose stack" override="true"/>
+    <property name="dockerComposeDownOptions" value="--remove-orphans"/>
 
 
     <target name="docker:compose:down:help">
-        <echo message="${docker.compose.down.description}"/>
+        <echo message="${dockerComposeDownDescription}"/>
 
         <echo message=""/>
-        <echo message="property                       value"/>
+        <echo message="property                    value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="docker.compose.down.options    ${docker.compose.down.options}"/>
+        <echo message="dockerComposeDownOptions    ${dockerComposeDownOptions}"/>
     </target>
 
 
-    <target name="docker:compose:down">
-        <exec command="docker-compose down ${docker.compose.down.options}" passthru="true" checkreturn="true" level="info"/>
+    <target name="docker:compose:down" depends="docker:compose:down:before, docker:compose:down:main, docker:compose:down:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="docker:compose:down:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="docker:compose:down:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+    
+    
+    <target name="docker:compose:down:main">
+        <exec command="docker-compose down ${dockerComposeDownOptions}" passthru="true" checkreturn="true" level="info"/>
     </target>
 
 

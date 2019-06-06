@@ -4,15 +4,30 @@
 <project default="docker:compose:pull">
 
 
-    <property name="docker.compose.pull.description" value="pull the newest images of the docker compose stack" override="true"/>
+    <property name="dockerComposePullDescription" value="pull the newest images of the docker compose stack" override="true"/>
 
 
     <target name="docker:compose:pull:help">
-        <echo message="${docker.compose.pull.description}"/>
+        <echo message="${dockerComposePullDescription}"/>
     </target>
 
 
-    <target name="docker:compose:pull">
+    <target name="docker:compose:pull" depends="docker:compose:pull:before, docker:compose:pull:main, docker:compose:pull:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="docker:compose:pull:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="docker:compose:pull:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+    
+
+    <target name="docker:compose:pull:main">
         <exec command="docker-compose pull" passthru="true" checkreturn="true" level="info"/>
     </target>
 

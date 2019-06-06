@@ -4,31 +4,102 @@
 <project default="docker:push">
 
 
-    <property name="docker.push.description" value="push project image to a registry" override="true"/>
+    <property name="dockerPushDescription" value="push project image to a registry" override="true"/>
+    <property name="dockerImageName" value="${projectName}"/>
+    <property name="dockerImageVersion" value="${projectVersion}"/>
+    <property name="dockerImageNamespace" value=""/>
+    <property name="dockerRegistry" value=""/>
 
 
     <target name="docker:push:help">
-        <echo message="${docker.push.description}"/>
+        <echo message="${dockerPushDescription}"/>
+
+        <echo message=""/>
+        <echo message="property                value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="dockerImageName         ${dockerImageName}"/>
+        <echo message="dockerImageVersion      ${dockerImageVersion}"/>
+        <echo message="dockerImageNamespace    ${dockerImageNamespace}"/>
+        <echo message="dockerRegistry          ${dockerRegistry}"/>
+        <echo message="branchName              - adhoc property"/>
+        <echo message="buildNumber             - adhoc property"/>
     </target>
 
 
-    <target name="docker:push">
-        <fail unless="env.REGISTRY_HOST" message="missing environment variable REGISTRY_HOST"/>
+    <target name="docker:push" depends="docker:push:before, docker:push:main, docker:push:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="docker:push:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="docker:push:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="docker:push:main">
+        <fail message="dockerRegistry not defined">
+            <condition>
+                <equals arg1="${dockerRegistry}" arg2=""/>
+            </condition>
+        </fail>
 
         <if>
-            <isset property="env.PHING_VERSION_SUFFIX"/>
+            <and>
+                <isset property="branchName"/>
+            </and>
             <then>
-                <property name="project.env.version" value="${projectVersion}-${env.PHING_VERSION_SUFFIX}" override="true"/>
+                <property name="dockerImageName" value="${dockerImageName}:${branchName}" override="true"/>
+                <if>
+                    <isset property="buildNumber"/>
+                    <then>
+                        <property name="dockerImageName" value="${dockerImageName}-${buildNumber}" override="true"/>
+                    </then>
+                </if>
             </then>
-            <else>
-                <property name="project.env.version" value="${projectVersion}" override="true"/>
-            </else>
         </if>
 
-        <exec command="docker tag ${projectName} ${env.REGISTRY_HOST}/${projectName}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
-        <exec command="docker tag ${projectName} ${env.REGISTRY_HOST}/${projectName}:${project.env.version}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
-        <exec command="docker push ${env.REGISTRY_HOST}/${projectName}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
-        <exec command="docker push ${env.REGISTRY_HOST}/${projectName}:${project.env.version}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
+        <if>
+            <and>
+                <isset property="branchName"/>
+                <not>
+                    <equals arg1="${branchName}" arg2="master"/>
+                </not>
+            </and>
+            <then>
+                <property name="dockerImageVersion" value="${dockerImageVersion}-${branchName}" override="true"/>
+                <if>
+                    <isset property="buildNumber"/>
+                    <then>
+                        <property name="dockerImageVersion" value="${dockerImageVersion}-${buildNumber}" override="true"/>
+                    </then>
+                </if>
+            </then>
+        </if>
+
+        <if>
+            <and>
+                <isset property="branchName"/>
+                <not>
+                    <equals arg1="${branchName}" arg2="master"/>
+                </not>
+            </and>
+            <then>
+                <exec command="docker tag ${dockerImageName} ${dockerRegistry}/${dockerImageNamespace}${projectName}:${dockerImageVersion}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+                <exec command="docker push ${dockerRegistry}/${dockerImageNamespace}${projectName}:${dockerImageVersion}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+            </then>
+            <else>
+                <exec command="docker tag ${dockerImageName} ${dockerRegistry}/${dockerImageNamespace}${projectName}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+                <exec command="docker push ${dockerRegistry}/${dockerImageNamespace}${projectName}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+
+                <exec command="docker tag ${dockerImageName} ${dockerRegistry}/${dockerImageNamespace}${projectName}:${dockerImageVersion}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+                <exec command="docker push ${dockerRegistry}/${dockerImageNamespace}${projectName}:${dockerImageVersion}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+            </else>
+        </if>
     </target>
 
 
