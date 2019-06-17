@@ -4,7 +4,7 @@ namespace elnebuloso\Phing;
 
 use BuildException;
 use Exception;
-use Adbar\Dot;
+use Jasny\DotKey;
 
 /**
  * Class ConfigureComposer
@@ -47,16 +47,15 @@ class ConfigureComposer extends AbstractTask
 
         $file = $this->getProject()->getProperty('projectDirMainComposer') . '/composer.json';
         $content = file_get_contents($file);
-        $content = json_decode($content);
+        $content = json_decode($content, false);
 
         if ($content === false) {
             throw new BuildException('invalid composer.json');
         }
 
-        $dot = new Dot((array) $content);
-        $dot->set($this->selector, $this->value);
+        DotKey::on($content)->put($this->selector, $this->value);
 
-        file_put_contents($file, json_encode($dot, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        file_put_contents($file, json_encode($content, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 
         $this->cleanup();
     }

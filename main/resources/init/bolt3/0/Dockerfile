@@ -8,6 +8,7 @@ RUN echo "configure" \
     && a2enmod headers \
     && a2enmod rewrite \
     && echo 'PassEnv APP_ENV' > /etc/apache2/conf-enabled/expose-env.conf \
+    && if [ -f /var/www/app/nut ]; then chmod +x /var/www/app/nut ; fi \
     && if [ -d /var/www/app/cache ]; then chmod 0755 -R /var/www/app/cache ; fi \
     && if [ -d /var/www/app/cache ]; then chown www-data:www-data -R /var/www/app/cache ; fi \
     && if [ -d /var/www/public/files ]; then chmod 0755 -R /var/www/public/files ; fi \

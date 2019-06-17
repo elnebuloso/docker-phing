@@ -30,7 +30,7 @@
         </delete>
         <delete dir="${projectRoot}/main"/>
         <phingcall target="init:bolt3"/>
-        <phingcall target="install"/>
+        <phingcall target="update"/>
         <phingcall target="start"/>
     </target>
 
@@ -38,6 +38,12 @@
     <target name="install">
         <phingcall target="clean:dist"/>
         <phingcall target="composer:install"/>
+    </target>
+
+
+    <target name="update">
+        <phingcall target="clean:dist"/>
+        <phingcall target="composer:update"/>
     </target>
 
 
