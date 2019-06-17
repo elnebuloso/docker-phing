@@ -34,7 +34,7 @@
             </condition>
         </fail>
 
-        <exec command="composer create-project --prefer-dist --no-interaction --no-dev --remove-vcs bolt/composer-install:^3 ${projectDirMain}" passthru="true" checkreturn="true" level="info"/>
+        <exec command="composer create-project --prefer-dist --no-interaction --no-dev --remove-vcs --ignore-platform-req bolt/composer-install:^3 ${projectDirMain}" passthru="true" checkreturn="true" level="info"/>
         <delete dir="${projectDirMain}/.git" quiet="true"/>
 
         <copy todir="${projectRoot}" overwrite="true">
