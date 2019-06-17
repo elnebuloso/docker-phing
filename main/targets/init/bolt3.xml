@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="init:bolt3">
+
+
+    <property name="initBolt3Description" value="init laravel application" override="true"/>
+
+
+    <target name="init:bolt3:help">
+        <echo message="${initBolt3Description}"/>
+    </target>
+
+
+    <target name="init:bolt3" depends="init:bolt3:before, init:bolt3:main, init:bolt3:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="init:bolt3:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="init:bolt3:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="init:bolt3:main">
+        <fail message="${projectDirMain} exists for creating laravel application">
+            <condition>
+                <available file="${projectDirMain}" type="dir"/>
+            </condition>
+        </fail>
+
+        <exec command="composer create-project --prefer-dist --no-interaction --no-dev --remove-vcs bolt/composer-install:^3 ${projectDirMain}" passthru="true" checkreturn="true" level="info"/>
+        <delete dir="${projectDirMain}/.git" quiet="true"/>
+
+        <copy todir="${projectRoot}" overwrite="true">
+            <fileset dir="${phingCommonsRoot}/resources/init/bolt3/0">
+                <include name="**"/>
+            </fileset>
+        </copy>
+    </target>
+
+
+</project>

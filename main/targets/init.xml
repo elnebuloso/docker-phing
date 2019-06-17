@@ -4,6 +4,7 @@
 <project>
 
 
+    <import file="${phingCommonsRoot}/targets/init/bolt3.xml"/>
     <import file="${phingCommonsRoot}/targets/init/laravel5.xml"/>
     <import file="${phingCommonsRoot}/targets/init/laravel/lumen5.xml"/>
     <import file="${phingCommonsRoot}/targets/init/symfony4.xml"/>
@@ -12,6 +13,7 @@
     <target name="init:help">
         <echo message="target                 description"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="init:bolt3             ${initBolt3Description}"/>
         <echo message="init:laravel5          ${initLaravel5Description}"/>
         <echo message="init:laravel:lumen5    ${initLaravelLumen5Description}"/>
         <echo message="init:symfony4          ${initSymfony4Description}"/>
