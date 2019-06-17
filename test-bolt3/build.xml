@@ -29,7 +29,7 @@
             </fileset>
         </delete>
         <delete dir="${projectRoot}/main"/>
-        <phingcall target="init:laravel:bolt3"/>
+        <phingcall target="init:bolt3"/>
         <phingcall target="install"/>
         <phingcall target="start"/>
     </target>
