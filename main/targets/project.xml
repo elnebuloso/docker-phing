@@ -17,9 +17,11 @@
         <echo message="projectFolderMainCompass     ${projectFolderMainCompass}"/>
         <echo message="projectFolderMainNpm         ${projectFolderMainNpm}"/>
         <echo message="projectFolderBuild           ${projectFolderBuild}"/>
+        <echo message="projectFolderRancher1        ${projectFolderRancher1}"/>
         <echo message=""/>
         <echo message="property                     value [do not edit directly]"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="phingCommonsRoot             ${phingCommonsRoot}" level="warning"/>
         <echo message="projectVersion               ${projectVersion}" level="warning"/>
         <echo message="projectRoot                  ${projectRoot}" level="warning"/>
         <echo message="projectDirMain               ${projectDirMain}" level="warning"/>
@@ -30,6 +32,7 @@
         <echo message="projectDirBuildTmp           ${projectDirBuildTmp}" level="warning"/>
         <echo message="projectDirBuildDist          ${projectDirBuildDist}" level="warning"/>
         <echo message="projectDirBuildReports       ${projectDirBuildReports}" level="warning"/>
+        <echo message="projectDirRancher1           ${projectDirRancher1}" level="warning"/>
         <echo message=""/>
         <echo message="target                       description"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>

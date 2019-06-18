@@ -30,7 +30,7 @@
     <property name="projectFolderMainCompass" value=""/>
     <property name="projectFolderMainNpm" value=""/>
     <property name="projectFolderBuild" value="build"/>
-
+    <property name="projectFolderRancher1" value="rancher1"/>
 
     <property name="projectDirMain" value="${projectRoot}/${projectFolderMain}"/>
     <property name="projectDirMainComposer" value="${projectRoot}/${projectFolderMain}/${projectFolderMainComposer}"/>
@@ -40,6 +40,7 @@
     <property name="projectDirBuildTmp" value="${projectRoot}/${projectFolderBuild}/tmp"/>
     <property name="projectDirBuildDist" value="${projectRoot}/${projectFolderBuild}/dist"/>
     <property name="projectDirBuildReports" value="${projectRoot}/${projectFolderBuild}/reports"/>
+    <property name="projectDirRancher1" value="${projectRoot}/${projectFolderRancher1}"/>
 
 
     <resolvepath propertyName="projectDirMain" file="${projectDirMain}"/>
@@ -50,6 +51,7 @@
     <resolvepath propertyName="projectDirBuildTmp" file="${projectDirBuildTmp}"/>
     <resolvepath propertyName="projectDirBuildDist" file="${projectDirBuildDist}"/>
     <resolvepath propertyName="projectDirBuildReports" file="${projectDirBuildReports}"/>
+    <resolvepath propertyName="projectDirRancher1" file="${projectDirRancher1}"/>
 
 
     <autoloader autoloaderpath="${phingCommonsRoot}/vendor/autoload.php"/>
@@ -57,6 +59,7 @@
     <taskdef classname="\elnebuloso\Phing\PHPMetrics1DirectoriesTask" name="my-php-metrics1-directories"/>
     <taskdef classname="\elnebuloso\Phing\PHPMetrics2DirectoriesTask" name="my-php-metrics2-directories"/>
     <taskdef classname="\elnebuloso\Phing\Semver" name="my-semver"/>
+    <taskdef classname="\elnebuloso\Phing\Slugify" name="my-slugify"/>
 
 
     <import file="${phingCommonsRoot}/targets/bundle.xml"/>
@@ -67,8 +70,22 @@
     <import file="${phingCommonsRoot}/targets/init.xml"/>
     <import file="${phingCommonsRoot}/targets/npm.xml"/>
     <import file="${phingCommonsRoot}/targets/project.xml"/>
+    <import file="${phingCommonsRoot}/targets/rancher1.xml"/>
     <import file="${phingCommonsRoot}/targets/report.xml"/>
     <import file="${phingCommonsRoot}/targets/test.xml"/>
+
+
+    <if>
+        <and>
+            <available file="${phingCommonsRoot}/custom.xml"/>
+        </and>
+        <then>
+            <import file="${phingCommonsRoot}/custom.xml"/>
+        </then>
+        <else>
+            <echo message="${phingCommonsRoot}/custom.xml not existing, skipping import"/>
+        </else>
+    </if>
 
 
     <fail unless="projectName" message="missing projectName"/>
@@ -82,7 +99,7 @@
     </target>
 
 
-    <target name="commons:help" depends="commons:help:version, bundle:help, clean:help, compass:help, composer:help, docker:help, init:help, npm:help, report:help, test:help, project:help"/>
+    <target name="commons:help" depends="commons:help:version, bundle:help, clean:help, compass:help, composer:help, docker:help, init:help, npm:help, rancher1:help, report:help, test:help, project:help"/>
 
 
 </project>

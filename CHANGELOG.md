@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [2.2.0] - 2019-06-18
+- added import possibility for custom targets
+- added rancher1 catalog update
+
+
 ## [2.1.0] - 2019-06-18
 ### Changed
 - added init for bolt3 cms

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project>
+
+
+    <import file="${phingCommonsRoot}/targets/rancher1/catalog/update.xml"/>
+
+
+    <target name="rancher1:help">
+        <echo message="target                     description"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="rancher1:catalog:update    ${rancher1CatalogUpdateDescription}"/>
+    </target>
+
+
+</project>

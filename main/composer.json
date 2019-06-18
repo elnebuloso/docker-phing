@@ -6,7 +6,8 @@
     "require": {
         "php": ">=7.2.0",
         "ext-json": "*",
-        "jasny/dotkey": "^1.0"
+        "jasny/dotkey": "^1.0",
+        "cocur/slugify": "^3.2"
     },
     "autoload": {
         "psr-4": {

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="rancher1:catalog:update">
+
+
+    <property name="rancher1CatalogUpdateDescription" value="add the current project to a rancher1 git catalog" override="true"/>
+    <property name="rancher1CatalogGit" value=""/>
+    <property name="rancher1CatalogProjectName" value="${projectName}"/>
+    <property name="rancher1CatalogProjectLogo" value="${phingCommonsRoot}/resources/rancher1/default-logo.svg"/>
+
+
+    <target name="rancher1:catalog:update:help">
+        <echo message="${rancher1CatalogUpdateDescription}"/>
+
+        <echo message=""/>
+        <echo message="property                      value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="rancher1CatalogGit            ${rancher1CatalogGit}"/>
+        <echo message="rancher1CatalogProjectName    ${rancher1CatalogProjectName}"/>
+    </target>
+
+
+    <target name="rancher1:catalog:update" depends="rancher1:catalog:update:before, rancher1:catalog:update:main, rancher1:catalog:update:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="rancher1:catalog:update:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="rancher1:catalog:update:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="rancher1:catalog:update:main">
+        <fail message="please define rancher1CatalogGit">
+            <condition>
+                <equals arg1="${rancher1CatalogGit}" arg2=""/>
+            </condition>
+        </fail>
+
+        <fail message="please define rancher1CatalogProjectName">
+            <condition>
+                <equals arg1="${rancher1CatalogProjectName}" arg2=""/>
+            </condition>
+        </fail>
+
+        <fail message="missing rancher1 directory">
+            <condition>
+                <not>
+                    <available file="${projectDirRancher1}" type="dir"/>
+                </not>
+            </condition>
+        </fail>
+
+        <fail message="missing ${rancher1CatalogProjectLogo}">
+            <condition>
+                <not>
+                    <available file="${rancher1CatalogProjectLogo}"/>
+                </not>
+            </condition>
+        </fail>
+
+        <fail message="missing ${projectFolderRancher1}/config.tpl.yml">
+            <condition>
+                <not>
+                    <available file="${projectDirRancher1}/config.tpl.yml"/>
+                </not>
+            </condition>
+        </fail>
+
+        <fail message="missing ${projectFolderRancher1}/stack/docker-compose.tpl.yml">
+            <condition>
+                <not>
+                    <available file="${projectDirRancher1}/stack/docker-compose.tpl.yml"/>
+                </not>
+            </condition>
+        </fail>
+
+        <fail message="missing ${projectFolderRancher1}/stack/rancher-compose.tpl.yml">
+            <condition>
+                <not>
+                    <available file="${projectDirRancher1}/stack/rancher-compose.tpl.yml"/>
+                </not>
+            </condition>
+        </fail>
+
+        <my-slugify string="${rancher1CatalogProjectName}" slug="rancher1CatalogProjectName"/>
+        <php function="uniqid" returnProperty="rancher1CatalogGitDir" level="debug"/>
+        <property name="rancher1CatalogGitDir" value="/tmp/${rancher1CatalogGitDir}" override="true"/>
+        <property name="rancher1CatalogGitDirProject" value="${rancher1CatalogGitDir}/templates/${rancher1CatalogProjectName}" override="true"/>
+        <exec command="git clone ${rancher1CatalogGit} ${rancher1CatalogGitDir}" passthru="true" checkreturn="true"/>
+
+        <if>
+            <not>
+                <available file="${rancher1CatalogGitDirProject}" type="dir"/>
+            </not>
+            <then>
+                <property name="rancher1CatalogVersion" value="0"/>
+            </then>
+            <else>
+                <exec command="basename $(find . -maxdepth 1 -type d -exec basename {} \; | sort -hr | head -n1)" dir="${rancher1CatalogGitDirProject}" outputProperty="rancher1CatalogVersion"/>
+                <php expression="${rancher1CatalogVersion} + 1" returnProperty="rancher1CatalogVersion"/>
+            </else>
+        </if>
+
+        <property name="rancher1CatalogGitDirProjectVersion" value="${rancher1CatalogGitDirProject}/${rancher1CatalogVersion}"/>
+
+        <echo message=""/>
+        <echo message="rancher1CatalogGit                     ${rancher1CatalogGit}"/>
+        <echo message="rancher1CatalogProjectName             ${rancher1CatalogProjectName}"/>
+        <echo message="rancher1CatalogGitDir                  ${rancher1CatalogGitDir}"/>
+        <echo message="rancher1CatalogGitDirProject           ${rancher1CatalogGitDirProject}"/>
+        <echo message="rancher1CatalogGitDirProjectVersion    ${rancher1CatalogGitDirProjectVersion}"/>
+
+        <!-- copy icon -->
+        <copy file="${rancher1CatalogProjectLogo}" tofile="${rancher1CatalogGitDirProject}/catalogIcon-${rancher1CatalogProjectName}.svg" overwrite="true"/>
+
+        <!-- copy config file -->
+        <copy todir="${rancher1CatalogGitDirProject}" overwrite="true">
+            <fileset dir="${projectDirRancher1}">
+                <include name="config.tpl.yml"/>
+            </fileset>
+            <filterchain>
+                <expandproperties/>
+            </filterchain>
+            <mapper type="glob" from="*.tpl.yml" to="*.yml"/>
+        </copy>
+
+        <!-- copy docker-compose and rancher-compose files -->
+        <copy todir="${rancher1CatalogGitDirProjectVersion}">
+            <fileset dir="${projectDirRancher1}/stack">
+                <include name="docker-compose.tpl.yml"/>
+                <include name="rancher-compose.tpl.yml"/>
+            </fileset>
+            <filterchain>
+                <expandproperties/>
+            </filterchain>
+            <mapper type="glob" from="*.tpl.yml" to="*.yml"/>
+        </copy>
+
+        <exec command="git add ${rancher1CatalogGitDirProject}" dir="${rancher1CatalogGitDir}" passthru="true" checkreturn="true"/>
+        <exec command="git add ${rancher1CatalogGitDirProjectVersion}" dir="${rancher1CatalogGitDir}" passthru="true" checkreturn="true"/>
+        <exec command="git commit -m &quot;updated catalog for ${rancher1CatalogProjectName} ${projectVersion}&quot;" dir="${rancher1CatalogGitDir}" passthru="true" checkreturn="true"/>
+        <exec command="git push" dir="${rancher1CatalogGitDir}" passthru="true" checkreturn="true"/>
+        <delete dir="${rancher1CatalogGitDir}"/>
+    </target>
+
+
+</project>
