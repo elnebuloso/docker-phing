@@ -76,8 +76,4 @@ RUN echo "configure /usr/local/bin" \
     && find /usr/local/bin -type f -name '*.sh' | while read f; do mv "$f" "${f%.sh}"; done \
     && chmod +x /usr/local/bin/*
 
-RUN echo "setup users" \
-    && useradd -u 1000 -ms /bin/bash jenkins \
-    && usermod -aG docker jenkins
-
 CMD ["bash"]
