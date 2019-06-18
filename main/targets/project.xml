@@ -22,6 +22,7 @@
         <echo message="property                     value [do not edit directly]"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="phingCommonsRoot             ${phingCommonsRoot}" level="warning"/>
+        <echo message="phingCommonsRootCustom       ${phingCommonsRootCustom}" level="warning"/>
         <echo message="projectVersion               ${projectVersion}" level="warning"/>
         <echo message="projectRoot                  ${projectRoot}" level="warning"/>
         <echo message="projectDirMain               ${projectDirMain}" level="warning"/>

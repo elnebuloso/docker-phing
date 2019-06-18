@@ -5,6 +5,7 @@
 
 
     <property name="phingCommonsRoot" value="/srv/phing"/>
+    <property name="phingCommonsRootCustom" value="/srv/phing-custom"/>
 
 
     <loadfile property="phingCommonsVersion" file="/srv/VERSION"/>
@@ -77,13 +78,13 @@
 
     <if>
         <and>
-            <available file="${phingCommonsRoot}/custom.xml"/>
+            <available file="${phingCommonsRootCustom}/commons.xml"/>
         </and>
         <then>
-            <import file="${phingCommonsRoot}/custom.xml"/>
+            <import file="${phingCommonsRootCustom}/commons.xml"/>
         </then>
         <else>
-            <echo message="${phingCommonsRoot}/custom.xml not existing, skipping import"/>
+            <echo message="${phingCommonsRootCustom}/commons.xml not existing, skipping import"/>
         </else>
     </if>
 
