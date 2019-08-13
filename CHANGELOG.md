@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [2.3.0] - 2019-08-13
+- changed docker contexts in init resources
+
+
 ## [2.2.0] - 2019-06-18
 - added import possibility for custom targets
 - added rancher1 catalog update
