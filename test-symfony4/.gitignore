@@ -1,0 +1,6 @@
+*
+!.gitignore
+!build.env
+!build.properties
+!build.xml
+!VERSION
