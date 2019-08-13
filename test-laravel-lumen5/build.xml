@@ -28,7 +28,7 @@
                 <exclude name="VERSION"/>
             </fileset>
         </delete>
-        <delete dir="${projectRoot}/main"/>
+        <delete dir="${projectDirMain}"/>
         <phingcall target="init:laravel:lumen5"/>
         <phingcall target="update"/>
         <phingcall target="start"/>
