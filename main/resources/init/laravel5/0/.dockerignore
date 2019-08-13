@@ -1,5 +1,5 @@
 .git
 .idea
 
-/build/reports
-/main
+build/reports
+main

@@ -12,6 +12,6 @@ services:
     build:
       context: .
     volumes:
-      - ./main:/var/www
+      - .:/var/www
     environment:
       VIRTUAL_HOST: bolt3.127.0.0.1.xip.io
