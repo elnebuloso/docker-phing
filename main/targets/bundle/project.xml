@@ -12,7 +12,7 @@
     </target>
 
 
-    <target name="bundle:project" depends="bundle:project:before, bundle:project:main, bundle:project:after">
+    <target name="bundle:project" depends="clean:dist, bundle:project:before, bundle:project:main, bundle:project:after">
         <echo message="successful"/>
     </target>
 
@@ -28,6 +28,16 @@
 
 
     <target name="bundle:project:main">
+        <if>
+            <equals arg1="${projectFolderMain}" arg2=""/>
+            <then>
+                <property name="projectFolderMainPostfix" value="" override="true"/>
+            </then>
+            <else>
+                <property name="projectFolderMainPostfix" value="/${projectFolderMain}" override="true"/>
+            </else>
+        </if>
+
         <if>
             <equals arg1="${projectFolderMainComposer}" arg2=""/>
             <then>
@@ -58,12 +68,15 @@
             </else>
         </if>
 
-        <copy todir="${projectDirBuildDist}">
+        <copy todir="${projectDirBuildDist}${projectFolderMainPostfix}">
             <fileset dir="${projectDirMain}">
                 <patternset refid="patternsetBundleProject"/>
 
+                <!-- exclude build files -->
+                <exclude name="${projectFolderBuild}/**"/>
+
                 <!-- exclude compass files -->
-                <exclude name="${bundleProjectNpmPrefix}.sass-cache/**"/>
+                <exclude name="${projectFolderMainCompass}.sass-cache/**"/>
 
                 <!-- exclude npm files -->
                 <exclude name="${bundleProjectNpmPrefix}node_modules/**"/>
