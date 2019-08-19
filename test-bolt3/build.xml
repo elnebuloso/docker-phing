@@ -12,7 +12,7 @@
 
 
     <target name="help" depends="commons:help">
-        <echo message="init       init laravel bolt3 project"/>
+        <echo message="init       init bolt3 project"/>
         <echo message="install    installs all dependencies and prepares the project for development"/>
         <echo message="start      start the project"/>
         <echo message="stop       stops the project"/>

@@ -4,7 +4,7 @@
 <project default="init:bolt3">
 
 
-    <property name="initBolt3Description" value="init laravel application" override="true"/>
+    <property name="initBolt3Description" value="init bolt3 application" override="true"/>
 
 
     <target name="init:bolt3:help">
@@ -28,7 +28,7 @@
 
 
     <target name="init:bolt3:main">
-        <fail message="${projectDirMain} exists for creating laravel application">
+        <fail message="${projectDirMain} exists for creating bolt3 application">
             <condition>
                 <available file="${projectDirMain}" type="dir"/>
             </condition>
