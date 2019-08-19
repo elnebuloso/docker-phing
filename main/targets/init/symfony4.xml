@@ -14,7 +14,7 @@
 
 
     <target name="init:symfony4" depends="init:symfony4:before, init:symfony4:main, init:symfony4:after">
-        <echo message="browse application:"/>
+        <echo message="browse application after docker start"/>
         <echo message="${initSymfony4Url}"/>
     </target>
 
@@ -51,8 +51,47 @@
         <my-configure-composer selector="name" value="my/${projectName}"/>
         <my-configure-composer selector="config.platform.php" value="7.3"/>
 
-        <phingcall target="clean:dist"/>
-        <phingcall target="docker:compose:up"/>
+        <input propertyname="setup" defaultValue="">setup (web|api (or empty for default))</input>
+
+        <!-- https://flex.symfony.com -->
+        <!-- https://symfony.com/doc/current/quick_tour/flex_recipes.html -->
+        <!-- https://symfony.com/doc/bundles/ -->
+
+        <if>
+            <equals arg1="${setup}" arg2="web"/>
+            <then>
+                <phingcall target="composer:require">
+                    <property name="package" value="annotations"/>
+                    <property name="options" value=""/>
+                </phingcall>
+                <phingcall target="composer:require">
+                    <property name="package" value="twig"/>
+                    <property name="options" value=""/>
+                </phingcall>
+                <phingcall target="composer:require">
+                    <property name="package" value="twig-extensions"/>
+                    <property name="options" value=""/>
+                </phingcall>
+                <phingcall target="composer:require">
+                    <property name="package" value="profiler"/>
+                    <property name="options" value="--dev"/>
+                </phingcall>
+                <phingcall target="composer:require">
+                    <property name="package" value="maker-bundle"/>
+                    <property name="options" value="--dev"/>
+                </phingcall>
+            </then>
+        </if>
+
+        <if>
+            <equals arg1="${setup}" arg2="api"/>
+            <then>
+                <phingcall target="composer:require">
+                    <property name="package" value="api"/>
+                    <property name="options" value=""/>
+                </phingcall>
+            </then>
+        </if>
     </target>
 
 

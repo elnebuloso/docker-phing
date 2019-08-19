@@ -14,7 +14,7 @@
 
 
     <target name="init:laravel5" depends="init:laravel5:before, init:laravel5:main, init:laravel5:after">
-        <echo message="browse application:"/>
+        <echo message="browse application after docker start"/>
         <echo message="${initLaravel5Url}"/>
     </target>
 
@@ -50,9 +50,6 @@
 
         <my-configure-composer selector="name" value="my/${projectName}"/>
         <my-configure-composer selector="config.platform.php" value="7.3"/>
-
-        <phingcall target="clean:dist"/>
-        <phingcall target="docker:compose:up"/>
     </target>
 
 
