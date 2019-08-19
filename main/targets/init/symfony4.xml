@@ -37,10 +37,15 @@
         <exec command="composer create-project --prefer-dist --no-dev --remove-vcs symfony/skeleton:^4 ${projectDirMain}" passthru="true" checkreturn="true" level="info"/>
         <delete dir="${projectDirMain}/.git" quiet="true"/>
 
+        <property name="url" value="symfony4.127.0.0.1.xip.io"/>
+
         <copy todir="${projectRoot}" overwrite="true">
             <fileset dir="${phingCommonsRoot}/resources/init/symfony4/0">
                 <include name="**"/>
             </fileset>
+            <filterchain>
+                <expandproperties/>
+            </filterchain>
         </copy>
 
         <my-configure-composer selector="name" value="my/${projectName}"/>
