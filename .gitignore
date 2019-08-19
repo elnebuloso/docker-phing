@@ -27,6 +27,12 @@
 !/test-laravel-lumen5/build.xml
 !/test-laravel-lumen5/VERSION
 
+/test-lumen5/*
+!/test-lumen5/build.env
+!/test-lumen5/build.properties
+!/test-lumen5/build.xml
+!/test-lumen5/VERSION
+
 /test-symfony4/*
 !/test-symfony4/build.env
 !/test-symfony4/build.properties
