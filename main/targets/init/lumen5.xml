@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 
-<project default="init:laravel:lumen5">
+<project default="init:lumen5">
 
 
-    <property name="initLaravelLumen5Description" value="init laravel-lumen5 application" override="true"/>
+    <property name="initLumen5Description" value="init lumen5 application" override="true"/>
 
 
-    <target name="init:laravel:lumen5:help">
-        <echo message="${initLaravelLumen5Description}"/>
+    <target name="init:lumen5:help">
+        <echo message="${initLumen5Description}"/>
     </target>
 
 
-    <target name="init:laravel:lumen5" depends="init:laravel:lumen5:before, init:laravel:lumen5:main, init:laravel:lumen5:after">
+    <target name="init:lumen5" depends="init:lumen5:before, init:lumen5:main, init:lumen5:after">
         <echo message="successful"/>
     </target>
 
 
-    <target name="init:laravel:lumen5:before" hidden="true">
+    <target name="init:lumen5:before" hidden="true">
         <echo message="no actions defined"/>
     </target>
 
 
-    <target name="init:laravel:lumen5:after" hidden="true">
+    <target name="init:lumen5:after" hidden="true">
         <echo message="no actions defined"/>
     </target>
 
 
-    <target name="init:laravel:lumen5:main">
+    <target name="init:lumen5:main">
         <fail message="${projectDirMain} exists for creating laravel-lumen5 application">
             <condition>
                 <available file="${projectDirMain}" type="dir"/>
