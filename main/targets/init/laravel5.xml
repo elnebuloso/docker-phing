@@ -5,6 +5,7 @@
 
 
     <property name="initLaravel5Description" value="init laravel application" override="true"/>
+    <property name="url" value="laravel5.127.0.0.1.xip.io" override="true"/>
 
 
     <target name="init:laravel5:help">
@@ -13,7 +14,8 @@
 
 
     <target name="init:laravel5" depends="init:laravel5:before, init:laravel5:main, init:laravel5:after">
-        <echo message="successful"/>
+        <echo message="browse application:"/>
+        <echo message="${url}"/>
     </target>
 
 
@@ -37,8 +39,6 @@
         <exec command="composer create-project --prefer-dist --no-dev --remove-vcs laravel/laravel:^5 ${projectDirMain}" passthru="true" checkreturn="true" level="info"/>
         <delete dir="${projectDirMain}/.git" quiet="true"/>
 
-        <property name="url" value="laravel5.127.0.0.1.xip.io"/>
-
         <copy todir="${projectRoot}" overwrite="true">
             <fileset dir="${phingCommonsRoot}/resources/init/laravel5/0">
                 <include name="**"/>
@@ -51,8 +51,8 @@
         <my-configure-composer selector="name" value="my/${projectName}"/>
         <my-configure-composer selector="config.platform.php" value="7.3"/>
 
-        <echo message="browse application:"/>
-        <echo message="${url}"/>
+        <phingcall target="clean:dist"/>
+        <phingcall target="docker:compose:up"/>
     </target>
 
 

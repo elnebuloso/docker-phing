@@ -5,6 +5,7 @@
 
 
     <property name="initSymfony4Description" value="init symfony4 application" override="true"/>
+    <property name="url" value="symfony4.127.0.0.1.xip.io" override="true"/>
 
 
     <target name="init:symfony4:help">
@@ -13,7 +14,8 @@
 
 
     <target name="init:symfony4" depends="init:symfony4:before, init:symfony4:main, init:symfony4:after">
-        <echo message="successful"/>
+        <echo message="browse application:"/>
+        <echo message="${url}"/>
     </target>
 
 
@@ -37,8 +39,6 @@
         <exec command="composer create-project --prefer-dist --no-dev --remove-vcs symfony/skeleton:^4 ${projectDirMain}" passthru="true" checkreturn="true" level="info"/>
         <delete dir="${projectDirMain}/.git" quiet="true"/>
 
-        <property name="url" value="symfony4.127.0.0.1.xip.io"/>
-
         <copy todir="${projectRoot}" overwrite="true">
             <fileset dir="${phingCommonsRoot}/resources/init/symfony4/0">
                 <include name="**"/>
@@ -51,8 +51,8 @@
         <my-configure-composer selector="name" value="my/${projectName}"/>
         <my-configure-composer selector="config.platform.php" value="7.3"/>
 
-        <echo message="browse application:"/>
-        <echo message="${url}"/>
+        <phingcall target="clean:dist"/>
+        <phingcall target="docker:compose:up"/>
     </target>
 
 

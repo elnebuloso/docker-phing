@@ -5,6 +5,7 @@
 
 
     <property name="initBolt3Description" value="init bolt3 application" override="true"/>
+    <property name="url" value="bolt3.127.0.0.1.xip.io" override="true"/>
 
 
     <target name="init:bolt3:help">
@@ -13,7 +14,8 @@
 
 
     <target name="init:bolt3" depends="init:bolt3:before, init:bolt3:main, init:bolt3:after">
-        <echo message="successful"/>
+        <echo message="browse application:"/>
+        <echo message="${url}"/>
     </target>
 
 
@@ -37,8 +39,6 @@
         <exec command="composer create-project --prefer-dist --no-interaction --no-dev --remove-vcs --ignore-platform-reqs bolt/composer-install:^3 ${projectDirMain}" passthru="true" checkreturn="true" level="info"/>
         <delete dir="${projectDirMain}/.git" quiet="true"/>
 
-        <property name="url" value="bolt3.127.0.0.1.xip.io"/>
-
         <copy todir="${projectRoot}" overwrite="true">
             <fileset dir="${phingCommonsRoot}/resources/init/bolt3/0">
                 <include name="**"/>
@@ -53,8 +53,8 @@
         <my-configure-composer selector="config.platform.ext-exif" value="1.0"/>
         <my-configure-composer selector="config.platform.ext-gd" value="1.0"/>
 
-        <echo message="browse application:"/>
-        <echo message="${url}"/>
+        <phingcall target="clean:dist"/>
+        <phingcall target="docker:compose:up"/>
     </target>
 
 
