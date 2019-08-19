@@ -30,8 +30,6 @@
         </delete>
         <delete dir="${projectDirMain}"/>
         <phingcall target="init:laravel5"/>
-        <phingcall target="update"/>
-        <phingcall target="start"/>
     </target>
 
 

@@ -30,8 +30,6 @@
         </delete>
         <delete dir="${projectDirMain}"/>
         <phingcall target="init:bolt3"/>
-        <phingcall target="update"/>
-        <phingcall target="start"/>
     </target>
 
 
