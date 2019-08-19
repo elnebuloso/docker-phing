@@ -5,7 +5,7 @@
 
 
     <property name="initLumen5Description" value="init lumen5 application" override="true"/>
-    <property name="url" value="lumen5.127.0.0.1.xip.io" override="true"/>
+    <property name="initLumen5Url" value="lumen5.127.0.0.1.xip.io" override="true"/>
 
 
     <target name="init:lumen5:help">
@@ -15,7 +15,7 @@
 
     <target name="init:lumen5" depends="init:lumen5:before, init:lumen5:main, init:lumen5:after">
         <echo message="browse application:"/>
-        <echo message="${url}"/>
+        <echo message="${initLumen5Url}"/>
     </target>
 
 

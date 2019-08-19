@@ -5,7 +5,7 @@
 
 
     <property name="initLaravel5Description" value="init laravel application" override="true"/>
-    <property name="url" value="laravel5.127.0.0.1.xip.io" override="true"/>
+    <property name="initLaravel5Url" value="laravel5.127.0.0.1.xip.io" override="true"/>
 
 
     <target name="init:laravel5:help">
@@ -15,7 +15,7 @@
 
     <target name="init:laravel5" depends="init:laravel5:before, init:laravel5:main, init:laravel5:after">
         <echo message="browse application:"/>
-        <echo message="${url}"/>
+        <echo message="${initLaravel5Url}"/>
     </target>
 
 

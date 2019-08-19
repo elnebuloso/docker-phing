@@ -14,4 +14,4 @@ services:
     volumes:
       - ./main:/var/www/main
     environment:
-      VIRTUAL_HOST: ${url}
+      VIRTUAL_HOST: ${initLumen5Url}

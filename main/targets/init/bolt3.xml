@@ -5,7 +5,7 @@
 
 
     <property name="initBolt3Description" value="init bolt3 application" override="true"/>
-    <property name="url" value="bolt3.127.0.0.1.xip.io" override="true"/>
+    <property name="initBolt3Url" value="bolt3.127.0.0.1.xip.io" override="true"/>
 
 
     <target name="init:bolt3:help">
@@ -15,7 +15,7 @@
 
     <target name="init:bolt3" depends="init:bolt3:before, init:bolt3:main, init:bolt3:after">
         <echo message="browse application:"/>
-        <echo message="${url}"/>
+        <echo message="${initBolt3Url}"/>
     </target>
 
 
