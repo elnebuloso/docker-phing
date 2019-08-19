@@ -28,8 +28,8 @@
 
 
     <target name="clean:dist:main">
-        <delete dir="${projectDirBuildDist}"/>
-        <mkdir dir="${projectDirBuildDist}"/>
+        <delete dir="${projectDirBuildDist}/${projectFolderMain}"/>
+        <mkdir dir="${projectDirBuildDist}/${projectFolderMain}"/>
     </target>
 
 

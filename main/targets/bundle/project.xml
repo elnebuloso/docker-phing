@@ -29,16 +29,6 @@
 
     <target name="bundle:project:main">
         <if>
-            <equals arg1="${projectFolderMain}" arg2=""/>
-            <then>
-                <property name="projectFolderMainPostfix" value="" override="true"/>
-            </then>
-            <else>
-                <property name="projectFolderMainPostfix" value="/${projectFolderMain}" override="true"/>
-            </else>
-        </if>
-
-        <if>
             <equals arg1="${projectFolderMainComposer}" arg2=""/>
             <then>
                 <property name="bundleProjectComposerPrefix" value="" override="true"/>
@@ -68,7 +58,7 @@
             </else>
         </if>
 
-        <copy todir="${projectDirBuildDist}${projectFolderMainPostfix}">
+        <copy todir="${projectDirBuildDist}/${projectFolderMain}">
             <fileset dir="${projectDirMain}">
                 <patternset refid="patternsetBundleProject"/>
 
