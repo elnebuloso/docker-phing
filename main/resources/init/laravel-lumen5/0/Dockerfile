@@ -1,8 +1,11 @@
 FROM elnebuloso/php:7.3-apache-ubuntu
 
 COPY docker/apache/000-default.conf /etc/apache2/sites-available/000-default.conf
-COPY build/dist /var/www
+COPY build/dist/main /var/www/main
 COPY VERSION /VERSION
+
+ENV APP_ENV local
+WORKDIR /var/www/main
 
 RUN echo "configure" \
     && a2enmod headers \
