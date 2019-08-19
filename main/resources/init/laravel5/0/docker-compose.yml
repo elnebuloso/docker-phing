@@ -14,4 +14,4 @@ services:
     volumes:
       - ./main:/var/www/main
     environment:
-      VIRTUAL_HOST: laravel5.127.0.0.1.xip.io
+      VIRTUAL_HOST: ${url}

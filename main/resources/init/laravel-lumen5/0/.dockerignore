@@ -1,5 +1,3 @@
-.git
-.idea
-
-build/reports
-main
+*
+!build/dist/main
+!VERSION
