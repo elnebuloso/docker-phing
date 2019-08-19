@@ -8,11 +8,11 @@
     <property file="build.properties.local"/>
 
 
-    <import file="/srv/phing/commons/laravel/lumen5.xml"/>
+    <import file="/srv/phing/commons/lumen5.xml"/>
 
 
     <target name="help" depends="commons:help">
-        <echo message="init       init laravel lumen5 project"/>
+        <echo message="init       init lumen5 project"/>
         <echo message="install    installs all dependencies and prepares the project for development"/>
         <echo message="start      start the project"/>
         <echo message="stop       stops the project"/>
@@ -29,9 +29,7 @@
             </fileset>
         </delete>
         <delete dir="${projectDirMain}"/>
-        <phingcall target="init:laravel:lumen5"/>
-        <phingcall target="update"/>
-        <phingcall target="start"/>
+        <phingcall target="init:lumen5"/>
     </target>
 
 
