@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [2.4.0] - 2019-08-19
+- symfony4 bundling
+
+
 ## [2.3.0] - 2019-08-13
 - changed docker contexts in init resources
 
