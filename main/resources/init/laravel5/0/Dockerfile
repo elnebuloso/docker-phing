@@ -15,3 +15,6 @@ RUN echo "configure" \
     && if [ -d /var/www/main/bootstrap/cache ]; then chown www-data:www-data -R /var/www/main/var ; fi \
     && if [ -d /var/www/main/storage ]; then chmod 0755 -R /var/www/main/var ; fi \
     && if [ -d /var/www/main/storage ]; then chown www-data:www-data -R /var/www/main/var ; fi
+
+ADD https://phar.phpunit.de/phpunit-8.phar /usr/local/bin/phpunit
+RUN chmod +x /usr/local/bin/phpunit

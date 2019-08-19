@@ -28,3 +28,6 @@ RUN echo "configure" \
     && if [ -d /var/www/main/public/theme ]; then chown www-data:www-data -R /var/www/main/public/theme ; fi \
     && if [ -d /var/www/main/public/thumbs ]; then chmod 0755 -R /var/www/main/public/thumbs ; fi \
     && if [ -d /var/www/main/public/thumbs ]; then chown www-data:www-data -R /var/www/main/public/thumbs ; fi
+
+ADD https://phar.phpunit.de/phpunit-8.phar /usr/local/bin/phpunit
+RUN chmod +x /usr/local/bin/phpunit
