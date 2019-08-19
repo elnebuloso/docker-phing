@@ -28,15 +28,30 @@
 
 
     <target name="composer:require:main">
-        <input propertyname="composer.require.package" defaultValue="">package (vendor/package)</input>
-        <input propertyname="composer.require.options" defaultValue="">options</input>
+        <if>
+            <not>
+                <isset property="package"/>
+            </not>
+            <then>
+                <input propertyname="package" defaultValue="">package (vendor/package)</input>
+            </then>
+        </if>
 
         <if>
             <not>
-                <equals arg1="${composer.require.package}" arg2=""/>
+                <isset property="options"/>
             </not>
             <then>
-                <exec command="composer require ${composer.require.package} ${composer.require.options}" passthru="true" checkreturn="true" level="info" dir="${projectDirMainComposer}"/>
+                <input propertyname="options" defaultValue="">options</input>
+            </then>
+        </if>
+
+        <if>
+            <not>
+                <equals arg1="${package}" arg2=""/>
+            </not>
+            <then>
+                <exec command="composer require ${package} ${options}" passthru="true" checkreturn="true" level="info" dir="${projectDirMainComposer}"/>
             </then>
         </if>
     </target>
