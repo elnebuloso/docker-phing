@@ -6,7 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
 ## [2.4.0] - 2019-08-19
-- symfony4 bundling
+- init applications update
+- init symfony 4 with web|api pre-defined
 
 
 ## [2.3.0] - 2019-08-13
