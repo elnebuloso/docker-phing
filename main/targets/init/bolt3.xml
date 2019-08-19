@@ -52,6 +52,9 @@
         <my-configure-composer selector="config.platform.php" value="7.3"/>
         <my-configure-composer selector="config.platform.ext-exif" value="1.0"/>
         <my-configure-composer selector="config.platform.ext-gd" value="1.0"/>
+
+        <echo message="browse application:"/>
+        <echo message="${url}"/>
     </target>
 
 

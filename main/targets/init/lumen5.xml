@@ -37,6 +37,8 @@
         <exec command="composer create-project --prefer-dist --no-dev --remove-vcs laravel/lumen:^5 ${projectDirMain}" passthru="true" checkreturn="true" level="info"/>
         <delete dir="${projectDirMain}/.git" quiet="true"/>
 
+        <property name="url" value="lumen5.127.0.0.1.xip.io"/>
+
         <copy todir="${projectRoot}" overwrite="true">
             <fileset dir="${phingCommonsRoot}/resources/init/laravel-lumen5/0">
                 <include name="**"/>
@@ -45,6 +47,9 @@
 
         <my-configure-composer selector="name" value="my/${projectName}"/>
         <my-configure-composer selector="config.platform.php" value="7.3"/>
+
+        <echo message="browse application:"/>
+        <echo message="${url}"/>
     </target>
 
 

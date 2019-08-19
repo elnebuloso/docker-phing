@@ -50,6 +50,9 @@
 
         <my-configure-composer selector="name" value="my/${projectName}"/>
         <my-configure-composer selector="config.platform.php" value="7.3"/>
+
+        <echo message="browse application:"/>
+        <echo message="${url}"/>
     </target>
 
 
