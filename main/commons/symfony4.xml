@@ -11,8 +11,6 @@
     <!-- bundle:project -->
     <patternset id="patternsetBundleProject">
         <include name="**"/>
-        <exclude name=".env"/>
-        <exclude name=".env.dist"/>
     </patternset>
 
 
