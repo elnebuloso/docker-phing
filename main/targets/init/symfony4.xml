@@ -73,6 +73,10 @@
                     <property name="options" value=""/>
                 </phingcall>
                 <phingcall target="composer:require">
+                    <property name="package" value="webpack-encore"/>
+                    <property name="options" value=""/>
+                </phingcall>
+                <phingcall target="composer:require">
                     <property name="package" value="profiler"/>
                     <property name="options" value="--dev"/>
                 </phingcall>
