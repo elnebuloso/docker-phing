@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [2.5.0] - 2019-08-23
+- init symfony 4 type (min|api|web|full)
+
+
 ## [2.4.0] - 2019-08-19
 - init applications update
 - init symfony 4 with web|api pre-defined

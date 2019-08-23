@@ -36,25 +36,29 @@
             </condition>
         </fail>
 
-        <input propertyname="type" defaultValue="min">type (min|web)</input>
+        <input propertyname="type" defaultValue="min">type (min|api|web|full)</input>
 
         <!-- https://symfony.com/doc/current/setup.html -->
 
         <!-- https://packagist.org/packages/symfony/skeleton -->
         <!-- https://github.com/symfony/skeleton -->
         <if>
-            <equals arg1="${type}" arg2="min"/>
+            <or>
+                <equals arg1="${type}" arg2="min"/>
+                <equals arg1="${type}" arg2="api"/>
+                <equals arg1="${type}" arg2="web"/>
+            </or>
             <then>
-                <exec command="composer create-project --prefer-dist --no-dev --remove-vcs symfony/skeleton:^4 ${projectDirMain}" passthru="true" checkreturn="true" level="info"/>
+                <exec command="composer create-project --prefer-dist --remove-vcs symfony/skeleton:^4 ${projectDirMain}" passthru="true" checkreturn="true" level="info"/>
             </then>
         </if>
 
         <!-- https://packagist.org/packages/symfony/website-skeleton -->
         <!-- https://github.com/symfony/website-skeleton -->
         <if>
-            <equals arg1="${type}" arg2="web"/>
+            <equals arg1="${type}" arg2="full"/>
             <then>
-                <exec command="composer create-project --prefer-dist --no-dev --remove-vcs symfony/website-skeleton:^4 ${projectDirMain}" passthru="true" checkreturn="true" level="info"/>
+                <exec command="composer create-project --prefer-dist --remove-vcs symfony/website-skeleton:^4 ${projectDirMain}" passthru="true" checkreturn="true" level="info"/>
             </then>
         </if>
 
@@ -71,62 +75,52 @@
 
         <my-configure-composer selector="name" value="my/${projectName}"/>
         <my-configure-composer selector="config.platform.php" value="7.3"/>
+        <phingcall target="composer:update"/>
 
         <!-- https://flex.symfony.com -->
         <!-- https://symfony.com/doc/current/quick_tour/flex_recipes.html -->
         <!-- https://symfony.com/doc/bundles/ -->
 
         <if>
-            <equals arg1="${type}" arg2="min"/>
+            <equals arg1="${type}" arg2="api"/>
             <then>
-                <input propertyname="install" defaultValue="">install api components (yes|no)</input>
-
-                <if>
-                    <equals arg1="${install}" arg2="yes"/>
-                    <then>
-                        <phingcall target="composer:require">
-                            <property name="package" value="api"/>
-                            <property name="options" value=""/>
-                        </phingcall>
-                    </then>
-                </if>
+                <phingcall target="composer:require">
+                    <property name="package" value="api"/>
+                    <property name="options" value=""/>
+                </phingcall>
             </then>
         </if>
 
         <if>
-            <equals arg1="${type}" arg2="web"/>
+            <or>
+                <equals arg1="${type}" arg2="web"/>
+                <equals arg1="${type}" arg2="full"/>
+            </or>
             <then>
-                <input propertyname="install" defaultValue="">install web components (yes|no)</input>
-
-                <if>
-                    <equals arg1="${install}" arg2="yes"/>
-                    <then>
-                        <phingcall target="composer:require">
-                            <property name="package" value="annotations"/>
-                            <property name="options" value=""/>
-                        </phingcall>
-                        <phingcall target="composer:require">
-                            <property name="package" value="twig"/>
-                            <property name="options" value=""/>
-                        </phingcall>
-                        <phingcall target="composer:require">
-                            <property name="package" value="twig-extensions"/>
-                            <property name="options" value=""/>
-                        </phingcall>
-                        <phingcall target="composer:require">
-                            <property name="package" value="webpack-encore"/>
-                            <property name="options" value=""/>
-                        </phingcall>
-                        <phingcall target="composer:require">
-                            <property name="package" value="profiler"/>
-                            <property name="options" value="--dev"/>
-                        </phingcall>
-                        <phingcall target="composer:require">
-                            <property name="package" value="maker-bundle"/>
-                            <property name="options" value="--dev"/>
-                        </phingcall>
-                    </then>
-                </if>
+                <phingcall target="composer:require">
+                    <property name="package" value="annotations"/>
+                    <property name="options" value=""/>
+                </phingcall>
+                <phingcall target="composer:require">
+                    <property name="package" value="twig"/>
+                    <property name="options" value=""/>
+                </phingcall>
+                <phingcall target="composer:require">
+                    <property name="package" value="twig-extensions"/>
+                    <property name="options" value=""/>
+                </phingcall>
+                <phingcall target="composer:require">
+                    <property name="package" value="webpack-encore"/>
+                    <property name="options" value=""/>
+                </phingcall>
+                <phingcall target="composer:require">
+                    <property name="package" value="profiler"/>
+                    <property name="options" value="--dev"/>
+                </phingcall>
+                <phingcall target="composer:require">
+                    <property name="package" value="maker-bundle"/>
+                    <property name="options" value="--dev"/>
+                </phingcall>
             </then>
         </if>
     </target>

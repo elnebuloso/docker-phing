@@ -36,7 +36,7 @@
             </condition>
         </fail>
 
-        <exec command="composer create-project --prefer-dist --no-interaction --no-dev --remove-vcs --ignore-platform-reqs bolt/composer-install:^3 ${projectDirMain}" passthru="true" checkreturn="true" level="info"/>
+        <exec command="composer create-project --prefer-dist --no-interaction --remove-vcs --ignore-platform-reqs bolt/composer-install:^3 ${projectDirMain}" passthru="true" checkreturn="true" level="info"/>
         <delete dir="${projectDirMain}/.git" quiet="true"/>
 
         <copy todir="${projectRoot}" overwrite="true">
@@ -52,6 +52,7 @@
         <my-configure-composer selector="config.platform.php" value="7.3"/>
         <my-configure-composer selector="config.platform.ext-exif" value="1.0"/>
         <my-configure-composer selector="config.platform.ext-gd" value="1.0"/>
+        <phingcall target="composer:update"/>
     </target>
 
 

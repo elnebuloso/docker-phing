@@ -20,6 +20,7 @@
 
 
     <target name="init">
+        <phingcall target="stop"/>
         <delete includeemptydirs="true">
             <fileset dir="${projectRoot}">
                 <exclude name="build.env"/>
@@ -30,6 +31,7 @@
         </delete>
         <delete dir="${projectDirMain}"/>
         <phingcall target="init:lumen5"/>
+        <phingcall target="start"/>
     </target>
 
 
