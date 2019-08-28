@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="test:phpunit">
+
+
+    <property name="testPhpUnitDescription" value="php unit testing with most generic pre-configuration for phpunit 4,5,6,7,8" override="true"/>
+    <property name="testPhpUnitOutput" value="/${projectFolderBuild}/${projectFolderBuildReports}/phpunit" override="true"/>
+    <property name="testPhpUnitCommand" value="docker-compose exec main phpunit"/>
+    <property name="testPhpUnitConfiguration" value="tests/phpunit.xml"/>
+    <property name="testPhpUnitSuite" value="all"/>
+    <property name="testPhpUnitHaltonerror" value="1"/>
+    <property name="testPhpUnitHaltonfailure" value="1"/>
+    <property name="testPhpUnitCoverageClover" value="1"/>
+    <property name="testPhpUnitCoverageCrap4j" value="1"/>
+    <property name="testPhpUnitCoverageHtml" value="1"/>
+    <property name="testPhpUnitCoveragePhp" value="1"/>
+    <property name="testPhpUnitCoverageXml" value="1"/>
+    <property name="testPhpUnitCoverageOut" value="1"/>
+    <property name="testPhpUnitLogJunit" value="1"/>
+    <property name="testPhpUnitTestdoxHtml" value="1"/>
+    <property name="testPhpUnitTestdoxTxt" value="1"/>
+    <property name="testPhpUnitOptions" value=""/>
+
+
+    <target name="test:phpunit:help">
+        <echo message="${testPhpUnitDescription}"/>
+
+        <echo message=""/>
+        <echo message="property                     value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="testPhpUnitOutput            ${testPhpUnitOutput}"/>
+        <echo message="testPhpUnitCommand           ${testPhpUnitCommand}"/>
+        <echo message="testPhpUnitConfiguration     ${testPhpUnitConfiguration}"/>
+        <echo message="testPhpUnitSuite             ${testPhpUnitSuite}"/>
+        <echo message="testPhpUnitHaltonerror       ${testPhpUnitHaltonerror}"/>
+        <echo message="testPhpUnitHaltonfailure     ${testPhpUnitHaltonfailure}"/>
+        <echo message="testPhpUnitCoverageClover    ${testPhpUnitCoverageClover}"/>
+        <echo message="testPhpUnitCoverageCrap4j    ${testPhpUnitCoverageCrap4j}"/>
+        <echo message="testPhpUnitCoverageHtml      ${testPhpUnitCoverageHtml}"/>
+        <echo message="testPhpUnitCoveragePhp       ${testPhpUnitCoveragePhp}"/>
+        <echo message="testPhpUnitCoverageXml       ${testPhpUnitCoverageXml}"/>
+        <echo message="testPhpUnitCoverageOut       ${testPhpUnitCoverageOut}"/>
+        <echo message="testPhpUnitLogJunit          ${testPhpUnitLogJunit}"/>
+        <echo message="testPhpUnitTestdoxHtml       ${testPhpUnitTestdoxHtml}"/>
+        <echo message="testPhpUnitTestdoxTxt        ${testPhpUnitTestdoxTxt}"/>
+        <echo message="testPhpUnitOptions           ${testPhpUnitOptions}"/>
+    </target>
+
+
+    <target name="test:phpunit" depends="test:phpunit:before, test:phpunit:main, test:phpunit:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="test:phpunit:before" hidden="true">
+        <phingcall target="clean:dist"/>
+        <phingcall target="docker:compose:up"/>
+    </target>
+
+
+    <target name="test:phpunit:after" hidden="true">
+        <phingcall target="docker:compose:down"/>
+    </target>
+
+
+    <target name="test:phpunit:main">
+        <property name="testPhpUnitOutput" value="${testPhpUnitOutput}/${testPhpUnitSuite}" override="true"/>
+
+        <delete dir="${testPhpUnitOutput}"/>
+        <mkdir dir="${testPhpUnitOutput}"/>
+
+        <property name="testPhpUnitArguments" value="" override="true"/>
+        <property name="testPhpUnitArguments" value="--configuration ${testPhpUnitConfiguration} ${testPhpUnitArguments}" override="true"/>
+        <property name="testPhpUnitArguments" value="--testsuite ${testPhpUnitSuite} ${testPhpUnitArguments}" override="true"/>
+
+        <if>
+            <equals arg1="${testPhpUnitHaltonerror}" arg2="1"/>
+            <then>
+                <property name="testPhpUnitArguments" value="--stop-on-error ${testPhpUnitArguments}" override="true"/>
+            </then>
+        </if>
+
+        <if>
+            <equals arg1="${testPhpUnitHaltonfailure}" arg2="1"/>
+            <then>
+                <property name="testPhpUnitArguments" value="--stop-on-failure ${testPhpUnitArguments}" override="true"/>
+            </then>
+        </if>
+
+        <property name="testPhpUnitOutputDest" value="${testPhpUnitOutput}/coverage/clover" override="true"/>
+        <if>
+            <equals arg1="${testPhpUnitCoverageClover}" arg2="1"/>
+            <then>
+                <mkdir dir="${testPhpUnitOutputDest}"/>
+                <property name="testPhpUnitArguments" value="--coverage-clover ${testPhpUnitOutputDest}/coverage.xml ${testPhpUnitArguments}" override="true"/>
+            </then>
+        </if>
+
+        <property name="testPhpUnitOutputDest" value="${testPhpUnitOutput}/coverage/crap4j" override="true"/>
+        <if>
+            <equals arg1="${testPhpUnitCoverageCrap4j}" arg2="1"/>
+            <then>
+                <mkdir dir="${testPhpUnitOutputDest}"/>
+                <property name="testPhpUnitArguments" value="--coverage-crap4j ${testPhpUnitOutputDest}/coverage.xml ${testPhpUnitArguments}" override="true"/>
+            </then>
+        </if>
+
+        <property name="testPhpUnitOutputDest" value="${testPhpUnitOutput}/coverage/html" override="true"/>
+        <if>
+            <equals arg1="${testPhpUnitCoverageHtml}" arg2="1"/>
+            <then>
+                <mkdir dir="${testPhpUnitOutputDest}"/>
+                <property name="testPhpUnitArguments" value="--coverage-html ${testPhpUnitOutputDest} ${testPhpUnitArguments}" override="true"/>
+            </then>
+        </if>
+
+        <property name="testPhpUnitOutputDest" value="${testPhpUnitOutput}/coverage/php" override="true"/>
+        <if>
+            <equals arg1="${testPhpUnitCoveragePhp}" arg2="1"/>
+            <then>
+                <mkdir dir="${testPhpUnitOutputDest}"/>
+                <property name="testPhpUnitArguments" value="--coverage-php ${testPhpUnitOutputDest}/coverage.php ${testPhpUnitArguments}" override="true"/>
+            </then>
+        </if>
+
+        <property name="testPhpUnitOutputDest" value="${testPhpUnitOutput}/coverage/xml" override="true"/>
+        <if>
+            <equals arg1="${testPhpUnitCoverageXml}" arg2="1"/>
+            <then>
+                <mkdir dir="${testPhpUnitOutputDest}"/>
+                <property name="testPhpUnitArguments" value="--coverage-xml ${testPhpUnitOutputDest} ${testPhpUnitArguments}" override="true"/>
+            </then>
+        </if>
+
+        <if>
+            <equals arg1="${testPhpUnitCoverageOut}" arg2="1"/>
+            <then>
+                <property name="testPhpUnitArguments" value="--coverage-text ${testPhpUnitArguments}" override="true"/>
+            </then>
+        </if>
+
+
+        <property name="testPhpUnitOutputDest" value="${testPhpUnitOutput}/logs/junit" override="true"/>
+        <if>
+            <equals arg1="${testPhpUnitLogJunit}" arg2="1"/>
+            <then>
+                <mkdir dir="${testPhpUnitOutputDest}"/>
+                <property name="testPhpUnitArguments" value="--log-junit ${testPhpUnitOutputDest}/log.xml ${testPhpUnitArguments}" override="true"/>
+            </then>
+        </if>
+
+        <property name="testPhpUnitOutputDest" value="${testPhpUnitOutput}/testdox/html" override="true"/>
+        <if>
+            <equals arg1="${testPhpUnitTestdoxHtml}" arg2="1"/>
+            <then>
+                <mkdir dir="${testPhpUnitOutputDest}"/>
+                <property name="testPhpUnitArguments" value="--testdox-html ${testPhpUnitOutputDest}/index.html ${testPhpUnitArguments}" override="true"/>
+            </then>
+        </if>
+
+        <property name="testPhpUnitOutputDest" value="${testPhpUnitOutput}/testdox/txt" override="true"/>
+        <if>
+            <equals arg1="${testPhpUnitTestdoxTxt}" arg2="1"/>
+            <then>
+                <mkdir dir="${testPhpUnitOutputDest}"/>
+                <property name="testPhpUnitArguments" value="--testdox-text ${testPhpUnitOutputDest}/testdox.txt ${testPhpUnitArguments}" override="true"/>
+            </then>
+        </if>
+
+        <if>
+            <not>
+                <equals arg1="${testPhpUnitOptions}" arg2=""/>
+            </not>
+            <then>
+                <property name="testPhpUnitArguments" value="${testPhpUnitArguments} ${testPhpUnitOptions}" override="true"/>
+            </then>
+        </if>
+
+        <exec command="${testPhpUnitCommand} ${testPhpUnitArguments}" passthru="true" checkreturn="true" level="info"/>
+    </target>
+
+
+</project>

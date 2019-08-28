@@ -31,16 +31,20 @@
     <property name="projectFolderMainCompass" value=""/>
     <property name="projectFolderMainNpm" value=""/>
     <property name="projectFolderBuild" value="build"/>
+    <property name="projectFolderBuildTmp" value="tmp"/>
+    <property name="projectFolderBuildDist" value="dist"/>
+    <property name="projectFolderBuildReports" value="reports"/>
     <property name="projectFolderRancher1" value="rancher1"/>
+
 
     <property name="projectDirMain" value="${projectRoot}/${projectFolderMain}"/>
     <property name="projectDirMainComposer" value="${projectRoot}/${projectFolderMain}/${projectFolderMainComposer}"/>
     <property name="projectDirMainCompass" value="${projectRoot}/${projectFolderMain}/${projectFolderMainCompass}"/>
     <property name="projectDirMainNpm" value="${projectRoot}/${projectFolderMain}/${projectFolderMainNpm}"/>
     <property name="projectDirBuild" value="${projectRoot}/${projectFolderBuild}"/>
-    <property name="projectDirBuildTmp" value="${projectRoot}/${projectFolderBuild}/tmp"/>
-    <property name="projectDirBuildDist" value="${projectRoot}/${projectFolderBuild}/dist"/>
-    <property name="projectDirBuildReports" value="${projectRoot}/${projectFolderBuild}/reports"/>
+    <property name="projectDirBuildTmp" value="${projectRoot}/${projectFolderBuild}/${projectFolderBuildTmp}"/>
+    <property name="projectDirBuildDist" value="${projectRoot}/${projectFolderBuild}/${projectFolderBuildDist}"/>
+    <property name="projectDirBuildReports" value="${projectRoot}/${projectFolderBuild}/${projectFolderBuildReports}"/>
     <property name="projectDirRancher1" value="${projectRoot}/${projectFolderRancher1}"/>
 
 

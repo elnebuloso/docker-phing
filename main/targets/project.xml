@@ -17,6 +17,9 @@
         <echo message="projectFolderMainCompass     ${projectFolderMainCompass}"/>
         <echo message="projectFolderMainNpm         ${projectFolderMainNpm}"/>
         <echo message="projectFolderBuild           ${projectFolderBuild}"/>
+        <echo message="projectFolderBuildTmp        ${projectFolderBuildTmp}"/>
+        <echo message="projectFolderBuildDist       ${projectFolderBuildDist}"/>
+        <echo message="projectFolderBuildReports    ${projectFolderBuildReports}"/>
         <echo message="projectFolderRancher1        ${projectFolderRancher1}"/>
         <echo message=""/>
         <echo message="property                     value [do not edit directly]"/>

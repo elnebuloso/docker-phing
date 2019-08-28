@@ -1,0 +1,19 @@
+version: "2"
+
+services:
+  proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - 80:80
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+
+  main:
+    build:
+      context: .
+    volumes:
+      - ./main:/var/www/main
+      - ./build/reports:/build/reports
+    environment:
+      VIRTUAL_HOST: test.127.0.0.1.xip.io
+      PHPEXT_ENABLE_XDEBUG: "yes"
