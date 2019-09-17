@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [2.7.0] - 2019-09-17
+- symfony4 installation update
+
+
 ## [2.6.0] - 2019-08-28
 - phpunit testing
 
