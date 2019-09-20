@@ -31,17 +31,18 @@
     <target name="project:version:update:after" hidden="true">
         <echo message="no actions defined"/>
     </target>
-    
+
 
     <target name="project:version:update:main">
+        <my-semver string="${projectVersion}" version="projectVersion" major="projectVersionMajor" minor="projectVersionMinor" patch="projectVersionPatch"/>
         <echo message="version [curr]: ${projectVersion}"/>
         <echo message="major: ${projectVersionMajor}"/>
         <echo message="minor: ${projectVersionMinor}"/>
         <echo message="patch: ${projectVersionPatch}"/>
 
         <version releasetype="${releaseType}" file="${projectRoot}/VERSION" property="projectVersion"/>
-        <my-semver string="${projectVersion}" version="projectVersion" major="projectVersionMajor" minor="projectVersionMinor" patch="projectVersionPatch"/>
 
+        <my-semver string="${projectVersion}" version="projectVersion" major="projectVersionMajor" minor="projectVersionMinor" patch="projectVersionPatch"/>
         <echo message="version [next]: ${projectVersion}"/>
         <echo message="major: ${projectVersionMajor}"/>
         <echo message="minor: ${projectVersionMinor}"/>
