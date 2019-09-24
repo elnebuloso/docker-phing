@@ -33,6 +33,12 @@
 !/test-lumen5/build.xml
 !/test-lumen5/VERSION
 
+/test-lumen6/*
+!/test-lumen6/build.env
+!/test-lumen6/build.properties
+!/test-lumen6/build.xml
+!/test-lumen6/VERSION
+
 /test-symfony4/*
 !/test-symfony4/build.env
 !/test-symfony4/build.properties
