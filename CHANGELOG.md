@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [2.8.0] - 2019-09-24
+- init laravel 6
+- init lumen 6
+
+
 ## [2.7.1] - 2019-09-21
 - help bugfixes
 
