@@ -21,6 +21,12 @@
 !/test-laravel5/build.xml
 !/test-laravel5/VERSION
 
+/test-laravel6/*
+!/test-laravel6/build.env
+!/test-laravel6/build.properties
+!/test-laravel6/build.xml
+!/test-laravel6/VERSION
+
 /test-lumen5/*
 !/test-lumen5/build.env
 !/test-lumen5/build.properties

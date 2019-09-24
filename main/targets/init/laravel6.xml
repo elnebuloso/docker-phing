@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="init:laravel6">
+
+
+    <property name="initLaravel6Description" value="init laravel application" override="true"/>
+    <property name="initLaravel6Url" value="laravel6.127.0.0.1.xip.io" override="true"/>
+
+
+    <target name="init:laravel6:help">
+        <echo message="${initLaravel6Description}"/>
+    </target>
+
+
+    <target name="init:laravel6" depends="init:laravel6:before, init:laravel6:main, init:laravel6:after">
+        <echo message="browse application after docker start"/>
+        <echo message="${initLaravel6Url}"/>
+    </target>
+
+
+    <target name="init:laravel6:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="init:laravel6:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="init:laravel6:main">
+        <fail message="${projectDirMain} exists for creating laravel application">
+            <condition>
+                <available file="${projectDirMain}" type="dir"/>
+            </condition>
+        </fail>
+
+        <exec command="composer create-project --prefer-dist --remove-vcs laravel/laravel:^6 ${projectDirMain}" passthru="true" checkreturn="true" level="info"/>
+        <delete dir="${projectDirMain}/.git" quiet="true"/>
+
+        <copy todir="${projectRoot}" overwrite="true">
+            <fileset dir="${phingCommonsRoot}/resources/init/laravel6/0">
+                <include name="**"/>
+            </fileset>
+            <filterchain>
+                <expandproperties/>
+            </filterchain>
+        </copy>
+
+        <my-configure-composer selector="name" value="my/${projectName}"/>
+        <my-configure-composer selector="config.platform.php" value="7.3"/>
+        <phingcall target="composer:update"/>
+    </target>
+
+
+</project>

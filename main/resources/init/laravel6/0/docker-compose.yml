@@ -1,0 +1,17 @@
+version: "2"
+
+services:
+  proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - 80:80
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+
+  main:
+    build:
+      context: .
+    volumes:
+      - ./main:/var/www/main
+    environment:
+      VIRTUAL_HOST: ${initLaravel6Url}
