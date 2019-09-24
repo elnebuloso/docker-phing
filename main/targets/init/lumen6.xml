@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="init:lumen6">
+
+
+    <property name="initLumen6Description" value="init lumen6 application" override="true"/>
+    <property name="initLumen6Url" value="lumen6.127.0.0.1.xip.io" override="true"/>
+
+
+    <target name="init:lumen6:help">
+        <echo message="${initLumen6Description}"/>
+    </target>
+
+
+    <target name="init:lumen6" depends="init:lumen6:before, init:lumen6:main, init:lumen6:after">
+        <echo message="browse application after docker start"/>
+        <echo message="${initLumen6Url}"/>
+    </target>
+
+
+    <target name="init:lumen6:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="init:lumen6:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="init:lumen6:main">
+        <fail message="${projectDirMain} exists for creating laravel-lumen6 application">
+            <condition>
+                <available file="${projectDirMain}" type="dir"/>
+            </condition>
+        </fail>
+
+        <exec command="composer create-project --prefer-dist --remove-vcs laravel/lumen:^6 ${projectDirMain}" passthru="true" checkreturn="true" level="info"/>
+        <delete dir="${projectDirMain}/.git" quiet="true"/>
+
+        <copy todir="${projectRoot}" overwrite="true">
+            <fileset dir="${phingCommonsRoot}/resources/init/lumen6/0">
+                <include name="**"/>
+            </fileset>
+            <filterchain>
+                <expandproperties/>
+            </filterchain>
+        </copy>
+
+        <my-configure-composer selector="name" value="my/${projectName}"/>
+        <my-configure-composer selector="config.platform.php" value="7.3"/>
+        <phingcall target="composer:update"/>
+    </target>
+
+
+</project>
