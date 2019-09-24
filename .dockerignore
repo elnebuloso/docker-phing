@@ -4,6 +4,7 @@
 main
 test
 test-bolt3
-test-laravel-lumen5
 test-laravel5
+test-laravel6
+test-lumen5
 test-symfony4
