@@ -4,15 +4,17 @@
 <project default="bundle:project">
 
 
-    <property name="bundleProjectDescription" value="bundle files defined by patternset to dist" override="true"/>
+    <target name="bundle:project:init" depends="commons:init">
+        <property name="bundleProjectDescription" value="bundle files defined by patternset to dist"/>
+    </target>
 
 
-    <target name="bundle:project:help">
+    <target name="bundle:project:help" depends="bundle:project:init">
         <echo message="${bundleProjectDescription}"/>
     </target>
 
 
-    <target name="bundle:project" depends="clean:dist, bundle:project:before, bundle:project:main, bundle:project:after">
+    <target name="bundle:project" depends="clean:dist, bundle:project:init, bundle:project:before, bundle:project:main, bundle:project:after">
         <echo message="successful"/>
     </target>
 

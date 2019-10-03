@@ -4,15 +4,17 @@
 <project default="compass:compile">
 
 
-    <property name="compassCompileDescription" value="compass compile scss" override="true"/>
+    <target name="compass:compile:init" depends="commons:init">
+        <property name="compassCompileDescription" value="compass compile scss"/>
+    </target>
 
 
-    <target name="compass:compile:help">
+    <target name="compass:compile:help" depends="compass:compile:init">
         <echo message="${compassCompileDescription}"/>
     </target>
 
 
-    <target name="compass:compile" depends="compass:compile:before, compass:compile:main, compass:compile:after">
+    <target name="compass:compile" depends="compass:compile:init, compass:compile:before, compass:compile:main, compass:compile:after">
         <echo message="successful"/>
     </target>
 

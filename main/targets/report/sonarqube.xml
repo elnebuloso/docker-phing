@@ -4,16 +4,18 @@
 <project default="report:sonarqube">
 
 
-    <property name="reportSonarqubeDescription" value="sonarqube scanner code analysis" override="true"/>
-    <property name="reportSonarqubeExecutable" value="sonarqube-scanner"/>
-    <property name="reportSonarqubeHostUrl" value=""/>
-    <property name="reportSonarqubeLogin" value=""/>
-    <property name="reportSonarqubeConfig" value="${project.root}/sonar-project.properties"/>
-    <property name="reportSonarqubeProjectKey" value="${projectName}"/>
-    <property name="reportSonarqubeProjectVersion" value="${projectVersion}"/>
+    <target name="report:sonarqube:init" depends="commons:init">
+        <property name="reportSonarqubeDescription" value="sonarqube scanner code analysis"/>
+        <property name="reportSonarqubeExecutable" value="sonarqube-scanner"/>
+        <property name="reportSonarqubeHostUrl" value=""/>
+        <property name="reportSonarqubeLogin" value=""/>
+        <property name="reportSonarqubeConfig" value="${project.root}/sonar-project.properties"/>
+        <property name="reportSonarqubeProjectKey" value="${projectName}"/>
+        <property name="reportSonarqubeProjectVersion" value="${projectVersion}"/>
+    </target>
 
 
-    <target name="report:sonarqube:help">
+    <target name="report:sonarqube:help" depends="report:sonarqube:init">
         <echo message="${reportSonarqubeDescription}"/>
 
         <echo message=""/>
@@ -30,7 +32,7 @@
     </target>
 
 
-    <target name="report:sonarqube" depends="report:sonarqube:before, report:sonarqube:main, report:sonarqube:after">
+    <target name="report:sonarqube" depends="report:sonarqube:init, report:sonarqube:before, report:sonarqube:main, report:sonarqube:after">
         <echo message="successful"/>
     </target>
 
@@ -43,7 +45,7 @@
     <target name="report:sonarqube:after" hidden="true">
         <echo message="no actions defined"/>
     </target>
-    
+
 
     <target name="report:sonarqube:main">
         <mkdir dir="${projectDirBuildTmp}"/>
@@ -56,11 +58,11 @@
                 </not>
             </and>
             <then>
-                <property name="reportSonarqubeProjectVersion" value="${reportSonarqubeProjectVersion}-${branchName}" override="true"/>
+                <property name="reportSonarqubeProjectVersion" value="${reportSonarqubeProjectVersion}-${branchName}"/>
                 <if>
                     <isset property="buildNumber"/>
                     <then>
-                        <property name="reportSonarqubeProjectVersion" value="${reportSonarqubeProjectVersion}-${buildNumber}" override="true"/>
+                        <property name="reportSonarqubeProjectVersion" value="${reportSonarqubeProjectVersion}-${buildNumber}"/>
                     </then>
                 </if>
             </then>

@@ -4,16 +4,18 @@
 <project default="report:phpdepend">
 
 
-    <property name="reportPhpDependDescription" value="php software metrics" override="true"/>
-    <property name="reportPhpDependOutput" value="${projectDirBuildReports}/phpdepend" override="true"/>
+    <target name="report:phpdepend:init" depends="commons:init">
+        <property name="reportPhpDependDescription" value="php software metrics"/>
+        <property name="reportPhpDependOutput" value="${projectDirBuildReports}/phpdepend"/>
+    </target>
 
 
-    <target name="report:phpdepend:help">
+    <target name="report:phpdepend:help" depends="report:phpdepend:init">
         <echo message="${reportPhpDependDescription}"/>
     </target>
 
 
-    <target name="report:phpdepend" depends="report:phpdepend:before, report:phpdepend:main, report:phpdepend:after">
+    <target name="report:phpdepend" depends="report:phpdepend:init, report:phpdepend:before, report:phpdepend:main, report:phpdepend:after">
         <echo message="successful"/>
     </target>
 
@@ -26,7 +28,7 @@
     <target name="report:phpdepend:after" hidden="true">
         <echo message="no actions defined"/>
     </target>
-    
+
 
     <target name="report:phpdepend:main">
         <delete dir="${reportPhpDependOutput}"/>

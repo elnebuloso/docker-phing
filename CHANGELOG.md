@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [2.9.0] - 2019-10-04
+- removed rancher1 targets
+- commons:init added
+- targets now have :init target depending on
+
+
 ## [2.8.0] - 2019-09-24
 - init laravel 6
 - init lumen 6

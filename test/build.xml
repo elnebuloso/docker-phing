@@ -113,4 +113,22 @@
     </target>
 
 
+    <target name="test:commons:init">
+        <phingcall target="commons:help">
+            <property name="projectFolderMainNpm" value="public/foo"/>
+            <property name="projectFolderMainComposer" value="public/bar"/>
+            <property name="projectFolderMainCompass" value="public/baz"/>
+        </phingcall>
+    </target>
+
+
+    <target name="test:npm:run:init">
+        <phingcall target="npm:run:help">
+            <property name="projectFolderMainNpm" value="public/foo"/>
+            <property name="npmRunScript" value="bar"/>
+            <property name="npmExecutable" value="baz"/>
+        </phingcall>
+    </target>
+
+
 </project>

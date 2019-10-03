@@ -4,12 +4,14 @@
 <project default="npm:run">
 
 
-    <property name="npmRunDescription" value="npm watch files" override="true"/>
-    <property name="npmRunScript" value=""/>
-    <property name="npmExecutable" value="npm"/>
+    <target name="npm:run:init" depends="commons:init">
+        <property name="npmRunDescription" value="npm watch files"/>
+        <property name="npmRunScript" value=""/>
+        <property name="npmExecutable" value="npm"/>
+    </target>
 
 
-    <target name="npm:run:help">
+    <target name="npm:run:help" depends="npm:run:init">
         <echo message="${npmRunDescription}"/>
 
         <echo message=""/>
@@ -20,7 +22,7 @@
     </target>
 
 
-    <target name="npm:run" depends="npm:run:before, npm:run:main, npm:run:after">
+    <target name="npm:run" depends="npm:run:init, npm:run:before, npm:run:main, npm:run:after">
         <echo message="successful"/>
     </target>
 
@@ -33,8 +35,8 @@
     <target name="npm:run:after" hidden="true">
         <echo message="no actions defined"/>
     </target>
-    
-    
+
+
     <target name="npm:run:main">
         <exec command="${npmExecutable} run ${npmRunScript}" passthru="true" checkreturn="true" level="info" dir="${projectDirMainNpm}"/>
     </target>

@@ -4,15 +4,17 @@
 <project default="compass:watch">
 
 
-    <property name="compassWatchDescription" value="compass watch scss" override="true"/>
+    <target name="compass:watch:init" depends="commons:init">
+        <property name="compassWatchDescription" value="compass watch scss"/>
+    </target>
 
 
-    <target name="compass:watch:help">
+    <target name="compass:watch:help" depends="compass:watch:init">
         <echo message="${compassWatchDescription}"/>
     </target>
 
 
-    <target name="compass:watch" depends="compass:watch:before, compass:watch:main, compass:watch:after">
+    <target name="compass:watch" depends="compass:watch:init, compass:watch:before, compass:watch:main, compass:watch:after">
         <echo message="successful"/>
     </target>
 

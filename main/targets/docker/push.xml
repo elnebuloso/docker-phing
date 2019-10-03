@@ -4,14 +4,16 @@
 <project default="docker:push">
 
 
-    <property name="dockerPushDescription" value="push project image to a registry" override="true"/>
-    <property name="dockerImageName" value="${projectName}"/>
-    <property name="dockerImageVersion" value="${projectVersion}"/>
-    <property name="dockerImageNamespace" value=""/>
-    <property name="dockerRegistry" value=""/>
+    <target name="docker:push:init" depends="commons:init">
+        <property name="dockerPushDescription" value="push project image to a registry"/>
+        <property name="dockerImageName" value="${projectName}"/>
+        <property name="dockerImageVersion" value="${projectVersion}"/>
+        <property name="dockerImageNamespace" value=""/>
+        <property name="dockerRegistry" value=""/>
+    </target>
 
 
-    <target name="docker:push:help">
+    <target name="docker:push:help" depends="docker:push:init">
         <echo message="${dockerPushDescription}"/>
 
         <echo message=""/>
@@ -26,7 +28,7 @@
     </target>
 
 
-    <target name="docker:push" depends="docker:push:before, docker:push:main, docker:push:after">
+    <target name="docker:push" depends="docker:push:init, docker:push:before, docker:push:main, docker:push:after">
         <echo message="successful"/>
     </target>
 

@@ -4,15 +4,17 @@
 <project default="clean:dist">
 
 
-    <property name="cleanDistDescription" value="cleanup project distribution directory" override="true"/>
+    <target name="clean:dist:init" depends="commons:init">
+        <property name="cleanDistDescription" value="cleanup project distribution directory"/>
+    </target>
 
 
-    <target name="clean:dist:help">
+    <target name="clean:dist:help" depends="clean:dist:init">
         <echo message="${cleanDistDescription}"/>
     </target>
 
 
-    <target name="clean:dist" depends="clean:dist:before, clean:dist:main, clean:dist:after">
+    <target name="clean:dist" depends="clean:dist:init, clean:dist:before, clean:dist:main, clean:dist:after">
         <echo message="successful"/>
     </target>
 

@@ -4,11 +4,13 @@
 <project default="project:version:commit">
 
 
-    <property name="projectVersionCommitDescription" value="commit the project version back to the repository" override="true"/>
-    <property name="createTag" value="1"/>
+    <target name="project:version:commit:init" depends="commons:init">
+        <property name="projectVersionCommitDescription" value="commit the project version back to the repository"/>
+        <property name="createTag" value="1"/>
+    </target>
 
 
-    <target name="project:version:commit:help">
+    <target name="project:version:commit:help" depends="project:version:commit:init">
         <echo message="${projectVersionCommitDescription}"/>
 
         <echo message=""/>
@@ -18,7 +20,7 @@
     </target>
 
 
-    <target name="project:version:commit" depends="project:version:commit:before, project:version:commit:main, project:version:commit:after">
+    <target name="project:version:commit" depends="project:version:commit:init, project:version:commit:before, project:version:commit:main, project:version:commit:after">
         <echo message="successful"/>
     </target>
 

@@ -4,11 +4,13 @@
 <project default="project:version:update">
 
 
-    <property name="projectVersionUpdateDescription" value="update the project version in major/minor/patch level" override="true"/>
-    <property name="releaseType" value="Bugfix"/>
+    <target name="project:version:update:init" depends="commons:init">
+        <property name="projectVersionUpdateDescription" value="update the project version in major/minor/patch level"/>
+        <property name="releaseType" value="Bugfix"/>
+    </target>
 
 
-    <target name="project:version:update:help">
+    <target name="project:version:update:help" depends="project:version:update:init">
         <echo message="${projectVersionUpdateDescription}"/>
 
         <echo message=""/>
@@ -18,7 +20,7 @@
     </target>
 
 
-    <target name="project:version:update" depends="project:version:update:before, project:version:update:main, project:version:update:after">
+    <target name="project:version:update" depends="project:version:update:init, project:version:update:before, project:version:update:main, project:version:update:after">
         <echo message="successful"/>
     </target>
 

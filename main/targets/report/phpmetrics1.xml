@@ -4,17 +4,19 @@
 <project default="report:phpmetrics1">
 
 
-    <property name="reportPhpMetrics1Description" value="phpmetrics version 1 scanner" override="true"/>
-    <property name="reportPhpMetrics1OutputTmp" value="${projectDirMain}/.phpmetrics1" override="true"/>
-    <property name="reportPhpMetrics1Output" value="${projectDirBuildReports}/phpmetrics1" override="true"/>
+    <target name="report:phpmetrics1:init" depends="commons:init">
+        <property name="reportPhpMetrics1Description" value="phpmetrics version 1 scanner"/>
+        <property name="reportPhpMetrics1OutputTmp" value="${projectDirMain}/.phpmetrics1"/>
+        <property name="reportPhpMetrics1Output" value="${projectDirBuildReports}/phpmetrics1"/>
+    </target>
 
 
-    <target name="report:phpmetrics1:help">
+    <target name="report:phpmetrics1:help" depends="report:phpmetrics1:init">
         <echo message="${reportPhpMetrics1Description}"/>
     </target>
 
 
-    <target name="report:phpmetrics1" depends="report:phpmetrics1:before, report:phpmetrics1:main, report:phpmetrics1:after">
+    <target name="report:phpmetrics1" depends="report:phpmetrics1:init, report:phpmetrics1:before, report:phpmetrics1:main, report:phpmetrics1:after">
         <echo message="successful"/>
     </target>
 
@@ -27,7 +29,7 @@
     <target name="report:phpmetrics1:after" hidden="true">
         <echo message="no actions defined"/>
     </target>
-    
+
 
     <target name="report:phpmetrics1:main">
         <fail unless="reportPhpMetricsDirectories" message="missing property reportPhpMetricsDirectories"/>

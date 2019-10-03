@@ -5,14 +5,12 @@
 
 
     <import file="${phingCommonsRoot}/targets/test/phplint.xml"/>
-    <import file="${phingCommonsRoot}/targets/test/phpunit.xml"/>
 
 
     <target name="test:help">
         <echo message="target          description"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="test:phplint    ${testPhpLintDescription}"/>
-        <echo message="test:phpunit    ${testPhpUnitDescription}"/>
     </target>
 
 

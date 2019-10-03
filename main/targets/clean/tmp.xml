@@ -4,15 +4,17 @@
 <project default="clean:tmp">
 
 
-    <property name="cleanTmpDescription" value="cleanup project temporary build directory" override="true"/>
+    <target name="clean:tmp:init" depends="commons:init">
+        <property name="cleanTmpDescription" value="cleanup project temporary build directory"/>
+    </target>
 
 
-    <target name="clean:tmp:help">
+    <target name="clean:tmp:help" depends="clean:tmp:init">
         <echo message="${cleanTmpDescription}"/>
     </target>
 
 
-    <target name="clean:tmp" depends="clean:tmp:before, clean:tmp:main, clean:tmp:after">
+    <target name="clean:tmp" depends="clean:tmp:init, clean:tmp:before, clean:tmp:main, clean:tmp:after">
         <echo message="successful"/>
     </target>
 
@@ -25,7 +27,7 @@
     <target name="clean:tmp:after" hidden="true">
         <echo message="no actions defined"/>
     </target>
-    
+
 
     <target name="clean:tmp:main">
         <delete dir="${projectDirBuildTmp}"/>

@@ -20,7 +20,6 @@
         <echo message="projectFolderBuildTmp        ${projectFolderBuildTmp}"/>
         <echo message="projectFolderBuildDist       ${projectFolderBuildDist}"/>
         <echo message="projectFolderBuildReports    ${projectFolderBuildReports}"/>
-        <echo message="projectFolderRancher1        ${projectFolderRancher1}"/>
         <echo message=""/>
         <echo message="property                     value [do not edit directly]"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
@@ -36,7 +35,6 @@
         <echo message="projectDirBuildTmp           ${projectDirBuildTmp}" level="warning"/>
         <echo message="projectDirBuildDist          ${projectDirBuildDist}" level="warning"/>
         <echo message="projectDirBuildReports       ${projectDirBuildReports}" level="warning"/>
-        <echo message="projectDirRancher1           ${projectDirRancher1}" level="warning"/>
         <echo message=""/>
         <echo message="target                       description"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>

@@ -4,16 +4,18 @@
 <project default="report:phploc">
 
 
-    <property name="reportPhpLocDescription" value="php lines of code" override="true"/>
-    <property name="reportPhpLocOutput" value="${projectDirBuildReports}/phploc" override="true"/>
+    <target name="report:phploc:init" depends="commons:init">
+        <property name="reportPhpLocDescription" value="php lines of code"/>
+        <property name="reportPhpLocOutput" value="${projectDirBuildReports}/phploc"/>
+    </target>
 
 
-    <target name="report:phploc:help">
+    <target name="report:phploc:help" depends="report:phploc:init">
         <echo message="${reportPhpLocDescription}"/>
     </target>
 
 
-    <target name="report:phploc" depends="report:phploc:before, report:phploc:main, report:phploc:after">
+    <target name="report:phploc" depends="report:phploc:init, report:phploc:before, report:phploc:main, report:phploc:after">
         <echo message="successful"/>
     </target>
 
@@ -26,7 +28,7 @@
     <target name="report:phploc:after" hidden="true">
         <echo message="no actions defined"/>
     </target>
-    
+
 
     <target name="report:phploc:main">
         <delete dir="${reportPhpLocOutput}"/>
