@@ -4,15 +4,17 @@
 <project default="composer:remove">
 
 
-    <property name="composerRemoveDescription" value="composer remove a dependency" override="true"/>
+    <target name="composer:remove:init" depends="commons:init">
+        <property name="composerRemoveDescription" value="composer remove a dependency"/>
+    </target>
 
 
-    <target name="composer:remove:help">
+    <target name="composer:remove:help" depends="composer:remove:init">
         <echo message="${composerRemoveDescription}"/>
     </target>
 
 
-    <target name="composer:remove" depends="composer:remove:before, composer:remove:main, composer:remove:after">
+    <target name="composer:remove" depends="composer:remove:init, composer:remove:before, composer:remove:main, composer:remove:after">
         <echo message="successful"/>
     </target>
 

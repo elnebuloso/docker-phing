@@ -4,16 +4,18 @@
 <project default="init:lumen5">
 
 
-    <property name="initLumen5Description" value="init lumen5 application" override="true"/>
-    <property name="initLumen5Url" value="lumen5.127.0.0.1.xip.io" override="true"/>
+    <target name="init:lumen5:init" depends="commons:init">
+        <property name="initLumen5Description" value="init lumen5 application"/>
+        <property name="initLumen5Url" value="lumen5.127.0.0.1.xip.io"/>
+    </target>
 
 
-    <target name="init:lumen5:help">
+    <target name="init:lumen5:help" depends="init:lumen5:init">
         <echo message="${initLumen5Description}"/>
     </target>
 
 
-    <target name="init:lumen5" depends="init:lumen5:before, init:lumen5:main, init:lumen5:after">
+    <target name="init:lumen5" depends="init:lumen5:init, init:lumen5:before, init:lumen5:main, init:lumen5:after">
         <echo message="browse application after docker start"/>
         <echo message="${initLumen5Url}"/>
     </target>

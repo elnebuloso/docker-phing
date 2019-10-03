@@ -4,11 +4,13 @@
 <project default="composer:install">
 
 
-    <property name="composerInstallDescription" value="composer install" override="true"/>
-    <property name="composerInstallOptions" value=""/>
+    <target name="composer:install:init" depends="commons:init">
+        <property name="composerInstallDescription" value="composer install"/>
+        <property name="composerInstallOptions" value=""/>
+    </target>
 
 
-    <target name="composer:install:help">
+    <target name="composer:install:help" depends="composer:install:init">
         <echo message="${composerInstallDescription}"/>
 
         <echo message=""/>
@@ -18,7 +20,7 @@
     </target>
 
 
-    <target name="composer:install" depends="composer:install:before, composer:install:main, composer:install:after">
+    <target name="composer:install" depends="composer:install:init, composer:install:before, composer:install:main, composer:install:after">
         <echo message="successful"/>
     </target>
 

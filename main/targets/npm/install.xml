@@ -4,11 +4,13 @@
 <project default="npm:install">
 
 
-    <property name="npmInstallDescription" value="npm install dependencies" override="true"/>
-    <property name="npmExecutable" value="npm"/>
+    <target name="npm:install:init" depends="commons:init">
+        <property name="npmInstallDescription" value="npm install dependencies"/>
+        <property name="npmExecutable" value="npm"/>
+    </target>
 
 
-    <target name="npm:install:help">
+    <target name="npm:install:help" depends="npm:install:init">
         <echo message="${npmInstallDescription}"/>
 
         <echo message=""/>
@@ -18,7 +20,7 @@
     </target>
 
 
-    <target name="npm:install" depends="npm:install:before, npm:install:main, npm:install:after">
+    <target name="npm:install" depends="npm:install:init, npm:install:before, npm:install:main, npm:install:after">
         <echo message="successful"/>
     </target>
 

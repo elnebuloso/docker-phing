@@ -3,7 +3,7 @@ param(
     [string]$dir = ""
 )
 
-$tag = "docker-phing-dev"
+$tag = "phing"
 $pwd = [string](Get-Location)
 $pwd = $pwd.Replace("\", "/")
 $pwdLinux = "/host_mnt/" + $pwd.Replace(":", "").ToLower()

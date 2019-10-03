@@ -4,16 +4,18 @@
 <project default="init:symfony4">
 
 
-    <property name="initSymfony4Description" value="init symfony4 application" override="true"/>
-    <property name="initSymfony4Url" value="symfony4.127.0.0.1.xip.io" override="true"/>
+    <target name="init:symfony4:init" depends="commons:init">
+        <property name="initSymfony4Description" value="init symfony4 application"/>
+        <property name="initSymfony4Url" value="symfony4.127.0.0.1.xip.io"/>
+    </target>
 
 
-    <target name="init:symfony4:help">
+    <target name="init:symfony4:help" depends="init:symfony4:init">
         <echo message="${initSymfony4Description}"/>
     </target>
 
 
-    <target name="init:symfony4" depends="init:symfony4:before, init:symfony4:main, init:symfony4:after">
+    <target name="init:symfony4" depends="init:symfony4:init, init:symfony4:before, init:symfony4:main, init:symfony4:after">
         <echo message="browse application after docker start"/>
         <echo message="${initSymfony4Url}"/>
     </target>

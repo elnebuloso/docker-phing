@@ -4,16 +4,18 @@
 <project default="init:bolt3">
 
 
-    <property name="initBolt3Description" value="init bolt3 application" override="true"/>
-    <property name="initBolt3Url" value="bolt3.127.0.0.1.xip.io" override="true"/>
+    <target name="init:bolt3:init" depends="commons:init">
+        <property name="initBolt3Description" value="init bolt3 application"/>
+        <property name="initBolt3Url" value="bolt3.127.0.0.1.xip.io"/>
+    </target>
 
 
-    <target name="init:bolt3:help">
+    <target name="init:bolt3:help" depends="init:bolt3:init">
         <echo message="${initBolt3Description}"/>
     </target>
 
 
-    <target name="init:bolt3" depends="init:bolt3:before, init:bolt3:main, init:bolt3:after">
+    <target name="init:bolt3" depends="init:bolt3:init, init:bolt3:before, init:bolt3:main, init:bolt3:after">
         <echo message="browse application after docker start"/>
         <echo message="${initBolt3Url}"/>
     </target>

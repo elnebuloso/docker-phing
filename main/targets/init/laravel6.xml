@@ -4,16 +4,18 @@
 <project default="init:laravel6">
 
 
-    <property name="initLaravel6Description" value="init laravel application" override="true"/>
-    <property name="initLaravel6Url" value="laravel6.127.0.0.1.xip.io" override="true"/>
+    <target name="init:laravel6:init" depends="commons:init">
+        <property name="initLaravel6Description" value="init laravel application"/>
+        <property name="initLaravel6Url" value="laravel6.127.0.0.1.xip.io"/>
+    </target>
 
 
-    <target name="init:laravel6:help">
+    <target name="init:laravel6:help" depends="init:laravel6:init">
         <echo message="${initLaravel6Description}"/>
     </target>
 
 
-    <target name="init:laravel6" depends="init:laravel6:before, init:laravel6:main, init:laravel6:after">
+    <target name="init:laravel6" depends="init:laravel6:init, init:laravel6:before, init:laravel6:main, init:laravel6:after">
         <echo message="browse application after docker start"/>
         <echo message="${initLaravel6Url}"/>
     </target>

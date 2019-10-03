@@ -4,15 +4,17 @@
 <project default="report:phpmetrics">
 
 
-    <property name="reportPhpMetricsDescription" value="phpmetrics scanner, reports of phpmetrics1, phpmetrics2" override="true"/>
+    <target name="report:phpmetrics:init" depends="commons:init">
+        <property name="reportPhpMetricsDescription" value="phpmetrics scanner, reports of phpmetrics1, phpmetrics2"/>
+    </target>
 
 
-    <target name="report:phpmetrics:help">
+    <target name="report:phpmetrics:help" depends="report:phpmetrics:init">
         <echo message="${reportPhpMetricsDescription}"/>
     </target>
 
 
-    <target name="report:phpmetrics" depends="report:phpmetrics:before, report:phpmetrics:main, report:phpmetrics:after">
+    <target name="report:phpmetrics" depends="report:phpmetrics:init, report:phpmetrics:before, report:phpmetrics:main, report:phpmetrics:after">
         <echo message="successful"/>
     </target>
 

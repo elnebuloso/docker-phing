@@ -4,11 +4,13 @@
 <project default="docker:compose:up">
 
 
-    <property name="dockerComposeUpDescription" value="start docker compose stack" override="true"/>
-    <property name="dockerComposeUpOptions" value="--build --remove-orphans -d"/>
+    <target name="docker:compose:up:init" depends="commons:init">
+        <property name="dockerComposeUpDescription" value="start docker compose stack"/>
+        <property name="dockerComposeUpOptions" value="--build --remove-orphans -d"/>
+    </target>
 
 
-    <target name="docker:compose:up:help">
+    <target name="docker:compose:up:help" depends="docker:compose:up:init">
         <echo message="${dockerComposeUpDescription}"/>
 
         <echo message=""/>
@@ -18,7 +20,7 @@
     </target>
 
 
-    <target name="docker:compose:up" depends="docker:compose:up:before, docker:compose:up:main, docker:compose:up:after">
+    <target name="docker:compose:up" depends="docker:compose:up:init, docker:compose:up:before, docker:compose:up:main, docker:compose:up:after">
         <echo message="successful"/>
     </target>
 

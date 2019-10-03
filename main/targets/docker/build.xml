@@ -4,14 +4,16 @@
 <project default="docker:build">
 
 
-    <property name="dockerBuildDescription" value="build an image from the projects dockerfile" override="true"/>
-    <property name="dockerImageName" value="${projectName}"/>
-    <property name="dockerBuildOptions" value="--pull --rm"/>
-    <property name="dockerBuildFile" value="Dockerfile"/>
-    <property name="dockerBuildContext" value="."/>
+    <target name="docker:build:init" depends="commons:init">
+        <property name="dockerBuildDescription" value="build an image from the projects dockerfile"/>
+        <property name="dockerImageName" value="${projectName}"/>
+        <property name="dockerBuildOptions" value="--pull --rm"/>
+        <property name="dockerBuildFile" value="Dockerfile"/>
+        <property name="dockerBuildContext" value="."/>
+    </target>
 
 
-    <target name="docker:build:help">
+    <target name="docker:build:help" depends="docker:build:init">
         <echo message="${dockerBuildDescription}"/>
 
         <echo message=""/>
@@ -26,7 +28,7 @@
     </target>
 
 
-    <target name="docker:build" depends="docker:build:before, docker:build:main, docker:build:after">
+    <target name="docker:build" depends="docker:build:init, docker:build:before, docker:build:main, docker:build:after">
         <echo message="successful"/>
     </target>
 

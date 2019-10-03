@@ -4,15 +4,17 @@
 <project default="clean:reports">
 
 
-    <property name="cleanReportsDescription" value="cleanup project reports directory" override="true"/>
+    <target name="clean:reports:init" depends="commons:init">
+        <property name="cleanReportsDescription" value="cleanup project reports directory"/>
+    </target>
 
 
-    <target name="clean:reports:help">
+    <target name="clean:reports:help" depends="clean:reports:init">
         <echo message="${cleanReportsDescription}"/>
     </target>
 
 
-    <target name="clean:reports" depends="clean:reports:before, clean:reports:main, clean:reports:after">
+    <target name="clean:reports" depends="clean:reports:init, clean:reports:before, clean:reports:main, clean:reports:after">
         <echo message="successful"/>
     </target>
 

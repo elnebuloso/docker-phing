@@ -4,13 +4,15 @@
 <project default="report:phpmd">
 
 
-    <property name="reportPhpMdDescription" value="php mess detection" override="true"/>
-    <property name="reportPhpMdOutput" value="${projectDirBuildReports}/phpmd" override="true"/>
-    <property name="reportPhpMdRulesets" value="cleancode,codesize,design,unusedcode"/>
-    <property name="reportPhpMdAllowedFileExtensions" value="php,phtml"/>
+    <target name="report:phpmd:init" depends="commons:init">
+        <property name="reportPhpMdDescription" value="php mess detection"/>
+        <property name="reportPhpMdOutput" value="${projectDirBuildReports}/phpmd"/>
+        <property name="reportPhpMdRulesets" value="cleancode,codesize,design,unusedcode"/>
+        <property name="reportPhpMdAllowedFileExtensions" value="php,phtml"/>
+    </target>
 
 
-    <target name="report:phpmd:help">
+    <target name="report:phpmd:help" depends="report:phpmd:init">
         <echo message="${reportPhpMdDescription}"/>
 
         <echo message=""/>
@@ -21,7 +23,7 @@
     </target>
 
 
-    <target name="report:phpmd" depends="report:phpmd:before, report:phpmd:main, report:phpmd:after">
+    <target name="report:phpmd" depends="report:phpmd:init, report:phpmd:before, report:phpmd:main, report:phpmd:after">
         <echo message="successful"/>
     </target>
 
@@ -34,7 +36,7 @@
     <target name="report:phpmd:after" hidden="true">
         <echo message="no actions defined"/>
     </target>
-    
+
 
     <target name="report:phpmd:main">
         <delete dir="${reportPhpMdOutput}"/>

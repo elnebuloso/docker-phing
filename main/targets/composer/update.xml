@@ -4,11 +4,13 @@
 <project default="composer:update">
 
 
-    <property name="composerUpdateDescription" value="composer update dependencies" override="true"/>
-    <property name="composerUpdateOptions" value=""/>
+    <target name="composer:update:init" depends="commons:init">
+        <property name="composerUpdateDescription" value="composer update dependencies"/>
+        <property name="composerUpdateOptions" value=""/>
+    </target>
 
 
-    <target name="composer:update:help">
+    <target name="composer:update:help" depends="composer:update:init">
         <echo message="${composerUpdateDescription}"/>
 
         <echo message=""/>
@@ -18,7 +20,7 @@
     </target>
 
 
-    <target name="composer:update" depends="composer:update:before, composer:update:main, composer:update:after">
+    <target name="composer:update" depends="composer:update:init, composer:update:before, composer:update:main, composer:update:after">
         <echo message="successful"/>
     </target>
 
@@ -31,7 +33,7 @@
     <target name="composer:update:after" hidden="true">
         <echo message="no actions defined"/>
     </target>
-    
+
 
     <target name="composer:update:main">
         <exec command="composer update --no-suggest --no-ansi --no-interaction ${composerUpdateOptions}" passthru="true" checkreturn="true" level="info" dir="${projectDirMainComposer}"/>

@@ -4,11 +4,13 @@
 <project default="composer:install:production">
 
 
-    <property name="composerInstallProductionDescription" value="composer install for production" override="true"/>
-    <property name="composerInstallProductionOptions" value=""/>
+    <target name="composer:install:production:init" depends="commons:init">
+        <property name="composerInstallProductionDescription" value="composer install for production"/>
+        <property name="composerInstallProductionOptions" value=""/>
+    </target>
 
 
-    <target name="composer:install:production:help">
+    <target name="composer:install:production:help" depends="composer:install:production:init">
         <echo message="${composerInstallProductionDescription}"/>
 
         <echo message=""/>
@@ -18,7 +20,7 @@
     </target>
 
 
-    <target name="composer:install:production" depends="composer:install:production:before, composer:install:production:main, composer:install:production:after">
+    <target name="composer:install:production" depends="composer:install:production:init, composer:install:production:before, composer:install:production:main, composer:install:production:after">
         <echo message="successful"/>
     </target>
 
