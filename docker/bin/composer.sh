@@ -6,10 +6,6 @@ set -e
 
 ##########################################################################################################
 
-_gather-environment 'HOME'
-
-##########################################################################################################
-
 : ${PHING_COMPOSER:=composer}
 : ${PHING_COMPOSER_CACHE_VOLUME:=phing-composer}
 : ${PHING_COMPOSER_CACHE_DIR:=/tmp}
@@ -23,7 +19,7 @@ _docker-pull-image ${PHING_COMPOSER}
 
 tty=
 tty -s && tty=--tty
-run="docker run $tty --interactive --rm --user $(id -u) --workdir $(pwd) --volume $(pwd):$(pwd) --volume ${PHING_COMPOSER_CACHE_VOLUME}-uid-$(id -u):${PHING_COMPOSER_CACHE_DIR} --env-file /tmp/env ${PHING_COMPOSER} ${PHING_COMPOSER_EXEC} $@"
+run="docker run $tty --interactive --rm --user $(id -u) --workdir $(pwd) --volume $(pwd):$(pwd) --volume ${PHING_COMPOSER_CACHE_VOLUME}-uid-$(id -u):${PHING_COMPOSER_CACHE_DIR} ${PHING_COMPOSER} ${PHING_COMPOSER_EXEC} $@"
 
 ##########################################################################################################
 

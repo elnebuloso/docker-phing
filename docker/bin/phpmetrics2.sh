@@ -6,10 +6,6 @@ set -e
 
 ##########################################################################################################
 
-_gather-environment 'HOME'
-
-##########################################################################################################
-
 : ${PHING_PHPMETRICS2:=elnebuloso/php-phpmetrics:2}
 : ${PHING_PHPMETRICS2_EXEC:=}
 
@@ -21,7 +17,7 @@ _docker-pull-image ${PHING_PHPMETRICS2}
 
 tty=
 tty -s && tty=--tty
-run="docker run $tty --interactive --rm --user $(id -u) --workdir $(pwd) --volume $(pwd):$(pwd) --env-file /tmp/env ${PHING_PHPMETRICS2} ${PHING_PHPMETRICS2_EXEC} $@"
+run="docker run $tty --interactive --rm --user $(id -u) --workdir $(pwd) --volume $(pwd):$(pwd) ${PHING_PHPMETRICS2} ${PHING_PHPMETRICS2_EXEC} $@"
 
 ##########################################################################################################
 

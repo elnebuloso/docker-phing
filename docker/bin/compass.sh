@@ -6,10 +6,6 @@ set -e
 
 ##########################################################################################################
 
-_gather-environment 'HOME'
-
-##########################################################################################################
-
 : ${PHING_COMPASS:=elnebuloso/compass:latest}
 : ${PHING_COMPASS_EXEC:=compass}
 
@@ -21,7 +17,7 @@ _docker-pull-image ${PHING_COMPASS}
 
 tty=
 tty -s && tty=--tty
-run="docker run $tty --interactive --rm --user $(id -u) --workdir $(pwd) --volume $(pwd):$(pwd) --env-file /tmp/env ${PHING_COMPASS} ${PHING_COMPASS_EXEC} $@"
+run="docker run $tty --interactive --rm --user $(id -u) --workdir $(pwd) --volume $(pwd):$(pwd) ${PHING_COMPASS} ${PHING_COMPASS_EXEC} $@"
 
 ##########################################################################################################
 

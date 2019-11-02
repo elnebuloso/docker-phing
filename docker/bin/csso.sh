@@ -6,10 +6,6 @@ set -e
 
 ##########################################################################################################
 
-_gather-environment 'HOME'
-
-##########################################################################################################
-
 : ${PHING_CSSO:=elnebuloso/csso-cli:latest}
 : ${PHING_CSSO_EXEC:=}
 
@@ -21,7 +17,7 @@ _docker-pull-image ${PHING_CSSO}
 
 tty=
 tty -s && tty=--tty
-run="docker run $tty --interactive --rm --user $(id -u) --workdir $(pwd) --volume $(pwd):$(pwd) --env-file /tmp/env ${PHING_CSSO} ${PHING_CSSO_EXEC} $@"
+run="docker run $tty --interactive --rm --user $(id -u) --workdir $(pwd) --volume $(pwd):$(pwd) ${PHING_CSSO} ${PHING_CSSO_EXEC} $@"
 
 ##########################################################################################################
 

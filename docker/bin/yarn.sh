@@ -6,10 +6,6 @@ set -e
 
 ##########################################################################################################
 
-_gather-environment 'HOME'
-
-##########################################################################################################
-
 : ${PHING_YARN:=node:lts-alpine}
 : ${PHING_YARN_CACHE_VOLUME:=phing-yarn}
 : ${PHING_YARN_CACHE_DIR:=/tmp}
@@ -23,7 +19,7 @@ _docker-pull-image ${PHING_YARN}
 
 tty=
 tty -s && tty=--tty
-run="docker run $tty --interactive --rm --user $(id -u) --workdir $(pwd) --volume $(pwd):$(pwd) --volume ${PHING_YARN_CACHE_VOLUME}-uid-$(id -u):${PHING_YARN_CACHE_DIR} --env YARN_CACHE_FOLDER=/tmp --env-file /tmp/env ${PHING_YARN} ${PHING_YARN_EXEC} $@"
+run="docker run $tty --interactive --rm --user $(id -u) --workdir $(pwd) --volume $(pwd):$(pwd) --volume ${PHING_YARN_CACHE_VOLUME}-uid-$(id -u):${PHING_YARN_CACHE_DIR} --env YARN_CACHE_FOLDER=/tmp ${PHING_YARN} ${PHING_YARN_EXEC} $@"
 
 ##########################################################################################################
 
