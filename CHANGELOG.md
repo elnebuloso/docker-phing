@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [2.10.0] - 2019-11-02
+- removed gather environment variables
+
+
 ## [2.9.0] - 2019-10-04
 - removed rancher1 targets
 - commons:init added

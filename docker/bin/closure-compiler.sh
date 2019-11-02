@@ -6,10 +6,6 @@ set -e
 
 ##########################################################################################################
 
-_gather-environment 'HOME'
-
-##########################################################################################################
-
 : ${PHING_CLOSURE_COMPILER:=elnebuloso/google-closure-compiler:latest}
 : ${PHING_CLOSURE_COMPILER_EXEC:=}
 
@@ -21,7 +17,7 @@ _docker-pull-image ${PHING_CLOSURE_COMPILER}
 
 tty=
 tty -s && tty=--tty
-run="docker run $tty --interactive --rm --user $(id -u) --workdir $(pwd) --volume $(pwd):$(pwd) --env-file /tmp/env ${PHING_CLOSURE_COMPILER} ${PHING_CLOSURE_COMPILER_EXEC} $@"
+run="docker run $tty --interactive --rm --user $(id -u) --workdir $(pwd) --volume $(pwd):$(pwd) ${PHING_CLOSURE_COMPILER} ${PHING_CLOSURE_COMPILER_EXEC} $@"
 
 ##########################################################################################################
 

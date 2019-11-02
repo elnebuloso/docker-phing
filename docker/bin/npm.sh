@@ -6,10 +6,6 @@ set -e
 
 ##########################################################################################################
 
-_gather-environment 'HOME'
-
-##########################################################################################################
-
 : ${PHING_NPM:=node:lts-alpine}
 : ${PHING_NPM_CACHE_VOLUME:=phing-npm}
 : ${PHING_NPM_CACHE_DIR:=/tmp/npm/cache}
@@ -23,7 +19,7 @@ _docker-pull-image ${PHING_NPM}
 
 tty=
 tty -s && tty=--tty
-run="docker run $tty --interactive --rm --user $(id -u) --workdir $(pwd) --volume $(pwd):$(pwd) --volume ${PHING_NPM_CACHE_VOLUME}-uid-$(id -u):${PHING_NPM_CACHE_DIR} --env-file /tmp/env ${PHING_NPM} ${PHING_NPM_EXEC} $@"
+run="docker run $tty --interactive --rm --user $(id -u) --workdir $(pwd) --volume $(pwd):$(pwd) --volume ${PHING_NPM_CACHE_VOLUME}-uid-$(id -u):${PHING_NPM_CACHE_DIR} ${PHING_NPM} ${PHING_NPM_EXEC} $@"
 
 ##########################################################################################################
 
