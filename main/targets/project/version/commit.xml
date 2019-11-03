@@ -6,6 +6,7 @@
 
     <target name="project:version:commit:init" depends="commons:init">
         <property name="projectVersionCommitDescription" value="commit the project version back to the repository"/>
+        <property name="branchName" value="master"/>
         <property name="createTag" value="1"/>
     </target>
 
@@ -14,9 +15,10 @@
         <echo message="${projectVersionCommitDescription}"/>
 
         <echo message=""/>
-        <echo message="property     value"/>
+        <echo message="property      value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="createTag    ${createTag} [1|0]"/>
+        <echo message="branchName    ${branchName}"/>
+        <echo message="createTag     ${createTag} [1|0]"/>
     </target>
 
 
@@ -36,10 +38,10 @@
 
 
     <target name="project:version:commit:main">
-        <exec command="git pull origin master" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
+        <exec command="git pull origin ${branchName}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
         <exec command="git add VERSION" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
-        <exec command="git commit -m &quot;git:auto:version ${projectVersion}&quot;" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
-        <exec command="git push origin HEAD:master" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
+        <exec command="git commit -m &quot;[ci skip] phing project:version:commit ${projectVersion}&quot;" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
+        <exec command="git push origin HEAD:${branchName}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
 
         <if>
             <equals arg1="${createTag}" arg2="1"/>
