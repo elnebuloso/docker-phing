@@ -1,8 +1,11 @@
-FROM ubuntu:16.04
+FROM ubuntu:16.04 as prod
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN echo "install system" \
+#
+# install system dependencies
+#
+RUN echo "install system dependencies" \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
         software-properties-common \
@@ -11,11 +14,12 @@ RUN echo "install system" \
         locales-all \
         curl \
         git \
-        subversion \
-		rsync \
+        p7zip-full \
 		ssh-client \
-		p7zip-full \
-		nano \
+		rsync \
+		zip \
+		unzip \
+		dos2unix \
     && locale-gen en_US.UTF-8 \
     && echo 'alias l="ls -alhF"' > /root/.bash_aliases \
     && apt-get -y autoremove \
@@ -27,6 +31,9 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
+#
+# install php
+#
 RUN echo "install php" \
     && add-apt-repository ppa:ondrej/php \
     && apt-get update \
@@ -39,6 +46,7 @@ RUN echo "install php" \
         php7.2-xml \
         php7.2-zip \
         php7.3-cli \
+        php7.4-cli \
     && update-alternatives --set php /usr/bin/php7.2 \
     && update-alternatives --set phar /usr/bin/phar7.2 \
     && update-alternatives --set phar.phar /usr/bin/phar.phar7.2 \
@@ -50,7 +58,6 @@ RUN echo "install php" \
         pear/archive_tar \
         pear/http_request2 \
         pear/versioncontrol_git \
-        pear/versioncontrol_svn \
         sensiolabs/security-checker \
     && ln -s /srv/composer/vendor/bin/phing /usr/local/bin/phing \
     && ln -s /srv/composer/vendor/bin/security-checker /usr/local/bin/security-checker \
@@ -59,9 +66,14 @@ RUN echo "install php" \
     && apt-get -y clean \
     && rm -rf /tmp/*
 
+#
+# install docker
+#
+ARG DOCKER_COMPOSE_VERSION=1.25.1
 RUN echo "install docker" \
-    && curl https://get.docker.com | sh \
-    && curl -L https://github.com/docker/compose/releases/download/1.23.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose \
+    && curl -sSL https://get.docker.com -o get-docker.sh \
+    && sh get-docker.sh \
+    && curl -sSL https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose \
     && chmod +x /usr/local/bin/docker-compose \
     && apt-get -y autoremove \
     && apt-get -y autoclean \
@@ -77,3 +89,10 @@ RUN echo "configure /usr/local/bin" \
     && chmod +x /usr/local/bin/*
 
 CMD ["bash"]
+
+#
+# for local build and development
+#
+FROM prod as dev
+
+ADD main /srv/phing

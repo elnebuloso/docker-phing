@@ -2,6 +2,7 @@
 /build
 /main/vendor
 
+/test/build
 /test/main/.sass-cache
 /test/main/node_modules
 /test/main/vendor
