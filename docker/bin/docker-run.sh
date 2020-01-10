@@ -6,13 +6,20 @@ set -e
 
 ##########################################################################################################
 
-: ${PHING_COMPASS:=elnebuloso/compass:latest}
-: ${PHING_COMPASS_EXEC:=compass}
+: ${PHING_VERBOSE_LEVEL:=0}
 
 ##########################################################################################################
 
-docker-pull ${PHING_COMPASS}
-docker-run ${PHING_COMPASS} ${PHING_COMPASS_EXEC} $@
+tty=
+tty -s && tty=--tty
+run="docker run $tty --interactive --rm --user $(id -u) --workdir $(pwd) --volume $(pwd):$(pwd) $@"
 
 ##########################################################################################################
 
+if [[ ${PHING_VERBOSE_LEVEL} -gt 0 ]]; then
+    echo "***** running docker: ${run} *****"
+fi
+
+${run}
+
+##########################################################################################################

@@ -11,16 +11,7 @@ set -e
 
 ##########################################################################################################
 
-_docker-pull-image ${PHING_SONARQUBE_SCANNER}
-
-##########################################################################################################
-
-tty=
-tty -s && tty=--tty
-run="docker run $tty --interactive --rm --user $(id -u) --workdir $(pwd) --volume $(pwd):$(pwd) ${PHING_SONARQUBE_SCANNER} ${PHING_SONARQUBE_SCANNER_EXEC} $@"
-
-##########################################################################################################
-
-_docker-run-image "${run}"
+docker-pull ${PHING_SONARQUBE_SCANNER}
+docker-run ${PHING_SONARQUBE_SCANNER} ${PHING_SONARQUBE_SCANNER_EXEC} $@
 
 ##########################################################################################################
