@@ -11,6 +11,8 @@
     <!-- bundle:project -->
     <patternset id="patternsetBundleProject">
         <include name="${projectFolderMain}/**"/>
+        <exclude name="${projectFolderMain}/.env"/>
+        <exclude name="${projectFolderMain}/.env.dist"/>
         <exclude name="**/.sass-cache/**"/>
         <exclude name="**/node_modules/**"/>
     </patternset>
@@ -18,7 +20,8 @@
 
     <!-- test:phplint -->
     <patternset id="patternsetTestPhpLint">
-        <include name="src/**/*.php"/>
+        <include name="**/*.php"/>
+        <exclude name="vendor/**"/>
     </patternset>
 
 
@@ -43,7 +46,6 @@
     <!-- report:phploc -->
     <patternset id="patternsetReportPhpLoc">
         <include name="src/**/*.php"/>
-        <include name="tests/**/*.php"/>
     </patternset>
 
 

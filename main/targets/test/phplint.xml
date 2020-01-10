@@ -46,8 +46,8 @@
         <mkdir dir="${projectDirBuildTmp}"/>
 
         <phplint interpreter="php${testPhpLintInterpreter}" tofile="${testPhpLintOutput}/${testPhpLintInterpreter}/report.txt" haltonfailure="${testPhpLintHaltOnFailure}" cachefile="${projectDirBuildTmp}/phplint.cache.${testPhpLintInterpreter}" level="info">
-            <fileset dir="${project.dir.main}">
-                <patternset refid="patternset.test.phplint"/>
+            <fileset dir="${projectDirMain}">
+                <patternset refid="patternsetTestPhpLint"/>
             </fileset>
         </phplint>
     </target>

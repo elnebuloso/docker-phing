@@ -21,52 +21,42 @@
     <!-- test:phplint -->
     <patternset id="patternsetTestPhpLint">
         <include name="**/*.php"/>
-        <include name="tests/**"/>
         <exclude name="vendor/**"/>
     </patternset>
 
 
     <!-- report:phpcpd -->
     <patternset id="patternsetReportPhpCpd">
-        <include name="**/*.php"/>
-        <exclude name="tests/**"/>
-        <exclude name="vendor/**"/>
+        <include name="app/**/*.php"/>
     </patternset>
 
 
     <!-- report:phpcs -->
     <patternset id="patternsetReportPhpCs">
-        <include name="**/*.php"/>
-        <exclude name="tests/**"/>
-        <exclude name="vendor/**"/>
+        <include name="app/**/*.php"/>
     </patternset>
 
 
     <!-- report:phpdepend -->
     <patternset id="patternsetReportPhpDepend">
-        <include name="**/*.php"/>
-        <exclude name="tests/**"/>
-        <exclude name="vendor/**"/>
+        <include name="app/**/*.php"/>
     </patternset>
 
 
     <!-- report:phploc -->
     <patternset id="patternsetReportPhpLoc">
-        <include name="**/*.php"/>
-        <exclude name="vendor/**"/>
+        <include name="app/**/*.php"/>
     </patternset>
 
 
     <!-- report:phpmd -->
     <patternset id="patternsetReportPhpMd">
-        <include name="**/*.php"/>
-        <exclude name="tests/**"/>
-        <exclude name="vendor/**"/>
+        <include name="app/**/*.php"/>
     </patternset>
 
 
     <!-- report:phpmetrics -->
-    <property name="reportPhpMetricsDirectories" value="src"/>
+    <property name="reportPhpMetricsDirectories" value="app"/>
 
 
     <target name="start">

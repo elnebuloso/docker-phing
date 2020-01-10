@@ -19,7 +19,6 @@
     <!-- test:phplint -->
     <patternset id="patternsetTestPhpLint">
         <include name="**/*.php"/>
-        <include name="tests/**"/>
         <exclude name="vendor/**"/>
     </patternset>
 
