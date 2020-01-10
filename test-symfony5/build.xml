@@ -8,7 +8,7 @@
     <property file="build.properties.local"/>
 
 
-    <import file="/srv/phing/commons/symfony4.xml"/>
+    <import file="/srv/phing/commons/symfony5.xml"/>
 
 
     <target name="help" depends="commons:help">
@@ -29,7 +29,7 @@
             </fileset>
         </delete>
         <delete dir="${projectDirMain}"/>
-        <phingcall target="init:symfony4"/>
+        <phingcall target="init:symfony5"/>
     </target>
 
 
