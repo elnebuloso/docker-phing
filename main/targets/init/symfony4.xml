@@ -50,7 +50,6 @@
             <or>
                 <equals arg1="${type}" arg2="min"/>
                 <equals arg1="${type}" arg2="api"/>
-                <equals arg1="${type}" arg2="web"/>
             </or>
             <then>
                 <exec command="composer create-project --prefer-dist --remove-vcs symfony/skeleton:^4 ${projectDirMain}" passthru="true" checkreturn="true" level="info"/>
@@ -60,26 +59,32 @@
         <!-- https://packagist.org/packages/symfony/website-skeleton -->
         <!-- https://github.com/symfony/website-skeleton -->
         <if>
-            <equals arg1="${type}" arg2="full"/>
+            <equals arg1="${type}" arg2="max"/>
             <then>
                 <exec command="composer create-project --prefer-dist --remove-vcs symfony/website-skeleton:^4 ${projectDirMain}" passthru="true" checkreturn="true" level="info"/>
             </then>
         </if>
 
-        <delete dir="${projectDirMain}/.git" quiet="true"/>
+        <if>
+            <not>
+                <equals arg1="${type}" arg2=""/>
+            </not>
+            <then>
+                <delete dir="${projectDirMain}/.git" quiet="true"/>
 
-        <copy todir="${projectRoot}" overwrite="true">
-            <fileset dir="${phingCommonsRoot}/resources/init/symfony4/0">
-                <include name="**"/>
-            </fileset>
-            <filterchain>
-                <expandproperties/>
-            </filterchain>
-        </copy>
+                <copy todir="${projectRoot}" overwrite="true">
+                    <fileset dir="${phingCommonsRoot}/resources/init/symfony4/0">
+                        <include name="**"/>
+                    </fileset>
+                    <filterchain>
+                        <expandproperties/>
+                    </filterchain>
+                </copy>
 
-        <my-configure-composer selector="name" value="my/${projectName}"/>
-        <my-configure-composer selector="config.platform.php" value="7.3"/>
-        <phingcall target="composer:update"/>
+                <my-configure-composer selector="name" value="my/${projectName}"/>
+                <phingcall target="composer:update"/>
+            </then>
+        </if>
 
         <!-- https://flex.symfony.com -->
         <!-- https://symfony.com/doc/current/quick_tour/flex_recipes.html -->
@@ -97,40 +102,64 @@
 
         <if>
             <or>
-                <equals arg1="${type}" arg2="web"/>
-                <equals arg1="${type}" arg2="full"/>
+                <equals arg1="${type}" arg2="min"/>
+                <equals arg1="${type}" arg2="max"/>
             </or>
             <then>
-                <phingcall target="composer:require">
-                    <property name="package" value="annotations"/>
-                    <property name="options" value=""/>
-                </phingcall>
-                <phingcall target="composer:require">
-                    <property name="package" value="twig"/>
-                    <property name="options" value=""/>
-                </phingcall>
-                <phingcall target="composer:require">
-                    <property name="package" value="twig-extensions"/>
-                    <property name="options" value=""/>
-                </phingcall>
-                <phingcall target="composer:require">
-                    <property name="package" value="profiler"/>
-                    <property name="options" value="--dev"/>
-                </phingcall>
-            </then>
-        </if>
+                <input propertyname="install" defaultValue="y">install profiler</input>
+                <if>
+                    <equals arg1="${install}" arg2="y"/>
+                    <then>
+                        <phingcall target="composer:require">
+                            <property name="package" value="profiler"/>
+                            <property name="options" value="--dev"/>
+                        </phingcall>
+                    </then>
+                </if>
 
-        <if>
-            <equals arg1="${type}" arg2="full"/>
-            <then>
-                <phingcall target="composer:require">
-                    <property name="package" value="webpack-encore"/>
-                    <property name="options" value=""/>
-                </phingcall>
-                <phingcall target="composer:require">
-                    <property name="package" value="maker-bundle"/>
-                    <property name="options" value="--dev"/>
-                </phingcall>
+                <input propertyname="install" defaultValue="n">install annotations</input>
+                <if>
+                    <equals arg1="${install}" arg2="y"/>
+                    <then>
+                        <phingcall target="composer:require">
+                            <property name="package" value="annotations"/>
+                            <property name="options" value=""/>
+                        </phingcall>
+                    </then>
+                </if>
+
+                <input propertyname="install" defaultValue="n">install twig</input>
+                <if>
+                    <equals arg1="${install}" arg2="y"/>
+                    <then>
+                        <phingcall target="composer:require">
+                            <property name="package" value="twig"/>
+                            <property name="options" value=""/>
+                        </phingcall>
+                    </then>
+                </if>
+
+                <input propertyname="install" defaultValue="n">install webpack-encore</input>
+                <if>
+                    <equals arg1="${install}" arg2="y"/>
+                    <then>
+                        <phingcall target="composer:require">
+                            <property name="package" value="webpack-encore"/>
+                            <property name="options" value=""/>
+                        </phingcall>
+                    </then>
+                </if>
+
+                <input propertyname="install" defaultValue="n">install maker-bundle</input>
+                <if>
+                    <equals arg1="${install}" arg2="y"/>
+                    <then>
+                        <phingcall target="composer:require">
+                            <property name="package" value="maker-bundle"/>
+                            <property name="options" value="--dev"/>
+                        </phingcall>
+                    </then>
+                </if>
             </then>
         </if>
     </target>
