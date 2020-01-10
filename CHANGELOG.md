@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - updated laravel6 application support
 - updated lumen5 application support
 - updated lumen6 application support
-
+- updated symfony4 application support
 
 ## [2.10.1] - 2019-11-03
 - bugfix project:version:commit for branches

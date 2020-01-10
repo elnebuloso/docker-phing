@@ -17,7 +17,7 @@
     </target>
 
 
-    <target name="init:symfony4" depends="init:symfony4:init, init:symfony4:before, init:symfony4:main, init:symfony4:after">
+    <target name="init:symfony4" depends="clean:dist, init:symfony4:init, init:symfony4:before, init:symfony4:main, init:symfony4:after">
         <echo message="browse application after docker start, using phing start"/>
         <echo message="${initSymfony4Url}"/>
     </target>
@@ -40,7 +40,7 @@
             </condition>
         </fail>
 
-        <input propertyname="type" defaultValue="min">type (min|api|web|full)</input>
+        <input propertyname="type" defaultValue="">type (min|api|max)</input>
 
         <!-- https://symfony.com/doc/current/setup.html -->
 
@@ -117,7 +117,7 @@
                     </then>
                 </if>
 
-                <input propertyname="install" defaultValue="n">install annotations</input>
+                <input propertyname="install" defaultValue="y">install annotations</input>
                 <if>
                     <equals arg1="${install}" arg2="y"/>
                     <then>
@@ -128,7 +128,7 @@
                     </then>
                 </if>
 
-                <input propertyname="install" defaultValue="n">install twig</input>
+                <input propertyname="install" defaultValue="y">install twig</input>
                 <if>
                     <equals arg1="${install}" arg2="y"/>
                     <then>
@@ -139,7 +139,7 @@
                     </then>
                 </if>
 
-                <input propertyname="install" defaultValue="n">install webpack-encore</input>
+                <input propertyname="install" defaultValue="y">install webpack-encore</input>
                 <if>
                     <equals arg1="${install}" arg2="y"/>
                     <then>
@@ -150,7 +150,7 @@
                     </then>
                 </if>
 
-                <input propertyname="install" defaultValue="n">install maker-bundle</input>
+                <input propertyname="install" defaultValue="y">install maker-bundle</input>
                 <if>
                     <equals arg1="${install}" arg2="y"/>
                     <then>
