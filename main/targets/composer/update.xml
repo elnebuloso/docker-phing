@@ -36,7 +36,9 @@
 
 
     <target name="composer:update:main">
-        <exec command="composer update --no-suggest --no-ansi --no-interaction ${composerUpdateOptions}" passthru="true" checkreturn="true" level="info" dir="${projectDirMainComposer}"/>
+        <phingcall target="composer:command">
+            <property name="composerCommand" value="composer update --no-suggest --no-ansi --no-interaction ${composerUpdateOptions}" override="true"/>
+        </phingcall>
     </target>
 
 

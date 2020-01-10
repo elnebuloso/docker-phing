@@ -16,6 +16,8 @@
         <echo message="projectFolderBuildTmp        ${projectFolderBuildTmp}"/>
         <echo message="projectFolderBuildDist       ${projectFolderBuildDist}"/>
         <echo message="projectFolderBuildReports    ${projectFolderBuildReports}"/>
+        <echo message="phpunit                      dockerception|projectDocker|projectDockerCompose: ${phpunit} "/>
+        <echo message="composer                     dockerception|projectDocker|projectDockerCompose: ${composer} "/>
         <echo message=""/>
         <echo message="property                     value [do not edit directly]"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>

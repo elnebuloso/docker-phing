@@ -4,8 +4,10 @@
 <project default="composer:install:production">
 
 
+    <property name="composerInstallProductionDescription" value="composer install for production" override="true"/>
+
+
     <target name="composer:install:production:init">
-        <property name="composerInstallProductionDescription" value="composer install for production"/>
         <property name="composerInstallProductionOptions" value=""/>
     </target>
 
@@ -36,7 +38,9 @@
 
 
     <target name="composer:install:production:main">
-        <exec command="composer install --no-suggest --no-ansi --no-interaction --no-dev --optimize-autoloader ${composerInstallProductionOptions}" passthru="true" checkreturn="true" level="info" dir="${projectDirMainComposer}"/>
+        <phingcall target="composer:command">
+            <property name="composerCommand" value="composer install --no-suggest --no-ansi --no-interaction --no-dev --optimize-autoloader ${composerInstallProductionOptions}" override="true"/>
+        </phingcall>
     </target>
 
 

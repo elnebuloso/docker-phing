@@ -19,4 +19,13 @@ FROM prod as dev
 ENV PHPEXT_ENABLE_XDEBUG yes
 ADD https://phar.phpunit.de/phpunit-8.phar /usr/local/bin/phpunit
 ADD https://getcomposer.org/composer-stable.phar /usr/local/bin/composer
-RUN chmod +x /usr/local/bin/phpunit && chmod +x /usr/local/bin/composer
+RUN echo "install development dependencies" \
+    && chmod +x /usr/local/bin/phpunit \
+    && chmod +x /usr/local/bin/composer \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+		unzip \
+    && apt-get -y autoremove \
+    && apt-get -y autoclean \
+    && apt-get -y clean \
+    && rm -rf /tmp/*

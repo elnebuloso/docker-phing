@@ -84,6 +84,10 @@
     <resolvepath propertyName="projectDirBuildReports" file="${projectDirBuildReports}"/>
 
 
+    <property name="phpunit" value="projectDocker"/>
+    <property name="composer" value="projectDocker"/>
+
+
     <target name="commons:help" depends="commons:help:version, bundle:help, clean:help, compass:help, composer:help, docker:help, init:help, npm:help, report:help, test:help, project:help"/>
 
 
