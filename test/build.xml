@@ -29,6 +29,10 @@
 
 
     <target name="test:run:bin">
+        <exec command="docker --version" passthru="true" checkreturn="true" level="info"/>
+        <exec command="docker-compose --version" passthru="true" checkreturn="true" level="info"/>
+
+        <!-- dockerception -->
         <exec command="closure-compiler --version" passthru="true" checkreturn="true" level="info"/>
         <exec command="compass --version" passthru="true" checkreturn="true" level="info"/>
         <exec command="composer --version" passthru="true" checkreturn="true" level="info"/>
@@ -45,7 +49,6 @@
         <phingcall target="clean:dist"/>
         <phingcall target="clean:tmp"/>
         <phingcall target="clean:reports"/>
-
         <phingcall target="test:run:phing:TarTask"/>
         <phingcall target="test:run:phing:ZipTask"/>
         <phingcall target="test:run:phing:HttpGetTask"/>
@@ -76,8 +79,6 @@
 
 
     <target name="test:run:phing:commons:composer">
-        <delete dir="${projectDirMainComposer}/vendor"/>
-        <delete file="${projectDirMainComposer}/composer.lock"/>
         <phingcall target="composer:update"/>
         <phingcall target="composer:install"/>
         <phingcall target="composer:install:production"/>
@@ -85,16 +86,18 @@
 
 
     <target name="test:run:phing:commons:compass">
-        <delete dir="${projectDirMainNpm}/.sass-cache"/>
         <phingcall target="compass:clean"/>
         <phingcall target="compass:compile"/>
     </target>
 
 
     <target name="test:run:phing:commons:npm">
-        <delete dir="${projectDirMainNpm}/node_modules"/>
-        <delete file="${projectDirMainNpm}/package-lock.json"/>
-        <phingcall target="npm:install"/>
+        <phingcall target="npm:install">
+            <property name="npmExecutable" value="npm"/>
+        </phingcall>
+        <phingcall target="npm:install">
+            <property name="npmExecutable" value="yarn"/>
+        </phingcall>
     </target>
 
 
@@ -110,24 +113,6 @@
         <phingcall target="report:phploc"/>
         <phingcall target="report:phpmd"/>
         <phingcall target="report:phpmetrics"/>
-    </target>
-
-
-    <target name="test:commons:init">
-        <phingcall target="commons:help">
-            <property name="projectFolderMainNpm" value="public/foo"/>
-            <property name="projectFolderMainComposer" value="public/bar"/>
-            <property name="projectFolderMainCompass" value="public/baz"/>
-        </phingcall>
-    </target>
-
-
-    <target name="test:npm:run:init">
-        <phingcall target="npm:run:help">
-            <property name="projectFolderMainNpm" value="public/foo"/>
-            <property name="npmRunScript" value="bar"/>
-            <property name="npmExecutable" value="baz"/>
-        </phingcall>
     </target>
 
 
