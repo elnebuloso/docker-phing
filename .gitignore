@@ -2,16 +2,9 @@
 /build
 /main/vendor
 
-/test/*
-!/test/main
-/test/.scannerwork
 /test/main/.sass-cache
 /test/main/node_modules
 /test/main/vendor
-!/test/build.env
-!/test/build.properties
-!/test/build.xml
-!/test/VERSION
 
 /test-laravel5/*
 !/test-laravel5/build.env
