@@ -17,7 +17,7 @@
     </target>
 
 
-    <target name="init:lumen6" depends="init:lumen6:init, init:lumen6:before, init:lumen6:main, init:lumen6:after">
+    <target name="init:lumen6" depends="clean:dist, init:lumen6:init, init:lumen6:before, init:lumen6:main, init:lumen6:after">
         <echo message="browse application after docker start, using phing start"/>
         <echo message="${initLumen6Url}"/>
     </target>
@@ -34,7 +34,7 @@
 
 
     <target name="init:lumen6:main">
-        <fail message="${projectDirMain} exists for creating laravel-lumen6 application">
+        <fail message="${projectDirMain} exists for creating lumen6 application">
             <condition>
                 <available file="${projectDirMain}" type="dir"/>
             </condition>
@@ -53,7 +53,6 @@
         </copy>
 
         <my-configure-composer selector="name" value="my/${projectName}"/>
-        <my-configure-composer selector="config.platform.php" value="7.3"/>
         <phingcall target="composer:update"/>
     </target>
 

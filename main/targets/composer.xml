@@ -13,7 +13,7 @@
 
     <target name="composer:init">
         <property name="composerDockerFile" value="${projectRoot}/Dockerfile"/>
-        <property name="composerDockerBuildArgs" value="--pull --rm"/>
+        <property name="composerDockerBuildArgs" value="--rm --pull --target dev"/>
         <property name="composerDockerBuildContext" value="."/>
         <property name="composerDockerRunArgs" value="--rm"/>
     </target>
@@ -48,7 +48,7 @@
         <if>
             <equals arg1="${composer}" arg2="projectDocker"/>
             <then>
-                <exec command="docker build ${composerDockerBuildArgs} --tag ${projectName}-composer --file ${composerDockerFile} ${composerDockerBuildContext}" passthru="false" checkreturn="true" level="info" dir="${projectRoot}"/>
+                <exec command="docker build ${composerDockerBuildArgs} --tag ${projectName}-composer --file ${composerDockerFile} ${composerDockerBuildContext}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
                 <exec command="docker-run ${composerDockerRunArgs} ${projectName}-composer ${composerCommand}" passthru="true" checkreturn="true" level="info" dir="${projectDirMainComposer}"/>
             </then>
         </if>

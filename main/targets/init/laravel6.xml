@@ -17,7 +17,7 @@
     </target>
 
 
-    <target name="init:laravel6" depends="init:laravel6:init, init:laravel6:before, init:laravel6:main, init:laravel6:after">
+    <target name="init:laravel6" depends="clean:dist, init:laravel6:init, init:laravel6:before, init:laravel6:main, init:laravel6:after">
         <echo message="browse application after docker start, using phing start"/>
         <echo message="${initLaravel6Url}"/>
     </target>
@@ -34,7 +34,7 @@
 
 
     <target name="init:laravel6:main">
-        <fail message="${projectDirMain} exists for creating laravel application">
+        <fail message="${projectDirMain} exists for creating laravel6 application">
             <condition>
                 <available file="${projectDirMain}" type="dir"/>
             </condition>
@@ -53,7 +53,6 @@
         </copy>
 
         <my-configure-composer selector="name" value="my/${projectName}"/>
-        <my-configure-composer selector="config.platform.php" value="7.3"/>
         <phingcall target="composer:update"/>
     </target>
 

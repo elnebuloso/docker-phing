@@ -12,6 +12,6 @@ services:
     build:
       context: .
     volumes:
-      - ./main:/var/www/main
+      - ./main:/app/main
     environment:
       VIRTUAL_HOST: ${initSymfony4Url}
