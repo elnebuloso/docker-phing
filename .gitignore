@@ -1,19 +1,17 @@
-.idea
-
-/build/*
-!/build/dist/.gitignore
-
+/.idea
+/build
 /main/vendor
 
-/test/build/*
+/test/*
+!/test/main
+/test/.scannerwork
 /test/main/.sass-cache
-/test/main/css
 /test/main/node_modules
 /test/main/vendor
-/test/main/composer.lock
-/test/main/package-lock.json
-/test/sonar-project.properties
-/test/.scannerwork
+!/test/build.env
+!/test/build.properties
+!/test/build.xml
+!/test/VERSION
 
 /test-laravel5/*
 !/test-laravel5/build.env
