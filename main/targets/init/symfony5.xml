@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="init:symfony5">
+
+
+    <property name="initSymfony5Description" value="init symfony5 application" override="true"/>
+
+
+    <target name="init:symfony5:init">
+        <property name="initSymfony5Url" value="symfony5.127.0.0.1.xip.io"/>
+    </target>
+
+
+    <target name="init:symfony5:help" depends="init:symfony5:init">
+        <echo message="${initSymfony5Description}"/>
+    </target>
+
+
+    <target name="init:symfony5" depends="clean:dist, init:symfony5:init, init:symfony5:before, init:symfony5:main, init:symfony5:after">
+        <echo message="browse application after docker start, using phing start"/>
+        <echo message="${initSymfony5Url}"/>
+    </target>
+
+
+    <target name="init:symfony5:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="init:symfony5:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="init:symfony5:main">
+        <fail message="${projectDirMain} exists for creating symfony5 application">
+            <condition>
+                <available file="${projectDirMain}" type="dir"/>
+            </condition>
+        </fail>
+
+        <input propertyname="type" defaultValue="">type (min|api|max)</input>
+
+        <!-- https://symfony.com/doc/current/setup.html -->
+
+        <!-- https://packagist.org/packages/symfony/skeleton -->
+        <!-- https://github.com/symfony/skeleton -->
+        <if>
+            <or>
+                <equals arg1="${type}" arg2="min"/>
+                <equals arg1="${type}" arg2="api"/>
+            </or>
+            <then>
+                <exec command="composer create-project --prefer-dist --remove-vcs symfony/skeleton:^5 ${projectDirMain}" passthru="true" checkreturn="true" level="info"/>
+            </then>
+        </if>
+
+        <!-- https://packagist.org/packages/symfony/website-skeleton -->
+        <!-- https://github.com/symfony/website-skeleton -->
+        <if>
+            <equals arg1="${type}" arg2="max"/>
+            <then>
+                <exec command="composer create-project --prefer-dist --remove-vcs symfony/website-skeleton:^5 ${projectDirMain}" passthru="true" checkreturn="true" level="info"/>
+            </then>
+        </if>
+
+        <if>
+            <not>
+                <equals arg1="${type}" arg2=""/>
+            </not>
+            <then>
+                <delete dir="${projectDirMain}/.git" quiet="true"/>
+
+                <copy todir="${projectRoot}" overwrite="true">
+                    <fileset dir="${phingCommonsRoot}/resources/init/symfony5/0">
+                        <include name="**"/>
+                    </fileset>
+                    <filterchain>
+                        <expandproperties/>
+                    </filterchain>
+                </copy>
+
+                <my-configure-composer selector="name" value="my/${projectName}"/>
+                <phingcall target="composer:update"/>
+            </then>
+        </if>
+
+        <!-- https://flex.symfony.com -->
+        <!-- https://symfony.com/doc/current/quick_tour/flex_recipes.html -->
+        <!-- https://symfony.com/doc/bundles/ -->
+
+        <if>
+            <equals arg1="${type}" arg2="api"/>
+            <then>
+                <phingcall target="composer:require">
+                    <property name="package" value="api"/>
+                    <property name="options" value=""/>
+                </phingcall>
+            </then>
+        </if>
+
+        <if>
+            <or>
+                <equals arg1="${type}" arg2="min"/>
+                <equals arg1="${type}" arg2="max"/>
+            </or>
+            <then>
+                <input propertyname="install" defaultValue="y">install profiler</input>
+                <if>
+                    <equals arg1="${install}" arg2="y"/>
+                    <then>
+                        <phingcall target="composer:require">
+                            <property name="package" value="profiler"/>
+                            <property name="options" value="--dev"/>
+                        </phingcall>
+                    </then>
+                </if>
+
+                <input propertyname="install" defaultValue="y">install annotations</input>
+                <if>
+                    <equals arg1="${install}" arg2="y"/>
+                    <then>
+                        <phingcall target="composer:require">
+                            <property name="package" value="annotations"/>
+                            <property name="options" value=""/>
+                        </phingcall>
+                    </then>
+                </if>
+
+                <input propertyname="install" defaultValue="y">install twig</input>
+                <if>
+                    <equals arg1="${install}" arg2="y"/>
+                    <then>
+                        <phingcall target="composer:require">
+                            <property name="package" value="twig"/>
+                            <property name="options" value=""/>
+                        </phingcall>
+                    </then>
+                </if>
+
+                <input propertyname="install" defaultValue="y">install webpack-encore</input>
+                <if>
+                    <equals arg1="${install}" arg2="y"/>
+                    <then>
+                        <phingcall target="composer:require">
+                            <property name="package" value="webpack-encore"/>
+                            <property name="options" value=""/>
+                        </phingcall>
+                    </then>
+                </if>
+
+                <input propertyname="install" defaultValue="y">install maker-bundle</input>
+                <if>
+                    <equals arg1="${install}" arg2="y"/>
+                    <then>
+                        <phingcall target="composer:require">
+                            <property name="package" value="maker-bundle"/>
+                            <property name="options" value="--dev"/>
+                        </phingcall>
+                    </then>
+                </if>
+            </then>
+        </if>
+    </target>
+
+
+</project>

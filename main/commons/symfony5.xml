@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project name="commons:template:symfony5">
+
+
+    <!-- extending commons -->
+    <import file="/srv/phing/commons.xml"/>
+
+
+    <!-- bundle:project -->
+    <patternset id="patternsetBundleProject">
+        <include name="${projectFolderMain}/**"/>
+        <exclude name="**/.sass-cache/**"/>
+        <exclude name="**/node_modules/**"/>
+    </patternset>
+
+
+    <!-- test:phplint -->
+    <patternset id="patternsetTestPhpLint">
+        <include name="src/**/*.php"/>
+    </patternset>
+
+
+    <!-- report:phpcpd -->
+    <patternset id="patternsetReportPhpCpd">
+        <include name="src/**/*.php"/>
+    </patternset>
+
+
+    <!-- report:phpcs -->
+    <patternset id="patternsetReportPhpCs">
+        <include name="src/**/*.php"/>
+    </patternset>
+
+
+    <!-- report:phpdepend -->
+    <patternset id="patternsetReportPhpDepend">
+        <include name="src/**/*.php"/>
+    </patternset>
+
+
+    <!-- report:phploc -->
+    <patternset id="patternsetReportPhpLoc">
+        <include name="src/**/*.php"/>
+        <include name="tests/**/*.php"/>
+    </patternset>
+
+
+    <!-- report:phpmd -->
+    <patternset id="patternsetReportPhpMd">
+        <include name="src/**/*.php"/>
+    </patternset>
+
+
+    <!-- report:phpmetrics -->
+    <property name="reportPhpMetricsDirectories" value="src"/>
+
+
+    <target name="start">
+        <phingcall target="clean:dist"/>
+        <phingcall target="docker:compose:up"/>
+        <phingcall target="docker:compose:ps"/>
+    </target>
+
+
+    <target name="stop">
+        <phingcall target="docker:compose:down"/>
+    </target>
+
+
+    <target name="reports">
+        <phingcall target="clean:reports"/>
+        <phingcall target="test:phplint"/>
+        <phingcall target="report:phpcpd"/>
+        <phingcall target="report:phpdepend"/>
+        <phingcall target="report:phploc"/>
+        <phingcall target="report:phpmd"/>
+        <phingcall target="report:phpmetrics"/>
+    </target>
+
+
+</project>
