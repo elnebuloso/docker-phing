@@ -29,7 +29,11 @@ RUN echo "configure" \
     && if [ -d /app/main/public/thumbs ]; then chmod 0755 -R /app/main/public/thumbs ; fi \
     && if [ -d /app/main/public/thumbs ]; then chown www-data:www-data -R /app/main/public/thumbs ; fi
 
+#
+# development layer
+#
 FROM prod as dev
-
+ENV PHPEXT_ENABLE_XDEBUG yes
 ADD https://phar.phpunit.de/phpunit-8.phar /usr/local/bin/phpunit
-RUN chmod +x /usr/local/bin/phpunit
+ADD https://getcomposer.org/composer-stable.phar /usr/local/bin/composer
+RUN chmod +x /usr/local/bin/phpunit && chmod +x /usr/local/bin/composer
