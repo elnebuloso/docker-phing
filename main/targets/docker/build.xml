@@ -4,8 +4,10 @@
 <project default="docker:build">
 
 
+    <property name="dockerBuildDescription" value="build an image from the projects dockerfile" override="true"/>
+
+
     <target name="docker:build:init">
-        <property name="dockerBuildDescription" value="build an image from the projects dockerfile"/>
         <property name="dockerImageName" value="${projectName}"/>
         <property name="dockerBuildOptions" value="--pull --rm"/>
         <property name="dockerBuildFile" value="Dockerfile"/>

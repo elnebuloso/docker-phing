@@ -4,8 +4,11 @@
 <project default="composer:require">
 
 
+    <property name="composerRequireDescription" value="composer require a dependency" override="true"/>
+
+
     <target name="composer:require:init">
-        <property name="composerRequireDescription" value="composer require a dependency"/>
+        <echo message="no properties defined"/>
     </target>
 
 

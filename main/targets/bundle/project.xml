@@ -4,8 +4,11 @@
 <project default="bundle:project">
 
 
+    <property name="bundleProjectDescription" value="bundle files defined by patternset to dist" override="true"/>
+
+
     <target name="bundle:project:init">
-        <property name="bundleProjectDescription" value="bundle files defined by patternset to dist"/>
+        <echo message="no properties defined"/>
     </target>
 
 

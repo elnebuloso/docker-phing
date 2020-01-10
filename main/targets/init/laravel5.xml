@@ -4,8 +4,10 @@
 <project default="init:laravel5">
 
 
+    <property name="initLaravel5Description" value="init laravel application" override="true"/>
+
+
     <target name="init:laravel5:init">
-        <property name="initLaravel5Description" value="init laravel application"/>
         <property name="initLaravel5Url" value="laravel5.127.0.0.1.xip.io"/>
     </target>
 
@@ -16,7 +18,7 @@
 
 
     <target name="init:laravel5" depends="init:laravel5:init, init:laravel5:before, init:laravel5:main, init:laravel5:after">
-        <echo message="browse application after docker start"/>
+        <echo message="browse application after docker start, using phing start"/>
         <echo message="${initLaravel5Url}"/>
     </target>
 

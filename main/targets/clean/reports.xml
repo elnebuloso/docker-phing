@@ -4,8 +4,11 @@
 <project default="clean:reports">
 
 
+    <property name="cleanReportsDescription" value="cleanup project reports directory" override="true"/>
+
+
     <target name="clean:reports:init">
-        <property name="cleanReportsDescription" value="cleanup project reports directory"/>
+        <echo message="no properties defined"/>
     </target>
 
 

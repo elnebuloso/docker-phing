@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - running composer via dockerception or projectDocker
 - removed commons:init
 - removed autoloading of custom commons
+- updated bolt3 application support
+- fixed commons help targets and descriptions
 
 
 ## [2.10.1] - 2019-11-03

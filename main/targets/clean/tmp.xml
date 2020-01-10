@@ -4,8 +4,11 @@
 <project default="clean:tmp">
 
 
+    <property name="cleanTmpDescription" value="cleanup project temporary build directory" override="true"/>
+
+
     <target name="clean:tmp:init">
-        <property name="cleanTmpDescription" value="cleanup project temporary build directory"/>
+        <echo message="no properties defined"/>
     </target>
 
 

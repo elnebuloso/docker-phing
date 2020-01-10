@@ -4,8 +4,10 @@
 <project default="report:phpmd">
 
 
+    <property name="reportPhpMdDescription" value="php mess detection" override="true"/>
+
+
     <target name="report:phpmd:init">
-        <property name="reportPhpMdDescription" value="php mess detection"/>
         <property name="reportPhpMdOutput" value="${projectDirBuildReports}/phpmd"/>
         <property name="reportPhpMdRulesets" value="cleancode,codesize,design,unusedcode"/>
         <property name="reportPhpMdAllowedFileExtensions" value="php,phtml"/>

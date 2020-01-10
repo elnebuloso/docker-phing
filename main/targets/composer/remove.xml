@@ -4,8 +4,11 @@
 <project default="composer:remove">
 
 
+    <property name="composerRemoveDescription" value="composer remove a dependency" override="true"/>
+
+
     <target name="composer:remove:init">
-        <property name="composerRemoveDescription" value="composer remove a dependency"/>
+        <echo message="no properties defined"/>
     </target>
 
 

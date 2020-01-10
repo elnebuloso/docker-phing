@@ -4,8 +4,11 @@
 <project default="clean:dist">
 
 
+    <property name="cleanDistDescription" value="cleanup project distribution directory" override="true"/>
+
+
     <target name="clean:dist:init">
-        <property name="cleanDistDescription" value="cleanup project distribution directory"/>
+        <echo message="no properties defined"/>
     </target>
 
 

@@ -4,8 +4,11 @@
 <project default="compass:compile">
 
 
+    <property name="compassCompileDescription" value="compass compile scss" override="true"/>
+
+
     <target name="compass:compile:init">
-        <property name="compassCompileDescription" value="compass compile scss"/>
+        <echo message="no properties defined"/>
     </target>
 
 

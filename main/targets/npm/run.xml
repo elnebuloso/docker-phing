@@ -4,8 +4,10 @@
 <project default="npm:run">
 
 
+    <property name="npmRunDescription" value="npm run script" override="true"/>
+
+
     <target name="npm:run:init">
-        <property name="npmRunDescription" value="npm watch files"/>
         <property name="npmRunScript" value=""/>
         <property name="npmExecutable" value="npm"/>
     </target>

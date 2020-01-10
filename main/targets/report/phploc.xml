@@ -4,8 +4,10 @@
 <project default="report:phploc">
 
 
+    <property name="reportPhpLocDescription" value="php lines of code" override="true"/>
+
+
     <target name="report:phploc:init">
-        <property name="reportPhpLocDescription" value="php lines of code"/>
         <property name="reportPhpLocOutput" value="${projectDirBuildReports}/phploc"/>
     </target>
 

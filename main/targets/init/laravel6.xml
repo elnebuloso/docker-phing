@@ -4,8 +4,10 @@
 <project default="init:laravel6">
 
 
+    <property name="initLaravel6Description" value="init laravel application" override="true"/>
+
+
     <target name="init:laravel6:init">
-        <property name="initLaravel6Description" value="init laravel application"/>
         <property name="initLaravel6Url" value="laravel6.127.0.0.1.xip.io"/>
     </target>
 
@@ -16,7 +18,7 @@
 
 
     <target name="init:laravel6" depends="init:laravel6:init, init:laravel6:before, init:laravel6:main, init:laravel6:after">
-        <echo message="browse application after docker start"/>
+        <echo message="browse application after docker start, using phing start"/>
         <echo message="${initLaravel6Url}"/>
     </target>
 

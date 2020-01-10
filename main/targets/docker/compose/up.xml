@@ -4,8 +4,10 @@
 <project default="docker:compose:up">
 
 
+    <property name="dockerComposeUpDescription" value="start docker compose stack" override="true"/>
+
+
     <target name="docker:compose:up:init">
-        <property name="dockerComposeUpDescription" value="start docker compose stack"/>
         <property name="dockerComposeUpOptions" value="--build --remove-orphans -d"/>
     </target>
 

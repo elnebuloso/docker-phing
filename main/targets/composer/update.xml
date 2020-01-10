@@ -4,8 +4,10 @@
 <project default="composer:update">
 
 
+    <property name="composerUpdateDescription" value="composer update dependencies" override="true"/>
+
+
     <target name="composer:update:init">
-        <property name="composerUpdateDescription" value="composer update dependencies"/>
         <property name="composerUpdateOptions" value=""/>
     </target>
 

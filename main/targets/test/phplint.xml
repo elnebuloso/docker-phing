@@ -4,8 +4,10 @@
 <project default="test:phplint">
 
 
+    <property name="testPhpLintDescription" value="php code validation and linting" override="true"/>
+
+
     <target name="test:phplint:init">
-        <property name="testPhpLintDescription" value="php code validation and linting"/>
         <property name="testPhpLintOutput" value="${projectDirBuildReports}/phplint"/>
         <property name="testPhpLintInterpreter" value="7.3"/>
         <property name="testPhpLintHaltOnFailure" value="1"/>

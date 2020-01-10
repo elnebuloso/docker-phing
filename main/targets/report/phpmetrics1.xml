@@ -4,8 +4,10 @@
 <project default="report:phpmetrics1">
 
 
+    <property name="reportPhpMetrics1Description" value="phpmetrics version 1 scanner" override="true"/>
+
+
     <target name="report:phpmetrics1:init">
-        <property name="reportPhpMetrics1Description" value="phpmetrics version 1 scanner"/>
         <property name="reportPhpMetrics1OutputTmp" value="${projectDirMain}/.phpmetrics1"/>
         <property name="reportPhpMetrics1Output" value="${projectDirBuildReports}/phpmetrics1"/>
     </target>

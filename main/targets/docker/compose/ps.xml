@@ -4,8 +4,11 @@
 <project default="docker:compose:ps">
 
 
+    <property name="dockerComposePsDescription" value="show docker compose stack status" override="true"/>
+
+
     <target name="docker:compose:ps:init">
-        <property name="dockerComposePsDescription" value="show docker compose stack status"/>
+        <echo message="no properties defined"/>
     </target>
 
 
