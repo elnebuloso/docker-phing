@@ -4,7 +4,7 @@
 <project default="report:phpdepend">
 
 
-    <target name="report:phpdepend:init" depends="commons:init">
+    <target name="report:phpdepend:init">
         <property name="reportPhpDependDescription" value="php software metrics"/>
         <property name="reportPhpDependOutput" value="${projectDirBuildReports}/phpdepend"/>
     </target>

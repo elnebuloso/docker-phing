@@ -4,7 +4,7 @@
 <project default="docker:compose:up">
 
 
-    <target name="docker:compose:up:init" depends="commons:init">
+    <target name="docker:compose:up:init">
         <property name="dockerComposeUpDescription" value="start docker compose stack"/>
         <property name="dockerComposeUpOptions" value="--build --remove-orphans -d"/>
     </target>

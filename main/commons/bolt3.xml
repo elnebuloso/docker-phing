@@ -10,7 +10,9 @@
 
     <!-- bundle:project -->
     <patternset id="patternsetBundleProject">
-        <include name="**"/>
+        <include name="${projectFolderMain}/**"/>
+        <exclude name="**/.sass-cache/**"/>
+        <exclude name="**/node_modules/**"/>
     </patternset>
 
 

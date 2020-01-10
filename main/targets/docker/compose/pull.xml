@@ -4,7 +4,7 @@
 <project default="docker:compose:pull">
 
 
-    <target name="docker:compose:pull:init" depends="commons:init">
+    <target name="docker:compose:pull:init">
         <property name="dockerComposePullDescription" value="pull the newest images of the docker compose stack"/>
     </target>
 

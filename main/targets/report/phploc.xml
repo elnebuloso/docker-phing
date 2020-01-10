@@ -4,7 +4,7 @@
 <project default="report:phploc">
 
 
-    <target name="report:phploc:init" depends="commons:init">
+    <target name="report:phploc:init">
         <property name="reportPhpLocDescription" value="php lines of code"/>
         <property name="reportPhpLocOutput" value="${projectDirBuildReports}/phploc"/>
     </target>

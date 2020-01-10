@@ -4,7 +4,7 @@
 <project default="report:phpmetrics">
 
 
-    <target name="report:phpmetrics:init" depends="commons:init">
+    <target name="report:phpmetrics:init">
         <property name="reportPhpMetricsDescription" value="phpmetrics scanner, reports of phpmetrics1, phpmetrics2"/>
     </target>
 

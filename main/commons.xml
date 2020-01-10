@@ -5,7 +5,6 @@
 
 
     <property name="phingCommonsRoot" value="/srv/phing"/>
-    <property name="phingCommonsRootCustom" value="/srv/phing-custom"/>
 
 
     <loadfile property="phingCommonsVersion" file="/srv/VERSION"/>
@@ -46,19 +45,6 @@
     <import file="${phingCommonsRoot}/targets/test.xml"/>
 
 
-    <if>
-        <and>
-            <available file="${phingCommonsRootCustom}/commons.xml"/>
-        </and>
-        <then>
-            <import file="${phingCommonsRootCustom}/commons.xml"/>
-        </then>
-        <else>
-            <echo message="${phingCommonsRootCustom}/commons.xml not existing, skipping import"/>
-        </else>
-    </if>
-
-
     <fail unless="projectName" message="missing projectName"/>
     <fail unless="projectVersion" message="missing projectVersion"/>
 
@@ -70,37 +56,35 @@
     </target>
 
 
-    <target name="commons:init">
-        <property name="projectFolderMain" value="main"/>
-        <property name="projectFolderMainComposer" value=""/>
-        <property name="projectFolderMainCompass" value=""/>
-        <property name="projectFolderMainNpm" value=""/>
-        <property name="projectFolderBuild" value="build"/>
-        <property name="projectFolderBuildTmp" value="tmp"/>
-        <property name="projectFolderBuildDist" value="dist"/>
-        <property name="projectFolderBuildReports" value="reports"/>
+    <property name="projectFolderMain" value="main"/>
+    <property name="projectFolderMainComposer" value=""/>
+    <property name="projectFolderMainCompass" value=""/>
+    <property name="projectFolderMainNpm" value=""/>
+    <property name="projectFolderBuild" value="build"/>
+    <property name="projectFolderBuildTmp" value="tmp"/>
+    <property name="projectFolderBuildDist" value="dist"/>
+    <property name="projectFolderBuildReports" value="reports"/>
 
-        <property name="projectDirMain" value="${projectRoot}/${projectFolderMain}"/>
-        <property name="projectDirMainComposer" value="${projectRoot}/${projectFolderMain}/${projectFolderMainComposer}"/>
-        <property name="projectDirMainCompass" value="${projectRoot}/${projectFolderMain}/${projectFolderMainCompass}"/>
-        <property name="projectDirMainNpm" value="${projectRoot}/${projectFolderMain}/${projectFolderMainNpm}"/>
-        <property name="projectDirBuild" value="${projectRoot}/${projectFolderBuild}"/>
-        <property name="projectDirBuildTmp" value="${projectRoot}/${projectFolderBuild}/${projectFolderBuildTmp}"/>
-        <property name="projectDirBuildDist" value="${projectRoot}/${projectFolderBuild}/${projectFolderBuildDist}"/>
-        <property name="projectDirBuildReports" value="${projectRoot}/${projectFolderBuild}/${projectFolderBuildReports}"/>
+    <property name="projectDirMain" value="${projectRoot}/${projectFolderMain}"/>
+    <property name="projectDirMainComposer" value="${projectRoot}/${projectFolderMain}/${projectFolderMainComposer}"/>
+    <property name="projectDirMainCompass" value="${projectRoot}/${projectFolderMain}/${projectFolderMainCompass}"/>
+    <property name="projectDirMainNpm" value="${projectRoot}/${projectFolderMain}/${projectFolderMainNpm}"/>
+    <property name="projectDirBuild" value="${projectRoot}/${projectFolderBuild}"/>
+    <property name="projectDirBuildTmp" value="${projectRoot}/${projectFolderBuild}/${projectFolderBuildTmp}"/>
+    <property name="projectDirBuildDist" value="${projectRoot}/${projectFolderBuild}/${projectFolderBuildDist}"/>
+    <property name="projectDirBuildReports" value="${projectRoot}/${projectFolderBuild}/${projectFolderBuildReports}"/>
 
-        <resolvepath propertyName="projectDirMain" file="${projectDirMain}"/>
-        <resolvepath propertyName="projectDirMainComposer" file="${projectDirMainComposer}"/>
-        <resolvepath propertyName="projectDirMainCompass" file="${projectDirMainCompass}"/>
-        <resolvepath propertyName="projectDirMainNpm" file="${projectDirMainNpm}"/>
-        <resolvepath propertyName="projectDirBuild" file="${projectDirBuild}"/>
-        <resolvepath propertyName="projectDirBuildTmp" file="${projectDirBuildTmp}"/>
-        <resolvepath propertyName="projectDirBuildDist" file="${projectDirBuildDist}"/>
-        <resolvepath propertyName="projectDirBuildReports" file="${projectDirBuildReports}"/>
-    </target>
+    <resolvepath propertyName="projectDirMain" file="${projectDirMain}"/>
+    <resolvepath propertyName="projectDirMainComposer" file="${projectDirMainComposer}"/>
+    <resolvepath propertyName="projectDirMainCompass" file="${projectDirMainCompass}"/>
+    <resolvepath propertyName="projectDirMainNpm" file="${projectDirMainNpm}"/>
+    <resolvepath propertyName="projectDirBuild" file="${projectDirBuild}"/>
+    <resolvepath propertyName="projectDirBuildTmp" file="${projectDirBuildTmp}"/>
+    <resolvepath propertyName="projectDirBuildDist" file="${projectDirBuildDist}"/>
+    <resolvepath propertyName="projectDirBuildReports" file="${projectDirBuildReports}"/>
 
 
-    <target name="commons:help" depends="commons:init, commons:help:version, bundle:help, clean:help, compass:help, composer:help, docker:help, init:help, npm:help, report:help, test:help, project:help"/>
+    <target name="commons:help" depends="commons:help:version, bundle:help, clean:help, compass:help, composer:help, docker:help, init:help, npm:help, report:help, test:help, project:help"/>
 
 
 </project>

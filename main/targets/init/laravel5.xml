@@ -4,7 +4,7 @@
 <project default="init:laravel5">
 
 
-    <target name="init:laravel5:init" depends="commons:init">
+    <target name="init:laravel5:init">
         <property name="initLaravel5Description" value="init laravel application"/>
         <property name="initLaravel5Url" value="laravel5.127.0.0.1.xip.io"/>
     </target>

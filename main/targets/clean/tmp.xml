@@ -4,7 +4,7 @@
 <project default="clean:tmp">
 
 
-    <target name="clean:tmp:init" depends="commons:init">
+    <target name="clean:tmp:init">
         <property name="cleanTmpDescription" value="cleanup project temporary build directory"/>
     </target>
 

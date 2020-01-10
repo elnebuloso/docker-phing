@@ -4,7 +4,7 @@
 <project default="composer:update">
 
 
-    <target name="composer:update:init" depends="commons:init">
+    <target name="composer:update:init">
         <property name="composerUpdateDescription" value="composer update dependencies"/>
         <property name="composerUpdateOptions" value=""/>
     </target>

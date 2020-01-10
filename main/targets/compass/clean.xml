@@ -4,7 +4,7 @@
 <project default="compass:clean">
 
 
-    <target name="compass:clean:init" depends="commons:init">
+    <target name="compass:clean:init">
         <property name="compassCleanDescription" value="compass clean scss"/>
     </target>
 

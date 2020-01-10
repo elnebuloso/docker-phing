@@ -10,9 +10,11 @@
 
     <!-- bundle:project -->
     <patternset id="patternsetBundleProject">
-        <include name="**"/>
-        <exclude name=".env"/>
-        <exclude name=".env.example"/>
+        <include name="${projectFolderMain}/**"/>
+        <exclude name="${projectFolderMain}/.env"/>
+        <exclude name="${projectFolderMain}/.env.example"/>
+        <exclude name="**/.sass-cache/**"/>
+        <exclude name="**/node_modules/**"/>
     </patternset>
 
 

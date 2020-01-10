@@ -4,7 +4,7 @@
 <project default="test:phplint">
 
 
-    <target name="test:phplint:init" depends="commons:init">
+    <target name="test:phplint:init">
         <property name="testPhpLintDescription" value="php code validation and linting"/>
         <property name="testPhpLintOutput" value="${projectDirBuildReports}/phplint"/>
         <property name="testPhpLintInterpreter" value="7.3"/>

@@ -4,7 +4,7 @@
 <project default="npm:run">
 
 
-    <target name="npm:run:init" depends="commons:init">
+    <target name="npm:run:init">
         <property name="npmRunDescription" value="npm watch files"/>
         <property name="npmRunScript" value=""/>
         <property name="npmExecutable" value="npm"/>

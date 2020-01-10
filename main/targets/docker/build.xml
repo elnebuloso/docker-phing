@@ -4,7 +4,7 @@
 <project default="docker:build">
 
 
-    <target name="docker:build:init" depends="commons:init">
+    <target name="docker:build:init">
         <property name="dockerBuildDescription" value="build an image from the projects dockerfile"/>
         <property name="dockerImageName" value="${projectName}"/>
         <property name="dockerBuildOptions" value="--pull --rm"/>

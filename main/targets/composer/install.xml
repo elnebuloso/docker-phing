@@ -4,7 +4,7 @@
 <project default="composer:install">
 
 
-    <target name="composer:install:init" depends="commons:init">
+    <target name="composer:install:init">
         <property name="composerInstallDescription" value="composer install"/>
         <property name="composerInstallOptions" value=""/>
     </target>

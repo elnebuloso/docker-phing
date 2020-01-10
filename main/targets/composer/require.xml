@@ -4,7 +4,7 @@
 <project default="composer:require">
 
 
-    <target name="composer:require:init" depends="commons:init">
+    <target name="composer:require:init">
         <property name="composerRequireDescription" value="composer require a dependency"/>
     </target>
 

@@ -4,7 +4,7 @@
 <project default="bundle:project">
 
 
-    <target name="bundle:project:init" depends="commons:init">
+    <target name="bundle:project:init">
         <property name="bundleProjectDescription" value="bundle files defined by patternset to dist"/>
     </target>
 
@@ -14,7 +14,7 @@
     </target>
 
 
-    <target name="bundle:project" depends="clean:dist, bundle:project:init, bundle:project:before, bundle:project:main, bundle:project:after">
+    <target name="bundle:project" depends="bundle:project:init, bundle:project:before, bundle:project:main, bundle:project:after">
         <echo message="successful"/>
     </target>
 
@@ -30,75 +30,11 @@
 
 
     <target name="bundle:project:main">
-        <if>
-            <equals arg1="${projectFolderMainComposer}" arg2=""/>
-            <then>
-                <property name="bundleProjectComposerPrefix" value="" override="true"/>
-            </then>
-            <else>
-                <property name="bundleProjectComposerPrefix" value="${projectFolderMainComposer}/" override="true"/>
-            </else>
-        </if>
+        <delete dir="${projectDirBuildDist}/${projectFolderMain}"/>
 
-        <if>
-            <equals arg1="${projectFolderMainCompass}" arg2=""/>
-            <then>
-                <property name="bundleProjectCompassPrefix" value="" override="true"/>
-            </then>
-            <else>
-                <property name="bundleProjectCompassPrefix" value="${projectFolderMainCompass}/" override="true"/>
-            </else>
-        </if>
-
-        <if>
-            <equals arg1="${projectFolderMainNpm}" arg2=""/>
-            <then>
-                <property name="bundleProjectNpmPrefix" value="" override="true"/>
-            </then>
-            <else>
-                <property name="bundleProjectNpmPrefix" value="${projectFolderMainNpm}/" override="true"/>
-            </else>
-        </if>
-
-        <copy todir="${projectDirBuildDist}/${projectFolderMain}">
-            <fileset dir="${projectDirMain}">
+        <copy todir="${projectDirBuildDist}">
+            <fileset dir="${projectRoot}">
                 <patternset refid="patternsetBundleProject"/>
-
-                <!-- exclude build files -->
-                <exclude name="${projectFolderBuild}/**"/>
-
-                <!-- exclude compass files -->
-                <exclude name="${projectFolderMainCompass}.sass-cache/**"/>
-
-                <!-- exclude npm files -->
-                <exclude name="${bundleProjectNpmPrefix}node_modules/**"/>
-
-                <!-- exclude composer configuration file -->
-                <exclude name="${bundleProjectComposerPrefix}vendor/**/.coveralls.yml"/>
-                <exclude name="${bundleProjectComposerPrefix}vendor/**/.editorconfig"/>
-                <exclude name="${bundleProjectComposerPrefix}vendor/**/.gitignore"/>
-                <exclude name="${bundleProjectComposerPrefix}vendor/**/.gitmodules"/>
-                <exclude name="${bundleProjectComposerPrefix}vendor/**/.travis.yml"/>
-
-                <!-- exclude composer continuous integration files -->
-                <exclude name="${bundleProjectComposerPrefix}vendor/**/build.properties"/>
-                <exclude name="${bundleProjectComposerPrefix}vendor/**/build.xml"/>
-                <exclude name="${bundleProjectComposerPrefix}vendor/**/phpunit.xml.dist"/>
-                <exclude name="${bundleProjectComposerPrefix}vendor/**/travis.phpunit.xml"/>
-
-                <!-- exclude composer documentation files -->
-                <exclude name="${bundleProjectComposerPrefix}vendor/**/CHANGELOG"/>
-                <exclude name="${bundleProjectComposerPrefix}vendor/**/CHANGELOG.md"/>
-                <exclude name="${bundleProjectComposerPrefix}vendor/**/README"/>
-                <exclude name="${bundleProjectComposerPrefix}vendor/**/README.md"/>
-                <exclude name="${bundleProjectComposerPrefix}vendor/**/LICENSE"/>
-                <exclude name="${bundleProjectComposerPrefix}vendor/**/LICENSE.md"/>
-                <exclude name="${bundleProjectComposerPrefix}vendor/**/UPGRADE"/>
-                <exclude name="${bundleProjectComposerPrefix}vendor/**/UPGRADE.md"/>
-                <exclude name="${bundleProjectComposerPrefix}vendor/**/CONDUCT"/>
-                <exclude name="${bundleProjectComposerPrefix}vendor/**/CONDUCT.md"/>
-                <exclude name="${bundleProjectComposerPrefix}vendor/**/CONTRIBUTING"/>
-                <exclude name="${bundleProjectComposerPrefix}vendor/**/CONTRIBUTING.md"/>
             </fileset>
         </copy>
     </target>

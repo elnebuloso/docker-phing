@@ -4,7 +4,7 @@
 <project default="compass:watch">
 
 
-    <target name="compass:watch:init" depends="commons:init">
+    <target name="compass:watch:init">
         <property name="compassWatchDescription" value="compass watch scss"/>
     </target>
 

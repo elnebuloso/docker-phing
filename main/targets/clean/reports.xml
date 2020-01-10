@@ -4,7 +4,7 @@
 <project default="clean:reports">
 
 
-    <target name="clean:reports:init" depends="commons:init">
+    <target name="clean:reports:init">
         <property name="cleanReportsDescription" value="cleanup project reports directory"/>
     </target>
 

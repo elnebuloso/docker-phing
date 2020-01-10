@@ -4,7 +4,7 @@
 <project default="init:laravel6">
 
 
-    <target name="init:laravel6:init" depends="commons:init">
+    <target name="init:laravel6:init">
         <property name="initLaravel6Description" value="init laravel application"/>
         <property name="initLaravel6Url" value="laravel6.127.0.0.1.xip.io"/>
     </target>

@@ -4,7 +4,7 @@
 <project default="report:phpmd">
 
 
-    <target name="report:phpmd:init" depends="commons:init">
+    <target name="report:phpmd:init">
         <property name="reportPhpMdDescription" value="php mess detection"/>
         <property name="reportPhpMdOutput" value="${projectDirBuildReports}/phpmd"/>
         <property name="reportPhpMdRulesets" value="cleancode,codesize,design,unusedcode"/>

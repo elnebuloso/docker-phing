@@ -4,7 +4,7 @@
 <project default="composer:install:production">
 
 
-    <target name="composer:install:production:init" depends="commons:init">
+    <target name="composer:install:production:init">
         <property name="composerInstallProductionDescription" value="composer install for production"/>
         <property name="composerInstallProductionOptions" value=""/>
     </target>

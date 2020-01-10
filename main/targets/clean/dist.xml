@@ -4,7 +4,7 @@
 <project default="clean:dist">
 
 
-    <target name="clean:dist:init" depends="commons:init">
+    <target name="clean:dist:init">
         <property name="cleanDistDescription" value="cleanup project distribution directory"/>
     </target>
 
@@ -30,8 +30,8 @@
 
 
     <target name="clean:dist:main">
-        <delete dir="${projectDirBuildDist}/${projectFolderMain}"/>
-        <mkdir dir="${projectDirBuildDist}/${projectFolderMain}"/>
+        <delete dir="${projectDirBuildDist}"/>
+        <mkdir dir="${projectDirBuildDist}"/>
     </target>
 
 

@@ -4,7 +4,7 @@
 <project default="init:symfony4">
 
 
-    <target name="init:symfony4:init" depends="commons:init">
+    <target name="init:symfony4:init">
         <property name="initSymfony4Description" value="init symfony4 application"/>
         <property name="initSymfony4Url" value="symfony4.127.0.0.1.xip.io"/>
     </target>

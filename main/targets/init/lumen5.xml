@@ -4,7 +4,7 @@
 <project default="init:lumen5">
 
 
-    <target name="init:lumen5:init" depends="commons:init">
+    <target name="init:lumen5:init">
         <property name="initLumen5Description" value="init lumen5 application"/>
         <property name="initLumen5Url" value="lumen5.127.0.0.1.xip.io"/>
     </target>

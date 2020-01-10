@@ -4,7 +4,7 @@
 <project default="compass:compile">
 
 
-    <target name="compass:compile:init" depends="commons:init">
+    <target name="compass:compile:init">
         <property name="compassCompileDescription" value="compass compile scss"/>
     </target>
 

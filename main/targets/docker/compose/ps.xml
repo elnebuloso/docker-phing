@@ -4,7 +4,7 @@
 <project default="docker:compose:ps">
 
 
-    <target name="docker:compose:ps:init" depends="commons:init">
+    <target name="docker:compose:ps:init">
         <property name="dockerComposePsDescription" value="show docker compose stack status"/>
     </target>
 

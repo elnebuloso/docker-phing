@@ -4,7 +4,7 @@
 <project default="init:bolt3">
 
 
-    <target name="init:bolt3:init" depends="commons:init">
+    <target name="init:bolt3:init">
         <property name="initBolt3Description" value="init bolt3 application"/>
         <property name="initBolt3Url" value="bolt3.127.0.0.1.xip.io"/>
     </target>
