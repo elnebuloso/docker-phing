@@ -4,13 +4,12 @@
 <project default="docker:build">
 
 
-    <property name="dockerBuildDescription" value="build an image from the projects dockerfile" override="true"/>
+    <property name="dockerBuildDescription" value="build a docker image from the projects dockerfile" override="true"/>
 
 
-    <target name="docker:build:init">
-        <property name="dockerImageName" value="${projectName}"/>
-        <property name="dockerBuildOptions" value="--pull --rm"/>
+    <target name="docker:build:init" depends="docker:init">
         <property name="dockerBuildFile" value="Dockerfile"/>
+        <property name="dockerBuildArgs" value="--rm --pull --target prod"/>
         <property name="dockerBuildContext" value="."/>
     </target>
 
@@ -19,14 +18,18 @@
         <echo message="${dockerBuildDescription}"/>
 
         <echo message=""/>
-        <echo message="property              value"/>
+        <echo message="property                      value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="dockerImageName       ${dockerImageName}"/>
-        <echo message="dockerBuildOptions    ${dockerImageName}"/>
-        <echo message="dockerBuildFile       ${docker.image.file}"/>
-        <echo message="dockerBuildContext    ${docker.image.ctx}"/>
-        <echo message="branchName            - adhoc property"/>
-        <echo message="buildNumber           - adhoc property"/>
+        <echo message="dockerBuildFile               ${dockerBuildFile}"/>
+        <echo message="dockerBuildArgs               ${dockerBuildArgs}"/>
+        <echo message="dockerBuildContext            ${dockerImageName}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="dockerConfigImageVersion      ${dockerConfigImageVersion}" level="warning"/>
+        <echo message="dockerConfigImage             ${dockerConfigImage}" level="warning"/>
+        <echo message="dockerConfigImageTag          ${dockerConfigImageTag}" level="warning"/>
+        <echo message="dockerConfigImageTagLatest    ${dockerConfigImageTagLatest}" level="warning"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="docker:help for main configuration"/>
     </target>
 
 
@@ -46,22 +49,7 @@
 
 
     <target name="docker:build:main">
-        <if>
-            <and>
-                <isset property="branchName"/>
-            </and>
-            <then>
-                <property name="dockerImageName" value="${dockerImageName}:${branchName}" override="true"/>
-                <if>
-                    <isset property="buildNumber"/>
-                    <then>
-                        <property name="dockerImageName" value="${dockerImageName}-${buildNumber}" override="true"/>
-                    </then>
-                </if>
-            </then>
-        </if>
-
-        <exec command="docker build ${dockerBuildOptions} --tag ${dockerImageName} --file ${dockerBuildFile} ${dockerBuildContext}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
+        <exec command="docker build ${dockerBuildArgs} --tag ${dockerConfigImage} --file ${dockerBuildFile} ${dockerBuildContext}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
     </target>
 
 

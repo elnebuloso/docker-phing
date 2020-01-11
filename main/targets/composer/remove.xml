@@ -14,6 +14,8 @@
 
     <target name="composer:remove:help" depends="composer:remove:init">
         <echo message="${composerRemoveDescription}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="composer:help for main configuration"/>
     </target>
 
 

@@ -4,14 +4,12 @@
 <project default="docker:push">
 
 
-    <property name="dockerPushDescription" value="push project image to a registry" override="true"/>
+    <property name="dockerPushDescription" value="push project docker image to a registry" override="true"/>
 
 
-    <target name="docker:push:init">
-        <property name="dockerImageName" value="${projectName}"/>
-        <property name="dockerImageVersion" value="${projectVersion}"/>
-        <property name="dockerImageNamespace" value=""/>
-        <property name="dockerRegistry" value=""/>
+    <target name="docker:push:init" depends="docker:init">
+        <property name="dockerPushLatest" value="enabled"/>
+        <property name="dockerPushCleanup" value="enabled"/>
     </target>
 
 
@@ -19,14 +17,17 @@
         <echo message="${dockerPushDescription}"/>
 
         <echo message=""/>
-        <echo message="property                value"/>
+        <echo message="property                      value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="dockerImageName         ${dockerImageName}"/>
-        <echo message="dockerImageVersion      ${dockerImageVersion}"/>
-        <echo message="dockerImageNamespace    ${dockerImageNamespace}"/>
-        <echo message="dockerRegistry          ${dockerRegistry}"/>
-        <echo message="branchName              - adhoc property"/>
-        <echo message="buildNumber             - adhoc property"/>
+        <echo message="dockerPushLatest              ${dockerPushLatest}"/>
+        <echo message="dockerPushCleanup             ${dockerPushCleanup}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="dockerConfigImageVersion      ${dockerConfigImageVersion}" level="warning"/>
+        <echo message="dockerConfigImage             ${dockerConfigImage}" level="warning"/>
+        <echo message="dockerConfigImageTag          ${dockerConfigImageTag}" level="warning"/>
+        <echo message="dockerConfigImageTagLatest    ${dockerConfigImageTagLatest}" level="warning"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="docker:help for main configuration"/>
     </target>
 
 
@@ -46,63 +47,38 @@
 
 
     <target name="docker:push:main">
-        <fail message="dockerRegistry not defined">
-            <condition>
-                <equals arg1="${dockerRegistry}" arg2=""/>
-            </condition>
-        </fail>
+        <echo message="${dockerConfigImage}"/>
+        <echo message="${dockerConfigImageTag}"/>
+
+        <exec command="docker tag ${dockerConfigImage} ${dockerConfigImageTag}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
+        <exec command="docker push ${dockerImageTag}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
 
         <if>
             <and>
-                <isset property="branchName"/>
+                <equals arg1="${dockerPushLatest}" arg2="enabled"/>
+                <or>
+                    <equals arg1="${branchName}" arg2=""/>
+                    <equals arg1="${branchName}" arg2="${branchNameMaster}"/>
+                </or>
             </and>
             <then>
-                <property name="dockerImageName" value="${dockerImageName}:${branchName}" override="true"/>
-                <if>
-                    <isset property="buildNumber"/>
-                    <then>
-                        <property name="dockerImageName" value="${dockerImageName}-${buildNumber}" override="true"/>
-                    </then>
-                </if>
+                <echo message=""/>
+                <echo message="pushing latest image tag, push latest is allowed and branchName is empty or equals branchNameMaster"/>
+                <echo message="${dockerConfigImage}"/>
+                <echo message="${dockerConfigImageTagLatest}"/>
+
+                <exec command="docker tag ${dockerConfigImage} ${dockerConfigImageTagLatest}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
+                <exec command="docker push ${dockerConfigImageTagLatest}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
             </then>
         </if>
 
         <if>
-            <and>
-                <isset property="branchName"/>
-                <not>
-                    <equals arg1="${branchName}" arg2="master"/>
-                </not>
-            </and>
+            <equals arg1="${dockerPushCleanup}" arg2="enabled"/>
             <then>
-                <property name="dockerImageVersion" value="${dockerImageVersion}-${branchName}" override="true"/>
-                <if>
-                    <isset property="buildNumber"/>
-                    <then>
-                        <property name="dockerImageVersion" value="${dockerImageVersion}-${buildNumber}" override="true"/>
-                    </then>
-                </if>
+                <exec command="docker rmi ${dockerConfigImageTag}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+                <exec command="docker rmi ${dockerConfigImageTagLatest}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+                <exec command="docker rmi ${dockerConfigImage}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
             </then>
-        </if>
-
-        <if>
-            <and>
-                <isset property="branchName"/>
-                <not>
-                    <equals arg1="${branchName}" arg2="master"/>
-                </not>
-            </and>
-            <then>
-                <exec command="docker tag ${dockerImageName} ${dockerRegistry}/${dockerImageNamespace}${projectName}:${dockerImageVersion}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
-                <exec command="docker push ${dockerRegistry}/${dockerImageNamespace}${projectName}:${dockerImageVersion}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
-            </then>
-            <else>
-                <exec command="docker tag ${dockerImageName} ${dockerRegistry}/${dockerImageNamespace}${projectName}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
-                <exec command="docker push ${dockerRegistry}/${dockerImageNamespace}${projectName}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
-
-                <exec command="docker tag ${dockerImageName} ${dockerRegistry}/${dockerImageNamespace}${projectName}:${dockerImageVersion}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
-                <exec command="docker push ${dockerRegistry}/${dockerImageNamespace}${projectName}:${dockerImageVersion}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
-            </else>
         </if>
     </target>
 

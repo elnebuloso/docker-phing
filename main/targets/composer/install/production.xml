@@ -19,6 +19,8 @@
         <echo message="property                            value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="composerInstallProductionOptions    ${composerInstallProductionOptions}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="composer:help for main configuration"/>
     </target>
 
 

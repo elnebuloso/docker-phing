@@ -1,4 +1,4 @@
-FROM ubuntu:16.04 as prod
+FROM ubuntu:16.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -80,8 +80,16 @@ RUN echo "install docker" \
     && apt-get -y clean \
     && rm -rf /tmp/*
 
+#
+# install GitVersion
+#
+RUN curl -sSL https://github.com/GitTools/GitVersion/releases/download/5.1.3/gitversion-linux-5.1.3.tar.gz -o /tmp/gitversion.tar.gz \
+    && tar -xzvf /tmp/gitversion.tar.gz -C /usr/local/bin \
+    && chmod +x /usr/local/bin/GitVersion \
+    && rm -rf /tmp/*
+
 COPY docker/bin /usr/local/bin
-COPY build/dist /srv/phing
+COPY main /srv/phing
 COPY VERSION /srv/VERSION
 
 RUN echo "configure /usr/local/bin" \
@@ -89,10 +97,3 @@ RUN echo "configure /usr/local/bin" \
     && chmod +x /usr/local/bin/*
 
 CMD ["bash"]
-
-#
-# for local build and development
-#
-FROM prod as dev
-
-ADD main /srv/phing

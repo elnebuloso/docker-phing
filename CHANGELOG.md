@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [2.12.0] - 2020-01-11
+- added GitVersion
+- updated docker:build target with new config variables, defined by docker config task
+- updated docker:push target with new config variables, defined by docker config task
+
+
 ## [2.11.0] - 2020-01-10
 - running composer via dockerception or projectDocker
 - removed commons:init
