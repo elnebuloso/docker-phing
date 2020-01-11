@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - updated symfony4 application support
 - added symfony5 application support
 - added phpunit test support
+- cleanup
 
 
 ## [2.10.1] - 2019-11-03
