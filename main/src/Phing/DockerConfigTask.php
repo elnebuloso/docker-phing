@@ -8,16 +8,42 @@ namespace elnebuloso\Phing;
 class DockerConfigTask extends AbstractTask
 {
     /**
+     * @var int
+     */
+    private $major;
+
+    /**
+     * @var int
+     */
+    private $minor;
+
+    /**
+     * @var int
+     */
+    private $patch;
+
+    /**
      * @throws \IOException
      */
     public function main()
     {
         $this->prepare();
 
+        if (!preg_match('#((\d{1,}).(\d{1,}).(\d{1,}))#', $this->getProject()->getProperty('projectVersion'), $matches)) {
+            throw new \BuildException('projectVersion ist not in the correct format');
+        }
+
+        $this->major = $matches[2];
+        $this->minor = $matches[3];
+        $this->patch = $matches[4];
+
         $this->getProject()->setProperty('dockerConfigImageVersion', $this->dockerConfigImageVersion());
         $this->getProject()->setProperty('dockerConfigImage', $this->dockerConfigImage());
         $this->getProject()->setProperty('dockerConfigImageTag', $this->dockerConfigImageTag());
         $this->getProject()->setProperty('dockerConfigImageTagLatest', $this->dockerConfigImageTagLatest());
+        $this->getProject()->setProperty('dockerConfigImageTagMajor', $this->dockerConfigImageTagMajor());
+        $this->getProject()->setProperty('dockerConfigImageTagMinor', $this->dockerConfigImageTagMinor());
+        $this->getProject()->setProperty('dockerConfigImageTagPatch', $this->dockerConfigImageTagPatch());
 
         $this->cleanup();
     }
@@ -62,6 +88,30 @@ class DockerConfigTask extends AbstractTask
     private function dockerConfigImageTagLatest()
     {
         return strtolower(implode('/', array_filter([$this->getDockerRegistry(), $this->getDockerRegistryNamespace(), implode(':', [$this->getDockerImageName(), 'latest'])])));
+    }
+
+    /**
+     * @return string
+     */
+    private function dockerConfigImageTagMajor()
+    {
+        return strtolower(implode('/', array_filter([$this->getDockerRegistry(), $this->getDockerRegistryNamespace(), implode(':', [$this->getDockerImageName(), implode('.', [$this->major])])])));
+    }
+
+    /**
+     * @return string
+     */
+    private function dockerConfigImageTagMinor()
+    {
+        return strtolower(implode('/', array_filter([$this->getDockerRegistry(), $this->getDockerRegistryNamespace(), implode(':', [$this->getDockerImageName(), implode('.', [$this->major, $this->minor])])])));
+    }
+
+    /**
+     * @return string
+     */
+    private function dockerConfigImageTagPatch()
+    {
+        return strtolower(implode('/', array_filter([$this->getDockerRegistry(), $this->getDockerRegistryNamespace(), implode(':', [$this->getDockerImageName(), implode('.', [$this->major, $this->minor, $this->patch])])])));
     }
 
     /**

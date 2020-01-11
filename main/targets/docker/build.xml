@@ -28,6 +28,9 @@
         <echo message="dockerConfigImage             ${dockerConfigImage}" level="warning"/>
         <echo message="dockerConfigImageTag          ${dockerConfigImageTag}" level="warning"/>
         <echo message="dockerConfigImageTagLatest    ${dockerConfigImageTagLatest}" level="warning"/>
+        <echo message="dockerConfigImageTagMajor     ${dockerConfigImageTagMajor}" level="warning"/>
+        <echo message="dockerConfigImageTagMinor     ${dockerConfigImageTagMinor}" level="warning"/>
+        <echo message="dockerConfigImageTagPatch     ${dockerConfigImageTagPatch}" level="warning"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="docker:help for main configuration"/>
     </target>
