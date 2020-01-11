@@ -16,7 +16,7 @@ RUN echo "configure webserver" \
 # development layer
 #
 FROM prod as dev
-ENV PHPEXT_ENABLE_XDEBUG yes
+ENV PHPEXT_ENABLE_XDEBUG no
 ADD https://phar.phpunit.de/phpunit-8.phar /usr/local/bin/phpunit
 ADD https://getcomposer.org/composer-stable.phar /usr/local/bin/composer
 RUN echo "install development dependencies" \
@@ -29,3 +29,6 @@ RUN echo "install development dependencies" \
     && apt-get -y autoclean \
     && apt-get -y clean \
     && rm -rf /tmp/*
+
+FROM dev as phpunit
+ENV PHPEXT_ENABLE_XDEBUG yes

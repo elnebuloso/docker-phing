@@ -5,6 +5,7 @@
 /test/build
 /test/main/.sass-cache
 /test/main/node_modules
+/test/main/tests/.phpunit.result.cache
 /test/main/vendor
 
 /test-bolt3/*
