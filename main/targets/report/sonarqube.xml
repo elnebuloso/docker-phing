@@ -4,8 +4,10 @@
 <project default="report:sonarqube">
 
 
-    <target name="report:sonarqube:init" depends="commons:init">
-        <property name="reportSonarqubeDescription" value="sonarqube scanner code analysis"/>
+    <property name="reportSonarqubeDescription" value="sonarqube scanner code analysis" override="true"/>
+
+
+    <target name="report:sonarqube:init">
         <property name="reportSonarqubeExecutable" value="sonarqube-scanner"/>
         <property name="reportSonarqubeHostUrl" value=""/>
         <property name="reportSonarqubeLogin" value=""/>

@@ -1,18 +1,36 @@
-FROM elnebuloso/php:7.3-apache-ubuntu
+FROM elnebuloso/php:7.3-apache-ubuntu as prod
 
 COPY docker/apache/000-default.conf /etc/apache2/sites-available/000-default.conf
-COPY build/dist/main /var/www/main
+COPY build/dist /app
 COPY VERSION /VERSION
 
 ENV APP_ENV local
-WORKDIR /var/www/main
+WORKDIR /app/main
 
 RUN echo "configure" \
     && a2enmod headers \
     && a2enmod rewrite \
     && echo 'PassEnv APP_ENV' > /etc/apache2/conf-enabled/expose-env.conf \
-    && if [ -d /var/www/main/storage ]; then chmod 0755 -R /var/www/main/var ; fi \
-    && if [ -d /var/www/main/storage ]; then chown www-data:www-data -R /var/www/main/var ; fi
+    && if [ -d /app/main/storage ]; then chmod 0755 -R /app/main/storage ; fi \
+    && if [ -d /app/main/storage ]; then chown www-data:www-data -R /app/main/storage ; fi
 
+#
+# development layer
+#
+FROM prod as dev
+ENV PHPEXT_ENABLE_XDEBUG no
 ADD https://phar.phpunit.de/phpunit-8.phar /usr/local/bin/phpunit
-RUN chmod +x /usr/local/bin/phpunit
+ADD https://getcomposer.org/composer-stable.phar /usr/local/bin/composer
+RUN echo "install development dependencies" \
+    && chmod +x /usr/local/bin/phpunit \
+    && chmod +x /usr/local/bin/composer \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+		unzip \
+    && apt-get -y autoremove \
+    && apt-get -y autoclean \
+    && apt-get -y clean \
+    && rm -rf /tmp/*
+
+FROM dev as phpunit
+ENV PHPEXT_ENABLE_XDEBUG yes

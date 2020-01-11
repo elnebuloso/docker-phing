@@ -11,7 +11,15 @@
     <import file="${phingCommonsRoot}/targets/composer/update.xml"/>
 
 
-    <target name="composer:help">
+    <target name="composer:init">
+        <property name="composerDockerFile" value="${projectRoot}/Dockerfile"/>
+        <property name="composerDockerBuildArgs" value="--rm --pull --target dev"/>
+        <property name="composerDockerBuildContext" value="."/>
+        <property name="composerDockerRunArgs" value="--rm"/>
+    </target>
+
+
+    <target name="composer:help" depends="composer:init">
         <echo message="target                         description"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="composer:install:production    ${composerInstallProductionDescription}"/>
@@ -19,6 +27,31 @@
         <echo message="composer:remove                ${composerRequireDescription}"/>
         <echo message="composer:require               ${composerRequireDescription}"/>
         <echo message="composer:update                ${composerUpdateDescription}"/>
+        <echo message=""/>
+        <echo message="property                       value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="composerDockerFile             ${composerDockerFile}"/>
+        <echo message="composerDockerBuildArgs        ${composerDockerBuildArgs}"/>
+        <echo message="composerDockerBuildContext     ${composerDockerBuildContext}"/>
+        <echo message="composerDockerRunArgs          ${composerDockerRunArgs}"/>
+    </target>
+
+
+    <target name="composer:command" depends="composer:init">
+        <if>
+            <equals arg1="${composer}" arg2="dockerception"/>
+            <then>
+                <exec command="${composerCommand}" passthru="true" checkreturn="true" level="info" dir="${projectDirMainComposer}"/>
+            </then>
+        </if>
+
+        <if>
+            <equals arg1="${composer}" arg2="projectDocker"/>
+            <then>
+                <exec command="docker build ${composerDockerBuildArgs} --tag ${projectName}-composer --file ${composerDockerFile} ${composerDockerBuildContext}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
+                <exec command="docker-run ${composerDockerRunArgs} ${projectName}-composer ${composerCommand}" passthru="true" checkreturn="true" level="info" dir="${projectDirMainComposer}"/>
+            </then>
+        </if>
     </target>
 
 

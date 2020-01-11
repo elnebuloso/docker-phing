@@ -4,10 +4,6 @@
 <project>
 
 
-    <import file="${phingCommonsRoot}/targets/project/version/update.xml"/>
-    <import file="${phingCommonsRoot}/targets/project/version/commit.xml"/>
-
-
     <target name="project:help">
         <echo message="property                     value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
@@ -20,11 +16,12 @@
         <echo message="projectFolderBuildTmp        ${projectFolderBuildTmp}"/>
         <echo message="projectFolderBuildDist       ${projectFolderBuildDist}"/>
         <echo message="projectFolderBuildReports    ${projectFolderBuildReports}"/>
+        <echo message="phpunit                      dockerception|projectDocker|projectDockerCompose: ${phpunit} "/>
+        <echo message="composer                     dockerception|projectDocker|projectDockerCompose: ${composer} "/>
         <echo message=""/>
         <echo message="property                     value [do not edit directly]"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="phingCommonsRoot             ${phingCommonsRoot}" level="warning"/>
-        <echo message="phingCommonsRootCustom       ${phingCommonsRootCustom}" level="warning"/>
         <echo message="projectVersion               ${projectVersion}" level="warning"/>
         <echo message="projectRoot                  ${projectRoot}" level="warning"/>
         <echo message="projectDirMain               ${projectDirMain}" level="warning"/>
@@ -35,11 +32,6 @@
         <echo message="projectDirBuildTmp           ${projectDirBuildTmp}" level="warning"/>
         <echo message="projectDirBuildDist          ${projectDirBuildDist}" level="warning"/>
         <echo message="projectDirBuildReports       ${projectDirBuildReports}" level="warning"/>
-        <echo message=""/>
-        <echo message="target                       description"/>
-        <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="project:version:update       ${projectVersionUpdateDescription}"/>
-        <echo message="project:version:commit       ${projectVersionCommitDescription}"/>
     </target>
 
 

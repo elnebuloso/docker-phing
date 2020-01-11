@@ -1,4 +1,4 @@
-version: "2"
+version: "3"
 
 services:
   proxy:
@@ -12,8 +12,11 @@ services:
     build:
       context: .
     volumes:
-      - ./main:/var/www/main
-      - ./build/reports:/build/reports
+      - .:/app
     environment:
       VIRTUAL_HOST: test.127.0.0.1.xip.io
-      PHPEXT_ENABLE_XDEBUG: "yes"
+
+  whoami:
+    image: containous/whoami
+    environment:
+      VIRTUAL_HOST: whoami.127.0.0.1.xip.io

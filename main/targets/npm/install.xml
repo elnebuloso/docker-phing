@@ -4,8 +4,10 @@
 <project default="npm:install">
 
 
-    <target name="npm:install:init" depends="commons:init">
-        <property name="npmInstallDescription" value="npm install dependencies"/>
+    <property name="npmInstallDescription" value="npm install dependencies" override="true"/>
+
+
+    <target name="npm:install:init">
         <property name="npmExecutable" value="npm"/>
     </target>
 

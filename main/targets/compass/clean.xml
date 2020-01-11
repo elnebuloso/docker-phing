@@ -4,8 +4,11 @@
 <project default="compass:clean">
 
 
-    <target name="compass:clean:init" depends="commons:init">
-        <property name="compassCleanDescription" value="compass clean scss"/>
+    <property name="compassCleanDescription" value="compass clean scss" override="true"/>
+
+
+    <target name="compass:clean:init">
+        <echo message="no properties defined"/>
     </target>
 
 

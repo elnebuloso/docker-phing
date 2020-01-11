@@ -4,8 +4,11 @@
 <project default="compass:watch">
 
 
-    <target name="compass:watch:init" depends="commons:init">
-        <property name="compassWatchDescription" value="compass watch scss"/>
+    <property name="compassWatchDescription" value="compass watch scss" override="true"/>
+
+
+    <target name="compass:watch:init">
+        <echo message="no properties defined"/>
     </target>
 
 

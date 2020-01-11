@@ -4,8 +4,10 @@
 <project default="docker:compose:down">
 
 
-    <target name="docker:compose:down:init" depends="commons:init">
-        <property name="dockerComposeDownDescription" value="stop docker compose stack"/>
+    <property name="dockerComposeDownDescription" value="stop docker compose stack" override="true"/>
+
+
+    <target name="docker:compose:down:init">
         <property name="dockerComposeDownOptions" value="--remove-orphans"/>
     </target>
 

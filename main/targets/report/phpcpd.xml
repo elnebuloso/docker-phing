@@ -4,8 +4,10 @@
 <project default="report:phpcpd">
 
 
-    <target name="report:phpcpd:init" depends="commons:init">
-        <property name="reportPhpCpdDescription" value="php copy and paste detection"/>
+    <property name="reportPhpCpdDescription" value="php copy and paste detection" override="true"/>
+
+
+    <target name="report:phpcpd:init">
         <property name="reportPhpCpdOutput" value="${projectDirBuildReports}/phpcpd"/>
     </target>
 

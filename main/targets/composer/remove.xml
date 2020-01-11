@@ -4,8 +4,11 @@
 <project default="composer:remove">
 
 
-    <target name="composer:remove:init" depends="commons:init">
-        <property name="composerRemoveDescription" value="composer remove a dependency"/>
+    <property name="composerRemoveDescription" value="composer remove a dependency" override="true"/>
+
+
+    <target name="composer:remove:init">
+        <echo message="no properties defined"/>
     </target>
 
 
@@ -30,17 +33,20 @@
 
 
     <target name="composer:remove:main">
-        <input propertyname="package" defaultValue="">package (vendor/package)</input>
-        <input propertyname="options" defaultValue="">options</input>
+        <property name="package" value=""/>
+        <property name="options" value=""/>
 
         <if>
-            <not>
-                <equals arg1="${package}" arg2=""/>
-            </not>
+            <equals arg1="${package}" arg2=""/>
             <then>
-                <exec command="composer remove ${package} ${options}" passthru="true" checkreturn="true" level="info" dir="${projectDirMainComposer}"/>
+                <input propertyname="package" defaultValue="">package (vendor/package)</input>
+                <input propertyname="options" defaultValue="">options</input>
             </then>
         </if>
+
+        <phingcall target="composer:command">
+            <property name="composerCommand" value="composer remove ${package} ${options}" override="true"/>
+        </phingcall>
     </target>
 
 

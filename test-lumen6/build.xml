@@ -12,10 +12,10 @@
 
 
     <target name="help" depends="commons:help">
-        <echo message="init       init lumen6 project"/>
-        <echo message="install    installs all dependencies and prepares the project for development"/>
+        <echo message="init       init the project"/>
         <echo message="start      start the project"/>
-        <echo message="stop       stops the project"/>
+        <echo message="stops      stops the project"/>
+        <echo message="reports    create reports for the current project"/>
     </target>
 
 
@@ -30,30 +30,6 @@
         </delete>
         <delete dir="${projectDirMain}"/>
         <phingcall target="init:lumen6"/>
-    </target>
-
-
-    <target name="install">
-        <phingcall target="clean:dist"/>
-        <phingcall target="composer:install"/>
-    </target>
-
-
-    <target name="update">
-        <phingcall target="clean:dist"/>
-        <phingcall target="composer:update"/>
-    </target>
-
-
-    <target name="start">
-        <phingcall target="clean:dist"/>
-        <phingcall target="docker:compose:up"/>
-        <phingcall target="docker:compose:ps"/>
-    </target>
-
-
-    <target name="stop">
-        <phingcall target="docker:compose:down"/>
     </target>
 
 

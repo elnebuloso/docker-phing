@@ -13,16 +13,7 @@ set -e
 
 ##########################################################################################################
 
-_docker-pull-image ${PHING_COMPOSER}
-
-##########################################################################################################
-
-tty=
-tty -s && tty=--tty
-run="docker run $tty --interactive --rm --user $(id -u) --workdir $(pwd) --volume $(pwd):$(pwd) --volume ${PHING_COMPOSER_CACHE_VOLUME}-uid-$(id -u):${PHING_COMPOSER_CACHE_DIR} ${PHING_COMPOSER} ${PHING_COMPOSER_EXEC} $@"
-
-##########################################################################################################
-
-_docker-run-image "${run}"
+docker-pull ${PHING_COMPOSER}
+docker-run --volume ${PHING_COMPOSER_CACHE_VOLUME}-uid-$(id -u):${PHING_COMPOSER_CACHE_DIR} ${PHING_COMPOSER} ${PHING_COMPOSER_EXEC} $@
 
 ##########################################################################################################

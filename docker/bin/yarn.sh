@@ -13,16 +13,7 @@ set -e
 
 ##########################################################################################################
 
-_docker-pull-image ${PHING_YARN}
-
-##########################################################################################################
-
-tty=
-tty -s && tty=--tty
-run="docker run $tty --interactive --rm --user $(id -u) --workdir $(pwd) --volume $(pwd):$(pwd) --volume ${PHING_YARN_CACHE_VOLUME}-uid-$(id -u):${PHING_YARN_CACHE_DIR} --env YARN_CACHE_FOLDER=/tmp ${PHING_YARN} ${PHING_YARN_EXEC} $@"
-
-##########################################################################################################
-
-_docker-run-image "${run}"
+docker-pull ${PHING_YARN}
+docker-run --volume ${PHING_YARN_CACHE_VOLUME}-uid-$(id -u):${PHING_YARN_CACHE_DIR} --env YARN_CACHE_FOLDER=/tmp ${PHING_YARN} ${PHING_YARN_EXEC} $@
 
 ##########################################################################################################

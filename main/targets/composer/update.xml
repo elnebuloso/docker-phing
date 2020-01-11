@@ -4,8 +4,10 @@
 <project default="composer:update">
 
 
-    <target name="composer:update:init" depends="commons:init">
-        <property name="composerUpdateDescription" value="composer update dependencies"/>
+    <property name="composerUpdateDescription" value="composer update dependencies" override="true"/>
+
+
+    <target name="composer:update:init">
         <property name="composerUpdateOptions" value=""/>
     </target>
 
@@ -36,7 +38,9 @@
 
 
     <target name="composer:update:main">
-        <exec command="composer update --no-suggest --no-ansi --no-interaction ${composerUpdateOptions}" passthru="true" checkreturn="true" level="info" dir="${projectDirMainComposer}"/>
+        <phingcall target="composer:command">
+            <property name="composerCommand" value="composer update --no-suggest --no-ansi --no-interaction ${composerUpdateOptions}" override="true"/>
+        </phingcall>
     </target>
 
 

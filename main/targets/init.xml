@@ -10,6 +10,7 @@
     <import file="${phingCommonsRoot}/targets/init/lumen5.xml"/>
     <import file="${phingCommonsRoot}/targets/init/lumen6.xml"/>
     <import file="${phingCommonsRoot}/targets/init/symfony4.xml"/>
+    <import file="${phingCommonsRoot}/targets/init/symfony5.xml"/>
 
 
     <target name="init:help">
@@ -21,6 +22,7 @@
         <echo message="init:lumen5      ${initLumen5Description}"/>
         <echo message="init:lumen6      ${initLumen6Description}"/>
         <echo message="init:symfony4    ${initSymfony4Description}"/>
+        <echo message="init:symfony5    ${initSymfony5Description}"/>
     </target>
 
 

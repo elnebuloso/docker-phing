@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project name="application" basedir="." default="help">
+
+
+    <property file="build.properties"/>
+    <property file="build.properties.local"/>
+
+
+    <import file="/srv/phing/commons/symfony5.xml"/>
+
+
+    <target name="help" depends="commons:help">
+        <echo message="init       init the project"/>
+        <echo message="start      start the project"/>
+        <echo message="stops      stops the project"/>
+        <echo message="reports    create reports for the current project"/>
+    </target>
+
+
+    <target name="init">
+        <delete includeemptydirs="true">
+            <fileset dir="${projectRoot}">
+                <exclude name="build.env"/>
+                <exclude name="build.properties"/>
+                <exclude name="build.xml"/>
+                <exclude name="VERSION"/>
+            </fileset>
+        </delete>
+        <delete dir="${projectDirMain}"/>
+        <phingcall target="init:symfony5"/>
+    </target>
+
+
+</project>

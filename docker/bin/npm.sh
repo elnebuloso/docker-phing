@@ -13,16 +13,7 @@ set -e
 
 ##########################################################################################################
 
-_docker-pull-image ${PHING_NPM}
-
-##########################################################################################################
-
-tty=
-tty -s && tty=--tty
-run="docker run $tty --interactive --rm --user $(id -u) --workdir $(pwd) --volume $(pwd):$(pwd) --volume ${PHING_NPM_CACHE_VOLUME}-uid-$(id -u):${PHING_NPM_CACHE_DIR} ${PHING_NPM} ${PHING_NPM_EXEC} $@"
-
-##########################################################################################################
-
-_docker-run-image "${run}"
+docker-pull ${PHING_NPM}
+docker-run --volume ${PHING_NPM_CACHE_VOLUME}-uid-$(id -u):${PHING_NPM_CACHE_DIR} ${PHING_NPM} ${PHING_NPM_EXEC} $@
 
 ##########################################################################################################

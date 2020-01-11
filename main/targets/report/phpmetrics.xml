@@ -4,8 +4,11 @@
 <project default="report:phpmetrics">
 
 
-    <target name="report:phpmetrics:init" depends="commons:init">
-        <property name="reportPhpMetricsDescription" value="phpmetrics scanner, reports of phpmetrics1, phpmetrics2"/>
+    <property name="reportPhpMetricsDescription" value="phpmetrics scanner, reports of phpmetrics1, phpmetrics2" override="true"/>
+
+
+    <target name="report:phpmetrics:init">
+        <echo message="no properties defined"/>
     </target>
 
 

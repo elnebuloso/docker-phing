@@ -12,6 +12,7 @@ services:
     build:
       context: .
     volumes:
-      - ./main:/var/www/main
+      - .:/app
     environment:
       VIRTUAL_HOST: ${initLumen6Url}
+      PHPEXT_ENABLE_XDEBUG: "no"

@@ -1,19 +1,18 @@
-.idea
-
-/build/*
-!/build/dist/.gitignore
-
+/.idea
+/build
 /main/vendor
 
-/test/build/*
+/test/build
 /test/main/.sass-cache
-/test/main/css
 /test/main/node_modules
+/test/main/tests/.phpunit.result.cache
 /test/main/vendor
-/test/main/composer.lock
-/test/main/package-lock.json
-/test/sonar-project.properties
-/test/.scannerwork
+
+/test-bolt3/*
+!/test-bolt3/build.env
+!/test-bolt3/build.properties
+!/test-bolt3/build.xml
+!/test-bolt3/VERSION
 
 /test-laravel5/*
 !/test-laravel5/build.env
@@ -45,10 +44,10 @@
 !/test-symfony4/build.xml
 !/test-symfony4/VERSION
 
-/test-bolt3/*
-!/test-bolt3/build.env
-!/test-bolt3/build.properties
-!/test-bolt3/build.xml
-!/test-bolt3/VERSION
+/test-symfony5/*
+!/test-symfony5/build.env
+!/test-symfony5/build.properties
+!/test-symfony5/build.xml
+!/test-symfony5/VERSION
 
 /phing-2.16.1.phar

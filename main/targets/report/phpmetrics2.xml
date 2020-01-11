@@ -4,8 +4,10 @@
 <project default="report:phpmetrics2">
 
 
-    <target name="report:phpmetrics2:init" depends="commons:init">
-        <property name="reportPhpMetrics2Description" value="phpmetrics version 2 scanner"/>
+    <property name="reportPhpMetrics2Description" value="phpmetrics version 2 scanner" override="true"/>
+
+
+    <target name="report:phpmetrics2:init">
         <property name="reportPhpMetrics2OutputTmp" value="${projectDirMain}/.phpmetrics2"/>
         <property name="reportPhpMetrics2Output" value="${projectDirBuildReports}/phpmetrics2"/>
     </target>

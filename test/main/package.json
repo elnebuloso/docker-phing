@@ -1,9 +1,11 @@
 {
-    "name": "@elnebuloso/test",
+    "name": "@elnebuloso/phing-test",
+    "description": "phing node modules test",
+    "license": "UNLICENSED",
+    "repository": {},
     "dependencies": {
-        "bootstrap": "^4.0.0",
-        "font-awesome": "^4.7.0",
-        "jquery": "^3.3.1",
-        "popper.js": "^1.12.9"
+        "bootstrap": "^4.4.1",
+        "jquery": "^3.4.1",
+        "popper.js": "^1.16.0"
     }
 }

@@ -4,8 +4,10 @@
 <project default="init:bolt3">
 
 
-    <target name="init:bolt3:init" depends="commons:init">
-        <property name="initBolt3Description" value="init bolt3 application"/>
+    <property name="initBolt3Description" value="init bolt3 application" override="true"/>
+
+
+    <target name="init:bolt3:init">
         <property name="initBolt3Url" value="bolt3.127.0.0.1.xip.io"/>
     </target>
 
@@ -15,8 +17,8 @@
     </target>
 
 
-    <target name="init:bolt3" depends="init:bolt3:init, init:bolt3:before, init:bolt3:main, init:bolt3:after">
-        <echo message="browse application after docker start"/>
+    <target name="init:bolt3" depends="clean:dist, init:bolt3:init, init:bolt3:before, init:bolt3:main, init:bolt3:after">
+        <echo message="browse application after docker start, using phing start"/>
         <echo message="${initBolt3Url}"/>
     </target>
 
@@ -51,9 +53,6 @@
         </copy>
 
         <my-configure-composer selector="name" value="my/${projectName}"/>
-        <my-configure-composer selector="config.platform.php" value="7.3"/>
-        <my-configure-composer selector="config.platform.ext-exif" value="1.0"/>
-        <my-configure-composer selector="config.platform.ext-gd" value="1.0"/>
         <phingcall target="composer:update"/>
     </target>
 

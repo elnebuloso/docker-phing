@@ -4,8 +4,10 @@
 <project default="composer:install">
 
 
-    <target name="composer:install:init" depends="commons:init">
-        <property name="composerInstallDescription" value="composer install"/>
+    <property name="composerInstallDescription" value="composer install" override="true"/>
+
+
+    <target name="composer:install:init">
         <property name="composerInstallOptions" value=""/>
     </target>
 
@@ -36,7 +38,9 @@
 
 
     <target name="composer:install:main">
-        <exec command="composer install --no-suggest --no-ansi --no-interaction ${composerInstallOptions}" passthru="true" checkreturn="true" level="info" dir="${projectDirMainComposer}"/>
+        <phingcall target="composer:command">
+            <property name="composerCommand" value="composer install --no-suggest --no-ansi --no-interaction ${composerInstallOptions}" override="true"/>
+        </phingcall>
     </target>
 
 

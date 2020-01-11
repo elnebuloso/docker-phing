@@ -4,8 +4,11 @@
 <project default="docker:compose:pull">
 
 
-    <target name="docker:compose:pull:init" depends="commons:init">
-        <property name="dockerComposePullDescription" value="pull the newest images of the docker compose stack"/>
+    <property name="dockerComposePullDescription" value="pull the newest images of the docker compose stack" override="true"/>
+
+
+    <target name="docker:compose:pull:init">
+        <echo message="no properties defined"/>
     </target>
 
 

@@ -4,8 +4,10 @@
 <project default="docker:push">
 
 
-    <target name="docker:push:init" depends="commons:init">
-        <property name="dockerPushDescription" value="push project image to a registry"/>
+    <property name="dockerPushDescription" value="push project image to a registry" override="true"/>
+
+
+    <target name="docker:push:init">
         <property name="dockerImageName" value="${projectName}"/>
         <property name="dockerImageVersion" value="${projectVersion}"/>
         <property name="dockerImageNamespace" value=""/>

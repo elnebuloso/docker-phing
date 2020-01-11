@@ -4,8 +4,10 @@
 <project default="test:phplint">
 
 
-    <target name="test:phplint:init" depends="commons:init">
-        <property name="testPhpLintDescription" value="php code validation and linting"/>
+    <property name="testPhpLintDescription" value="php code validation and linting" override="true"/>
+
+
+    <target name="test:phplint:init">
         <property name="testPhpLintOutput" value="${projectDirBuildReports}/phplint"/>
         <property name="testPhpLintInterpreter" value="7.3"/>
         <property name="testPhpLintHaltOnFailure" value="1"/>
@@ -44,8 +46,8 @@
         <mkdir dir="${projectDirBuildTmp}"/>
 
         <phplint interpreter="php${testPhpLintInterpreter}" tofile="${testPhpLintOutput}/${testPhpLintInterpreter}/report.txt" haltonfailure="${testPhpLintHaltOnFailure}" cachefile="${projectDirBuildTmp}/phplint.cache.${testPhpLintInterpreter}" level="info">
-            <fileset dir="${project.dir.main}">
-                <patternset refid="patternset.test.phplint"/>
+            <fileset dir="${projectDirMain}">
+                <patternset refid="patternsetTestPhpLint"/>
             </fileset>
         </phplint>
     </target>
