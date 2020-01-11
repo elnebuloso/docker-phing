@@ -48,6 +48,7 @@
         <echo message="property                      value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="dockerPushLatest              ${dockerPushLatest}"/>
+        <echo message="dockerPushSemver              ${dockerPushSemver}"/>
         <echo message="dockerPushCleanup             ${dockerPushCleanup}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="dockerConfigImageVersion      ${dockerConfigImageVersion}" level="warning"/>
