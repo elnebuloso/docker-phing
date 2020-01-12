@@ -22,7 +22,7 @@
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="dockerBuildFile               ${dockerBuildFile}"/>
         <echo message="dockerBuildArgs               ${dockerBuildArgs}"/>
-        <echo message="dockerBuildContext            ${dockerImageName}"/>
+        <echo message="dockerBuildContext            ${dockerBuildContext}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="dockerConfigImageVersion      ${dockerConfigImageVersion}" level="warning"/>
         <echo message="dockerConfigImage             ${dockerConfigImage}" level="warning"/>
