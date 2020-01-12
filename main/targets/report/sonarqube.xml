@@ -11,7 +11,7 @@
         <property name="reportSonarqubeExecutable" value="sonarqube-scanner"/>
         <property name="reportSonarqubeHostUrl" value=""/>
         <property name="reportSonarqubeLogin" value=""/>
-        <property name="reportSonarqubeConfig" value="${project.root}/sonar-project.properties"/>
+        <property name="reportSonarqubeConfig" value="${projectRoot}/sonar-project.properties"/>
         <property name="reportSonarqubeProjectKey" value="${projectName}"/>
         <property name="reportSonarqubeProjectVersion" value="${projectVersion}"/>
     </target>
@@ -71,7 +71,7 @@
         </if>
 
         <echo message="${reportSonarqubeProjectVersion}"/>
-        <exec executable="${reportSonarqubeExecutable}" passthru="true" checkreturn="true" level="info" dir="${project.root}">
+        <exec executable="${reportSonarqubeExecutable}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}">
             <arg line="--define sonar.userHome=${projectDirBuildTmp}"/>
             <arg line="--define sonar.host.url=${reportSonarqubeHostUrl}"/>
             <arg line="--define sonar.login=${reportSonarqubeLogin}"/>
