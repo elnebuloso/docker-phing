@@ -82,7 +82,7 @@
 
     <target name="docker:push:main">
         <exec command="docker tag ${dockerConfigImage} ${dockerConfigImageTag}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
-        <exec command="docker push ${dockerImageTag}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
+        <exec command="docker push ${dockerConfigImageTag}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
 
         <if>
             <equals arg1="${dockerConfigPushLatest}" arg2="enabled"/>
