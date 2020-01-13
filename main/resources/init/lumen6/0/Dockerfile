@@ -12,15 +12,18 @@ RUN echo "configure" \
     && a2enmod rewrite \
     && echo 'PassEnv APP_ENV' > /etc/apache2/conf-enabled/expose-env.conf \
     && if [ -d /app/main/storage ]; then chmod 0755 -R /app/main/storage ; fi \
-    && if [ -d /app/main/storage ]; then chown www-data:www-data -R /app/main/storage ; fi
+    && if [ -d /app/main/storage ]; then chown www-data:www-data -R /app/main/storage ; fi \
+    && if [ -f /app/main/artisan ]; then chmod +x /app/artisan ; fi
 
 #
 # development layer
 #
 FROM prod as dev
+
 ENV PHPEXT_ENABLE_XDEBUG no
 ADD https://phar.phpunit.de/phpunit-8.phar /usr/local/bin/phpunit
 ADD https://getcomposer.org/composer-stable.phar /usr/local/bin/composer
+
 RUN echo "install development dependencies" \
     && chmod +x /usr/local/bin/phpunit \
     && chmod +x /usr/local/bin/composer \

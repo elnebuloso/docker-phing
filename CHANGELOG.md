@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [2.14.0] - 2020-01-13
+- updated init resources
+
+
 ## [2.13.0] - 2020-01-12
 - updated docker:push, ability to automated push of images by semver
 - disabled automated docker:push latest image
