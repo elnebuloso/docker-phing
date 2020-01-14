@@ -82,6 +82,13 @@
         <phingcall target="composer:update"/>
         <phingcall target="composer:install"/>
         <phingcall target="composer:install:production"/>
+        <phingcall target="composer:require">
+            <property name="package" value="symfony/console"/>
+        </phingcall>
+        <phingcall target="composer:remove">
+            <property name="package" value="symfony/console"/>
+        </phingcall>
+        <phingcall target="composer:update"/>
     </target>
 
 
