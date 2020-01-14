@@ -33,8 +33,8 @@ class DockerConfigTask extends AbstractTask
     {
         $this->prepare();
 
-        if (!preg_match('#((\d{1,}).(\d{1,}).(\d{1,}))#', $this->getProject()->getProperty('projectVersion'), $matches)) {
-            throw new BuildException('projectVersion ist not in the correct format');
+        if (!preg_match('#((\d{1,}).(\d{1,}).(\d{1,}))#', $this->getProject()->getProperty('project_version'), $matches)) {
+            throw new BuildException('project_version ist not in the correct format');
         }
 
         $this->major = $matches[2];
