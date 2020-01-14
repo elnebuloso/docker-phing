@@ -4,23 +4,22 @@
 <project default="npm:run">
 
 
-    <property name="npmRunDescription" value="npm run script" override="true"/>
+    <property name="npm_run_description" value="npm run script" override="true"/>
 
 
-    <target name="npm:run:init">
-        <property name="npmRunScript" value=""/>
-        <property name="npmExecutable" value="npm"/>
+    <target name="npm:run:init" depends="npm:base:init" hidden="true">
+        <property name="npm_run_script" value=""/>
     </target>
 
 
-    <target name="npm:run:help" depends="npm:run:init">
-        <echo message="${npmRunDescription}"/>
-
-        <echo message=""/>
-        <echo message="property         value"/>
+    <target name="npm:run:help" depends="npm:base:help, npm:run:init">
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="npmRunScript     ${npmRunScript}"/>
-        <echo message="npmExecutable    ${npmExecutable}"/>
+        <echo message="${npm_run_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="property          value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="npm_run_script    ${npm_run_script}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
@@ -40,7 +39,7 @@
 
 
     <target name="npm:run:main">
-        <exec command="${npmExecutable} run ${npmRunScript}" passthru="true" checkreturn="true" level="info" dir="${project_dir_main_npm}"/>
+        <exec command="${npm_executable} run ${npm_run_script}" passthru="true" checkreturn="true" level="info" dir="${project_dir_main_npm}"/>
     </target>
 
 

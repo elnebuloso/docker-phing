@@ -4,16 +4,16 @@
 <project default="report:phpmetrics">
 
 
-    <property name="reportPhpMetricsDescription" value="phpmetrics scanner, reports of phpmetrics1, phpmetrics2" override="true"/>
+    <property name="report_phpmetrics_description" value="phpmetrics scanner, reports of phpmetrics1, phpmetrics2" override="true"/>
 
 
-    <target name="report:phpmetrics:init">
+    <target name="report:phpmetrics:init" hidden="true">
         <echo message="no properties defined"/>
     </target>
 
 
     <target name="report:phpmetrics:help" depends="report:phpmetrics:init">
-        <echo message="${reportPhpMetricsDescription}"/>
+        <echo message="${report_phpmetrics_description}"/>
     </target>
 
 
@@ -32,7 +32,7 @@
     </target>
 
 
-    <target name="report:phpmetrics:main" depends="report:phpmetrics1, report:phpmetrics2"/>
+    <target name="report:phpmetrics:main" depends="report:phpmetrics1, report:phpmetrics2" hidden="true"/>
 
 
 </project>

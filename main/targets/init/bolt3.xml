@@ -4,22 +4,22 @@
 <project default="init:bolt3">
 
 
-    <property name="initBolt3Description" value="init bolt3 application" override="true"/>
+    <property name="init_bolt3_description" value="init bolt3 application" override="true"/>
 
 
-    <target name="init:bolt3:init">
-        <property name="initBolt3Url" value="bolt3.127.0.0.1.xip.io"/>
+    <target name="init:bolt3:init" hidden="true">
+        <property name="init_bolt3_url" value="bolt3.127.0.0.1.xip.io"/>
     </target>
 
 
     <target name="init:bolt3:help" depends="init:bolt3:init">
-        <echo message="${initBolt3Description}"/>
+        <echo message="${init_bolt3_description}"/>
     </target>
 
 
     <target name="init:bolt3" depends="clean:dist, init:bolt3:init, init:bolt3:before, init:bolt3:main, init:bolt3:after">
         <echo message="browse application after docker start, using phing start"/>
-        <echo message="${initBolt3Url}"/>
+        <echo message="${init_bolt3_url}"/>
     </target>
 
 
@@ -33,7 +33,7 @@
     </target>
 
 
-    <target name="init:bolt3:main">
+    <target name="init:bolt3:main" hidden="true">
         <fail message="${project_dir_main} exists for creating bolt3 application">
             <condition>
                 <available file="${project_dir_main}" type="dir"/>
@@ -52,7 +52,7 @@
             </filterchain>
         </copy>
 
-        <my-configure-composer selector="name" value="my/${projectName}"/>
+        <my-configure-composer selector="name" value="my/${project_name}"/>
         <phingcall target="composer:update"/>
     </target>
 

@@ -4,22 +4,22 @@
 <project default="init:laravel6">
 
 
-    <property name="initLaravel6Description" value="init laravel application" override="true"/>
+    <property name="init_laravel6_description" value="init laravel application" override="true"/>
 
 
-    <target name="init:laravel6:init">
-        <property name="initLaravel6Url" value="laravel6.127.0.0.1.xip.io"/>
+    <target name="init:laravel6:init" hidden="true">
+        <property name="init_laravel6_url" value="laravel6.127.0.0.1.xip.io"/>
     </target>
 
 
     <target name="init:laravel6:help" depends="init:laravel6:init">
-        <echo message="${initLaravel6Description}"/>
+        <echo message="${init_laravel6_description}"/>
     </target>
 
 
     <target name="init:laravel6" depends="clean:dist, init:laravel6:init, init:laravel6:before, init:laravel6:main, init:laravel6:after">
         <echo message="browse application after docker start, using phing start"/>
-        <echo message="${initLaravel6Url}"/>
+        <echo message="${init_laravel6_url}"/>
     </target>
 
 
@@ -33,7 +33,7 @@
     </target>
 
 
-    <target name="init:laravel6:main">
+    <target name="init:laravel6:main" hidden="true">
         <fail message="${project_dir_main} exists for creating laravel6 application">
             <condition>
                 <available file="${project_dir_main}" type="dir"/>
@@ -52,7 +52,7 @@
             </filterchain>
         </copy>
 
-        <my-configure-composer selector="name" value="my/${projectName}"/>
+        <my-configure-composer selector="name" value="my/${project_name}"/>
         <phingcall target="composer:update"/>
     </target>
 

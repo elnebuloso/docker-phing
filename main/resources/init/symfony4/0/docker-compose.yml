@@ -14,5 +14,5 @@ services:
     volumes:
       - .:/app
     environment:
-      VIRTUAL_HOST: ${initSymfony4Url}
+      VIRTUAL_HOST: ${init_symfony4_url}
       PHPEXT_ENABLE_XDEBUG: "no"

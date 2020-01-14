@@ -4,23 +4,22 @@
 <project default="composer:update">
 
 
-    <property name="composerUpdateDescription" value="composer update dependencies" override="true"/>
+    <property name="composer_update_description" value="composer update dependencies" override="true"/>
 
 
-    <target name="composer:update:init">
-        <property name="composerUpdateOptions" value=""/>
+    <target name="composer:update:init" depends="composer:base:init" hidden="true">
+        <property name="composer_update_options" value=""/>
     </target>
 
 
-    <target name="composer:update:help" depends="composer:update:init">
-        <echo message="${composerUpdateDescription}"/>
-
-        <echo message=""/>
-        <echo message="property                 value"/>
+    <target name="composer:update:help" depends="composer:base:help, composer:update:init">
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="composerUpdateOptions    ${composerUpdateOptions}"/>
+        <echo message="${composer_update_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="composer:help for main configuration"/>
+        <echo message="property                   value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="composer_update_options    ${composer_update_options}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
@@ -39,9 +38,9 @@
     </target>
 
 
-    <target name="composer:update:main">
-        <phingcall target="composer:command">
-            <property name="composerCommand" value="composer update --no-suggest --no-ansi --no-interaction ${composerUpdateOptions}" override="true"/>
+    <target name="composer:update:main" hidden="true">
+        <phingcall target="composer:base:command">
+            <property name="composer_command" value="composer update --no-suggest --no-ansi --no-interaction ${composer_update_options}" override="true"/>
         </phingcall>
     </target>
 

@@ -4,24 +4,25 @@
 <project default="test:phplint">
 
 
-    <property name="testPhpLintDescription" value="php code validation and linting" override="true"/>
+    <property name="test_phplint_description" value="php code validation and linting" override="true"/>
+    <property name="test_phplint_output" value="${project_dir_build_reports}/phplint" override="true"/>
 
 
-    <target name="test:phplint:init">
-        <property name="testPhpLintOutput" value="${project_dir_build_reports}/phplint"/>
-        <property name="testPhpLintInterpreter" value="7.3"/>
-        <property name="testPhpLintHaltOnFailure" value="1"/>
+    <target name="test:phplint:init" hidden="true">
+        <property name="test_phplint_interpreter" value="7.3"/>
+        <property name="test_phplint_halt_on_failure" value="1"/>
     </target>
 
 
     <target name="test:phplint:help" depends="test:phplint:init">
-        <echo message="${testPhpLintDescription}"/>
-
-        <echo message=""/>
-        <echo message="property                    value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="testPhpLintInterpreter      ${testPhpLintInterpreter}"/>
-        <echo message="testPhpLintHaltOnFailure    ${testPhpLintHaltOnFailure}"/>
+        <echo message="${test_phplint_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="property                        value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="test_phplint_interpreter        ${test_phplint_interpreter}"/>
+        <echo message="test_phplint_halt_on_failure    ${test_phplint_halt_on_failure}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
@@ -40,12 +41,12 @@
     </target>
 
 
-    <target name="test:phplint:main">
-        <delete dir="${testPhpLintOutput}/${testPhpLintInterpreter}"/>
-        <mkdir dir="${testPhpLintOutput}/${testPhpLintInterpreter}"/>
+    <target name="test:phplint:main" hidden="true">
+        <delete dir="${test_phplint_output}/${test_phplint_interpreter}"/>
+        <mkdir dir="${test_phplint_output}/${test_phplint_interpreter}"/>
         <mkdir dir="${project_dir_build_tmp}"/>
 
-        <phplint interpreter="php${testPhpLintInterpreter}" tofile="${testPhpLintOutput}/${testPhpLintInterpreter}/report.txt" haltonfailure="${testPhpLintHaltOnFailure}" cachefile="${project_dir_build_tmp}/phplint.cache.${testPhpLintInterpreter}" level="info">
+        <phplint interpreter="php${test_phplint_interpreter}" tofile="${test_phplint_output}/${test_phplint_interpreter}/report.txt" haltonfailure="${test_phplint_halt_on_failure}" cachefile="${project_dir_build_tmp}/phplint.cache.${test_phplint_interpreter}" level="info">
             <fileset dir="${project_dir_main}">
                 <patternset refid="patternset_test_phplint"/>
             </fileset>

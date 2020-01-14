@@ -14,5 +14,5 @@ services:
     volumes:
       - .:/app
     environment:
-      VIRTUAL_HOST: ${initLumen6Url}
+      VIRTUAL_HOST: ${init_lumen6_url}
       PHPEXT_ENABLE_XDEBUG: "no"

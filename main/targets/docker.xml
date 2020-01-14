@@ -12,45 +12,52 @@
     <import file="${phing_commons_root}/targets/docker/push.xml"/>
 
 
-    <target name="docker:init">
-        <property name="dockerRegistry" value=""/>
-        <property name="dockerRegistryNamespace" value=""/>
-        <property name="dockerImageName" value="${projectName}"/>
-        <property name="dockerImageVersion" value="${project_version}"/>
-        <property name="branchNameMaster" value="master"/>
-        <property name="branchName" value=""/>
-        <property name="buildNumber" value=""/>
-        <my-docker-config/>
+    <target name="docker:help">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="target                 description"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="docker:compose:down    ${docker_compose_down_description}"/>
+        <echo message="docker:compose:ps      ${docker_compose_ps_description}"/>
+        <echo message="docker:compose:pull    ${docker_compose_pull_description}"/>
+        <echo message="docker:compose:up      ${docker_compose_up_description}"/>
+        <echo message="docker:build           ${docker_build_description}"/>
+        <echo message="docker:push            ${docker_push_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
-    <target name="docker:help" depends="docker:init">
-        <echo message="target                 description"/>
+    <target name="docker:base:help" depends="docker:help, docker:base:init">
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="docker:compose:down           ${dockerComposeDownDescription}"/>
-        <echo message="docker:compose:ps             ${dockerComposePsDescription}"/>
-        <echo message="docker:compose:pull           ${dockerComposePullDescription}"/>
-        <echo message="docker:compose:up             ${dockerComposeUpDescription}"/>
-        <echo message="docker:build                  ${dockerBuildDescription}"/>
-        <echo message="docker:push                   ${dockerPushDescription}"/>
-        <echo message=""/>
-        <echo message="property                      value"/>
+        <echo message="property                         value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="dockerRegistry                ${dockerRegistry}"/>
-        <echo message="dockerRegistryNamespace       ${dockerRegistryNamespace}"/>
-        <echo message="dockerImageName               ${dockerImageName}"/>
-        <echo message="dockerImageVersion            ${dockerImageVersion}"/>
-        <echo message="branchName                    ${branchName}"/>
-        <echo message="buildNumber                   ${buildNumber}"/>
+        <echo message="docker_registry                  ${docker_registry}"/>
+        <echo message="docker_registry_namespace        ${docker_registry_namespace}"/>
+        <echo message="docker_image_name                ${docker_image_name}"/>
+        <echo message="docker_image_version             ${docker_image_version}"/>
+        <echo message="branch_name_master               ${branch_name_master}"/>
+        <echo message="branch_name                      ${branch_name}"/>
+        <echo message="build_number                     ${build_number}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="dockerConfigImageVersion      ${dockerConfigImageVersion}" level="warning"/>
-        <echo message="dockerConfigImage             ${dockerConfigImage}" level="warning"/>
-        <echo message="dockerConfigImageTag          ${dockerConfigImageTag}" level="warning"/>
-        <echo message="dockerConfigImageTagLatest    ${dockerConfigImageTagLatest}" level="warning"/>
-        <echo message="dockerConfigImageTagMajor     ${dockerConfigImageTagMajor}" level="warning"/>
-        <echo message="dockerConfigImageTagMinor     ${dockerConfigImageTagMinor}" level="warning"/>
-        <echo message="dockerConfigImageTagPatch     ${dockerConfigImageTagPatch}" level="warning"/>
+        <echo message="docker_config_image_version       ${docker_config_image_version}" level="warning"/>
+        <echo message="docker_config_image               ${docker_config_image}" level="warning"/>
+        <echo message="docker_config_image_tag           ${docker_config_image_tag}" level="warning"/>
+        <echo message="docker_config_image_tag_latest    ${docker_config_image_tag_latest}" level="warning"/>
+        <echo message="docker_config_image_tag_major     ${docker_config_image_tag_major}" level="warning"/>
+        <echo message="docker_config_image_tag_minor     ${docker_config_image_tag_minor}" level="warning"/>
+        <echo message="docker_config_image_tag_patch     ${docker_config_image_tag_patch}" level="warning"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
+    </target>
+
+
+    <target name="docker:base:init">
+        <property name="docker_registry" value=""/>
+        <property name="docker_registry_namespace" value=""/>
+        <property name="docker_image_name" value="${project_name}"/>
+        <property name="docker_image_version" value="${project_version}"/>
+        <property name="branch_name_master" value="master"/>
+        <property name="branch_name" value=""/>
+        <property name="build_number" value=""/>
+        <my-docker-config/>
     </target>
 
 

@@ -4,23 +4,22 @@
 <project default="composer:install">
 
 
-    <property name="composerInstallDescription" value="composer install" override="true"/>
+    <property name="composer_install_description" value="composer install" override="true"/>
 
 
-    <target name="composer:install:init">
-        <property name="composerInstallOptions" value=""/>
+    <target name="composer:install:init" depends="composer:base:init" hidden="true">
+        <property name="composer_install_options" value=""/>
     </target>
 
 
-    <target name="composer:install:help" depends="composer:install:init">
-        <echo message="${composerInstallDescription}"/>
-
-        <echo message=""/>
-        <echo message="property                  value"/>
+    <target name="composer:install:help" depends="composer:base:help, composer:install:init">
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="composerInstallOptions    ${composerInstallOptions}"/>
+        <echo message="${composer_install_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="composer:help for main configuration"/>
+        <echo message="property                    value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="composer_install_options    ${composer_install_options}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
@@ -39,9 +38,9 @@
     </target>
 
 
-    <target name="composer:install:main">
-        <phingcall target="composer:command">
-            <property name="composerCommand" value="composer install --no-suggest --no-ansi --no-interaction ${composerInstallOptions}" override="true"/>
+    <target name="composer:install:main" hidden="true">
+        <phingcall target="composer:base:command">
+            <property name="composer_command" value="composer install --no-suggest --no-ansi --no-interaction ${composer_install_options}" override="true"/>
         </phingcall>
     </target>
 

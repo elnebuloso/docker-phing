@@ -4,16 +4,16 @@
 <project default="docker:compose:pull">
 
 
-    <property name="dockerComposePullDescription" value="pull the newest images of the docker compose stack" override="true"/>
+    <property name="docker_compose_pull_description" value="pull the newest images of the docker compose stack" override="true"/>
 
 
-    <target name="docker:compose:pull:init">
+    <target name="docker:compose:pull:init" hidden="true">
         <echo message="no properties defined"/>
     </target>
 
 
     <target name="docker:compose:pull:help" depends="docker:compose:pull:init">
-        <echo message="${dockerComposePullDescription}"/>
+        <echo message="${docker_compose_pull_description}"/>
     </target>
 
 
@@ -32,7 +32,7 @@
     </target>
 
 
-    <target name="docker:compose:pull:main">
+    <target name="docker:compose:pull:main" hidden="true">
         <exec command="docker-compose pull" passthru="true" checkreturn="true" level="info"/>
     </target>
 

@@ -4,20 +4,15 @@
 <project default="docker:compose:ps">
 
 
-    <property name="dockerComposePsDescription" value="show docker compose stack status" override="true"/>
+    <property name="docker_compose_ps_description" value="show docker compose stack status" override="true"/>
 
 
-    <target name="docker:compose:ps:init">
-        <echo message="no properties defined"/>
+    <target name="docker:compose:ps:help">
+        <echo message="${docker_compose_ps_description}"/>
     </target>
 
 
-    <target name="docker:compose:ps:help" depends="docker:compose:ps:init">
-        <echo message="${dockerComposePsDescription}"/>
-    </target>
-
-
-    <target name="docker:compose:ps" depends="docker:compose:ps:init">
+    <target name="docker:compose:ps">
         <exec command="docker-compose ps" passthru="true" checkreturn="true" level="info"/>
     </target>
 

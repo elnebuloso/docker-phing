@@ -4,22 +4,22 @@
 <project default="init:lumen6">
 
 
-    <property name="initLumen6Description" value="init lumen6 application" override="true"/>
+    <property name="init_lumen6_description" value="init lumen6 application" override="true"/>
 
 
-    <target name="init:lumen6:init">
-        <property name="initLumen6Url" value="lumen6.127.0.0.1.xip.io"/>
+    <target name="init:lumen6:init" hidden="true">
+        <property name="init_lumen6_url" value="lumen6.127.0.0.1.xip.io"/>
     </target>
 
 
     <target name="init:lumen6:help" depends="init:lumen6:init">
-        <echo message="${initLumen6Description}"/>
+        <echo message="${init_lumen6_description}"/>
     </target>
 
 
     <target name="init:lumen6" depends="clean:dist, init:lumen6:init, init:lumen6:before, init:lumen6:main, init:lumen6:after">
         <echo message="browse application after docker start, using phing start"/>
-        <echo message="${initLumen6Url}"/>
+        <echo message="${init_lumen6_url}"/>
     </target>
 
 
@@ -33,7 +33,7 @@
     </target>
 
 
-    <target name="init:lumen6:main">
+    <target name="init:lumen6:main" hidden="true">
         <fail message="${project_dir_main} exists for creating lumen6 application">
             <condition>
                 <available file="${project_dir_main}" type="dir"/>
@@ -52,7 +52,7 @@
             </filterchain>
         </copy>
 
-        <my-configure-composer selector="name" value="my/${projectName}"/>
+        <my-configure-composer selector="name" value="my/${project_name}"/>
         <phingcall target="composer:update"/>
     </target>
 

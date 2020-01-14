@@ -11,8 +11,8 @@
     <target name="test:help">
         <echo message="target          description"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="test:phplint    ${testPhpLintDescription}"/>
-        <echo message="test:phpunit    ${testPhpunitDescription}"/>
+        <echo message="test:phplint    ${test_phplint_description}"/>
+        <echo message="test:phpunit    ${test_phpunit_description}"/>
     </target>
 
 

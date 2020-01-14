@@ -4,22 +4,22 @@
 <project default="init:symfony5">
 
 
-    <property name="initSymfony5Description" value="init symfony5 application" override="true"/>
+    <property name="init_symfony5_description" value="init symfony5 application" override="true"/>
 
 
-    <target name="init:symfony5:init">
-        <property name="initSymfony5Url" value="symfony5.127.0.0.1.xip.io"/>
+    <target name="init:symfony5:init" hidden="true">
+        <property name="init_symfony5_url" value="symfony5.127.0.0.1.xip.io"/>
     </target>
 
 
     <target name="init:symfony5:help" depends="init:symfony5:init">
-        <echo message="${initSymfony5Description}"/>
+        <echo message="${init_symfony5_description}"/>
     </target>
 
 
     <target name="init:symfony5" depends="clean:dist, init:symfony5:init, init:symfony5:before, init:symfony5:main, init:symfony5:after">
         <echo message="browse application after docker start, using phing start"/>
-        <echo message="${initSymfony5Url}"/>
+        <echo message="${init_symfony5_url}"/>
     </target>
 
 
@@ -33,7 +33,7 @@
     </target>
 
 
-    <target name="init:symfony5:main">
+    <target name="init:symfony5:main" hidden="true">
         <fail message="${project_dir_main} exists for creating symfony5 application">
             <condition>
                 <available file="${project_dir_main}" type="dir"/>
@@ -76,7 +76,7 @@
             </filterchain>
         </copy>
 
-        <my-configure-composer selector="name" value="my/${projectName}"/>
+        <my-configure-composer selector="name" value="my/${project_name}"/>
         <phingcall target="composer:update"/>
 
         <!-- https://flex.symfony.com -->

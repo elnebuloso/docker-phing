@@ -4,22 +4,22 @@
 <project default="init:symfony4">
 
 
-    <property name="initSymfony4Description" value="init symfony4 application" override="true"/>
+    <property name="init_symfony4_description" value="init symfony4 application" override="true"/>
 
 
-    <target name="init:symfony4:init">
-        <property name="initSymfony4Url" value="symfony4.127.0.0.1.xip.io"/>
+    <target name="init:symfony4:init" hidden="true">
+        <property name="init_symfony4_url" value="symfony4.127.0.0.1.xip.io"/>
     </target>
 
 
     <target name="init:symfony4:help" depends="init:symfony4:init">
-        <echo message="${initSymfony4Description}"/>
+        <echo message="${init_symfony4_description}"/>
     </target>
 
 
     <target name="init:symfony4" depends="clean:dist, init:symfony4:init, init:symfony4:before, init:symfony4:main, init:symfony4:after">
         <echo message="browse application after docker start, using phing start"/>
-        <echo message="${initSymfony4Url}"/>
+        <echo message="${init_symfony4_url}"/>
     </target>
 
 
@@ -33,7 +33,7 @@
     </target>
 
 
-    <target name="init:symfony4:main">
+    <target name="init:symfony4:main" hidden="true">
         <fail message="${project_dir_main} exists for creating symfony4 application">
             <condition>
                 <available file="${project_dir_main}" type="dir"/>
@@ -76,7 +76,7 @@
             </filterchain>
         </copy>
 
-        <my-configure-composer selector="name" value="my/${projectName}"/>
+        <my-configure-composer selector="name" value="my/${project_name}"/>
         <phingcall target="composer:update"/>
 
         <!-- https://flex.symfony.com -->

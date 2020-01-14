@@ -4,16 +4,16 @@
 <project default="bundle:project">
 
 
-    <property name="bundleProjectDescription" value="bundle files defined by patternset to dist" override="true"/>
+    <property name="bundle_project_description" value="bundle files defined by patternset to dist" override="true"/>
 
 
-    <target name="bundle:project:init">
+    <target name="bundle:project:init" hidden="true">
         <echo message="no properties defined"/>
     </target>
 
 
     <target name="bundle:project:help" depends="bundle:project:init">
-        <echo message="${bundleProjectDescription}"/>
+        <echo message="${bundle_project_description}"/>
     </target>
 
 
@@ -32,7 +32,7 @@
     </target>
 
 
-    <target name="bundle:project:main">
+    <target name="bundle:project:main" hidden="true">
         <delete dir="${project_dir_build_dist}/${project_folder_main}"/>
 
         <copy todir="${project_dir_build_dist}">

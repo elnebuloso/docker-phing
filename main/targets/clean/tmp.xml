@@ -4,16 +4,16 @@
 <project default="clean:tmp">
 
 
-    <property name="cleanTmpDescription" value="cleanup project temporary build directory" override="true"/>
+    <property name="clean_tmp_description" value="cleanup project temporary build directory" override="true"/>
 
 
-    <target name="clean:tmp:init">
+    <target name="clean:tmp:init" hidden="true">
         <echo message="no properties defined"/>
     </target>
 
 
     <target name="clean:tmp:help" depends="clean:tmp:init">
-        <echo message="${cleanTmpDescription}"/>
+        <echo message="${clean_tmp_description}"/>
     </target>
 
 
@@ -32,7 +32,7 @@
     </target>
 
 
-    <target name="clean:tmp:main">
+    <target name="clean:tmp:main" hidden="true">
         <delete dir="${project_dir_build_tmp}"/>
         <mkdir dir="${project_dir_build_tmp}"/>
     </target>

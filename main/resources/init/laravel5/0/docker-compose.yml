@@ -14,5 +14,5 @@ services:
     volumes:
       - .:/app
     environment:
-      VIRTUAL_HOST: ${initLaravel5Url}
+      VIRTUAL_HOST: ${init_laravel5_url}
       PHPEXT_ENABLE_XDEBUG: "no"

@@ -14,15 +14,17 @@
 
 
     <target name="init:help">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="target           description"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="init:bolt3       ${initBolt3Description}"/>
-        <echo message="init:laravel5    ${initLaravel5Description}"/>
-        <echo message="init:laravel6    ${initLaravel6Description}"/>
-        <echo message="init:lumen5      ${initLumen5Description}"/>
-        <echo message="init:lumen6      ${initLumen6Description}"/>
-        <echo message="init:symfony4    ${initSymfony4Description}"/>
-        <echo message="init:symfony5    ${initSymfony5Description}"/>
+        <echo message="init:bolt3       ${init_bolt3_description}"/>
+        <echo message="init:laravel5    ${init_laravel5_description}"/>
+        <echo message="init:laravel6    ${init_laravel6_description}"/>
+        <echo message="init:lumen5      ${init_lumen5_description}"/>
+        <echo message="init:lumen6      ${init_lumen6_description}"/>
+        <echo message="init:symfony4    ${init_symfony4_description}"/>
+        <echo message="init:symfony5    ${init_symfony5_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 

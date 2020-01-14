@@ -14,5 +14,5 @@ services:
     volumes:
       - .:/app
     environment:
-      VIRTUAL_HOST: ${initBolt3Url}
+      VIRTUAL_HOST: ${init_bolt3_url}
       PHPEXT_ENABLE_XDEBUG: "no"

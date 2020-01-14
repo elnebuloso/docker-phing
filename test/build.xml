@@ -93,10 +93,10 @@
 
     <target name="test:run:phing:commons:npm">
         <phingcall target="npm:install">
-            <property name="npmExecutable" value="npm"/>
+            <property name="npm_executable" value="npm"/>
         </phingcall>
         <phingcall target="npm:install">
-            <property name="npmExecutable" value="yarn"/>
+            <property name="npm_executable" value="yarn"/>
         </phingcall>
     </target>
 

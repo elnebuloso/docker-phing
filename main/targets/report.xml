@@ -15,16 +15,18 @@
 
 
     <target name="report:help">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="target                description"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="report:phpcpd         ${reportPhpCpdDescription}"/>
-        <echo message="report:phpdepend      ${reportPhpDependDescription}"/>
-        <echo message="report:phploc         ${reportPhpLocDescription}"/>
-        <echo message="report:phpmd          ${reportPhpMdDescription}"/>
-        <echo message="report:phpmetrics     ${reportPhpMetricsDescription}"/>
-        <echo message="report:phpmetrics1    ${reportPhpMetrics1Description}"/>
-        <echo message="report:phpmetrics2    ${reportPhpMetrics2Description}"/>
-        <echo message="report:sonarqube      ${reportSonarqubeDescription}"/>
+        <echo message="report:phpcpd         ${report_phpcpd_description}"/>
+        <echo message="report:phpdepend      ${report_phpdepend_description}"/>
+        <echo message="report:phploc         ${report_phploc_description}"/>
+        <echo message="report:phpmd          ${report_phpmd_description}"/>
+        <echo message="report:phpmetrics     ${report_phpmetrics_description}"/>
+        <echo message="report:phpmetrics1    ${report_phpmetrics1_description}"/>
+        <echo message="report:phpmetrics2    ${report_phpmetrics2_description}"/>
+        <echo message="report:sonarqube      ${report_sonarqube_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 

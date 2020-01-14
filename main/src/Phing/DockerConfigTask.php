@@ -2,6 +2,9 @@
 
 namespace elnebuloso\Phing;
 
+use BuildException;
+use IOException;
+
 /**
  * Class DockerConfigTask
  */
@@ -23,27 +26,28 @@ class DockerConfigTask extends AbstractTask
     private $patch;
 
     /**
-     * @throws \IOException
+     * @throws BuildException
+     * @throws IOException
      */
     public function main()
     {
         $this->prepare();
 
         if (!preg_match('#((\d{1,}).(\d{1,}).(\d{1,}))#', $this->getProject()->getProperty('projectVersion'), $matches)) {
-            throw new \BuildException('projectVersion ist not in the correct format');
+            throw new BuildException('projectVersion ist not in the correct format');
         }
 
         $this->major = $matches[2];
         $this->minor = $matches[3];
         $this->patch = $matches[4];
 
-        $this->getProject()->setProperty('dockerConfigImageVersion', $this->dockerConfigImageVersion());
-        $this->getProject()->setProperty('dockerConfigImage', $this->dockerConfigImage());
-        $this->getProject()->setProperty('dockerConfigImageTag', $this->dockerConfigImageTag());
-        $this->getProject()->setProperty('dockerConfigImageTagLatest', $this->dockerConfigImageTagLatest());
-        $this->getProject()->setProperty('dockerConfigImageTagMajor', $this->dockerConfigImageTagMajor());
-        $this->getProject()->setProperty('dockerConfigImageTagMinor', $this->dockerConfigImageTagMinor());
-        $this->getProject()->setProperty('dockerConfigImageTagPatch', $this->dockerConfigImageTagPatch());
+        $this->getProject()->setProperty('docker_config_image_version', $this->getDockerConfigImageVersion());
+        $this->getProject()->setProperty('docker_config_image', $this->getDockerConfigImage());
+        $this->getProject()->setProperty('docker_config_image_tag', $this->getDockerConfigImageTag());
+        $this->getProject()->setProperty('docker_config_image_tag_latest', $this->getDockerConfigImageTagLatest());
+        $this->getProject()->setProperty('docker_config_image_tag_major', $this->getDockerConfigImageTagMajor());
+        $this->getProject()->setProperty('docker_config_image_tag_minor', $this->getDockerConfigImageTagMinor());
+        $this->getProject()->setProperty('docker_config_image_tag_patch', $this->getDockerConfigImageTagPatch());
 
         $this->cleanup();
     }
@@ -51,17 +55,17 @@ class DockerConfigTask extends AbstractTask
     /**
      * @return string
      */
-    private function dockerConfigImageVersion()
+    private function getDockerConfigImageVersion()
     {
         $info = [];
-        $info[] = $this->getProject()->getProperty('dockerImageVersion');
+        $info[] = $this->getProject()->getProperty('docker_image_version');
 
-        // append given branchName only when not the defined master branch
-        if (strtolower($this->getProject()->getProperty('branchName')) !== strtolower($this->getProject()->getProperty('branchNameMaster'))) {
-            $info[] = $this->getProject()->getProperty('branchName');
+        // append given branch_name only when not the defined master branch
+        if (strtolower($this->getProject()->getProperty('branch_name')) !== strtolower($this->getProject()->getProperty('branch_name_master'))) {
+            $info[] = $this->getProject()->getProperty('branch_name');
         }
 
-        $info[] = $this->getProject()->getProperty('buildNumber');
+        $info[] = $this->getProject()->getProperty('build_number');
 
         return implode('-', array_filter($info));
     }
@@ -69,23 +73,23 @@ class DockerConfigTask extends AbstractTask
     /**
      * @return string
      */
-    private function dockerConfigImage()
+    private function getDockerConfigImage()
     {
-        return implode(':', [$this->getDockerImageName(), $this->dockerConfigImageVersion()]);
+        return implode(':', [$this->getDockerImageName(), $this->getDockerConfigImageVersion()]);
     }
 
     /**
      * @return string
      */
-    private function dockerConfigImageTag()
+    private function getDockerConfigImageTag()
     {
-        return strtolower(implode('/', array_filter([$this->getDockerRegistry(), $this->getDockerRegistryNamespace(), $this->dockerConfigImage()])));
+        return strtolower(implode('/', array_filter([$this->getDockerRegistry(), $this->getDockerRegistryNamespace(), $this->getDockerConfigImage()])));
     }
 
     /**
      * @return string
      */
-    private function dockerConfigImageTagLatest()
+    private function getDockerConfigImageTagLatest()
     {
         return strtolower(implode('/', array_filter([$this->getDockerRegistry(), $this->getDockerRegistryNamespace(), implode(':', [$this->getDockerImageName(), 'latest'])])));
     }
@@ -93,7 +97,7 @@ class DockerConfigTask extends AbstractTask
     /**
      * @return string
      */
-    private function dockerConfigImageTagMajor()
+    private function getDockerConfigImageTagMajor()
     {
         return strtolower(implode('/', array_filter([$this->getDockerRegistry(), $this->getDockerRegistryNamespace(), implode(':', [$this->getDockerImageName(), implode('.', [$this->major])])])));
     }
@@ -101,7 +105,7 @@ class DockerConfigTask extends AbstractTask
     /**
      * @return string
      */
-    private function dockerConfigImageTagMinor()
+    private function getDockerConfigImageTagMinor()
     {
         return strtolower(implode('/', array_filter([$this->getDockerRegistry(), $this->getDockerRegistryNamespace(), implode(':', [$this->getDockerImageName(), implode('.', [$this->major, $this->minor])])])));
     }
@@ -109,7 +113,7 @@ class DockerConfigTask extends AbstractTask
     /**
      * @return string
      */
-    private function dockerConfigImageTagPatch()
+    private function getDockerConfigImageTagPatch()
     {
         return strtolower(implode('/', array_filter([$this->getDockerRegistry(), $this->getDockerRegistryNamespace(), implode(':', [$this->getDockerImageName(), implode('.', [$this->major, $this->minor, $this->patch])])])));
     }
@@ -119,7 +123,7 @@ class DockerConfigTask extends AbstractTask
      */
     private function getDockerRegistry()
     {
-        return strtolower(trim($this->getProject()->getProperty('dockerRegistry')));
+        return strtolower(trim($this->getProject()->getProperty('docker_registry')));
     }
 
     /**
@@ -127,7 +131,7 @@ class DockerConfigTask extends AbstractTask
      */
     private function getDockerRegistryNamespace()
     {
-        return strtolower(trim($this->getProject()->getProperty('dockerRegistryNamespace')));
+        return strtolower(trim($this->getProject()->getProperty('docker_registry_namespace')));
     }
 
     /**
@@ -135,6 +139,6 @@ class DockerConfigTask extends AbstractTask
      */
     private function getDockerImageName()
     {
-        return strtolower(trim($this->getProject()->getProperty('dockerImageName')));
+        return strtolower(trim($this->getProject()->getProperty('docker_image_name')));
     }
 }

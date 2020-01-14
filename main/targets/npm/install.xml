@@ -4,21 +4,16 @@
 <project default="npm:install">
 
 
-    <property name="npmInstallDescription" value="npm install dependencies" override="true"/>
+    <property name="npm_install_description" value="npm install dependencies" override="true"/>
 
 
-    <target name="npm:install:init">
-        <property name="npmExecutable" value="npm"/>
+    <target name="npm:install:init" depends="npm:base:init" hidden="true">
+        <echo message="no properties defined"/>
     </target>
 
 
-    <target name="npm:install:help" depends="npm:install:init">
-        <echo message="${npmInstallDescription}"/>
-
-        <echo message=""/>
-        <echo message="property         value"/>
-        <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="npmExecutable    ${npmExecutable}"/>
+    <target name="npm:install:help" depends="npm:base:help, npm:install:init">
+        <echo message="${npm_install_description}"/>
     </target>
 
 
@@ -37,8 +32,8 @@
     </target>
 
 
-    <target name="npm:install:main">
-        <exec command="${npmExecutable} install" passthru="true" checkreturn="true" level="info" dir="${project_dir_main_npm}"/>
+    <target name="npm:install:main" hidden="true">
+        <exec command="${npm_executable} install" passthru="true" checkreturn="true" level="info" dir="${project_dir_main_npm}"/>
     </target>
 
 

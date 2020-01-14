@@ -4,33 +4,36 @@
 <project default="report:sonarqube">
 
 
-    <property name="reportSonarqubeDescription" value="sonarqube scanner code analysis" override="true"/>
+    <property name="report_sonarqube_description" value="sonarqube scanner code analysis" override="true"/>
 
 
-    <target name="report:sonarqube:init">
-        <property name="reportSonarqubeExecutable" value="sonarqube-scanner"/>
-        <property name="reportSonarqubeHostUrl" value=""/>
-        <property name="reportSonarqubeLogin" value=""/>
-        <property name="reportSonarqubeConfig" value="${project_root}/sonar-project.properties"/>
-        <property name="reportSonarqubeProjectKey" value="${projectName}"/>
-        <property name="reportSonarqubeproject_version" value="${project_version}"/>
+    <target name="report:sonarqube:init" hidden="true">
+        <property name="report_sonarqube_executable" value="sonarqube-scanner"/>
+        <property name="report_sonarqube_host_url" value=""/>
+        <property name="report_sonarqube_login" value=""/>
+        <property name="report_sonarqube_config" value="${project_root}/sonar-project.properties"/>
+        <property name="report_sonarqube_project_key" value="${project_name}"/>
+        <property name="report_sonarqube_project_version" value="${project_version}"/>
+        <property name="branch_name_master" value="master"/>
     </target>
 
 
     <target name="report:sonarqube:help" depends="report:sonarqube:init">
-        <echo message="${reportSonarqubeDescription}"/>
-
-        <echo message=""/>
-        <echo message="property                         value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="reportSonarqubeExecutable        ${reportSonarqubeExecutable}"/>
-        <echo message="reportSonarqubeHostUrl           ${reportSonarqubeHostUrl}"/>
-        <echo message="reportSonarqubeLogin             ${reportSonarqubeLogin}"/>
-        <echo message="reportSonarqubeConfig            ${reportSonarqubeConfig}"/>
-        <echo message="reportSonarqubeProjectKey        ${reportSonarqubeProjectKey}"/>
-        <echo message="reportSonarqubeproject_version    ${reportSonarqubeproject_version}"/>
-        <echo message="branchName                       - adhoc property"/>
-        <echo message="buildNumber                      - adhoc property"/>
+        <echo message="${report_sonarqube_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="property                            value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="report_sonarqube_executable         ${report_sonarqube_executable}"/>
+        <echo message="report_sonarqube_host_url           ${report_sonarqube_host_url}"/>
+        <echo message="report_sonarqube_login              ${report_sonarqube_login}"/>
+        <echo message="report_sonarqube_config             ${report_sonarqube_config}"/>
+        <echo message="report_sonarqube_project_key        ${report_sonarqube_project_key}"/>
+        <echo message="report_sonarqube_project_version    ${report_sonarqube_project_version}"/>
+        <echo message="branch_name_master                  ${branch_name_master}"/>
+        <echo message="branch_name                         ${branch_name}"/>
+        <echo message="build_number                        ${build_number}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
@@ -49,35 +52,36 @@
     </target>
 
 
-    <target name="report:sonarqube:main">
+    <target name="report:sonarqube:main" hidden="true">
         <mkdir dir="${project_dir_build_tmp}"/>
 
         <if>
             <and>
-                <isset property="branchName"/>
+                <isset property="branch_name"/>
                 <not>
-                    <equals arg1="${branchName}" arg2="master"/>
+                    <equals arg1="${branch_name}" arg2="${branch_name_master}"/>
                 </not>
             </and>
             <then>
-                <property name="reportSonarqubeproject_version" value="${reportSonarqubeproject_version}-${branchName}"/>
+                <property name="report_sonarqube_project_version" value="${report_sonarqube_project_version}-${branch_name}"/>
                 <if>
-                    <isset property="buildNumber"/>
+                    <isset property="build_number"/>
                     <then>
-                        <property name="reportSonarqubeproject_version" value="${reportSonarqubeproject_version}-${buildNumber}"/>
+                        <property name="report_sonarqube_project_version" value="${report_sonarqube_project_version}-${build_number}"/>
                     </then>
                 </if>
             </then>
         </if>
 
-        <echo message="${reportSonarqubeproject_version}"/>
-        <exec executable="${reportSonarqubeExecutable}" passthru="true" checkreturn="true" level="info" dir="${project_root}">
+        <echo message="${report_sonarqube_project_version}"/>
+
+        <exec executable="${report_sonarqube_executable}" passthru="true" checkreturn="true" level="info" dir="${project_root}">
             <arg line="--define sonar.userHome=${project_dir_build_tmp}"/>
-            <arg line="--define sonar.host.url=${reportSonarqubeHostUrl}"/>
-            <arg line="--define sonar.login=${reportSonarqubeLogin}"/>
-            <arg line="--define project.settings=${reportSonarqubeConfig}"/>
-            <arg line="--define sonar.projectKey=${reportSonarqubeProjectKey}"/>
-            <arg line="--define sonar.project_version=${reportSonarqubeproject_version}"/>
+            <arg line="--define sonar.host.url=${report_sonarqube_host_url}"/>
+            <arg line="--define sonar.login=${report_sonarqube_login}"/>
+            <arg line="--define project.settings=${report_sonarqube_config}"/>
+            <arg line="--define sonar.projectKey=${report_sonarqube_project_key}"/>
+            <arg line="--define sonar.project_version=${report_sonarqube_project_version}"/>
         </exec>
     </target>
 

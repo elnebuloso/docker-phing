@@ -3,13 +3,13 @@
 namespace elnebuloso\Phing;
 
 use BuildException;
-use Exception;
+use IOException;
 use Jasny\DotKey;
 
 /**
- * Class ConfigureComposer
+ * Class ConfigureComposerTask
  */
-class ConfigureComposer extends AbstractTask
+class ConfigureComposerTask extends AbstractTask
 {
     /**
      * @var string
@@ -39,7 +39,7 @@ class ConfigureComposer extends AbstractTask
 
     /**
      * @throws BuildException
-     * @throws Exception
+     * @throws IOException
      */
     public function main()
     {

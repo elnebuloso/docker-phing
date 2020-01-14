@@ -4,16 +4,17 @@
 <project default="report:phploc">
 
 
-    <property name="reportPhpLocDescription" value="php lines of code" override="true"/>
+    <property name="report_phploc_description" value="php lines of code" override="true"/>
+    <property name="report_phploc_output" value="${project_dir_build_reports}/phploc" override="true"/>
 
 
-    <target name="report:phploc:init">
-        <property name="reportPhpLocOutput" value="${project_dir_build_reports}/phploc"/>
+    <target name="report:phploc:init" hidden="true">
+        <echo message="no properties defined"/>
     </target>
 
 
     <target name="report:phploc:help" depends="report:phploc:init">
-        <echo message="${reportPhpLocDescription}"/>
+        <echo message="${report_phploc_description}"/>
     </target>
 
 
@@ -32,19 +33,19 @@
     </target>
 
 
-    <target name="report:phploc:main">
-        <delete dir="${reportPhpLocOutput}"/>
-        <mkdir dir="${reportPhpLocOutput}"/>
+    <target name="report:phploc:main" hidden="true">
+        <delete dir="${report_phploc_output}"/>
+        <mkdir dir="${report_phploc_output}"/>
 
-        <phploc pharlocation="${phing_commons_root}/resources/phar/phploc-2.1.5.phar" reportType="xml" reportName="report" reportDirectory="${reportPhpLocOutput}">
+        <phploc pharlocation="${phing_commons_root}/resources/phar/phploc-2.1.5.phar" reportType="xml" reportName="report" reportDirectory="${report_phploc_output}">
             <fileset dir="${project_dir_main}">
                 <patternset refid="patternset_report_phploc"/>
             </fileset>
         </phploc>
 
-        <xslt file="${reportPhpLocOutput}/report.xml" tofile="${reportPhpLocOutput}/report-v1.html" style="${phing_commons_root}/resources/xsl/phploc-v1.xsl"/>
-        <xslt file="${reportPhpLocOutput}/report.xml" tofile="${reportPhpLocOutput}/report-v2.html" style="${phing_commons_root}/resources/xsl/phploc-v2.xsl"/>
-        <copy file="${reportPhpLocOutput}/report-v2.html" tofile="${reportPhpLocOutput}/index.html"/>
+        <xslt file="${report_phploc_output}/report.xml" tofile="${report_phploc_output}/report-v1.html" style="${phing_commons_root}/resources/xsl/phploc-v1.xsl"/>
+        <xslt file="${report_phploc_output}/report.xml" tofile="${report_phploc_output}/report-v2.html" style="${phing_commons_root}/resources/xsl/phploc-v2.xsl"/>
+        <copy file="${report_phploc_output}/report-v2.html" tofile="${report_phploc_output}/index.html"/>
     </target>
 
 

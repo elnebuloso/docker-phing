@@ -4,64 +4,54 @@
 <project default="docker:push">
 
 
-    <property name="dockerPushDescription" value="push project docker image to a registry" override="true"/>
+    <property name="docker_push_description" value="push project docker image to a registry" override="true"/>
 
 
-    <target name="docker:push:init" depends="docker:init">
-        <property name="dockerPushLatest" value="disabled"/>
-        <property name="dockerPushSemver" value="disabled"/>
-        <property name="dockerPushCleanup" value="enabled"/>
-        <property name="dockerConfigPushLatest" value="${dockerPushLatest}"/>
-        <property name="dockerConfigPushLatestReason" value=""/>
-        <property name="dockerConfigPushSemver" value="${dockerPushSemver}"/>
-        <property name="dockerConfigPushSemverReason" value=""/>
+    <target name="docker:push:init" depends="docker:base:init" hidden="true">
+        <property name="docker_push_latest" value="disabled"/>
+        <property name="docker_push_semver" value="disabled"/>
+        <property name="docker_push_cleanup" value="enabled"/>
+
+        <property name="docker_config_push_latest" value="${docker_push_latest}"/>
+        <property name="docker_config_push_latest_reason" value=""/>
+        <property name="docker_config_push_semver" value="${docker_push_semver}"/>
+        <property name="docker_config_push_semver_reason" value=""/>
 
         <if>
             <and>
                 <not>
-                    <equals arg1="${branchName}" arg2=""/>
+                    <equals arg1="${branch_name}" arg2=""/>
                 </not>
                 <not>
-                    <equals arg1="${branchName}" arg2="${branchNameMaster}"/>
+                    <equals arg1="${branch_name}" arg2="${branch_name_master}"/>
                 </not>
             </and>
             <then>
-                <property name="dockerConfigPushLatest" value="disabled" override="true"/>
-                <property name="dockerConfigPushLatestReason" value="- branchName is given or branchName is not the same as specific branchNameMaster" override="true"/>
+                <property name="docker_config_push_latest" value="disabled" override="true"/>
+                <property name="docker_config_push_latest_reason" value="- branch_name is given or branch_name is not the same as specific branch_name_master" override="true"/>
             </then>
         </if>
 
         <if>
-            <equals arg1="${dockerConfigPushLatest}" arg2="disabled"/>
+            <equals arg1="${docker_config_push_latest}" arg2="disabled"/>
             <then>
-                <property name="dockerConfigPushSemver" value="disabled" override="true"/>
-                <property name="dockerConfigPushSemverReason" value="- push latest not allowed" override="true"/>
+                <property name="docker_config_push_semver" value="disabled" override="true"/>
+                <property name="docker_config_push_semver_reason" value="- push latest not allowed" override="true"/>
             </then>
         </if>
     </target>
 
 
-    <target name="docker:push:help" depends="docker:push:init">
-        <echo message="${dockerPushDescription}"/>
-
-        <echo message=""/>
-        <echo message="property                      value"/>
+    <target name="docker:push:help" depends="docker:base:help, docker:push:init">
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="dockerPushLatest              ${dockerPushLatest}"/>
-        <echo message="dockerPushSemver              ${dockerPushSemver}"/>
-        <echo message="dockerPushCleanup             ${dockerPushCleanup}"/>
+        <echo message="${docker_push_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="dockerConfigImageVersion      ${dockerConfigImageVersion}" level="warning"/>
-        <echo message="dockerConfigImage             ${dockerConfigImage}" level="warning"/>
-        <echo message="dockerConfigImageTag          ${dockerConfigImageTag}" level="warning"/>
-        <echo message="dockerConfigImageTagLatest    ${dockerConfigImageTagLatest}" level="warning"/>
-        <echo message="dockerConfigImageTagMajor     ${dockerConfigImageTagMajor}" level="warning"/>
-        <echo message="dockerConfigImageTagMinor     ${dockerConfigImageTagMinor}" level="warning"/>
-        <echo message="dockerConfigImageTagPatch     ${dockerConfigImageTagPatch}" level="warning"/>
-        <echo message="dockerConfigPushLatest        ${dockerConfigPushLatest} ${dockerConfigPushLatestReason}" level="warning"/>
-        <echo message="dockerConfigPushSemver        ${dockerConfigPushSemver} ${dockerConfigPushSemverReason}" level="warning"/>
+        <echo message="property               value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="docker:help for main configuration"/>
+        <echo message="docker_push_latest     ${docker_push_latest}"/>
+        <echo message="docker_push_semver     ${docker_push_semver}"/>
+        <echo message="docker_push_cleanup    ${docker_push_cleanup}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
@@ -80,53 +70,53 @@
     </target>
 
 
-    <target name="docker:push:main">
-        <exec command="docker tag ${dockerConfigImage} ${dockerConfigImageTag}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
-        <exec command="docker push ${dockerConfigImageTag}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+    <target name="docker:push:main" hidden="true">
+        <exec command="docker tag ${docker_config_image} ${docker_config_image_tag}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+        <exec command="docker push ${docker_config_image_tag}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
 
         <if>
-            <equals arg1="${dockerConfigPushLatest}" arg2="enabled"/>
+            <equals arg1="${docker_config_push_latest}" arg2="enabled"/>
             <then>
-                <exec command="docker tag ${dockerConfigImage} ${dockerConfigImageTagLatest}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
-                <exec command="docker push ${dockerConfigImageTagLatest}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+                <exec command="docker tag ${docker_config_image} ${docker_config_image_tag_latest}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+                <exec command="docker push ${docker_config_image_tag_latest}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
 
                 <if>
-                    <equals arg1="${dockerPushCleanup}" arg2="enabled"/>
+                    <equals arg1="${docker_push_cleanup}" arg2="enabled"/>
                     <then>
-                        <exec command="docker rmi ${dockerConfigImageTagLatest}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+                        <exec command="docker rmi ${docker_config_image_tag_latest}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
                     </then>
                 </if>
             </then>
         </if>
 
         <if>
-            <equals arg1="${dockerConfigPushSemver}" arg2="enabled"/>
+            <equals arg1="${docker_config_push_semver}" arg2="enabled"/>
             <then>
-                <exec command="docker tag ${dockerConfigImage} ${dockerConfigImageTagMajor}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
-                <exec command="docker push ${dockerConfigImageTagMajor}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+                <exec command="docker tag ${docker_config_image} ${docker_config_image_tag_major}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+                <exec command="docker push ${docker_config_image_tag_major}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
 
-                <exec command="docker tag ${dockerConfigImage} ${dockerConfigImageTagMinor}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
-                <exec command="docker push ${dockerConfigImageTagMinor}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+                <exec command="docker tag ${docker_config_image} ${docker_config_image_tag_minor}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+                <exec command="docker push ${docker_config_image_tag_minor}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
 
-                <exec command="docker tag ${dockerConfigImage} ${dockerConfigImageTagPatch}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
-                <exec command="docker push ${dockerConfigImageTagPatch}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+                <exec command="docker tag ${docker_config_image} ${docker_config_image_tag_patch}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+                <exec command="docker push ${docker_config_image_tag_patch}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
 
                 <if>
-                    <equals arg1="${dockerPushCleanup}" arg2="enabled"/>
+                    <equals arg1="${docker_push_cleanup}" arg2="enabled"/>
                     <then>
-                        <exec command="docker rmi ${dockerConfigImageTagMajor}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
-                        <exec command="docker rmi ${dockerConfigImageTagMinor}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
-                        <exec command="docker rmi ${dockerConfigImageTagPatch}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+                        <exec command="docker rmi ${docker_config_image_tag_major}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+                        <exec command="docker rmi ${docker_config_image_tag_minor}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+                        <exec command="docker rmi ${docker_config_image_tag_patch}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
                     </then>
                 </if>
             </then>
         </if>
 
         <if>
-            <equals arg1="${dockerPushCleanup}" arg2="enabled"/>
+            <equals arg1="${docker_push_cleanup}" arg2="enabled"/>
             <then>
-                <exec command="docker rmi ${dockerConfigImageTag}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
-                <exec command="docker rmi ${dockerConfigImage}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+                <exec command="docker rmi ${docker_config_image_tag}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+                <exec command="docker rmi ${docker_config_image}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
             </then>
         </if>
     </target>

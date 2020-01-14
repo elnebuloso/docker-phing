@@ -3,7 +3,6 @@
 namespace elnebuloso\Phing;
 
 use BuildException;
-use Exception;
 use IOException;
 
 /**
@@ -27,7 +26,6 @@ class PHPMetrics2DirectoriesTask extends AbstractTask
     /**
      * @throws BuildException
      * @throws IOException
-     * @throws Exception
      */
     public function main()
     {

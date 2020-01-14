@@ -4,35 +4,26 @@
 <project default="docker:build">
 
 
-    <property name="dockerBuildDescription" value="build a docker image from the projects dockerfile" override="true"/>
+    <property name="docker_build_description" value="build a docker image from the projects dockerfile" override="true"/>
 
 
-    <target name="docker:build:init" depends="docker:init">
-        <property name="dockerBuildFile" value="Dockerfile"/>
-        <property name="dockerBuildArgs" value="--rm --pull --target prod"/>
-        <property name="dockerBuildContext" value="."/>
+    <target name="docker:build:init" depends="docker:base:init" hidden="true">
+        <property name="docker_build_file" value="Dockerfile"/>
+        <property name="docker_build_args" value="--rm --pull --target prod"/>
+        <property name="docker_build_ctx" value="."/>
     </target>
 
 
-    <target name="docker:build:help" depends="docker:build:init">
-        <echo message="${dockerBuildDescription}"/>
-
-        <echo message=""/>
-        <echo message="property                      value"/>
+    <target name="docker:build:help" depends="docker:base:help, docker:build:init">
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="dockerBuildFile               ${dockerBuildFile}"/>
-        <echo message="dockerBuildArgs               ${dockerBuildArgs}"/>
-        <echo message="dockerBuildContext            ${dockerBuildContext}"/>
+        <echo message="${docker_build_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="dockerConfigImageVersion      ${dockerConfigImageVersion}" level="warning"/>
-        <echo message="dockerConfigImage             ${dockerConfigImage}" level="warning"/>
-        <echo message="dockerConfigImageTag          ${dockerConfigImageTag}" level="warning"/>
-        <echo message="dockerConfigImageTagLatest    ${dockerConfigImageTagLatest}" level="warning"/>
-        <echo message="dockerConfigImageTagMajor     ${dockerConfigImageTagMajor}" level="warning"/>
-        <echo message="dockerConfigImageTagMinor     ${dockerConfigImageTagMinor}" level="warning"/>
-        <echo message="dockerConfigImageTagPatch     ${dockerConfigImageTagPatch}" level="warning"/>
+        <echo message="property             value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="docker:help for main configuration"/>
+        <echo message="docker_build_file    ${docker_build_file}"/>
+        <echo message="docker_build_args    ${docker_build_args}"/>
+        <echo message="docker_build_ctx     ${docker_build_ctx}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
@@ -51,8 +42,8 @@
     </target>
 
 
-    <target name="docker:build:main">
-        <exec command="docker build ${dockerBuildArgs} --tag ${dockerConfigImage} --file ${dockerBuildFile} ${dockerBuildContext}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+    <target name="docker:build:main" hidden="true">
+        <exec command="docker build ${docker_build_args} --tag ${docker_config_image} --file ${docker_build_file} ${docker_build_ctx}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
     </target>
 
 

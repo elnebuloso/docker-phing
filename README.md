@@ -35,7 +35,7 @@ Dockerized Phing + Commons for Continuous Integration
 ####  create build.properties file
 
 - build.properties file will be placed in your project root directory
-- projectName = the_name_of_your_project
+- project_name = the_name_of_your_project
 
 #### create VERSION file
 

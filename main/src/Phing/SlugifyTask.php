@@ -3,13 +3,13 @@
 namespace elnebuloso\Phing;
 
 use BuildException;
-use Exception;
+use IOException;
 use Cocur\Slugify\Slugify as SlugGenerator;
 
 /**
- * Class Slugify
+ * Class SlugifyTask
  */
-class Slugify extends AbstractTask
+class SlugifyTask extends AbstractTask
 {
     /**
      * @var string
@@ -39,7 +39,7 @@ class Slugify extends AbstractTask
 
     /**
      * @throws BuildException
-     * @throws Exception
+     * @throws IOException
      */
     public function main()
     {

@@ -4,22 +4,22 @@
 <project default="init:laravel5">
 
 
-    <property name="initLaravel5Description" value="init laravel application" override="true"/>
+    <property name="init_laravel5_description" value="init laravel application" override="true"/>
 
 
-    <target name="init:laravel5:init">
-        <property name="initLaravel5Url" value="laravel5.127.0.0.1.xip.io"/>
+    <target name="init:laravel5:init" hidden="true">
+        <property name="init_laravel5_url" value="laravel5.127.0.0.1.xip.io"/>
     </target>
 
 
     <target name="init:laravel5:help" depends="init:laravel5:init">
-        <echo message="${initLaravel5Description}"/>
+        <echo message="${init_laravel5_description}"/>
     </target>
 
 
     <target name="init:laravel5" depends="clean:dist, init:laravel5:init, init:laravel5:before, init:laravel5:main, init:laravel5:after">
         <echo message="browse application after docker start, using phing start"/>
-        <echo message="${initLaravel5Url}"/>
+        <echo message="${init_laravel5_url}"/>
     </target>
 
 
@@ -33,7 +33,7 @@
     </target>
 
 
-    <target name="init:laravel5:main">
+    <target name="init:laravel5:main" hidden="true">
         <fail message="${project_dir_main} exists for creating laravel5 application">
             <condition>
                 <available file="${project_dir_main}" type="dir"/>
@@ -52,7 +52,7 @@
             </filterchain>
         </copy>
 
-        <my-configure-composer selector="name" value="my/${projectName}"/>
+        <my-configure-composer selector="name" value="my/${project_name}"/>
         <phingcall target="composer:update"/>
     </target>
 

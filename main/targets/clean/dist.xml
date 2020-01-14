@@ -4,16 +4,16 @@
 <project default="clean:dist">
 
 
-    <property name="cleanDistDescription" value="cleanup project distribution directory" override="true"/>
+    <property name="clean_dist_description" value="cleanup project distribution directory" override="true"/>
 
 
-    <target name="clean:dist:init">
+    <target name="clean:dist:init" hidden="true">
         <echo message="no properties defined"/>
     </target>
 
 
     <target name="clean:dist:help" depends="clean:dist:init">
-        <echo message="${cleanDistDescription}"/>
+        <echo message="${clean_dist_description}"/>
     </target>
 
 
@@ -32,7 +32,7 @@
     </target>
 
 
-    <target name="clean:dist:main">
+    <target name="clean:dist:main" hidden="true">
         <delete dir="${project_dir_build_dist}"/>
         <mkdir dir="${project_dir_build_dist}"/>
     </target>

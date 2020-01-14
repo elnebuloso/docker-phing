@@ -4,21 +4,21 @@
 <project default="docker:compose:up">
 
 
-    <property name="dockerComposeUpDescription" value="start docker compose stack" override="true"/>
+    <property name="docker_compose_up_description" value="start docker compose stack" override="true"/>
 
 
-    <target name="docker:compose:up:init">
-        <property name="dockerComposeUpOptions" value="--build --remove-orphans -d"/>
+    <target name="docker:compose:up:init" hidden="true">
+        <property name="docker_compose_up_options" value="--build --remove-orphans -d"/>
     </target>
 
 
     <target name="docker:compose:up:help" depends="docker:compose:up:init">
-        <echo message="${dockerComposeUpDescription}"/>
-
-        <echo message=""/>
-        <echo message="property                  value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="dockerComposeUpOptions    ${dockerComposeUpOptions}"/>
+        <echo message="${docker_compose_up_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="property                     value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="docker_compose_up_options    ${docker_compose_up_options}"/>
     </target>
 
 
@@ -37,8 +37,8 @@
     </target>
 
 
-    <target name="docker:compose:up:main">
-        <exec command="docker-compose up ${dockerComposeUpOptions}" passthru="true" checkreturn="true" level="info"/>
+    <target name="docker:compose:up:main" hidden="true">
+        <exec command="docker-compose up ${docker_compose_up_options}" passthru="true" checkreturn="true" level="info"/>
     </target>
 
 

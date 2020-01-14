@@ -10,11 +10,13 @@
 
 
     <target name="compass:help">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="target             description"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="compass:clean      ${compassCleanDescription}"/>
-        <echo message="compass:compile    ${compassCompileDescription}"/>
-        <echo message="compass:watch      ${compassWatchDescription}"/>
+        <echo message="compass:clean      ${compass_clean_description}"/>
+        <echo message="compass:compile    ${compass_compile_description}"/>
+        <echo message="compass:watch      ${compass_watch_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 

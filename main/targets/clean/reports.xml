@@ -4,16 +4,16 @@
 <project default="clean:reports">
 
 
-    <property name="cleanReportsDescription" value="cleanup project reports directory" override="true"/>
+    <property name="clean_reports_description" value="cleanup project reports directory" override="true"/>
 
 
-    <target name="clean:reports:init">
+    <target name="clean:reports:init" hidden="true">
         <echo message="no properties defined"/>
     </target>
 
 
     <target name="clean:reports:help" depends="clean:reports:init">
-        <echo message="${cleanReportsDescription}"/>
+        <echo message="${clean_reports_description}"/>
     </target>
 
 
@@ -32,7 +32,7 @@
     </target>
 
 
-    <target name="clean:reports:main">
+    <target name="clean:reports:main" hidden="true">
         <delete dir="${project_dir_build_reports}"/>
         <mkdir dir="${project_dir_build_reports}"/>
     </target>

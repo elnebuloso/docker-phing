@@ -4,17 +4,18 @@
 <project default="report:phpmetrics2">
 
 
-    <property name="reportPhpMetrics2Description" value="phpmetrics version 2 scanner" override="true"/>
+    <property name="report_phpmetrics2_description" value="phpmetrics version 2 scanner" override="true"/>
+    <property name="report_phpmetrics2_output_tmp" value="${project_dir_main}/.phpmetrics2" override="true"/>
+    <property name="report_phpmetrics2_output" value="${project_dir_build_reports}/phpmetrics2" override="true"/>
 
 
-    <target name="report:phpmetrics2:init">
-        <property name="reportPhpMetrics2OutputTmp" value="${project_dir_main}/.phpmetrics2"/>
-        <property name="reportPhpMetrics2Output" value="${project_dir_build_reports}/phpmetrics2"/>
+    <target name="report:phpmetrics2:init" hidden="true">
+        <echo message="no properties defined"/>
     </target>
 
 
     <target name="report:phpmetrics2:help" depends="report:phpmetrics2:init">
-        <echo message="${reportPhpMetrics2Description}"/>
+        <echo message="${report_phpmetrics2_description}"/>
     </target>
 
 
@@ -33,31 +34,31 @@
     </target>
 
 
-    <target name="report:phpmetrics2:main">
+    <target name="report:phpmetrics2:main" hidden="true">
         <fail unless="report_phpmetrics_directories" message="missing property report_phpmetrics_directories"/>
-        <my-php-metrics2-directories included="reportPhpMetrics2Included" dir="${project_dir_main}"/>
+        <my-php-metrics2-directories included="report_phpmetrics2_included" dir="${project_dir_main}"/>
 
-        <delete dir="${reportPhpMetrics2OutputTmp}"/>
-        <mkdir dir="${reportPhpMetrics2OutputTmp}"/>
+        <delete dir="${report_phpmetrics2_output_tmp}"/>
+        <mkdir dir="${report_phpmetrics2_output_tmp}"/>
 
-        <delete dir="${reportPhpMetrics2Output}"/>
-        <mkdir dir="${reportPhpMetrics2Output}"/>
+        <delete dir="${report_phpmetrics2_output}"/>
+        <mkdir dir="${report_phpmetrics2_output}"/>
 
         <exec executable="phpmetrics2" passthru="true" checkreturn="true" level="info" dir="${project_dir_main}">
-            <arg line="--report-html=${reportPhpMetrics2OutputTmp}"/>
-            <arg line="--report-csv=${reportPhpMetrics2OutputTmp}/phpmetrics2.csv"/>
-            <arg line="--report-json=${reportPhpMetrics2OutputTmp}/phpmetrics2.json"/>
-            <arg line="--report-violations=${reportPhpMetrics2OutputTmp}/phpmetrics2-violations.xml"/>
-            <arg line="${reportPhpMetrics2Included}"/>
+            <arg line="--report-html=${report_phpmetrics2_output_tmp}"/>
+            <arg line="--report-csv=${report_phpmetrics2_output_tmp}/phpmetrics2.csv"/>
+            <arg line="--report-json=${report_phpmetrics2_output_tmp}/phpmetrics2.json"/>
+            <arg line="--report-violations=${report_phpmetrics2_output_tmp}/phpmetrics2-violations.xml"/>
+            <arg line="${report_phpmetrics2_included}"/>
         </exec>
 
-        <copy todir="${reportPhpMetrics2Output}">
-            <fileset dir="${reportPhpMetrics2OutputTmp}">
+        <copy todir="${report_phpmetrics2_output}">
+            <fileset dir="${report_phpmetrics2_output_tmp}">
                 <include name="**/**"/>
             </fileset>
         </copy>
 
-        <delete dir="${reportPhpMetrics2OutputTmp}"/>
+        <delete dir="${report_phpmetrics2_output_tmp}"/>
     </target>
 
 

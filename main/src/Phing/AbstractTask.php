@@ -58,12 +58,4 @@ abstract class AbstractTask extends Task
             @chdir($this->currentDir);
         }
     }
-
-    /**
-     * @return string
-     */
-    protected function getProjectStepFileName()
-    {
-        return $this->getProject()->getProperty('project_dir_build_tmp') . '/phing.steps.json';
-    }
 }

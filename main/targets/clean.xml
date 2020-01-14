@@ -10,11 +10,13 @@
 
 
     <target name="clean:help">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="target           description"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="clean:tmp        ${cleanTmpDescription}"/>
-        <echo message="clean:dist       ${cleanDistDescription}"/>
-        <echo message="clean:reports    ${cleanReportsDescription}"/>
+        <echo message="clean:tmp        ${clean_tmp_description}"/>
+        <echo message="clean:dist       ${clean_dist_description}"/>
+        <echo message="clean:reports    ${clean_reports_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 

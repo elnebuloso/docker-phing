@@ -4,16 +4,17 @@
 <project default="report:phpcpd">
 
 
-    <property name="reportPhpCpdDescription" value="php copy and paste detection" override="true"/>
+    <property name="report_phpcpd_description" value="php copy and paste detection" override="true"/>
+    <property name="report_phpcpd_output" value="${project_dir_build_reports}/phpcpd" override="true"/>
 
 
-    <target name="report:phpcpd:init">
-        <property name="reportPhpCpdOutput" value="${project_dir_build_reports}/phpcpd"/>
+    <target name="report:phpcpd:init" hidden="true">
+        <echo message="no properties defined"/>
     </target>
 
 
     <target name="report:phpcpd:help" depends="report:phpcpd:init">
-        <echo message="${reportPhpCpdDescription}"/>
+        <echo message="${report_phpcpd_description}"/>
     </target>
 
 
@@ -32,20 +33,20 @@
     </target>
 
 
-    <target name="report:phpcpd:main">
-        <delete dir="${reportPhpCpdOutput}"/>
-        <mkdir dir="${reportPhpCpdOutput}"/>
+    <target name="report:phpcpd:main" hidden="true">
+        <delete dir="${report_phpcpd_output}"/>
+        <mkdir dir="${report_phpcpd_output}"/>
 
         <phpcpd pharlocation="${phing_commons_root}/resources/phar/phpcpd-2.0.4.phar">
             <fileset dir="${project_dir_main}">
                 <patternset refid="patternset_report_phpcpd"/>
             </fileset>
-            <formatter type="pmd" outfile="${reportPhpCpdOutput}/report.xml"/>
+            <formatter type="pmd" outfile="${report_phpcpd_output}/report.xml"/>
         </phpcpd>
 
-        <xslt file="${reportPhpCpdOutput}/report.xml" tofile="${reportPhpCpdOutput}/report-v1.html" style="${phing_commons_root}/resources/xsl/phpcpd-v1.xsl"/>
-        <xslt file="${reportPhpCpdOutput}/report.xml" tofile="${reportPhpCpdOutput}/report-v2.html" style="${phing_commons_root}/resources/xsl/phpcpd-v2.xsl"/>
-        <copy file="${reportPhpCpdOutput}/report-v2.html" tofile="${reportPhpCpdOutput}/index.html"/>
+        <xslt file="${report_phpcpd_output}/report.xml" tofile="${report_phpcpd_output}/report-v1.html" style="${phing_commons_root}/resources/xsl/phpcpd-v1.xsl"/>
+        <xslt file="${report_phpcpd_output}/report.xml" tofile="${report_phpcpd_output}/report-v2.html" style="${phing_commons_root}/resources/xsl/phpcpd-v2.xsl"/>
+        <copy file="${report_phpcpd_output}/report-v2.html" tofile="${report_phpcpd_output}/index.html"/>
     </target>
 
 

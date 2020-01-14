@@ -9,10 +9,26 @@
 
 
     <target name="npm:help">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="target         description"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="npm:install    ${npmInstallDescription}"/>
-        <echo message="npm:run        ${npmRunDescription}"/>
+        <echo message="npm:install    ${npm_install_description}"/>
+        <echo message="npm:run        ${npm_run_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+    </target>
+
+
+    <target name="npm:base:help" depends="npm:help, npm:base:init">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="property          value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="npm_executable    ${npm_executable}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+    </target>
+
+
+    <target name="npm:base:init" hidden="true">
+        <property name="npm_executable" value="npm"/>
     </target>
 
 

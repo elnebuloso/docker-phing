@@ -4,18 +4,24 @@
 <project default="composer:require">
 
 
-    <property name="composerRequireDescription" value="composer require a dependency" override="true"/>
+    <property name="composer_require_description" value="composer require a dependency" override="true"/>
 
 
-    <target name="composer:require:init">
-        <echo message="no properties defined"/>
+    <target name="composer:require:init" depends="composer:base:init" hidden="true">
+        <property name="package" value=""/>
+        <property name="options" value=""/>
     </target>
 
 
-    <target name="composer:require:help" depends="composer:require:init">
-        <echo message="${composerRequireDescription}"/>
+    <target name="composer:require:help" depends="composer:base:help, composer:require:init">
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="composer:help for main configuration"/>
+        <echo message="${composer_require_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="property   value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="package    ${package}"/>
+        <echo message="options    ${options}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
@@ -34,10 +40,7 @@
     </target>
 
 
-    <target name="composer:require:main">
-        <property name="package" value=""/>
-        <property name="options" value=""/>
-
+    <target name="composer:require:main" hidden="true">
         <if>
             <equals arg1="${package}" arg2=""/>
             <then>
@@ -46,8 +49,8 @@
             </then>
         </if>
 
-        <phingcall target="composer:command">
-            <property name="composerCommand" value="composer require ${package} ${options}" override="true"/>
+        <phingcall target="composer:base:command">
+            <property name="composer_command" value="composer require ${package} ${options}" override="true"/>
         </phingcall>
     </target>
 

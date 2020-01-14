@@ -5,33 +5,34 @@
 
 
     <target name="project:help">
-        <echo message="property                     value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="projectName                  ${projectName}"/>
-        <echo message="project_folder_main            ${project_folder_main}"/>
+        <echo message="property                        value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="project_name                    ${project_name}"/>
+        <echo message="project_folder_main             ${project_folder_main}"/>
         <echo message="project_folder_main_composer    ${project_folder_main_composer}"/>
         <echo message="project_folder_main_compass     ${project_folder_main_compass}"/>
         <echo message="project_folder_main_npm         ${project_folder_main_npm}"/>
-        <echo message="project_folder_build           ${project_folder_build}"/>
+        <echo message="project_folder_build            ${project_folder_build}"/>
         <echo message="project_folder_build_tmp        ${project_folder_build_tmp}"/>
         <echo message="project_folder_build_dist       ${project_folder_build_dist}"/>
         <echo message="project_folder_build_reports    ${project_folder_build_reports}"/>
-        <echo message="phpunit                      dockerception|projectDocker|projectDockerCompose: ${phpunit} "/>
-        <echo message="composer                     dockerception|projectDocker|projectDockerCompose: ${composer} "/>
-        <echo message=""/>
-        <echo message="property                     value [do not edit directly]"/>
+        <echo message="project_phpunit_type            dockerfile|dockerception: ${project_phpunit_type} "/>
+        <echo message="project_composer_type           dockerfile|dockerception: ${project_composer_type} "/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="phing_commons_root             ${phing_commons_root}" level="warning"/>
-        <echo message="project_version               ${project_version}" level="warning"/>
-        <echo message="project_root                  ${project_root}" level="warning"/>
-        <echo message="project_dir_main               ${project_dir_main}" level="warning"/>
+        <echo message="property                        value [do not edit directly]"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="project_version                 ${project_version}" level="warning"/>
+        <echo message="project_root                    ${project_root}" level="warning"/>
+        <echo message="project_dir_main                ${project_dir_main}" level="warning"/>
         <echo message="project_dir_main_composer       ${project_dir_main_composer}" level="warning"/>
         <echo message="project_dir_main_compass        ${project_dir_main_compass}" level="warning"/>
         <echo message="project_dir_main_npm            ${project_dir_main_npm}" level="warning"/>
-        <echo message="project_dir_build              ${project_dir_build}" level="warning"/>
+        <echo message="project_dir_build               ${project_dir_build}" level="warning"/>
         <echo message="project_dir_build_tmp           ${project_dir_build_tmp}" level="warning"/>
         <echo message="project_dir_build_dist          ${project_dir_build_dist}" level="warning"/>
         <echo message="project_dir_build_reports       ${project_dir_build_reports}" level="warning"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 

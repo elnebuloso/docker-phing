@@ -3,12 +3,12 @@
 namespace elnebuloso\Phing;
 
 use BuildException;
-use Exception;
+use IOException;
 
 /**
- * Class Semver
+ * Class SemverTask
  */
-class Semver extends AbstractTask
+class SemverTask extends AbstractTask
 {
     /**
      * @var string
@@ -77,7 +77,7 @@ class Semver extends AbstractTask
 
     /**
      * @throws BuildException
-     * @throws Exception
+     * @throws IOException
      */
     public function main()
     {

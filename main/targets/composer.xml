@@ -11,45 +11,52 @@
     <import file="${phing_commons_root}/targets/composer/update.xml"/>
 
 
-    <target name="composer:init">
-        <property name="composerDockerFile" value="${project_root}/Dockerfile"/>
-        <property name="composerDockerBuildArgs" value="--rm --pull --target dev"/>
-        <property name="composerDockerBuildContext" value="."/>
-        <property name="composerDockerRunArgs" value="--rm"/>
-    </target>
-
-
-    <target name="composer:help" depends="composer:init">
+    <target name="composer:help">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="target                         description"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="composer:install:production    ${composerInstallProductionDescription}"/>
-        <echo message="composer:install               ${composerInstallDescription}"/>
-        <echo message="composer:remove                ${composerRequireDescription}"/>
-        <echo message="composer:require               ${composerRequireDescription}"/>
-        <echo message="composer:update                ${composerUpdateDescription}"/>
-        <echo message=""/>
-        <echo message="property                       value"/>
+        <echo message="composer:install:production    ${composer_install_production_description}"/>
+        <echo message="composer:install               ${composer_install_description}"/>
+        <echo message="composer:remove                ${composer_remove_description}"/>
+        <echo message="composer:require               ${composer_require_description}"/>
+        <echo message="composer:update                ${composer_update_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="composerDockerFile             ${composerDockerFile}"/>
-        <echo message="composerDockerBuildArgs        ${composerDockerBuildArgs}"/>
-        <echo message="composerDockerBuildContext     ${composerDockerBuildContext}"/>
-        <echo message="composerDockerRunArgs          ${composerDockerRunArgs}"/>
     </target>
 
 
-    <target name="composer:command" depends="composer:init">
+    <target name="composer:base:help" depends="composer:help, composer:base:init">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="property                      value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="composer_docker_file          ${composer_docker_file}"/>
+        <echo message="composer_docker_build_ctx     ${composer_docker_build_ctx}"/>
+        <echo message="composer_docker_build_args    ${composer_docker_build_args}"/>
+        <echo message="composer_docker_run_args      ${composer_docker_run_args}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+    </target>
+
+
+    <target name="composer:base:init" hidden="true">
+        <property name="composer_docker_file" value="${project_root}/Dockerfile"/>
+        <property name="composer_docker_build_ctx" value="."/>
+        <property name="composer_docker_build_args" value="--rm --pull --target dev"/>
+        <property name="composer_docker_run_args" value="--rm"/>
+    </target>
+
+
+    <target name="composer:base:command" depends="composer:base:init" hidden="true">
         <if>
-            <equals arg1="${composer}" arg2="dockerception"/>
+            <equals arg1="${project_composer_type}" arg2="dockerception"/>
             <then>
-                <exec command="${composerCommand}" passthru="true" checkreturn="true" level="info" dir="${project_dir_main_composer}"/>
+                <exec command="${composer_command}" passthru="true" checkreturn="true" level="info" dir="${project_dir_main_composer}"/>
             </then>
         </if>
 
         <if>
-            <equals arg1="${composer}" arg2="projectDocker"/>
+            <equals arg1="${project_composer_type}" arg2="dockerfile"/>
             <then>
-                <exec command="docker build ${composerDockerBuildArgs} --tag ${projectName}-composer --file ${composerDockerFile} ${composerDockerBuildContext}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
-                <exec command="docker-run ${composerDockerRunArgs} ${projectName}-composer ${composerCommand}" passthru="true" checkreturn="true" level="info" dir="${project_dir_main_composer}"/>
+                <exec command="docker build ${composer_docker_build_args} --tag ${project_name}-composer --file ${composer_docker_file} ${composer_docker_build_ctx}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+                <exec command="docker-run ${composer_docker_run_args} ${project_name}-composer ${composer_command}" passthru="true" checkreturn="true" level="info" dir="${project_dir_main_composer}"/>
             </then>
         </if>
     </target>
