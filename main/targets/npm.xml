@@ -4,8 +4,8 @@
 <project>
 
 
-    <import file="${phingCommonsRoot}/targets/npm/install.xml"/>
-    <import file="${phingCommonsRoot}/targets/npm/run.xml"/>
+    <import file="${phing_commons_root}/targets/npm/install.xml"/>
+    <import file="${phing_commons_root}/targets/npm/run.xml"/>
 
 
     <target name="npm:help">

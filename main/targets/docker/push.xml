@@ -81,19 +81,19 @@
 
 
     <target name="docker:push:main">
-        <exec command="docker tag ${dockerConfigImage} ${dockerConfigImageTag}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
-        <exec command="docker push ${dockerConfigImageTag}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
+        <exec command="docker tag ${dockerConfigImage} ${dockerConfigImageTag}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+        <exec command="docker push ${dockerConfigImageTag}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
 
         <if>
             <equals arg1="${dockerConfigPushLatest}" arg2="enabled"/>
             <then>
-                <exec command="docker tag ${dockerConfigImage} ${dockerConfigImageTagLatest}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
-                <exec command="docker push ${dockerConfigImageTagLatest}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
+                <exec command="docker tag ${dockerConfigImage} ${dockerConfigImageTagLatest}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+                <exec command="docker push ${dockerConfigImageTagLatest}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
 
                 <if>
                     <equals arg1="${dockerPushCleanup}" arg2="enabled"/>
                     <then>
-                        <exec command="docker rmi ${dockerConfigImageTagLatest}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
+                        <exec command="docker rmi ${dockerConfigImageTagLatest}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
                     </then>
                 </if>
             </then>
@@ -102,21 +102,21 @@
         <if>
             <equals arg1="${dockerConfigPushSemver}" arg2="enabled"/>
             <then>
-                <exec command="docker tag ${dockerConfigImage} ${dockerConfigImageTagMajor}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
-                <exec command="docker push ${dockerConfigImageTagMajor}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
+                <exec command="docker tag ${dockerConfigImage} ${dockerConfigImageTagMajor}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+                <exec command="docker push ${dockerConfigImageTagMajor}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
 
-                <exec command="docker tag ${dockerConfigImage} ${dockerConfigImageTagMinor}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
-                <exec command="docker push ${dockerConfigImageTagMinor}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
+                <exec command="docker tag ${dockerConfigImage} ${dockerConfigImageTagMinor}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+                <exec command="docker push ${dockerConfigImageTagMinor}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
 
-                <exec command="docker tag ${dockerConfigImage} ${dockerConfigImageTagPatch}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
-                <exec command="docker push ${dockerConfigImageTagPatch}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
+                <exec command="docker tag ${dockerConfigImage} ${dockerConfigImageTagPatch}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+                <exec command="docker push ${dockerConfigImageTagPatch}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
 
                 <if>
                     <equals arg1="${dockerPushCleanup}" arg2="enabled"/>
                     <then>
-                        <exec command="docker rmi ${dockerConfigImageTagMajor}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
-                        <exec command="docker rmi ${dockerConfigImageTagMinor}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
-                        <exec command="docker rmi ${dockerConfigImageTagPatch}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
+                        <exec command="docker rmi ${dockerConfigImageTagMajor}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+                        <exec command="docker rmi ${dockerConfigImageTagMinor}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+                        <exec command="docker rmi ${dockerConfigImageTagPatch}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
                     </then>
                 </if>
             </then>
@@ -125,8 +125,8 @@
         <if>
             <equals arg1="${dockerPushCleanup}" arg2="enabled"/>
             <then>
-                <exec command="docker rmi ${dockerConfigImageTag}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
-                <exec command="docker rmi ${dockerConfigImage}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
+                <exec command="docker rmi ${dockerConfigImageTag}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+                <exec command="docker rmi ${dockerConfigImage}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
             </then>
         </if>
     </target>

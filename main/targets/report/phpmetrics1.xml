@@ -8,8 +8,8 @@
 
 
     <target name="report:phpmetrics1:init">
-        <property name="reportPhpMetrics1OutputTmp" value="${projectDirMain}/.phpmetrics1"/>
-        <property name="reportPhpMetrics1Output" value="${projectDirBuildReports}/phpmetrics1"/>
+        <property name="reportPhpMetrics1OutputTmp" value="${project_dir_main}/.phpmetrics1"/>
+        <property name="reportPhpMetrics1Output" value="${project_dir_build_reports}/phpmetrics1"/>
     </target>
 
 
@@ -34,8 +34,8 @@
 
 
     <target name="report:phpmetrics1:main">
-        <fail unless="reportPhpMetricsDirectories" message="missing property reportPhpMetricsDirectories"/>
-        <my-php-metrics1-directories excluded="reportPhpMetrics1Excluded" dir="${projectDirMain}"/>
+        <fail unless="report_phpmetrics_directories" message="missing property report_phpmetrics_directories"/>
+        <my-php-metrics1-directories excluded="reportPhpMetrics1Excluded" dir="${project_dir_main}"/>
 
         <delete dir="${reportPhpMetrics1OutputTmp}"/>
         <mkdir dir="${reportPhpMetrics1OutputTmp}"/>
@@ -43,7 +43,7 @@
         <delete dir="${reportPhpMetrics1Output}"/>
         <mkdir dir="${reportPhpMetrics1Output}"/>
 
-        <exec executable="phpmetrics1" passthru="true" checkreturn="true" level="info" dir="${projectDirMain}">
+        <exec executable="phpmetrics1" passthru="true" checkreturn="true" level="info" dir="${project_dir_main}">
             <arg line="--excluded-dirs=${reportPhpMetrics1Excluded}"/>
             <arg line="--report-html=${reportPhpMetrics1OutputTmp}/index.html"/>
             <arg line="--report-xml=${reportPhpMetrics1OutputTmp}/phpmetrics1.xml"/>

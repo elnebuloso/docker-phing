@@ -4,8 +4,8 @@
 <project>
 
 
-    <import file="${phingCommonsRoot}/targets/test/phplint.xml"/>
-    <import file="${phingCommonsRoot}/targets/test/phpunit.xml"/>
+    <import file="${phing_commons_root}/targets/test/phplint.xml"/>
+    <import file="${phing_commons_root}/targets/test/phpunit.xml"/>
 
 
     <target name="test:help">

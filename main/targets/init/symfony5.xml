@@ -34,9 +34,9 @@
 
 
     <target name="init:symfony5:main">
-        <fail message="${projectDirMain} exists for creating symfony5 application">
+        <fail message="${project_dir_main} exists for creating symfony5 application">
             <condition>
-                <available file="${projectDirMain}" type="dir"/>
+                <available file="${project_dir_main}" type="dir"/>
             </condition>
         </fail>
 
@@ -52,7 +52,7 @@
                 <equals arg1="${type}" arg2="api"/>
             </or>
             <then>
-                <exec command="composer create-project --prefer-dist --remove-vcs symfony/skeleton:^5 ${projectDirMain}" passthru="true" checkreturn="true" level="info"/>
+                <exec command="composer create-project --prefer-dist --remove-vcs symfony/skeleton:^5 ${project_dir_main}" passthru="true" checkreturn="true" level="info"/>
             </then>
         </if>
 
@@ -61,14 +61,14 @@
         <if>
             <equals arg1="${type}" arg2="max"/>
             <then>
-                <exec command="composer create-project --prefer-dist --remove-vcs symfony/website-skeleton:^5 ${projectDirMain}" passthru="true" checkreturn="true" level="info"/>
+                <exec command="composer create-project --prefer-dist --remove-vcs symfony/website-skeleton:^5 ${project_dir_main}" passthru="true" checkreturn="true" level="info"/>
             </then>
         </if>
 
-        <delete dir="${projectDirMain}/.git" quiet="true"/>
+        <delete dir="${project_dir_main}/.git" quiet="true"/>
 
-        <copy todir="${projectRoot}" overwrite="true">
-            <fileset dir="${phingCommonsRoot}/resources/init/symfony5/0">
+        <copy todir="${project_root}" overwrite="true">
+            <fileset dir="${phing_commons_root}/resources/init/symfony5/0">
                 <include name="**"/>
             </fileset>
             <filterchain>

@@ -8,30 +8,30 @@
         <echo message="property                     value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="projectName                  ${projectName}"/>
-        <echo message="projectFolderMain            ${projectFolderMain}"/>
-        <echo message="projectFolderMainComposer    ${projectFolderMainComposer}"/>
-        <echo message="projectFolderMainCompass     ${projectFolderMainCompass}"/>
-        <echo message="projectFolderMainNpm         ${projectFolderMainNpm}"/>
-        <echo message="projectFolderBuild           ${projectFolderBuild}"/>
-        <echo message="projectFolderBuildTmp        ${projectFolderBuildTmp}"/>
-        <echo message="projectFolderBuildDist       ${projectFolderBuildDist}"/>
-        <echo message="projectFolderBuildReports    ${projectFolderBuildReports}"/>
+        <echo message="project_folder_main            ${project_folder_main}"/>
+        <echo message="project_folder_main_composer    ${project_folder_main_composer}"/>
+        <echo message="project_folder_main_compass     ${project_folder_main_compass}"/>
+        <echo message="project_folder_main_npm         ${project_folder_main_npm}"/>
+        <echo message="project_folder_build           ${project_folder_build}"/>
+        <echo message="project_folder_build_tmp        ${project_folder_build_tmp}"/>
+        <echo message="project_folder_build_dist       ${project_folder_build_dist}"/>
+        <echo message="project_folder_build_reports    ${project_folder_build_reports}"/>
         <echo message="phpunit                      dockerception|projectDocker|projectDockerCompose: ${phpunit} "/>
         <echo message="composer                     dockerception|projectDocker|projectDockerCompose: ${composer} "/>
         <echo message=""/>
         <echo message="property                     value [do not edit directly]"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="phingCommonsRoot             ${phingCommonsRoot}" level="warning"/>
-        <echo message="projectVersion               ${projectVersion}" level="warning"/>
-        <echo message="projectRoot                  ${projectRoot}" level="warning"/>
-        <echo message="projectDirMain               ${projectDirMain}" level="warning"/>
-        <echo message="projectDirMainComposer       ${projectDirMainComposer}" level="warning"/>
-        <echo message="projectDirMainCompass        ${projectDirMainCompass}" level="warning"/>
-        <echo message="projectDirMainNpm            ${projectDirMainNpm}" level="warning"/>
-        <echo message="projectDirBuild              ${projectDirBuild}" level="warning"/>
-        <echo message="projectDirBuildTmp           ${projectDirBuildTmp}" level="warning"/>
-        <echo message="projectDirBuildDist          ${projectDirBuildDist}" level="warning"/>
-        <echo message="projectDirBuildReports       ${projectDirBuildReports}" level="warning"/>
+        <echo message="phing_commons_root             ${phing_commons_root}" level="warning"/>
+        <echo message="project_version               ${project_version}" level="warning"/>
+        <echo message="project_root                  ${project_root}" level="warning"/>
+        <echo message="project_dir_main               ${project_dir_main}" level="warning"/>
+        <echo message="project_dir_main_composer       ${project_dir_main_composer}" level="warning"/>
+        <echo message="project_dir_main_compass        ${project_dir_main_compass}" level="warning"/>
+        <echo message="project_dir_main_npm            ${project_dir_main_npm}" level="warning"/>
+        <echo message="project_dir_build              ${project_dir_build}" level="warning"/>
+        <echo message="project_dir_build_tmp           ${project_dir_build_tmp}" level="warning"/>
+        <echo message="project_dir_build_dist          ${project_dir_build_dist}" level="warning"/>
+        <echo message="project_dir_build_reports       ${project_dir_build_reports}" level="warning"/>
     </target>
 
 

@@ -8,12 +8,12 @@
 
 
     <target name="test:phpunit:init">
-        <property name="testPhpunitOutput" value="${projectDirBuildReports}/phpunit"/>
-        <property name="testPhpunitWhat" value="${projectFolderMain}/tests"/>
-        <property name="testPhpunitBootstrap" value="${projectFolderMain}/vendor/autoload.php"/>
-        <property name="testPhpunitConfiguration" value="${projectFolderMain}/tests/phpunit.xml"/>
+        <property name="testPhpunitOutput" value="${project_dir_build_reports}/phpunit"/>
+        <property name="testPhpunitWhat" value="${project_folder_main}/tests"/>
+        <property name="testPhpunitBootstrap" value="${project_folder_main}/vendor/autoload.php"/>
+        <property name="testPhpunitConfiguration" value="${project_folder_main}/tests/phpunit.xml"/>
         <property name="testPhpunitExecutable" value="phpunit"/>
-        <property name="testPhpunitDockerFile" value="${projectRoot}/Dockerfile"/>
+        <property name="testPhpunitDockerFile" value="${project_root}/Dockerfile"/>
         <property name="testPhpunitDockerBuildArgs" value="--rm --pull --target phpunit"/>
         <property name="testPhpunitDockerBuildContext" value="."/>
         <property name="testPhpunitDockerRunArgs" value="--rm"/>
@@ -200,8 +200,8 @@
         <if>
             <equals arg1="${phpunit}" arg2="projectDocker"/>
             <then>
-                <exec command="docker build ${testPhpunitDockerBuildArgs} --tag ${projectName}-phpunit --file ${testPhpunitDockerFile} ${testPhpunitDockerBuildContext}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
-                <exec command="docker-run ${testPhpunitDockerRunArgs} ${projectName}-phpunit ${testPhpunitExecutable} ${testPhpunitArguments} ${testPhpunitWhat}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
+                <exec command="docker build ${testPhpunitDockerBuildArgs} --tag ${projectName}-phpunit --file ${testPhpunitDockerFile} ${testPhpunitDockerBuildContext}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+                <exec command="docker-run ${testPhpunitDockerRunArgs} ${projectName}-phpunit ${testPhpunitExecutable} ${testPhpunitArguments} ${testPhpunitWhat}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
             </then>
         </if>
     </target>

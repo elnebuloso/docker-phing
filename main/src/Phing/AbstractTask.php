@@ -64,6 +64,6 @@ abstract class AbstractTask extends Task
      */
     protected function getProjectStepFileName()
     {
-        return $this->getProject()->getProperty('projectDirBuildTmp') . '/phing.steps.json';
+        return $this->getProject()->getProperty('project_dir_build_tmp') . '/phing.steps.json';
     }
 }

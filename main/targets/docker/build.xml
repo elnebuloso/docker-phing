@@ -52,7 +52,7 @@
 
 
     <target name="docker:build:main">
-        <exec command="docker build ${dockerBuildArgs} --tag ${dockerConfigImage} --file ${dockerBuildFile} ${dockerBuildContext}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}"/>
+        <exec command="docker build ${dockerBuildArgs} --tag ${dockerConfigImage} --file ${dockerBuildFile} ${dockerBuildContext}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
     </target>
 
 

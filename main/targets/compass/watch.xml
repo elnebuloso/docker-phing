@@ -33,7 +33,7 @@
 
 
     <target name="compass:watch:main">
-        <exec command="compass watch --poll" passthru="true" checkreturn="true" level="info" dir="${projectDirMainCompass}"/>
+        <exec command="compass watch --poll" passthru="true" checkreturn="true" level="info" dir="${project_dir_main_compass}"/>
     </target>
 
 

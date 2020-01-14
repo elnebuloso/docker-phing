@@ -33,11 +33,11 @@
 
 
     <target name="bundle:project:main">
-        <delete dir="${projectDirBuildDist}/${projectFolderMain}"/>
+        <delete dir="${project_dir_build_dist}/${project_folder_main}"/>
 
-        <copy todir="${projectDirBuildDist}">
-            <fileset dir="${projectRoot}">
-                <patternset refid="patternsetBundleProject"/>
+        <copy todir="${project_dir_build_dist}">
+            <fileset dir="${project_root}">
+                <patternset refid="patternset_bundle_project"/>
             </fileset>
         </copy>
     </target>

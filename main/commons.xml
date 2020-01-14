@@ -4,28 +4,28 @@
 <project name="commons">
 
 
-    <property name="phingCommonsRoot" value="/srv/phing"/>
+    <property name="phing_commons_root" value="/srv/phing"/>
 
 
-    <loadfile property="phingCommonsVersion" file="/srv/VERSION"/>
-    <php function="trim" returnProperty="phingCommonsVersion" level="debug">
-        <param value="${phingCommonsVersion}"/>
+    <loadfile property="phing_commons_version" file="/srv/VERSION"/>
+    <php function="trim" returnProperty="phing_commons_version" level="debug">
+        <param value="${phing_commons_version}"/>
     </php>
 
 
-    <php function="dirname" returnProperty="projectRoot" level="debug">
+    <php function="dirname" returnProperty="project_root" level="debug">
         <param value="${phing.file}"/>
     </php>
-    <resolvepath propertyName="projectRoot" file="${projectRoot}"/>
+    <resolvepath propertyName="project_root" file="${project_root}"/>
 
 
-    <loadfile property="projectVersion" file="${projectRoot}/VERSION"/>
-    <php function="trim" returnProperty="projectVersion" level="debug">
-        <param value="${projectVersion}"/>
+    <loadfile property="project_version" file="${project_root}/VERSION"/>
+    <php function="trim" returnProperty="project_version" level="debug">
+        <param value="${project_version}"/>
     </php>
 
 
-    <autoloader autoloaderpath="${phingCommonsRoot}/vendor/autoload.php"/>
+    <autoloader autoloaderpath="${phing_commons_root}/vendor/autoload.php"/>
     <taskdef classname="\elnebuloso\Phing\ConfigureComposer" name="my-configure-composer"/>
     <taskdef classname="\elnebuloso\Phing\DockerConfigTask" name="my-docker-config"/>
     <taskdef classname="\elnebuloso\Phing\PHPMetrics1DirectoriesTask" name="my-php-metrics1-directories"/>
@@ -34,55 +34,55 @@
     <taskdef classname="\elnebuloso\Phing\Slugify" name="my-slugify"/>
 
 
-    <import file="${phingCommonsRoot}/targets/bundle.xml"/>
-    <import file="${phingCommonsRoot}/targets/clean.xml"/>
-    <import file="${phingCommonsRoot}/targets/compass.xml"/>
-    <import file="${phingCommonsRoot}/targets/composer.xml"/>
-    <import file="${phingCommonsRoot}/targets/docker.xml"/>
-    <import file="${phingCommonsRoot}/targets/init.xml"/>
-    <import file="${phingCommonsRoot}/targets/npm.xml"/>
-    <import file="${phingCommonsRoot}/targets/project.xml"/>
-    <import file="${phingCommonsRoot}/targets/report.xml"/>
-    <import file="${phingCommonsRoot}/targets/test.xml"/>
+    <import file="${phing_commons_root}/targets/bundle.xml"/>
+    <import file="${phing_commons_root}/targets/clean.xml"/>
+    <import file="${phing_commons_root}/targets/compass.xml"/>
+    <import file="${phing_commons_root}/targets/composer.xml"/>
+    <import file="${phing_commons_root}/targets/docker.xml"/>
+    <import file="${phing_commons_root}/targets/init.xml"/>
+    <import file="${phing_commons_root}/targets/npm.xml"/>
+    <import file="${phing_commons_root}/targets/project.xml"/>
+    <import file="${phing_commons_root}/targets/report.xml"/>
+    <import file="${phing_commons_root}/targets/test.xml"/>
 
 
     <fail unless="projectName" message="missing projectName"/>
-    <fail unless="projectVersion" message="missing projectVersion"/>
+    <fail unless="project_version" message="missing project_version"/>
 
 
     <target name="commons:help:version">
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="phing commons version: ${phingCommonsVersion}"/>
+        <echo message="phing commons version: ${phing_commons_version}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
-    <property name="projectFolderMain" value="main"/>
-    <property name="projectFolderMainComposer" value=""/>
-    <property name="projectFolderMainCompass" value=""/>
-    <property name="projectFolderMainNpm" value=""/>
-    <property name="projectFolderBuild" value="build"/>
-    <property name="projectFolderBuildTmp" value="tmp"/>
-    <property name="projectFolderBuildDist" value="dist"/>
-    <property name="projectFolderBuildReports" value="reports"/>
+    <property name="project_folder_main" value="main"/>
+    <property name="project_folder_main_composer" value=""/>
+    <property name="project_folder_main_compass" value=""/>
+    <property name="project_folder_main_npm" value=""/>
+    <property name="project_folder_build" value="build"/>
+    <property name="project_folder_build_tmp" value="tmp"/>
+    <property name="project_folder_build_dist" value="dist"/>
+    <property name="project_folder_build_reports" value="reports"/>
 
-    <property name="projectDirMain" value="${projectRoot}/${projectFolderMain}"/>
-    <property name="projectDirMainComposer" value="${projectRoot}/${projectFolderMain}/${projectFolderMainComposer}"/>
-    <property name="projectDirMainCompass" value="${projectRoot}/${projectFolderMain}/${projectFolderMainCompass}"/>
-    <property name="projectDirMainNpm" value="${projectRoot}/${projectFolderMain}/${projectFolderMainNpm}"/>
-    <property name="projectDirBuild" value="${projectRoot}/${projectFolderBuild}"/>
-    <property name="projectDirBuildTmp" value="${projectRoot}/${projectFolderBuild}/${projectFolderBuildTmp}"/>
-    <property name="projectDirBuildDist" value="${projectRoot}/${projectFolderBuild}/${projectFolderBuildDist}"/>
-    <property name="projectDirBuildReports" value="${projectRoot}/${projectFolderBuild}/${projectFolderBuildReports}"/>
+    <property name="project_dir_main" value="${project_root}/${project_folder_main}"/>
+    <property name="project_dir_main_composer" value="${project_root}/${project_folder_main}/${project_folder_main_composer}"/>
+    <property name="project_dir_main_compass" value="${project_root}/${project_folder_main}/${project_folder_main_compass}"/>
+    <property name="project_dir_main_npm" value="${project_root}/${project_folder_main}/${project_folder_main_npm}"/>
+    <property name="project_dir_build" value="${project_root}/${project_folder_build}"/>
+    <property name="project_dir_build_tmp" value="${project_root}/${project_folder_build}/${project_folder_build_tmp}"/>
+    <property name="project_dir_build_dist" value="${project_root}/${project_folder_build}/${project_folder_build_dist}"/>
+    <property name="project_dir_build_reports" value="${project_root}/${project_folder_build}/${project_folder_build_reports}"/>
 
-    <resolvepath propertyName="projectDirMain" file="${projectDirMain}"/>
-    <resolvepath propertyName="projectDirMainComposer" file="${projectDirMainComposer}"/>
-    <resolvepath propertyName="projectDirMainCompass" file="${projectDirMainCompass}"/>
-    <resolvepath propertyName="projectDirMainNpm" file="${projectDirMainNpm}"/>
-    <resolvepath propertyName="projectDirBuild" file="${projectDirBuild}"/>
-    <resolvepath propertyName="projectDirBuildTmp" file="${projectDirBuildTmp}"/>
-    <resolvepath propertyName="projectDirBuildDist" file="${projectDirBuildDist}"/>
-    <resolvepath propertyName="projectDirBuildReports" file="${projectDirBuildReports}"/>
+    <resolvepath propertyName="project_dir_main" file="${project_dir_main}"/>
+    <resolvepath propertyName="project_dir_main_composer" file="${project_dir_main_composer}"/>
+    <resolvepath propertyName="project_dir_main_compass" file="${project_dir_main_compass}"/>
+    <resolvepath propertyName="project_dir_main_npm" file="${project_dir_main_npm}"/>
+    <resolvepath propertyName="project_dir_build" file="${project_dir_build}"/>
+    <resolvepath propertyName="project_dir_build_tmp" file="${project_dir_build_tmp}"/>
+    <resolvepath propertyName="project_dir_build_dist" file="${project_dir_build_dist}"/>
+    <resolvepath propertyName="project_dir_build_reports" file="${project_dir_build_reports}"/>
 
 
     <property name="phpunit" value="projectDocker"/>

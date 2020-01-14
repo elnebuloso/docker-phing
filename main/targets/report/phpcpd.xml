@@ -8,7 +8,7 @@
 
 
     <target name="report:phpcpd:init">
-        <property name="reportPhpCpdOutput" value="${projectDirBuildReports}/phpcpd"/>
+        <property name="reportPhpCpdOutput" value="${project_dir_build_reports}/phpcpd"/>
     </target>
 
 
@@ -36,15 +36,15 @@
         <delete dir="${reportPhpCpdOutput}"/>
         <mkdir dir="${reportPhpCpdOutput}"/>
 
-        <phpcpd pharlocation="${phingCommonsRoot}/resources/phar/phpcpd-2.0.4.phar">
-            <fileset dir="${projectDirMain}">
-                <patternset refid="patternsetReportPhpCpd"/>
+        <phpcpd pharlocation="${phing_commons_root}/resources/phar/phpcpd-2.0.4.phar">
+            <fileset dir="${project_dir_main}">
+                <patternset refid="patternset_report_phpcpd"/>
             </fileset>
             <formatter type="pmd" outfile="${reportPhpCpdOutput}/report.xml"/>
         </phpcpd>
 
-        <xslt file="${reportPhpCpdOutput}/report.xml" tofile="${reportPhpCpdOutput}/report-v1.html" style="${phingCommonsRoot}/resources/xsl/phpcpd-v1.xsl"/>
-        <xslt file="${reportPhpCpdOutput}/report.xml" tofile="${reportPhpCpdOutput}/report-v2.html" style="${phingCommonsRoot}/resources/xsl/phpcpd-v2.xsl"/>
+        <xslt file="${reportPhpCpdOutput}/report.xml" tofile="${reportPhpCpdOutput}/report-v1.html" style="${phing_commons_root}/resources/xsl/phpcpd-v1.xsl"/>
+        <xslt file="${reportPhpCpdOutput}/report.xml" tofile="${reportPhpCpdOutput}/report-v2.html" style="${phing_commons_root}/resources/xsl/phpcpd-v2.xsl"/>
         <copy file="${reportPhpCpdOutput}/report-v2.html" tofile="${reportPhpCpdOutput}/index.html"/>
     </target>
 

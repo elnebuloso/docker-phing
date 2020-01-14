@@ -40,7 +40,7 @@
 
 
     <target name="npm:run:main">
-        <exec command="${npmExecutable} run ${npmRunScript}" passthru="true" checkreturn="true" level="info" dir="${projectDirMainNpm}"/>
+        <exec command="${npmExecutable} run ${npmRunScript}" passthru="true" checkreturn="true" level="info" dir="${project_dir_main_npm}"/>
     </target>
 
 

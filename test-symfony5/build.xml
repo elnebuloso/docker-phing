@@ -21,14 +21,14 @@
 
     <target name="init">
         <delete includeemptydirs="true">
-            <fileset dir="${projectRoot}">
+            <fileset dir="${project_root}">
                 <exclude name="build.env"/>
                 <exclude name="build.properties"/>
                 <exclude name="build.xml"/>
                 <exclude name="VERSION"/>
             </fileset>
         </delete>
-        <delete dir="${projectDirMain}"/>
+        <delete dir="${project_dir_main}"/>
         <phingcall target="init:symfony5"/>
     </target>
 

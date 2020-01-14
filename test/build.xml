@@ -56,17 +56,17 @@
 
 
     <target name="test:run:phing:TarTask" hidden="true">
-        <tar destfile="${projectDirBuildTmp}/dist.tar.gz" basedir="${projectDirBuildDist}" compression="gzip"/>
+        <tar destfile="${project_dir_build_tmp}/dist.tar.gz" basedir="${project_dir_build_dist}" compression="gzip"/>
     </target>
 
 
     <target name="test:run:phing:ZipTask" hidden="true">
-        <tar destfile="${projectDirBuildTmp}/dist.zip" basedir="${projectDirBuildDist}"/>
+        <tar destfile="${project_dir_build_tmp}/dist.zip" basedir="${project_dir_build_dist}"/>
     </target>
 
 
     <target name="test:run:phing:HttpGetTask" hidden="true">
-        <httpget url="http://via.placeholder.com/350x150.jpg" dir="${projectDirBuildTmp}"/>
+        <httpget url="http://via.placeholder.com/350x150.jpg" dir="${project_dir_build_tmp}"/>
     </target>
 
 

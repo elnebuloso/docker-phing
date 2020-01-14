@@ -4,7 +4,7 @@
 <project>
 
 
-    <import file="${phingCommonsRoot}/targets/bundle/project.xml"/>
+    <import file="${phing_commons_root}/targets/bundle/project.xml"/>
 
 
     <target name="bundle:help">

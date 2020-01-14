@@ -45,7 +45,7 @@ class ConfigureComposer extends AbstractTask
     {
         $this->prepare();
 
-        $file = $this->getProject()->getProperty('projectDirMainComposer') . '/composer.json';
+        $file = $this->getProject()->getProperty('project_dir_main_composer') . '/composer.json';
         $content = file_get_contents($file);
         $content = json_decode($content, false);
 

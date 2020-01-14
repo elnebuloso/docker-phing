@@ -4,19 +4,19 @@
 <project>
 
 
-    <import file="${phingCommonsRoot}/targets/docker/compose/down.xml"/>
-    <import file="${phingCommonsRoot}/targets/docker/compose/ps.xml"/>
-    <import file="${phingCommonsRoot}/targets/docker/compose/pull.xml"/>
-    <import file="${phingCommonsRoot}/targets/docker/compose/up.xml"/>
-    <import file="${phingCommonsRoot}/targets/docker/build.xml"/>
-    <import file="${phingCommonsRoot}/targets/docker/push.xml"/>
+    <import file="${phing_commons_root}/targets/docker/compose/down.xml"/>
+    <import file="${phing_commons_root}/targets/docker/compose/ps.xml"/>
+    <import file="${phing_commons_root}/targets/docker/compose/pull.xml"/>
+    <import file="${phing_commons_root}/targets/docker/compose/up.xml"/>
+    <import file="${phing_commons_root}/targets/docker/build.xml"/>
+    <import file="${phing_commons_root}/targets/docker/push.xml"/>
 
 
     <target name="docker:init">
         <property name="dockerRegistry" value=""/>
         <property name="dockerRegistryNamespace" value=""/>
         <property name="dockerImageName" value="${projectName}"/>
-        <property name="dockerImageVersion" value="${projectVersion}"/>
+        <property name="dockerImageVersion" value="${project_version}"/>
         <property name="branchNameMaster" value="master"/>
         <property name="branchName" value=""/>
         <property name="buildNumber" value=""/>

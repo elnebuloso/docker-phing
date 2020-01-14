@@ -37,7 +37,7 @@ class PHPMetrics1DirectoriesTask extends AbstractTask
         $all = array_filter(glob('*'), 'is_dir');
 
         // sanitize directories for phpmetrics2 configuration
-        $directories = explode(',', $this->getProject()->getProperty('reportPhpMetricsDirectories'));
+        $directories = explode(',', $this->getProject()->getProperty('report_phpmetrics_directories'));
         $directories = array_filter(array_map('trim', $directories));
         $directories = array_diff($all, $directories);
 

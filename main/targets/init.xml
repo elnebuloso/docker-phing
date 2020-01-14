@@ -4,13 +4,13 @@
 <project>
 
 
-    <import file="${phingCommonsRoot}/targets/init/bolt3.xml"/>
-    <import file="${phingCommonsRoot}/targets/init/laravel5.xml"/>
-    <import file="${phingCommonsRoot}/targets/init/laravel6.xml"/>
-    <import file="${phingCommonsRoot}/targets/init/lumen5.xml"/>
-    <import file="${phingCommonsRoot}/targets/init/lumen6.xml"/>
-    <import file="${phingCommonsRoot}/targets/init/symfony4.xml"/>
-    <import file="${phingCommonsRoot}/targets/init/symfony5.xml"/>
+    <import file="${phing_commons_root}/targets/init/bolt3.xml"/>
+    <import file="${phing_commons_root}/targets/init/laravel5.xml"/>
+    <import file="${phing_commons_root}/targets/init/laravel6.xml"/>
+    <import file="${phing_commons_root}/targets/init/lumen5.xml"/>
+    <import file="${phing_commons_root}/targets/init/lumen6.xml"/>
+    <import file="${phing_commons_root}/targets/init/symfony4.xml"/>
+    <import file="${phing_commons_root}/targets/init/symfony5.xml"/>
 
 
     <target name="init:help">

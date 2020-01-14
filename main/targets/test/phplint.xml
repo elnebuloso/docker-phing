@@ -8,7 +8,7 @@
 
 
     <target name="test:phplint:init">
-        <property name="testPhpLintOutput" value="${projectDirBuildReports}/phplint"/>
+        <property name="testPhpLintOutput" value="${project_dir_build_reports}/phplint"/>
         <property name="testPhpLintInterpreter" value="7.3"/>
         <property name="testPhpLintHaltOnFailure" value="1"/>
     </target>
@@ -43,11 +43,11 @@
     <target name="test:phplint:main">
         <delete dir="${testPhpLintOutput}/${testPhpLintInterpreter}"/>
         <mkdir dir="${testPhpLintOutput}/${testPhpLintInterpreter}"/>
-        <mkdir dir="${projectDirBuildTmp}"/>
+        <mkdir dir="${project_dir_build_tmp}"/>
 
-        <phplint interpreter="php${testPhpLintInterpreter}" tofile="${testPhpLintOutput}/${testPhpLintInterpreter}/report.txt" haltonfailure="${testPhpLintHaltOnFailure}" cachefile="${projectDirBuildTmp}/phplint.cache.${testPhpLintInterpreter}" level="info">
-            <fileset dir="${projectDirMain}">
-                <patternset refid="patternsetTestPhpLint"/>
+        <phplint interpreter="php${testPhpLintInterpreter}" tofile="${testPhpLintOutput}/${testPhpLintInterpreter}/report.txt" haltonfailure="${testPhpLintHaltOnFailure}" cachefile="${project_dir_build_tmp}/phplint.cache.${testPhpLintInterpreter}" level="info">
+            <fileset dir="${project_dir_main}">
+                <patternset refid="patternset_test_phplint"/>
             </fileset>
         </phplint>
     </target>

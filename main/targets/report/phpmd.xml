@@ -8,7 +8,7 @@
 
 
     <target name="report:phpmd:init">
-        <property name="reportPhpMdOutput" value="${projectDirBuildReports}/phpmd"/>
+        <property name="reportPhpMdOutput" value="${project_dir_build_reports}/phpmd"/>
         <property name="reportPhpMdRulesets" value="cleancode,codesize,design,unusedcode"/>
         <property name="reportPhpMdAllowedFileExtensions" value="php,phtml"/>
     </target>
@@ -44,15 +44,15 @@
         <delete dir="${reportPhpMdOutput}"/>
         <mkdir dir="${reportPhpMdOutput}"/>
 
-        <phpmd pharlocation="${phingCommonsRoot}/resources/phar/phpmd-2.6.0.phar" rulesets="${reportPhpMdRulesets}" allowedFileExtensions="${reportPhpMdAllowedFileExtensions}">
-            <fileset dir="${projectDirMain}">
-                <patternset refid="patternsetReportPhpMd"/>
+        <phpmd pharlocation="${phing_commons_root}/resources/phar/phpmd-2.6.0.phar" rulesets="${reportPhpMdRulesets}" allowedFileExtensions="${reportPhpMdAllowedFileExtensions}">
+            <fileset dir="${project_dir_main}">
+                <patternset refid="patternset_report_phpmd"/>
             </fileset>
             <formatter type="xml" outfile="${reportPhpMdOutput}/report.xml"/>
         </phpmd>
 
-        <xslt file="${reportPhpMdOutput}/report.xml" tofile="${reportPhpMdOutput}/report-v1.html" style="${phingCommonsRoot}/resources/xsl/phpmd-v1.xsl"/>
-        <xslt file="${reportPhpMdOutput}/report.xml" tofile="${reportPhpMdOutput}/report-v2.html" style="${phingCommonsRoot}/resources/xsl/phpmd-v2.xsl"/>
+        <xslt file="${reportPhpMdOutput}/report.xml" tofile="${reportPhpMdOutput}/report-v1.html" style="${phing_commons_root}/resources/xsl/phpmd-v1.xsl"/>
+        <xslt file="${reportPhpMdOutput}/report.xml" tofile="${reportPhpMdOutput}/report-v2.html" style="${phing_commons_root}/resources/xsl/phpmd-v2.xsl"/>
         <copy file="${reportPhpMdOutput}/report-v2.html" tofile="${reportPhpMdOutput}/index.html"/>
     </target>
 

@@ -4,14 +4,14 @@
 <project>
 
 
-    <import file="${phingCommonsRoot}/targets/report/phpcpd.xml"/>
-    <import file="${phingCommonsRoot}/targets/report/phpdepend.xml"/>
-    <import file="${phingCommonsRoot}/targets/report/phploc.xml"/>
-    <import file="${phingCommonsRoot}/targets/report/phpmd.xml"/>
-    <import file="${phingCommonsRoot}/targets/report/phpmetrics.xml"/>
-    <import file="${phingCommonsRoot}/targets/report/phpmetrics1.xml"/>
-    <import file="${phingCommonsRoot}/targets/report/phpmetrics2.xml"/>
-    <import file="${phingCommonsRoot}/targets/report/sonarqube.xml"/>
+    <import file="${phing_commons_root}/targets/report/phpcpd.xml"/>
+    <import file="${phing_commons_root}/targets/report/phpdepend.xml"/>
+    <import file="${phing_commons_root}/targets/report/phploc.xml"/>
+    <import file="${phing_commons_root}/targets/report/phpmd.xml"/>
+    <import file="${phing_commons_root}/targets/report/phpmetrics.xml"/>
+    <import file="${phing_commons_root}/targets/report/phpmetrics1.xml"/>
+    <import file="${phing_commons_root}/targets/report/phpmetrics2.xml"/>
+    <import file="${phing_commons_root}/targets/report/sonarqube.xml"/>
 
 
     <target name="report:help">

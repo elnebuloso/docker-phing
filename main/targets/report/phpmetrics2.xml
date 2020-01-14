@@ -8,8 +8,8 @@
 
 
     <target name="report:phpmetrics2:init">
-        <property name="reportPhpMetrics2OutputTmp" value="${projectDirMain}/.phpmetrics2"/>
-        <property name="reportPhpMetrics2Output" value="${projectDirBuildReports}/phpmetrics2"/>
+        <property name="reportPhpMetrics2OutputTmp" value="${project_dir_main}/.phpmetrics2"/>
+        <property name="reportPhpMetrics2Output" value="${project_dir_build_reports}/phpmetrics2"/>
     </target>
 
 
@@ -34,8 +34,8 @@
 
 
     <target name="report:phpmetrics2:main">
-        <fail unless="reportPhpMetricsDirectories" message="missing property reportPhpMetricsDirectories"/>
-        <my-php-metrics2-directories included="reportPhpMetrics2Included" dir="${projectDirMain}"/>
+        <fail unless="report_phpmetrics_directories" message="missing property report_phpmetrics_directories"/>
+        <my-php-metrics2-directories included="reportPhpMetrics2Included" dir="${project_dir_main}"/>
 
         <delete dir="${reportPhpMetrics2OutputTmp}"/>
         <mkdir dir="${reportPhpMetrics2OutputTmp}"/>
@@ -43,7 +43,7 @@
         <delete dir="${reportPhpMetrics2Output}"/>
         <mkdir dir="${reportPhpMetrics2Output}"/>
 
-        <exec executable="phpmetrics2" passthru="true" checkreturn="true" level="info" dir="${projectDirMain}">
+        <exec executable="phpmetrics2" passthru="true" checkreturn="true" level="info" dir="${project_dir_main}">
             <arg line="--report-html=${reportPhpMetrics2OutputTmp}"/>
             <arg line="--report-csv=${reportPhpMetrics2OutputTmp}/phpmetrics2.csv"/>
             <arg line="--report-json=${reportPhpMetrics2OutputTmp}/phpmetrics2.json"/>

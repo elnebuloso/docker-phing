@@ -8,7 +8,7 @@
 
 
     <target name="report:phpdepend:init">
-        <property name="reportPhpDependOutput" value="${projectDirBuildReports}/phpdepend"/>
+        <property name="reportPhpDependOutput" value="${project_dir_build_reports}/phpdepend"/>
     </target>
 
 
@@ -36,9 +36,9 @@
         <delete dir="${reportPhpDependOutput}"/>
         <mkdir dir="${reportPhpDependOutput}"/>
 
-        <phpdepend pharlocation="${phingCommonsRoot}/resources/phar/pdepend-2.5.0.phar">
-            <fileset dir="${projectDirMain}">
-                <patternset refid="patternsetReportPhpDepend"/>
+        <phpdepend pharlocation="${phing_commons_root}/resources/phar/pdepend-2.5.0.phar">
+            <fileset dir="${project_dir_main}">
+                <patternset refid="patternset_report_phpdepend"/>
             </fileset>
             <logger type="jdepend-xml" outfile="${reportPhpDependOutput}/report.xml"/>
             <logger type="jdepend-chart" outfile="${reportPhpDependOutput}/assets/chart.svg"/>
@@ -46,8 +46,8 @@
             <analyzer type="coderank-mode" value="method"/>
         </phpdepend>
 
-        <xslt file="${reportPhpDependOutput}/report.xml" tofile="${reportPhpDependOutput}/report-v1.html" style="${phingCommonsRoot}/resources/xsl/phpdepend-v1.xsl"/>
-        <xslt file="${reportPhpDependOutput}/report.xml" tofile="${reportPhpDependOutput}/report-v2.html" style="${phingCommonsRoot}/resources/xsl/phpdepend-v2.xsl"/>
+        <xslt file="${reportPhpDependOutput}/report.xml" tofile="${reportPhpDependOutput}/report-v1.html" style="${phing_commons_root}/resources/xsl/phpdepend-v1.xsl"/>
+        <xslt file="${reportPhpDependOutput}/report.xml" tofile="${reportPhpDependOutput}/report-v2.html" style="${phing_commons_root}/resources/xsl/phpdepend-v2.xsl"/>
         <copy file="${reportPhpDependOutput}/report-v2.html" tofile="${reportPhpDependOutput}/index.html"/>
     </target>
 

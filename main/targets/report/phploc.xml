@@ -8,7 +8,7 @@
 
 
     <target name="report:phploc:init">
-        <property name="reportPhpLocOutput" value="${projectDirBuildReports}/phploc"/>
+        <property name="reportPhpLocOutput" value="${project_dir_build_reports}/phploc"/>
     </target>
 
 
@@ -36,14 +36,14 @@
         <delete dir="${reportPhpLocOutput}"/>
         <mkdir dir="${reportPhpLocOutput}"/>
 
-        <phploc pharlocation="${phingCommonsRoot}/resources/phar/phploc-2.1.5.phar" reportType="xml" reportName="report" reportDirectory="${reportPhpLocOutput}">
-            <fileset dir="${projectDirMain}">
-                <patternset refid="patternsetReportPhpLoc"/>
+        <phploc pharlocation="${phing_commons_root}/resources/phar/phploc-2.1.5.phar" reportType="xml" reportName="report" reportDirectory="${reportPhpLocOutput}">
+            <fileset dir="${project_dir_main}">
+                <patternset refid="patternset_report_phploc"/>
             </fileset>
         </phploc>
 
-        <xslt file="${reportPhpLocOutput}/report.xml" tofile="${reportPhpLocOutput}/report-v1.html" style="${phingCommonsRoot}/resources/xsl/phploc-v1.xsl"/>
-        <xslt file="${reportPhpLocOutput}/report.xml" tofile="${reportPhpLocOutput}/report-v2.html" style="${phingCommonsRoot}/resources/xsl/phploc-v2.xsl"/>
+        <xslt file="${reportPhpLocOutput}/report.xml" tofile="${reportPhpLocOutput}/report-v1.html" style="${phing_commons_root}/resources/xsl/phploc-v1.xsl"/>
+        <xslt file="${reportPhpLocOutput}/report.xml" tofile="${reportPhpLocOutput}/report-v2.html" style="${phing_commons_root}/resources/xsl/phploc-v2.xsl"/>
         <copy file="${reportPhpLocOutput}/report-v2.html" tofile="${reportPhpLocOutput}/index.html"/>
     </target>
 

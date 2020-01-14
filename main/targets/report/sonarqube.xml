@@ -11,9 +11,9 @@
         <property name="reportSonarqubeExecutable" value="sonarqube-scanner"/>
         <property name="reportSonarqubeHostUrl" value=""/>
         <property name="reportSonarqubeLogin" value=""/>
-        <property name="reportSonarqubeConfig" value="${projectRoot}/sonar-project.properties"/>
+        <property name="reportSonarqubeConfig" value="${project_root}/sonar-project.properties"/>
         <property name="reportSonarqubeProjectKey" value="${projectName}"/>
-        <property name="reportSonarqubeProjectVersion" value="${projectVersion}"/>
+        <property name="reportSonarqubeproject_version" value="${project_version}"/>
     </target>
 
 
@@ -28,7 +28,7 @@
         <echo message="reportSonarqubeLogin             ${reportSonarqubeLogin}"/>
         <echo message="reportSonarqubeConfig            ${reportSonarqubeConfig}"/>
         <echo message="reportSonarqubeProjectKey        ${reportSonarqubeProjectKey}"/>
-        <echo message="reportSonarqubeProjectVersion    ${reportSonarqubeProjectVersion}"/>
+        <echo message="reportSonarqubeproject_version    ${reportSonarqubeproject_version}"/>
         <echo message="branchName                       - adhoc property"/>
         <echo message="buildNumber                      - adhoc property"/>
     </target>
@@ -50,7 +50,7 @@
 
 
     <target name="report:sonarqube:main">
-        <mkdir dir="${projectDirBuildTmp}"/>
+        <mkdir dir="${project_dir_build_tmp}"/>
 
         <if>
             <and>
@@ -60,24 +60,24 @@
                 </not>
             </and>
             <then>
-                <property name="reportSonarqubeProjectVersion" value="${reportSonarqubeProjectVersion}-${branchName}"/>
+                <property name="reportSonarqubeproject_version" value="${reportSonarqubeproject_version}-${branchName}"/>
                 <if>
                     <isset property="buildNumber"/>
                     <then>
-                        <property name="reportSonarqubeProjectVersion" value="${reportSonarqubeProjectVersion}-${buildNumber}"/>
+                        <property name="reportSonarqubeproject_version" value="${reportSonarqubeproject_version}-${buildNumber}"/>
                     </then>
                 </if>
             </then>
         </if>
 
-        <echo message="${reportSonarqubeProjectVersion}"/>
-        <exec executable="${reportSonarqubeExecutable}" passthru="true" checkreturn="true" level="info" dir="${projectRoot}">
-            <arg line="--define sonar.userHome=${projectDirBuildTmp}"/>
+        <echo message="${reportSonarqubeproject_version}"/>
+        <exec executable="${reportSonarqubeExecutable}" passthru="true" checkreturn="true" level="info" dir="${project_root}">
+            <arg line="--define sonar.userHome=${project_dir_build_tmp}"/>
             <arg line="--define sonar.host.url=${reportSonarqubeHostUrl}"/>
             <arg line="--define sonar.login=${reportSonarqubeLogin}"/>
             <arg line="--define project.settings=${reportSonarqubeConfig}"/>
             <arg line="--define sonar.projectKey=${reportSonarqubeProjectKey}"/>
-            <arg line="--define sonar.projectVersion=${reportSonarqubeProjectVersion}"/>
+            <arg line="--define sonar.project_version=${reportSonarqubeproject_version}"/>
         </exec>
     </target>
 

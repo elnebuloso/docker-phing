@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [3.0.0] - 2020-01-14
+- renamed build properties to underscore notation
+
+
 ## [2.14.0] - 2020-01-13
 - updated init resources
 

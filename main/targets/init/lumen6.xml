@@ -34,17 +34,17 @@
 
 
     <target name="init:lumen6:main">
-        <fail message="${projectDirMain} exists for creating lumen6 application">
+        <fail message="${project_dir_main} exists for creating lumen6 application">
             <condition>
-                <available file="${projectDirMain}" type="dir"/>
+                <available file="${project_dir_main}" type="dir"/>
             </condition>
         </fail>
 
-        <exec command="composer create-project --prefer-dist --remove-vcs laravel/lumen:^6 ${projectDirMain}" passthru="true" checkreturn="true" level="info"/>
-        <delete dir="${projectDirMain}/.git" quiet="true"/>
+        <exec command="composer create-project --prefer-dist --remove-vcs laravel/lumen:^6 ${project_dir_main}" passthru="true" checkreturn="true" level="info"/>
+        <delete dir="${project_dir_main}/.git" quiet="true"/>
 
-        <copy todir="${projectRoot}" overwrite="true">
-            <fileset dir="${phingCommonsRoot}/resources/init/lumen6/0">
+        <copy todir="${project_root}" overwrite="true">
+            <fileset dir="${phing_commons_root}/resources/init/lumen6/0">
                 <include name="**"/>
             </fileset>
             <filterchain>
