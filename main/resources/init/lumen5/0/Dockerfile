@@ -13,7 +13,7 @@ RUN echo "configure" \
     && echo 'PassEnv APP_ENV' > /etc/apache2/conf-enabled/expose-env.conf \
     && if [ -d /app/main/storage ]; then chmod 0755 -R /app/main/storage ; fi \
     && if [ -d /app/main/storage ]; then chown www-data:www-data -R /app/main/storage ; fi \
-    && if [ -f /app/main/artisan ]; then chmod +x /app/artisan ; fi
+    && if [ -f /app/main/artisan ]; then chmod +x /app/main/artisan ; fi
 
 #
 # development layer

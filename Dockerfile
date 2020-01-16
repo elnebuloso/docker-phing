@@ -38,18 +38,15 @@ RUN echo "install php" \
     && add-apt-repository ppa:ondrej/php \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
-        php5.6-cli \
-        php7.1-cli \
         php7.2-cli \
-        php7.2-curl \
-        php7.2-mysql \
-        php7.2-xml \
-        php7.2-zip \
         php7.3-cli \
         php7.4-cli \
-    && update-alternatives --set php /usr/bin/php7.2 \
-    && update-alternatives --set phar /usr/bin/phar7.2 \
-    && update-alternatives --set phar.phar /usr/bin/phar.phar7.2 \
+        php7.4-curl \
+        php7.4-xml \
+        php7.4-zip \
+    && update-alternatives --set php /usr/bin/php7.4 \
+    && update-alternatives --set phar /usr/bin/phar7.4 \
+    && update-alternatives --set phar.phar /usr/bin/phar.phar7.4 \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && export COMPOSER_ALLOW_SUPERUSER=1 \
     && export COMPOSER_HOME=/srv/composer \

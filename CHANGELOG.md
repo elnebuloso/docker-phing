@@ -5,6 +5,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [3.2.0] - 2020-01-16
+- dropped support php 5.6
+- dropped support php 7.1
+- default php interpreter 7.4
+- fixed application init resources
+
+
 ## [3.1.0] - 2020-01-16
 - added npm/yarn upgrade
 

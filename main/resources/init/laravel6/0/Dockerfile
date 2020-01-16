@@ -15,7 +15,7 @@ RUN echo "configure" \
     && if [ -d /app/main/bootstrap/cache ]; then chown www-data:www-data -R /app/main/bootstrap/cache ; fi \
     && if [ -d /app/main/storage ]; then chmod 0755 -R /app/main/storage ; fi \
     && if [ -d /app/main/storage ]; then chown www-data:www-data -R /app/main/storage ; fi \
-    && if [ -f /app/main/artisan ]; then chmod +x /app/artisan ; fi
+    && if [ -f /app/main/artisan ]; then chmod +x /app/main/artisan ; fi
 
 #
 # development layer
