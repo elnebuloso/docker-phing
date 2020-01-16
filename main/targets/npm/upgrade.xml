@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="npm:upgrade">
+
+
+    <property name="npm_upgrade_description" value="npm upgrade dependencies" override="true"/>
+
+
+    <target name="npm:upgrade:init" depends="npm:base:init" hidden="true">
+        <echo message="no properties defined"/>
+    </target>
+
+
+    <target name="npm:upgrade:help" depends="npm:base:help, npm:upgrade:init">
+        <echo message="${npm_upgrade_description}"/>
+    </target>
+
+
+    <target name="npm:upgrade" depends="npm:upgrade:init, npm:upgrade:before, npm:upgrade:main, npm:upgrade:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="npm:upgrade:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="npm:upgrade:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="npm:upgrade:main" hidden="true">
+        <exec command="${npm_executable} upgrade" passthru="true" checkreturn="true" level="info" dir="${project_dir_main_npm}"/>
+    </target>
+
+
+</project>

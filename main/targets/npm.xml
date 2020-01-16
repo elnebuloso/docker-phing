@@ -6,6 +6,7 @@
 
     <import file="${phing_commons_root}/targets/npm/install.xml"/>
     <import file="${phing_commons_root}/targets/npm/run.xml"/>
+    <import file="${phing_commons_root}/targets/npm/upgrade.xml"/>
 
 
     <target name="npm:help">
@@ -14,6 +15,7 @@
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="npm:install    ${npm_install_description}"/>
         <echo message="npm:run        ${npm_run_description}"/>
+        <echo message="npm:upgrade    ${npm_upgrade_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
