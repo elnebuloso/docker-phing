@@ -39,7 +39,7 @@
 
 
     <target name="docker:compose:down:main" hidden="true">
-        <exec command="docker-compose down ${docker_compose_down_options}" passthru="true" checkreturn="true" level="info"/>
+        <exec command="docker-compose down ${docker_compose_down_options}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
     </target>
 
 

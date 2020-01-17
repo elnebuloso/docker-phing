@@ -13,7 +13,9 @@
 
 
     <target name="compass:watch:help" depends="compass:watch:init">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${compass_watch_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 

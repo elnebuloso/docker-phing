@@ -45,7 +45,7 @@
         <delete dir="${report_phpmd_output}"/>
         <mkdir dir="${report_phpmd_output}"/>
 
-        <phpmd pharlocation="${phing_commons_root}/resources/phar/phpmd-2.6.0.phar" rulesets="${report_php_md_rulesets}" allowedFileExtensions="${report_php_md_allowed_file_extensions}">
+        <phpmd pharlocation="${phing_commons_root}/resources/phar/phpmd-2.8.1.phar" rulesets="${report_php_md_rulesets}" allowedFileExtensions="${report_php_md_allowed_file_extensions}">
             <fileset dir="${project_dir_main}">
                 <patternset refid="patternset_report_phpmd"/>
             </fileset>

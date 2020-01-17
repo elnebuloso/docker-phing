@@ -7,12 +7,12 @@
     <property name="composer_install_description" value="composer install" override="true"/>
 
 
-    <target name="composer:install:init" depends="composer:base:init" hidden="true">
+    <target name="composer:install:init" hidden="true">
         <property name="composer_install_options" value=""/>
     </target>
 
 
-    <target name="composer:install:help" depends="composer:base:help, composer:install:init">
+    <target name="composer:install:help" depends="composer:install:init, composer:base:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${composer_install_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
@@ -23,7 +23,7 @@
     </target>
 
 
-    <target name="composer:install" depends="composer:install:init, composer:install:before, composer:install:main, composer:install:after">
+    <target name="composer:install" depends="clean:dist, composer:install:init, composer:base:init, composer:install:before, composer:install:main, composer:base:command, composer:install:after">
         <echo message="successful"/>
     </target>
 
@@ -39,9 +39,7 @@
 
 
     <target name="composer:install:main" hidden="true">
-        <phingcall target="composer:base:command">
-            <property name="composer_command" value="composer install --no-suggest --no-ansi --no-interaction ${composer_install_options}" override="true"/>
-        </phingcall>
+        <property name="composer_command" value="composer install --no-suggest --no-ansi --no-interaction ${composer_install_options}" override="true"/>
     </target>
 
 

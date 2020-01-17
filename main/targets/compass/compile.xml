@@ -13,7 +13,9 @@
 
 
     <target name="compass:compile:help" depends="compass:compile:init">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${compass_compile_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 

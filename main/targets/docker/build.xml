@@ -7,14 +7,14 @@
     <property name="docker_build_description" value="build a docker image from the projects dockerfile" override="true"/>
 
 
-    <target name="docker:build:init" depends="docker:base:init" hidden="true">
+    <target name="docker:build:init" hidden="true">
         <property name="docker_build_file" value="Dockerfile"/>
         <property name="docker_build_args" value="--rm --pull --target prod"/>
         <property name="docker_build_ctx" value="."/>
     </target>
 
 
-    <target name="docker:build:help" depends="docker:base:help, docker:build:init">
+    <target name="docker:build:help" depends="docker:build:init, docker:base:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${docker_build_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
@@ -27,7 +27,7 @@
     </target>
 
 
-    <target name="docker:build" depends="docker:build:init, docker:build:before, docker:build:main, docker:build:after">
+    <target name="docker:build" depends="clean:dist, docker:build:init, docker:base:init, docker:build:before, docker:build:main, docker:build:after">
         <echo message="successful"/>
     </target>
 

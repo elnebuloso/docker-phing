@@ -19,6 +19,7 @@
         <echo message="property                     value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="docker_compose_up_options    ${docker_compose_up_options}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
@@ -38,7 +39,7 @@
 
 
     <target name="docker:compose:up:main" hidden="true">
-        <exec command="docker-compose up ${docker_compose_up_options}" passthru="true" checkreturn="true" level="info"/>
+        <exec command="docker-compose up ${docker_compose_up_options}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
     </target>
 
 

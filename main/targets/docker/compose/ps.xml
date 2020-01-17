@@ -8,12 +8,14 @@
 
 
     <target name="docker:compose:ps:help">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${docker_compose_ps_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
     <target name="docker:compose:ps">
-        <exec command="docker-compose ps" passthru="true" checkreturn="true" level="info"/>
+        <exec command="docker-compose ps" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
     </target>
 
 

@@ -7,12 +7,12 @@
     <property name="npm_run_description" value="npm run script" override="true"/>
 
 
-    <target name="npm:run:init" depends="npm:base:init" hidden="true">
+    <target name="npm:run:init" hidden="true">
         <property name="npm_run_script" value=""/>
     </target>
 
 
-    <target name="npm:run:help" depends="npm:base:help, npm:run:init">
+    <target name="npm:run:help" depends="npm:run:init, npm:base:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${npm_run_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
@@ -23,7 +23,7 @@
     </target>
 
 
-    <target name="npm:run" depends="npm:run:init, npm:run:before, npm:run:main, npm:run:after">
+    <target name="npm:run" depends="npm:run:init, npm:base:init, npm:run:before, npm:run:main, npm:run:after">
         <echo message="successful"/>
     </target>
 

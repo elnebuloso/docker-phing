@@ -13,11 +13,13 @@
 
 
     <target name="report:phpmetrics:help" depends="report:phpmetrics:init">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${report_phpmetrics_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
-    <target name="report:phpmetrics" depends="report:phpmetrics:init, report:phpmetrics:before, report:phpmetrics:main, report:phpmetrics:after">
+    <target name="report:phpmetrics" depends="report:phpmetrics:init, report:phpmetrics:before, report:phpmetrics:main, report:phpmetrics1, report:phpmetrics2, report:phpmetrics:after">
         <echo message="successful"/>
     </target>
 
@@ -32,7 +34,9 @@
     </target>
 
 
-    <target name="report:phpmetrics:main" depends="report:phpmetrics1, report:phpmetrics2" hidden="true"/>
+    <target name="report:phpmetrics:main" depends="" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
 
 
 </project>

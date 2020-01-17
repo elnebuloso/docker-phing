@@ -8,12 +8,18 @@
 
 
     <target name="docker:compose:pull:init" hidden="true">
-        <echo message="no properties defined"/>
+        <property name="docker_compose_pull_options" value=""/>
     </target>
 
 
     <target name="docker:compose:pull:help" depends="docker:compose:pull:init">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${docker_compose_pull_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="property                       value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="docker_compose_pull_options    ${docker_compose_pull_options}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
@@ -33,7 +39,7 @@
 
 
     <target name="docker:compose:pull:main" hidden="true">
-        <exec command="docker-compose pull" passthru="true" checkreturn="true" level="info"/>
+        <exec command="docker-compose pull ${docker_compose_pull_options}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
     </target>
 
 

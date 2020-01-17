@@ -13,7 +13,9 @@
 
 
     <target name="compass:clean:help" depends="compass:clean:init">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${compass_clean_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 

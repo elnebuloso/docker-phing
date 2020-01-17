@@ -15,7 +15,9 @@
 
 
     <target name="report:phpmetrics2:help" depends="report:phpmetrics2:init">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${report_phpmetrics2_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 

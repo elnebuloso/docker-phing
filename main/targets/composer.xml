@@ -24,7 +24,7 @@
     </target>
 
 
-    <target name="composer:base:help" depends="composer:help, composer:base:init">
+    <target name="composer:base:help" depends="composer:base:init">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="property                        value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>

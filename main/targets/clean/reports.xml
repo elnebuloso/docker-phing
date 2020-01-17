@@ -13,7 +13,9 @@
 
 
     <target name="clean:reports:help" depends="clean:reports:init">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${clean_reports_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 

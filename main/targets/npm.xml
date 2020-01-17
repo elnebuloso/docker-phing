@@ -20,7 +20,7 @@
     </target>
 
 
-    <target name="npm:base:help" depends="npm:help, npm:base:init">
+    <target name="npm:base:help" depends="npm:base:init">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="property          value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>

@@ -7,13 +7,13 @@
     <property name="composer_remove_description" value="composer remove a dependency" override="true"/>
 
 
-    <target name="composer:remove:init" depends="composer:base:init" hidden="true">
+    <target name="composer:remove:init" hidden="true">
         <property name="package" value=""/>
         <property name="options" value=""/>
     </target>
 
 
-    <target name="composer:remove:help" depends="composer:base:help, composer:remove:init">
+    <target name="composer:remove:help" depends="composer:remove:init, composer:base:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${composer_remove_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
@@ -25,7 +25,7 @@
     </target>
 
 
-    <target name="composer:remove" depends="composer:remove:init, composer:remove:before, composer:remove:main, composer:remove:after">
+    <target name="composer:remove" depends="clean:dist, composer:remove:init, composer:base:init, composer:remove:before, composer:remove:main, composer:base:command, composer:remove:after">
         <echo message="successful"/>
     </target>
 
@@ -49,9 +49,7 @@
             </then>
         </if>
 
-        <phingcall target="composer:base:command">
-            <property name="composer_command" value="composer remove ${package} ${options}" override="true"/>
-        </phingcall>
+        <property name="composer_command" value="composer remove ${package} ${options}" override="true"/>
     </target>
 
 

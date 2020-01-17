@@ -27,7 +27,8 @@ RUN echo "configure" \
     && if [ -d /app/main/public/theme ]; then chmod 0755 -R /app/main/public/theme ; fi \
     && if [ -d /app/main/public/theme ]; then chown www-data:www-data -R /app/main/public/theme ; fi \
     && if [ -d /app/main/public/thumbs ]; then chmod 0755 -R /app/main/public/thumbs ; fi \
-    && if [ -d /app/main/public/thumbs ]; then chown www-data:www-data -R /app/main/public/thumbs ; fi
+    && if [ -d /app/main/public/thumbs ]; then chown www-data:www-data -R /app/main/public/thumbs ; fi \
+    && if [ -f /app/main/app/nut ]; then chmod +x /app/main/app/nut ; fi
 
 #
 # development layer

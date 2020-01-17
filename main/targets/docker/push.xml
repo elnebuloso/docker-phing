@@ -7,7 +7,8 @@
     <property name="docker_push_description" value="push project docker image to a registry" override="true"/>
 
 
-    <target name="docker:push:init" depends="docker:base:init" hidden="true">
+    <target name="docker:push:init" hidden="true">
+        <property name="docker_push_image" value="enabled"/>
         <property name="docker_push_latest" value="disabled"/>
         <property name="docker_push_semver" value="disabled"/>
         <property name="docker_push_cleanup" value="enabled"/>
@@ -42,12 +43,13 @@
     </target>
 
 
-    <target name="docker:push:help" depends="docker:base:help, docker:push:init">
+    <target name="docker:push:help" depends="docker:push:init, docker:base:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${docker_push_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="property               value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="docker_push_image      ${docker_push_image}"/>
         <echo message="docker_push_latest     ${docker_push_latest}"/>
         <echo message="docker_push_semver     ${docker_push_semver}"/>
         <echo message="docker_push_cleanup    ${docker_push_cleanup}"/>
@@ -55,7 +57,7 @@
     </target>
 
 
-    <target name="docker:push" depends="docker:push:init, docker:push:before, docker:push:main, docker:push:after">
+    <target name="docker:push" depends="clean:dist, docker:push:init, docker:base:init, docker:push:before, docker:push:main, docker:push:after">
         <echo message="successful"/>
     </target>
 
@@ -71,9 +73,6 @@
 
 
     <target name="docker:push:main" hidden="true">
-        <exec command="docker tag ${docker_config_image} ${docker_config_image_tag}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
-        <exec command="docker push ${docker_config_image_tag}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
-
         <if>
             <equals arg1="${docker_config_push_latest}" arg2="enabled"/>
             <then>
@@ -113,10 +112,18 @@
         </if>
 
         <if>
-            <equals arg1="${docker_push_cleanup}" arg2="enabled"/>
+            <equals arg1="${docker_push_image}" arg2="enabled"/>
             <then>
-                <exec command="docker rmi ${docker_config_image_tag}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
-                <exec command="docker rmi ${docker_config_image}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+                <exec command="docker tag ${docker_config_image} ${docker_config_image_tag}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+                <exec command="docker push ${docker_config_image_tag}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+
+                <if>
+                    <equals arg1="${docker_push_cleanup}" arg2="enabled"/>
+                    <then>
+                        <exec command="docker rmi ${docker_config_image_tag}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+                        <exec command="docker rmi ${docker_config_image}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+                    </then>
+                </if>
             </then>
         </if>
     </target>

@@ -7,12 +7,12 @@
     <property name="composer_update_description" value="composer update dependencies" override="true"/>
 
 
-    <target name="composer:update:init" depends="composer:base:init" hidden="true">
+    <target name="composer:update:init" hidden="true">
         <property name="composer_update_options" value=""/>
     </target>
 
 
-    <target name="composer:update:help" depends="composer:base:help, composer:update:init">
+    <target name="composer:update:help" depends="composer:update:init, composer:base:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${composer_update_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
@@ -23,7 +23,7 @@
     </target>
 
 
-    <target name="composer:update" depends="composer:update:init, composer:update:before, composer:update:main, composer:update:after">
+    <target name="composer:update" depends="clean:dist, composer:update:init, composer:base:init, composer:update:before, composer:update:main, composer:base:command, composer:update:after">
         <echo message="successful"/>
     </target>
 
@@ -39,9 +39,7 @@
 
 
     <target name="composer:update:main" hidden="true">
-        <phingcall target="composer:base:command">
-            <property name="composer_command" value="composer update --no-suggest --no-ansi --no-interaction ${composer_update_options}" override="true"/>
-        </phingcall>
+        <property name="composer_command" value="composer update --no-suggest --no-ansi --no-interaction ${composer_update_options}" override="true"/>
     </target>
 
 

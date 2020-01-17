@@ -26,7 +26,7 @@
     </target>
 
 
-    <target name="docker:base:help" depends="docker:help, docker:base:init">
+    <target name="docker:base:help" depends="docker:base:init">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="property                         value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>

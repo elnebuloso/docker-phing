@@ -14,7 +14,9 @@
 
 
     <target name="report:phpdepend:help" depends="report:phpdepend:init">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${report_phpdepend_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
@@ -36,8 +38,9 @@
     <target name="report:phpdepend:main" hidden="true">
         <delete dir="${report_phpdepend_output}"/>
         <mkdir dir="${report_phpdepend_output}"/>
+        <mkdir dir="${report_phpdepend_output}/assets"/>
 
-        <phpdepend pharlocation="${phing_commons_root}/resources/phar/pdepend-2.5.0.phar">
+        <phpdepend pharlocation="${phing_commons_root}/resources/phar/pdepend-2.6.1.phar">
             <fileset dir="${project_dir_main}">
                 <patternset refid="patternset_report_phpdepend"/>
             </fileset>

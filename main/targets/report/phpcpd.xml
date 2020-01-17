@@ -14,7 +14,9 @@
 
 
     <target name="report:phpcpd:help" depends="report:phpcpd:init">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${report_phpcpd_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
@@ -37,7 +39,7 @@
         <delete dir="${report_phpcpd_output}"/>
         <mkdir dir="${report_phpcpd_output}"/>
 
-        <phpcpd pharlocation="${phing_commons_root}/resources/phar/phpcpd-2.0.4.phar">
+        <phpcpd pharlocation="${phing_commons_root}/resources/phar/phpcpd-4.1.0.phar">
             <fileset dir="${project_dir_main}">
                 <patternset refid="patternset_report_phpcpd"/>
             </fileset>

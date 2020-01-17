@@ -13,7 +13,9 @@
 
 
     <target name="bundle:project:help" depends="bundle:project:init">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${bundle_project_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 

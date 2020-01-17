@@ -7,17 +7,19 @@
     <property name="npm_install_description" value="npm install dependencies" override="true"/>
 
 
-    <target name="npm:install:init" depends="npm:base:init" hidden="true">
+    <target name="npm:install:init" hidden="true">
         <echo message="no properties defined"/>
     </target>
 
 
-    <target name="npm:install:help" depends="npm:base:help, npm:install:init">
+    <target name="npm:install:help" depends="npm:install:init, npm:base:help">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${npm_install_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
-    <target name="npm:install" depends="npm:install:init, npm:install:before, npm:install:main, npm:install:after">
+    <target name="npm:install" depends="npm:install:init, npm:base:init, npm:install:before, npm:install:main, npm:install:after">
         <echo message="successful"/>
     </target>
 
