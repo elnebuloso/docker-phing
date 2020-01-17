@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [3.4.0] - 2020-01-16
+- added prettier dockerception
+
+
 ## [3.3.0] - 2020-01-16
 - updated target dependencies
 - phpdepend 2.6.1

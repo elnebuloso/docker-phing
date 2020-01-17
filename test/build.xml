@@ -40,6 +40,7 @@
         <exec command="npm --version" passthru="true" checkreturn="true" level="info"/>
         <exec command="phpmetrics1 --version" passthru="true" checkreturn="true" level="info"/>
         <exec command="phpmetrics2 --version" passthru="true" checkreturn="true" level="info"/>
+        <exec command="prettier --version" passthru="true" checkreturn="true" level="info"/>
         <exec command="sonarqube-scanner --version" passthru="true" checkreturn="true" level="info"/>
         <exec command="yarn --version" passthru="true" checkreturn="true" level="info"/>
     </target>
