@@ -27,7 +27,7 @@
     </target>
 
 
-    <target name="docker:build" depends="clean:dist, docker:build:init, docker:base:init, docker:build:before, docker:build:main, docker:build:after">
+    <target name="docker:build" depends="docker:build:init, docker:base:init, docker:build:before, docker:build:main, docker:build:after">
         <echo message="successful"/>
     </target>
 

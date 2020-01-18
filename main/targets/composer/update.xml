@@ -23,7 +23,7 @@
     </target>
 
 
-    <target name="composer:update" depends="clean:dist, composer:update:init, composer:base:init, composer:update:before, composer:update:main, composer:base:command, composer:update:after">
+    <target name="composer:update" depends="composer:update:init, composer:base:init, composer:update:before, composer:update:main, composer:base:command, composer:update:after">
         <echo message="successful"/>
     </target>
 

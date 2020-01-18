@@ -25,7 +25,7 @@
     </target>
 
 
-    <target name="composer:require" depends="clean:dist, composer:require:init, composer:base:init, composer:require:before, composer:require:main, composer:base:command, composer:require:after">
+    <target name="composer:require" depends="composer:require:init, composer:base:init, composer:require:before, composer:require:main, composer:base:command, composer:require:after">
         <echo message="successful"/>
     </target>
 

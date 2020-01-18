@@ -57,7 +57,7 @@
     </target>
 
 
-    <target name="docker:push" depends="clean:dist, docker:push:init, docker:base:init, docker:push:before, docker:push:main, docker:push:after">
+    <target name="docker:push" depends="docker:push:init, docker:base:init, docker:push:before, docker:push:main, docker:push:after">
         <echo message="successful"/>
     </target>
 

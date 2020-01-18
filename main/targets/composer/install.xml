@@ -23,7 +23,7 @@
     </target>
 
 
-    <target name="composer:install" depends="clean:dist, composer:install:init, composer:base:init, composer:install:before, composer:install:main, composer:base:command, composer:install:after">
+    <target name="composer:install" depends="composer:install:init, composer:base:init, composer:install:before, composer:install:main, composer:base:command, composer:install:after">
         <echo message="successful"/>
     </target>
 

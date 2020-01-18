@@ -23,7 +23,7 @@
     </target>
 
 
-    <target name="composer:install:production" depends="clean:dist, composer:install:production:init, composer:base:init, composer:install:production:before, composer:install:production:main, composer:base:command, composer:install:production:after">
+    <target name="composer:install:production" depends="composer:install:production:init, composer:base:init, composer:install:production:before, composer:install:production:main, composer:base:command, composer:install:production:after">
         <echo message="successful"/>
     </target>
 

@@ -60,7 +60,7 @@
     </target>
 
 
-    <target name="test:phpunit" depends="clean:dist, test:phpunit:init, test:phpunit:before, test:phpunit:main, test:phpunit:after">
+    <target name="test:phpunit" depends="test:phpunit:init, test:phpunit:before, test:phpunit:main, test:phpunit:after">
         <echo message="successful"/>
     </target>
 
