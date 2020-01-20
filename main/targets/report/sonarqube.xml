@@ -16,6 +16,7 @@
         <property name="report_sonarqube_project_version" value="${project_version}"/>
         <property name="branch_name_release" value="master"/>
         <property name="branch_name" value="master"/>
+        <property name="build_number" value=""/>
     </target>
 
 
@@ -63,7 +64,9 @@
             <then>
                 <property name="report_sonarqube_project_version" value="${report_sonarqube_project_version}-${branch_name}"/>
                 <if>
-                    <isset property="build_number"/>
+                    <not>
+                        <equals arg1="build_number" arg2=""/>
+                    </not>
                     <then>
                         <property name="report_sonarqube_project_version" value="${report_sonarqube_project_version}-${build_number}"/>
                     </then>
