@@ -44,6 +44,7 @@ class DockerConfigTask extends AbstractTask
         $this->getProject()->setProperty('docker_config_image_version', $this->getDockerConfigImageVersion());
         $this->getProject()->setProperty('docker_config_image', $this->getDockerConfigImage());
         $this->getProject()->setProperty('docker_config_image_tag', $this->getDockerConfigImageTag());
+        $this->getProject()->setProperty('docker_config_image_tag_branch', $this->getDockerConfigImageTagBranch());
         $this->getProject()->setProperty('docker_config_image_tag_latest', $this->getDockerConfigImageTagLatest());
         $this->getProject()->setProperty('docker_config_image_tag_major', $this->getDockerConfigImageTagMajor());
         $this->getProject()->setProperty('docker_config_image_tag_minor', $this->getDockerConfigImageTagMinor());
@@ -61,7 +62,7 @@ class DockerConfigTask extends AbstractTask
         $info[] = $this->getProject()->getProperty('docker_image_version');
 
         // append given branch_name only when not the defined master branch
-        if (strtolower($this->getProject()->getProperty('branch_name')) !== strtolower($this->getProject()->getProperty('branch_name_master'))) {
+        if ($this->getBranchName() !== $this->getBranchNameRelease()) {
             $info[] = $this->getProject()->getProperty('branch_name');
         }
 
@@ -84,6 +85,14 @@ class DockerConfigTask extends AbstractTask
     private function getDockerConfigImageTag()
     {
         return strtolower(implode('/', array_filter([$this->getDockerRegistry(), $this->getDockerRegistryNamespace(), $this->getDockerConfigImage()])));
+    }
+
+    /**
+     * @return string
+     */
+    private function getDockerConfigImageTagBranch()
+    {
+        return strtolower(implode('/', array_filter([$this->getDockerRegistry(), $this->getDockerRegistryNamespace(), implode(':', [$this->getDockerImageName(), $this->getBranchName()])])));
     }
 
     /**
@@ -140,5 +149,21 @@ class DockerConfigTask extends AbstractTask
     private function getDockerImageName()
     {
         return strtolower(trim($this->getProject()->getProperty('docker_image_name')));
+    }
+
+    /**
+     * @return string
+     */
+    private function getBranchName()
+    {
+        return strtolower(trim($this->getProject()->getProperty('branch_name')));
+    }
+
+    /**
+     * @return string
+     */
+    private function getBranchNameRelease()
+    {
+        return strtolower(trim($this->getProject()->getProperty('branch_name_release')));
     }
 }

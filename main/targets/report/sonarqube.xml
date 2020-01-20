@@ -14,7 +14,8 @@
         <property name="report_sonarqube_config" value="${project_root}/sonar-project.properties"/>
         <property name="report_sonarqube_project_key" value="${project_name}"/>
         <property name="report_sonarqube_project_version" value="${project_version}"/>
-        <property name="branch_name_master" value="master"/>
+        <property name="branch_name_release" value="master"/>
+        <property name="branch_name" value="master"/>
     </target>
 
 
@@ -30,7 +31,7 @@
         <echo message="report_sonarqube_config             ${report_sonarqube_config}"/>
         <echo message="report_sonarqube_project_key        ${report_sonarqube_project_key}"/>
         <echo message="report_sonarqube_project_version    ${report_sonarqube_project_version}"/>
-        <echo message="branch_name_master                  ${branch_name_master}"/>
+        <echo message="branch_name_release                 ${branch_name_release}"/>
         <echo message="branch_name                         ${branch_name}"/>
         <echo message="build_number                        ${build_number}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
@@ -56,12 +57,9 @@
         <mkdir dir="${project_dir_build_tmp}"/>
 
         <if>
-            <and>
-                <isset property="branch_name"/>
-                <not>
-                    <equals arg1="${branch_name}" arg2="${branch_name_master}"/>
-                </not>
-            </and>
+            <not>
+                <equals arg1="${branch_name}" arg2="${branch_name_release}"/>
+            </not>
             <then>
                 <property name="report_sonarqube_project_version" value="${report_sonarqube_project_version}-${branch_name}"/>
                 <if>

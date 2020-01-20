@@ -28,19 +28,20 @@
 
     <target name="docker:base:help" depends="docker:base:init">
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="property                         value"/>
+        <echo message="property                          value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="docker_registry                  ${docker_registry}"/>
-        <echo message="docker_registry_namespace        ${docker_registry_namespace}"/>
-        <echo message="docker_image_name                ${docker_image_name}"/>
-        <echo message="docker_image_version             ${docker_image_version}"/>
-        <echo message="branch_name_master               ${branch_name_master}"/>
-        <echo message="branch_name                      ${branch_name}"/>
-        <echo message="build_number                     ${build_number}"/>
+        <echo message="docker_registry                   ${docker_registry}"/>
+        <echo message="docker_registry_namespace         ${docker_registry_namespace}"/>
+        <echo message="docker_image_name                 ${docker_image_name}"/>
+        <echo message="docker_image_version              ${docker_image_version}"/>
+        <echo message="branch_name_release               ${branch_name_release}"/>
+        <echo message="branch_name                       ${branch_name}"/>
+        <echo message="build_number                      ${build_number}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="docker_config_image_version       ${docker_config_image_version}" level="warning"/>
         <echo message="docker_config_image               ${docker_config_image}" level="warning"/>
         <echo message="docker_config_image_tag           ${docker_config_image_tag}" level="warning"/>
+        <echo message="docker_config_image_tag_branch    ${docker_config_image_tag_branch}" level="warning"/>
         <echo message="docker_config_image_tag_latest    ${docker_config_image_tag_latest}" level="warning"/>
         <echo message="docker_config_image_tag_major     ${docker_config_image_tag_major}" level="warning"/>
         <echo message="docker_config_image_tag_minor     ${docker_config_image_tag_minor}" level="warning"/>
@@ -54,8 +55,8 @@
         <property name="docker_registry_namespace" value=""/>
         <property name="docker_image_name" value="${project_name}"/>
         <property name="docker_image_version" value="${project_version}"/>
-        <property name="branch_name_master" value="master"/>
-        <property name="branch_name" value=""/>
+        <property name="branch_name_release" value="master"/>
+        <property name="branch_name" value="master"/>
         <property name="build_number" value=""/>
         <my-docker-config/>
     </target>

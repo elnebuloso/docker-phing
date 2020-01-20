@@ -9,6 +9,7 @@
 
     <target name="docker:push:init" hidden="true">
         <property name="docker_push_image" value="enabled"/>
+        <property name="docker_push_branch" value="disabled"/>
         <property name="docker_push_latest" value="disabled"/>
         <property name="docker_push_semver" value="disabled"/>
         <property name="docker_push_cleanup" value="enabled"/>
@@ -17,47 +18,81 @@
         <property name="docker_config_push_latest_reason" value=""/>
         <property name="docker_config_push_semver" value="${docker_push_semver}"/>
         <property name="docker_config_push_semver_reason" value=""/>
+    </target>
+
+
+    <target name="docker:push:validate">
+        <if>
+
+            <not>
+                <equals arg1="${branch_name}" arg2="${branch_name_release}"/>
+            </not>
+            <then>
+                <property name="docker_config_push_latest" value="disabled" override="true"/>
+                <property name="docker_config_push_latest_reason" value="branch_name is given or branch_name is not the same as specific branch_name_release" override="true"/>
+            </then>
+        </if>
+
+        <if>
+            <not>
+                <equals arg1="${branch_name}" arg2="${branch_name_release}"/>
+            </not>
+            <then>
+                <property name="docker_config_push_semver" value="disabled" override="true"/>
+                <property name="docker_config_push_semver_reason" value="branch_name is given or branch_name is not the same as specific branch_name_release" override="true"/>
+            </then>
+        </if>
+    </target>
+
+
+    <target name="docker:push:help" depends="docker:push:init, docker:base:help, docker:push:validate">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="${docker_push_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="property                            value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="docker_push_image                   ${docker_push_image}"/>
+        <echo message="docker_push_branch                  ${docker_push_branch}"/>
+        <echo message="docker_push_latest                  ${docker_push_latest}"/>
+        <echo message="docker_push_semver                  ${docker_push_semver}"/>
+        <echo message="docker_push_cleanup                 ${docker_push_cleanup}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
 
         <if>
             <and>
                 <not>
-                    <equals arg1="${branch_name}" arg2=""/>
+                    <equals arg1="${docker_push_latest}" arg2="${docker_config_push_latest}"/>
                 </not>
                 <not>
-                    <equals arg1="${branch_name}" arg2="${branch_name_master}"/>
+                    <equals arg1="${docker_config_push_latest}" arg2="enabled"/>
                 </not>
             </and>
             <then>
-                <property name="docker_config_push_latest" value="disabled" override="true"/>
-                <property name="docker_config_push_latest_reason" value="- branch_name is given or branch_name is not the same as specific branch_name_master" override="true"/>
+                <echo message="docker_config_push_latest           ${docker_config_push_latest}" level="warning"/>
+                <echo message="docker_config_push_latest_reason    ${docker_config_push_latest_reason}" level="warning"/>
+                <echo message="----------------------------------------------------------------------------------------------------"/>
             </then>
         </if>
 
         <if>
-            <equals arg1="${docker_config_push_latest}" arg2="disabled"/>
+            <and>
+                <not>
+                    <equals arg1="${docker_push_semver}" arg2="${docker_config_push_semver}"/>
+                </not>
+                <not>
+                    <equals arg1="${docker_config_push_semver}" arg2="enabled"/>
+                </not>
+            </and>
             <then>
-                <property name="docker_config_push_semver" value="disabled" override="true"/>
-                <property name="docker_config_push_semver_reason" value="- push latest not allowed" override="true"/>
+                <echo message="docker_config_push_semver           ${docker_config_push_semver}" level="warning"/>
+                <echo message="docker_config_push_semver_reason    ${docker_config_push_semver_reason}" level="warning"/>
+                <echo message="----------------------------------------------------------------------------------------------------"/>
             </then>
         </if>
     </target>
 
 
-    <target name="docker:push:help" depends="docker:push:init, docker:base:help">
-        <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="${docker_push_description}"/>
-        <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="property               value"/>
-        <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="docker_push_image      ${docker_push_image}"/>
-        <echo message="docker_push_latest     ${docker_push_latest}"/>
-        <echo message="docker_push_semver     ${docker_push_semver}"/>
-        <echo message="docker_push_cleanup    ${docker_push_cleanup}"/>
-        <echo message="----------------------------------------------------------------------------------------------------"/>
-    </target>
-
-
-    <target name="docker:push" depends="docker:push:init, docker:base:init, docker:push:before, docker:push:main, docker:push:after">
+    <target name="docker:push" depends="docker:push:init, docker:base:init, docker:push:validate, docker:push:before, docker:push:main, docker:push:after">
         <echo message="successful"/>
     </target>
 
@@ -106,6 +141,21 @@
                         <exec command="docker rmi ${docker_config_image_tag_major}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
                         <exec command="docker rmi ${docker_config_image_tag_minor}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
                         <exec command="docker rmi ${docker_config_image_tag_patch}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+                    </then>
+                </if>
+            </then>
+        </if>
+
+        <if>
+            <equals arg1="${docker_push_branch}" arg2="enabled"/>
+            <then>
+                <exec command="docker tag ${docker_config_image} ${docker_config_image_tag_branch}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+                <exec command="docker push ${docker_config_image_tag_branch}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+
+                <if>
+                    <equals arg1="${docker_push_cleanup}" arg2="enabled"/>
+                    <then>
+                        <exec command="docker rmi ${docker_config_image_tag_branch}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
                     </then>
                 </if>
             </then>
