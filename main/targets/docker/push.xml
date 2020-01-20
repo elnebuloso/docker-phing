@@ -23,7 +23,6 @@
 
     <target name="docker:push:validate">
         <if>
-
             <not>
                 <equals arg1="${branch_name}" arg2="${branch_name_release}"/>
             </not>
