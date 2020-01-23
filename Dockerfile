@@ -93,4 +93,8 @@ RUN echo "configure /usr/local/bin" \
     && find /usr/local/bin -type f -name '*.sh' | while read f; do mv "$f" "${f%.sh}"; done \
     && chmod +x /usr/local/bin/*
 
+ENV PHING_COMPOSER_CACHE_VOLUME f81440c9-814d-492c-b30b-08920e854b00
+ENV PHING_NPM_CACHE_VOLUME 92f97451-da6b-4236-a026-80c42df19c0b
+ENV PHING_YARN_CACHE_VOLUME 68897594-8c80-4b4e-8027-215f82c793bb
+
 CMD ["bash"]

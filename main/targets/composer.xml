@@ -26,13 +26,13 @@
 
     <target name="composer:base:help" depends="composer:base:init">
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="property                        value"/>
+        <echo message="property                          value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="composer_docker_file            ${composer_docker_file}"/>
-        <echo message="composer_docker_build_ctx       ${composer_docker_build_ctx}"/>
-        <echo message="composer_docker_build_args      ${composer_docker_build_args}"/>
-        <echo message="composer_docker_run_args        ${composer_docker_run_args}"/>
-        <echo message="composer_docker_run_passthru    ${composer_docker_run_passthru}"/>
+        <echo message="composer_docker_file              ${composer_docker_file}"/>
+        <echo message="composer_docker_build_ctx         ${composer_docker_build_ctx}"/>
+        <echo message="composer_docker_build_args        ${composer_docker_build_args}"/>
+        <echo message="composer_docker_run_args          ${composer_docker_run_args}"/>
+        <echo message="composer_docker_build_passthru    ${composer_docker_build_passthru}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
@@ -40,9 +40,9 @@
     <target name="composer:base:init" hidden="true">
         <property name="composer_docker_file" value="${project_root}/Dockerfile"/>
         <property name="composer_docker_build_ctx" value="."/>
-        <property name="composer_docker_build_args" value="--rm --pull --target dev"/>
+        <property name="composer_docker_build_args" value="--rm --pull --target dev-composer"/>
+        <property name="composer_docker_build_passthru" value="1"/>
         <property name="composer_docker_run_args" value="--rm"/>
-        <property name="composer_docker_run_passthru" value="0"/>
     </target>
 
 
@@ -57,8 +57,8 @@
         <if>
             <equals arg1="${project_composer_type}" arg2="dockerfile"/>
             <then>
-                <exec command="docker build ${composer_docker_build_args} --tag ${project_name}-composer --file ${composer_docker_file} ${composer_docker_build_ctx}" passthru="${composer_docker_run_passthru}" checkreturn="true" level="info" dir="${project_root}"/>
-                <exec command="docker-run ${composer_docker_run_args} ${project_name}-composer ${composer_command}" passthru="true" checkreturn="true" level="info" dir="${project_dir_main_composer}"/>
+                <exec command="docker build ${composer_docker_build_args} --tag ${project_name}-composer --file ${composer_docker_file} ${composer_docker_build_ctx}" passthru="${composer_docker_build_passthru}" checkreturn="true" level="info" dir="${project_root}"/>
+                <exec command="docker-run-composer ${composer_docker_run_args} ${project_name}-composer ${composer_command}" passthru="true" checkreturn="true" level="info" dir="${project_dir_main_composer}"/>
             </then>
         </if>
     </target>

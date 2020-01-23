@@ -7,7 +7,7 @@ set -e
 ##########################################################################################################
 
 : ${PHING_NPM:=node:lts-alpine}
-: ${PHING_NPM_CACHE_VOLUME:=phing-npm}
+: ${PHING_NPM_CACHE_VOLUME:=}
 : ${PHING_NPM_CACHE_DIR:=/tmp/npm/cache}
 : ${PHING_NPM_EXEC:=npm}
 

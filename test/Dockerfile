@@ -16,19 +16,31 @@ RUN echo "configure webserver" \
 # development layer
 #
 FROM prod as dev
-ENV PHPEXT_ENABLE_XDEBUG no
-ADD https://phar.phpunit.de/phpunit-8.phar /usr/local/bin/phpunit
-ADD https://getcomposer.org/composer-stable.phar /usr/local/bin/composer
-RUN echo "install development dependencies" \
-    && chmod +x /usr/local/bin/phpunit \
-    && chmod +x /usr/local/bin/composer \
+RUN echo "setup development layer" \
+    && chmod 777 -R /tmp \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
-		unzip \
+        unzip \
     && apt-get -y autoremove \
     && apt-get -y autoclean \
     && apt-get -y clean \
     && rm -rf /tmp/*
 
-FROM dev as phpunit
+#
+# development layer for composer
+#
+FROM dev as dev-composer
+ENV PHPEXT_ENABLE_XDEBUG no
+ENV COMPOSER_HOME /tmp
+ADD https://getcomposer.org/composer-stable.phar /usr/local/bin/composer
+RUN echo "setup development layer for composer" \
+    && chmod 777 /usr/local/bin/composer
+
+#
+# development layer for phpunit
+#
+FROM dev-composer as dev-phpunit
 ENV PHPEXT_ENABLE_XDEBUG yes
+ADD https://phar.phpunit.de/phpunit-8.phar /usr/local/bin/phpunit
+RUN echo "setup development layer for phpunit" \
+    && chmod 777 /usr/local/bin/phpunit

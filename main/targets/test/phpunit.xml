@@ -15,7 +15,7 @@
         <property name="test_phpunit_executable" value="phpunit"/>
         <property name="test_phpunit_docker_file" value="${project_root}/Dockerfile"/>
         <property name="test_phpunit_docker_build_ctx" value="."/>
-        <property name="test_phpunit_docker_build_args" value="--rm --pull --target phpunit"/>
+        <property name="test_phpunit_docker_build_args" value="--rm --pull --target dev-phpunit"/>
         <property name="test_phpunit_docker_run_args" value="--rm"/>
         <property name="test_phpunit_haltonerror" value="1"/>
         <property name="test_phpunit_haltonfailure" value="1"/>

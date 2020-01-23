@@ -7,7 +7,7 @@ set -e
 ##########################################################################################################
 
 : ${PHING_YARN:=node:lts-alpine}
-: ${PHING_YARN_CACHE_VOLUME:=phing-yarn}
+: ${PHING_YARN_CACHE_VOLUME:=}
 : ${PHING_YARN_CACHE_DIR:=/tmp}
 : ${PHING_YARN_EXEC:=yarn}
 
