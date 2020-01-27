@@ -7,7 +7,8 @@
         "php": ">=7.4",
         "ext-json": "*",
         "jasny/dotkey": "^1.0",
-        "cocur/slugify": "^3.2"
+        "cocur/slugify": "^3.2",
+        "symfony/yaml": "^5.0"
     },
     "autoload": {
         "psr-4": {

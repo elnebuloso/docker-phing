@@ -51,7 +51,7 @@ RUN echo "install php" \
     && export COMPOSER_ALLOW_SUPERUSER=1 \
     && export COMPOSER_HOME=/srv/composer \
     && composer global require --no-suggest --no-ansi --no-interaction \
-        phing/phing \
+        phing/phing:2.16.2 \
         pear/archive_tar \
         pear/http_request2 \
         pear/versioncontrol_git \

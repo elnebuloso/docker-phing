@@ -22,3 +22,7 @@ if ($command -eq "run") {
 
     docker run --tty --interactive --rm --volume /var/run/docker.sock:/var/run/docker.sock --volume ${pwd}/main:/srv/phing --volume ${pwd}/VERSION:/srv/VERSION --volume ${dirLocal}:${dirContainer} --workdir ${dirContainer} --env-file ${dirLocal}/build.env ${tag} ${args}
 }
+
+if ($command -eq "bash") {
+    docker run --tty --interactive --rm --volume /var/run/docker.sock:/var/run/docker.sock --volume ${pwd}/main:/srv/phing --volume ${pwd}/VERSION:/srv/VERSION --volume ${pwd}:${pwdLinux} --workdir ${pwdLinux} ${tag} bash
+}
