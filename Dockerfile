@@ -78,6 +78,20 @@ RUN echo "install docker" \
     && rm -rf /tmp/*
 
 #
+# install kubectl
+#
+RUN echo "install kubectl" \
+    && curl -sSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - \
+    && echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/sources.list.d/kubernetes.list \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+        kubectl \
+    && apt-get -y autoremove \
+    && apt-get -y autoclean \
+    && apt-get -y clean \
+    && rm -rf /tmp/*
+
+#
 # install GitVersion
 #
 RUN curl -sSL https://github.com/GitTools/GitVersion/releases/download/5.1.3/gitversion-linux-5.1.3.tar.gz -o /tmp/gitversion.tar.gz \

@@ -20,19 +20,19 @@
         <echo message="project_phpunit_type            dockerfile|dockerception: ${project_phpunit_type} "/>
         <echo message="project_composer_type           dockerfile|dockerception: ${project_composer_type} "/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="property                        value [do not edit directly]"/>
-        <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="project_version                 ${project_version}" level="warning"/>
-        <echo message="project_root                    ${project_root}" level="warning"/>
-        <echo message="project_dir_main                ${project_dir_main}" level="warning"/>
-        <echo message="project_dir_main_composer       ${project_dir_main_composer}" level="warning"/>
-        <echo message="project_dir_main_compass        ${project_dir_main_compass}" level="warning"/>
-        <echo message="project_dir_main_npm            ${project_dir_main_npm}" level="warning"/>
-        <echo message="project_dir_build               ${project_dir_build}" level="warning"/>
-        <echo message="project_dir_build_tmp           ${project_dir_build_tmp}" level="warning"/>
-        <echo message="project_dir_build_dist          ${project_dir_build_dist}" level="warning"/>
-        <echo message="project_dir_build_reports       ${project_dir_build_reports}" level="warning"/>
-        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="property                        value [do not edit directly]" level="debug"/>
+        <echo message="----------------------------------------------------------------------------------------------------" level="debug"/>
+        <echo message="project_version                 ${project_version}" level="debug"/>
+        <echo message="project_root                    ${project_root}" level="debug"/>
+        <echo message="project_dir_main                ${project_dir_main}" level="debug"/>
+        <echo message="project_dir_main_composer       ${project_dir_main_composer}" level="debug"/>
+        <echo message="project_dir_main_compass        ${project_dir_main_compass}" level="debug"/>
+        <echo message="project_dir_main_npm            ${project_dir_main_npm}" level="debug"/>
+        <echo message="project_dir_build               ${project_dir_build}" level="debug"/>
+        <echo message="project_dir_build_tmp           ${project_dir_build_tmp}" level="debug"/>
+        <echo message="project_dir_build_dist          ${project_dir_build_dist}" level="debug"/>
+        <echo message="project_dir_build_reports       ${project_dir_build_reports}" level="debug"/>
+        <echo message="----------------------------------------------------------------------------------------------------" level="debug"/>
     </target>
 
 

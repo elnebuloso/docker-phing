@@ -1,14 +1,8 @@
 phing:
   project_name: phing
-  project_version_handler: file
+  properties: []
   versioning:
+    handler: \elnebuloso\Phing\Versioning\VersionFileHandler
     branches:
       master:
         regex: ^master$
-        GitVersion: Semver
-      feature:
-        regex: ^feature
-        GitVersion: FullSemVer
-      hotfix:
-        regex: ^hotfix
-        GitVersion: FullSemver

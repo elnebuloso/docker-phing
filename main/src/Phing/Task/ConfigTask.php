@@ -13,6 +13,11 @@ use Symfony\Component\Yaml\Yaml;
 class ConfigTask extends AbstractTask
 {
     /**
+     * @var array
+     */
+    private array $values;
+
+    /**
      * @var Config
      */
     private Config $config;
@@ -25,15 +30,17 @@ class ConfigTask extends AbstractTask
     {
         $this->prepare();
 
-        $values = Yaml::parseFile($this->getPhingRoot() . '/resources/build.default.yml');
-        $values = array_merge($values, Yaml::parseFile($this->getProjectRoot() . '/build.yml'));
+        $this->values = [];
+        $this->values = Yaml::parseFile($this->getPhingRoot() . '/resources/build.default.yml');
+        $this->values = array_replace_recursive($this->values, Yaml::parseFile($this->getProjectRoot() . '/build.yml'));
 
         if (file_exists($this->getProjectRoot() . '/build.local.yml')) {
-            $values = array_merge($values, Yaml::parseFile($this->getProjectRoot() . '/build.local.yml'));
+            $this->values = array_replace_recursive($this->values, Yaml::parseFile($this->getProjectRoot() . '/build.local.yml'));
         }
 
-        $this->config = (new ConfigFactory())->createFromArray($values);
+        $this->config = (new ConfigFactory())->createFromArray($this->values);
         $this->populateProperties();
+        $this->populateConfig();
 
         $this->cleanup();
     }
@@ -42,6 +49,16 @@ class ConfigTask extends AbstractTask
      * @return void
      */
     private function populateProperties(): void
+    {
+        foreach ($this->values['phing']['properties'] as $key => $value) {
+            $this->getProject()->setProperty($key, trim($value));
+        }
+    }
+
+    /**
+     * @return void
+     */
+    private function populateConfig(): void
     {
         $this->getProject()->setProperty('project_name', $this->config->getProject()->getName());
     }
