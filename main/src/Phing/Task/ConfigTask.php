@@ -25,7 +25,14 @@ class ConfigTask extends AbstractTask
     {
         $this->prepare();
 
-        $this->config = (new ConfigFactory())->createFromArray(Yaml::parseFile($this->getProjectRoot() . '/build.yml'));
+        $values = Yaml::parseFile($this->getPhingRoot() . '/resources/build.default.yml');
+        $values = array_merge($values, Yaml::parseFile($this->getProjectRoot() . '/build.yml'));
+
+        if (file_exists($this->getProjectRoot() . '/build.local.yml')) {
+            $values = array_merge($values, Yaml::parseFile($this->getProjectRoot() . '/build.local.yml'));
+        }
+
+        $this->config = (new ConfigFactory())->createFromArray($values);
         $this->populateProperties();
 
         $this->cleanup();

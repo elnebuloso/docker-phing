@@ -1,0 +1,14 @@
+phing:
+  project_name: phing
+  project_version_handler: file
+  versioning:
+    branches:
+      master:
+        regex: ^master$
+        GitVersion: Semver
+      feature:
+        regex: ^feature
+        GitVersion: FullSemVer
+      hotfix:
+        regex: ^hotfix
+        GitVersion: FullSemver

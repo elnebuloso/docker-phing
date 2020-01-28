@@ -64,6 +64,14 @@ abstract class AbstractTask extends Task implements Properties
     /**
      * @return string
      */
+    protected function getPhingRoot(): string
+    {
+        return $this->getProject()->getProperty(self::PHING_COMMONS_ROOT);
+    }
+
+    /**
+     * @return string
+     */
     protected function getProjectRoot(): string
     {
         return $this->getProject()->getProperty(self::PROJECT_ROOT);
