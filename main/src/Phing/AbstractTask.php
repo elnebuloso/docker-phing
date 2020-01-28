@@ -58,4 +58,12 @@ abstract class AbstractTask extends Task
             @chdir($this->currentDir);
         }
     }
+
+    /**
+     * @return string
+     */
+    protected function getProjectRoot()
+    {
+        return $this->getProject()->getProperty('project_root');
+    }
 }
