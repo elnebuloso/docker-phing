@@ -1,6 +1,6 @@
 <?php
 
-namespace elnebuloso\Phing;
+namespace elnebuloso\Phing\Task;
 
 use BuildException;
 use IOException;
@@ -13,32 +13,32 @@ class SemverTask extends AbstractTask
     /**
      * @var string
      */
-    private $string;
+    private string $string;
 
     /**
      * @var string
      */
-    private $version;
+    private string $version;
 
     /**
      * @var string
      */
-    private $major;
+    private string $major;
 
     /**
      * @var string
      */
-    private $minor;
+    private string $minor;
 
     /**
      * @var string
      */
-    private $patch;
+    private string $patch;
 
     /**
      * @param string $string
      */
-    public function setString($string)
+    public function setString($string): void
     {
         $this->string = $string;
     }
@@ -46,7 +46,7 @@ class SemverTask extends AbstractTask
     /**
      * @param string $version
      */
-    public function setVersion($version)
+    public function setVersion($version): void
     {
         $this->version = $version;
     }
@@ -54,7 +54,7 @@ class SemverTask extends AbstractTask
     /**
      * @param string $major
      */
-    public function setMajor($major)
+    public function setMajor($major): void
     {
         $this->major = $major;
     }
@@ -62,7 +62,7 @@ class SemverTask extends AbstractTask
     /**
      * @param string $minor
      */
-    public function setMinor($minor)
+    public function setMinor($minor): void
     {
         $this->minor = $minor;
     }
@@ -70,7 +70,7 @@ class SemverTask extends AbstractTask
     /**
      * @param string $patch
      */
-    public function setPatch($patch)
+    public function setPatch($patch): void
     {
         $this->patch = $patch;
     }
@@ -79,7 +79,7 @@ class SemverTask extends AbstractTask
      * @throws BuildException
      * @throws IOException
      */
-    public function main()
+    public function main(): void
     {
         $this->prepare();
 

@@ -1,8 +1,9 @@
-<?php
+<?php /** @noinspection PhpMissingFieldTypeInspection */
 
-namespace elnebuloso\Phing;
+namespace elnebuloso\Phing\Task;
 
 use BuildException;
+use elnebuloso\Phing\Properties;
 use IOException;
 use PhingFile;
 use Task;
@@ -10,7 +11,7 @@ use Task;
 /**
  * Class AbstractTask
  */
-abstract class AbstractTask extends Task
+abstract class AbstractTask extends Task implements Properties
 {
     /**
      * @var PhingFile
@@ -20,7 +21,7 @@ abstract class AbstractTask extends Task
     /**
      * @var string
      */
-    protected $currentDir;
+    protected string $currentDir;
 
     /**
      * @param PhingFile $dir Working directory
@@ -31,10 +32,11 @@ abstract class AbstractTask extends Task
     }
 
     /**
-     * @throws BuildException
+     * @return void
      * @throws IOException
+     * @throws BuildException
      */
-    protected function prepare()
+    protected function prepare(): void
     {
         if ($this->dir === null) {
             return;
@@ -52,7 +54,7 @@ abstract class AbstractTask extends Task
     /**
      * @return void
      */
-    protected function cleanup()
+    protected function cleanup(): void
     {
         if ($this->dir !== null) {
             @chdir($this->currentDir);
@@ -62,8 +64,8 @@ abstract class AbstractTask extends Task
     /**
      * @return string
      */
-    protected function getProjectRoot()
+    protected function getProjectRoot(): string
     {
-        return $this->getProject()->getProperty('project_root');
+        return $this->getProject()->getProperty(self::PROJECT_ROOT);
     }
 }

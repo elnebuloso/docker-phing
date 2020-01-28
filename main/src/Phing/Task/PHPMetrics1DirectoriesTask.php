@@ -1,24 +1,25 @@
 <?php
 
-namespace elnebuloso\Phing;
+namespace elnebuloso\Phing\Task;
 
 use BuildException;
+use elnebuloso\Phing\Properties;
 use IOException;
 
 /**
  * Class PHPMetrics1DirectoriesTask
  */
-class PHPMetrics1DirectoriesTask extends AbstractTask
+class PHPMetrics1DirectoriesTask extends AbstractTask implements Properties
 {
     /**
      * @var string
      */
-    private $excluded;
+    private string $excluded;
 
     /**
      * @param string $excluded
      */
-    public function setExcluded($excluded)
+    public function setExcluded($excluded): void
     {
         $this->excluded = $excluded;
     }
@@ -27,7 +28,7 @@ class PHPMetrics1DirectoriesTask extends AbstractTask
      * @throws BuildException
      * @throws IOException
      */
-    public function main()
+    public function main(): void
     {
         $this->prepare();
 
@@ -35,7 +36,7 @@ class PHPMetrics1DirectoriesTask extends AbstractTask
         $all = array_filter(glob('*'), 'is_dir');
 
         // sanitize directories for phpmetrics2 configuration
-        $directories = explode(',', $this->getProject()->getProperty('report_phpmetrics_directories'));
+        $directories = explode(',', $this->getProject()->getProperty(self::REPORT_PHPMETRICS_DIRECTORIES));
         $directories = array_filter(array_map('trim', $directories));
         $directories = array_diff($all, $directories);
 

@@ -1,25 +1,26 @@
 <?php
 
-namespace elnebuloso\Phing;
+namespace elnebuloso\Phing\Task;
 
 use BuildException;
+use elnebuloso\Phing\Properties;
 use IOException;
 use Jasny\DotKey;
 
 /**
  * Class ConfigureComposerTask
  */
-class ConfigureComposerTask extends AbstractTask
+class ConfigureComposerTask extends AbstractTask implements Properties
 {
     /**
      * @var string
      */
-    private $selector;
+    private string $selector;
 
     /**
      * @var string
      */
-    private $value;
+    private string $value;
 
     /**
      * @param string $selector
@@ -38,14 +39,14 @@ class ConfigureComposerTask extends AbstractTask
     }
 
     /**
-     * @throws BuildException
      * @throws IOException
+     * @throws BuildException
      */
-    public function main()
+    public function main(): void
     {
         $this->prepare();
 
-        $file = $this->getProject()->getProperty('project_dir_main_composer') . '/composer.json';
+        $file = $this->getProject()->getProperty(self::PROJECT_DIR_MAIN_COMPOSER) . '/composer.json';
         $content = file_get_contents($file);
         $content = json_decode($content, false);
 

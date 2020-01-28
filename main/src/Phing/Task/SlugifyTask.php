@@ -1,10 +1,10 @@
 <?php
 
-namespace elnebuloso\Phing;
+namespace elnebuloso\Phing\Task;
 
 use BuildException;
-use IOException;
 use Cocur\Slugify\Slugify as SlugGenerator;
+use IOException;
 
 /**
  * Class SlugifyTask
@@ -14,12 +14,12 @@ class SlugifyTask extends AbstractTask
     /**
      * @var string
      */
-    private $string;
+    private string $string;
 
     /**
      * @var string
      */
-    private $slug;
+    private string $slug;
 
     /**
      * @param string $string
@@ -38,10 +38,10 @@ class SlugifyTask extends AbstractTask
     }
 
     /**
-     * @throws BuildException
      * @throws IOException
+     * @throws BuildException
      */
-    public function main()
+    public function main(): void
     {
         $this->prepare();
 
