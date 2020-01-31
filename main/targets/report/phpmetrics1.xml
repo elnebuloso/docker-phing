@@ -38,7 +38,7 @@
 
     <target name="report:phpmetrics1:main" hidden="true">
         <fail unless="report_phpmetrics_directories" message="missing property report_phpmetrics_directories"/>
-        <my-php-metrics1-directories excluded="report_phpmetrics1_excluded" dir="${project_dir_main}"/>
+        <phing-php-metrics1-directories excluded="report_phpmetrics1_excluded" dir="${project_dir_main}"/>
 
         <delete dir="${report_phpmetrics1_output_tmp}"/>
         <mkdir dir="${report_phpmetrics1_output_tmp}"/>
