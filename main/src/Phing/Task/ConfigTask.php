@@ -2,8 +2,6 @@
 
 namespace elnebuloso\Phing\Task;
 
-use elnebuloso\Phing\Entity\Config;
-use elnebuloso\Phing\Entity\ConfigFactory;
 use IOException;
 use Symfony\Component\Yaml\Yaml;
 
@@ -15,12 +13,7 @@ class ConfigTask extends AbstractTask
     /**
      * @var array
      */
-    private array $values;
-
-    /**
-     * @var Config
-     */
-    private Config $config;
+    private array $values = [];
 
     /**
      * @return void
@@ -30,19 +23,41 @@ class ConfigTask extends AbstractTask
     {
         $this->prepare();
 
-        $this->values = [];
-        $this->values = Yaml::parseFile($this->getPhingRoot() . '/resources/build.default.yml');
-        $this->values = array_replace_recursive($this->values, Yaml::parseFile($this->getProjectRoot() . '/build.yml'));
-
-        if (file_exists($this->getProjectRoot() . '/build.local.yml')) {
-            $this->values = array_replace_recursive($this->values, Yaml::parseFile($this->getProjectRoot() . '/build.local.yml'));
-        }
-
-        $this->config = (new ConfigFactory())->createFromArray($this->values);
+        $this->loadDefaultConfig();
+        $this->loadProjectConfig();
+        $this->loadProjectLocalConfig();
         $this->populateProperties();
-        $this->populateConfig();
 
         $this->cleanup();
+    }
+
+    /**
+     * @return void
+     */
+    private function loadDefaultConfig(): void
+    {
+        $this->values = Yaml::parseFile($this->getPhingRoot() . '/resources/build.default.yml');
+        $this->log('default config loaded');
+    }
+
+    /**
+     * @return void
+     */
+    private function loadProjectConfig(): void
+    {
+        $this->values = array_replace_recursive($this->values, Yaml::parseFile($this->getProjectRoot() . '/build.yml'));
+        $this->log('project config loaded');
+    }
+
+    /**
+     * @return void
+     */
+    private function loadProjectLocalConfig(): void
+    {
+        if (file_exists($this->getProjectRoot() . '/build.local.yml')) {
+            $this->values = array_replace_recursive($this->values, Yaml::parseFile($this->getProjectRoot() . '/build.local.yml'));
+            $this->log('project local config loaded');
+        }
     }
 
     /**
@@ -51,15 +66,14 @@ class ConfigTask extends AbstractTask
     private function populateProperties(): void
     {
         foreach ($this->values['phing']['properties'] as $key => $value) {
+
+
+            if (self::COMPOSER_COMMANDS_BEFORE === $key) {
+                $this->getProject()->setProperty($key, implode(',', array_filter(array_map('trim', $value))));
+                continue;
+            }
+
             $this->getProject()->setProperty($key, trim($value));
         }
-    }
-
-    /**
-     * @return void
-     */
-    private function populateConfig(): void
-    {
-        $this->getProject()->setProperty('project_name', $this->config->getProject()->getName());
     }
 }

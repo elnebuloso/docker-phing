@@ -1,0 +1,6 @@
+phing:
+  properties:
+    project_name: test
+    composer_commands_before:
+      - "composer config --global secure-http true"
+      - "composer config --global disable-tls false"

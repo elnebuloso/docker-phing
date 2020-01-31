@@ -12,7 +12,7 @@
     </target>
 
 
-    <target name="npm:run:help" depends="npm:run:init, npm:base:help">
+    <target name="npm:run:help" depends="npm:run:init">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${npm_run_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
@@ -23,7 +23,7 @@
     </target>
 
 
-    <target name="npm:run" depends="npm:run:init, npm:base:init, npm:run:before, npm:run:main, npm:run:after">
+    <target name="npm:run" depends="npm:run:init, npm:run:before, npm:run:main, npm:run:after">
         <echo message="successful"/>
     </target>
 

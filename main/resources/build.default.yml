@@ -1,3 +1,10 @@
 phing:
-  project_name: b814b3d5-5771-47ab-8280-ff789030f0b7
-  properties: []
+  properties:
+    npm_executable: "npm"
+    composer_runner: "dockerfile"
+    composer_docker_file: "${project_root}/Dockerfile"
+    composer_docker_build_ctx: "."
+    composer_docker_build_args: "--rm --pull --target dev-composer"
+    composer_docker_build_passthru: "false"
+    composer_docker_run_args: "--rm"
+    composer_commands_before: []

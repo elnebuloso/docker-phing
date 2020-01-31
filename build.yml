@@ -1,8 +1,8 @@
 phing:
-  project_name: phing
-  properties: []
-  versioning:
-    handler: \elnebuloso\Phing\Versioning\VersionFileHandler
-    branches:
-      master:
-        regex: ^master$
+  properties:
+    project_name: phing
+#  versioning:
+#    handler: \elnebuloso\Phing\Versioning\VersionFileHandler
+#    branches:
+#      master:
+#        regex: ^master$

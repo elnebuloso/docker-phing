@@ -12,14 +12,14 @@
     </target>
 
 
-    <target name="npm:upgrade:help" depends="npm:base:help, npm:upgrade:init">
+    <target name="npm:upgrade:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${npm_upgrade_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
-    <target name="npm:upgrade" depends="npm:upgrade:init, npm:base:init, npm:upgrade:before, npm:upgrade:main, npm:upgrade:after">
+    <target name="npm:upgrade" depends="npm:upgrade:init, npm:upgrade:before, npm:upgrade:main, npm:upgrade:after">
         <echo message="successful"/>
     </target>
 

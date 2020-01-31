@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -10,17 +10,20 @@ RUN echo "install system dependencies" \
     && apt-get install -y --no-install-recommends \
         software-properties-common \
         ca-certificates \
+        gpg-agent \
         locales \
         locales-all \
         curl \
-        git \
-        p7zip-full \
 		ssh-client \
 		rsync \
 		zip \
 		unzip \
+        p7zip-full \
 		dos2unix \
-    && locale-gen en_US.UTF-8 \
+    && add-apt-repository ppa:git-core/ppa \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+        git \
     && echo 'alias l="ls -alhF"' > /root/.bash_aliases \
     && apt-get -y autoremove \
     && apt-get -y autoclean \

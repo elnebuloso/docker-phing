@@ -12,7 +12,7 @@
     </target>
 
 
-    <target name="composer:install:help" depends="composer:install:init, composer:base:help">
+    <target name="composer:install:help" depends="composer:install:init">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${composer_install_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
@@ -23,7 +23,7 @@
     </target>
 
 
-    <target name="composer:install" depends="composer:install:init, composer:base:init, composer:install:before, composer:install:main, composer:base:command, composer:install:after">
+    <target name="composer:install" depends="composer:install:init, composer:install:before, composer:install:main, composer:run, composer:install:after">
         <echo message="successful"/>
     </target>
 
