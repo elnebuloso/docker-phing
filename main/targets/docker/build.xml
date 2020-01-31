@@ -14,7 +14,7 @@
     </target>
 
 
-    <target name="docker:build:help" depends="docker:build:init, docker:base:help">
+    <target name="docker:build:help" depends="docker:build:init">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${docker_build_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>

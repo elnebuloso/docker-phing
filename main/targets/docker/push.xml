@@ -44,7 +44,7 @@
     </target>
 
 
-    <target name="docker:push:help" depends="docker:push:init, docker:base:help, docker:push:validate">
+    <target name="docker:push:help" depends="docker:push:init, docker:push:validate">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${docker_push_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>

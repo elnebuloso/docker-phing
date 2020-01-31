@@ -44,8 +44,17 @@ class ConfigTask extends AbstractTask
             return;
         }
 
+        $output = null;
         exec("git rev-parse --abbrev-ref HEAD", $output);
         PhingConfig::getInstance()->addProperty('ci/base', 'branch_name', trim(implode('', $output)));
+
+        $output = null;
+        exec("git rev-parse HEAD", $output);
+        PhingConfig::getInstance()->addProperty('ci/base', 'sha1', trim(implode('', $output)));
+
+        $output = null;
+        exec("git rev-parse --short HEAD", $output);
+        PhingConfig::getInstance()->addProperty('ci/base', 'sha1_short', trim(implode('', $output)));
 
         foreach (PhingConfig::getInstance()->getProperties('ci/base') as $key => $value) {
             $this->getProject()->setProperty($key, $value);
