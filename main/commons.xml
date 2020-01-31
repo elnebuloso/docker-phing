@@ -24,11 +24,13 @@
     <taskdef classname="\elnebuloso\Phing\Task\ConfigureComposerTask" name="my-configure-composer"/>
     <taskdef classname="\elnebuloso\Phing\Task\PHPMetrics1DirectoriesTask" name="my-php-metrics1-directories"/>
     <taskdef classname="\elnebuloso\Phing\Task\PHPMetrics2DirectoriesTask" name="my-php-metrics2-directories"/>
+    <taskdef classname="\elnebuloso\Phing\Task\PropertiesListTask" name="phing-properties-list"/>
     <taskdef classname="\elnebuloso\Phing\Task\SemverTask" name="my-semver"/>
     <taskdef classname="\elnebuloso\Phing\Task\SlugifyTask" name="my-slugify"/>
 
 
     <import file="${phing_commons_root}/targets/bundle.xml"/>
+    <import file="${phing_commons_root}/targets/ci.xml"/>
     <import file="${phing_commons_root}/targets/clean.xml"/>
     <import file="${phing_commons_root}/targets/compass.xml"/>
     <import file="${phing_commons_root}/targets/composer.xml"/>
@@ -38,10 +40,6 @@
     <import file="${phing_commons_root}/targets/project.xml"/>
     <import file="${phing_commons_root}/targets/report.xml"/>
     <import file="${phing_commons_root}/targets/test.xml"/>
-
-
-    <phing-config/>
-    <fail unless="project_name" message="missing project_name"/>
 
 
     <target name="commons:help:version">
@@ -81,7 +79,11 @@
     <resolvepath propertyName="project_dir_build_reports" file="${project_dir_build_reports}"/>
 
 
-    <!--    <target name="commons:help" depends="bundle:help, clean:help, compass:help, composer:help, docker:help, init:help, npm:help, report:help, test:help, project:help"/>-->
-    <target name="commons:help" depends="commons:help:version"/>
+    <phing-config/>
+    <fail unless="project_name" message="missing project_name"/>
 
+
+    <!--    <target name="commons:help" depends="docker:help, init:help, npm:help, report:help, test:help, project:help"/>-->
+    <target name="commons:help"/>
+<!--    depends="bundle:help, clean:help, compass:help, composer:help, commons:help:version"-->
 </project>

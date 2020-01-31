@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project>
+
+
+    <target name="ci:help">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="target                description"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="ci:help:base           properties populated via git infos"/>
+        <echo message="ci:help:gitversion     properties populated via gitversion"/>
+        <echo message="ci:help:fileversion    properties populated via fileversion"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+    </target>
+
+
+    <target name="ci:help:base">
+        <phing-properties-list group="ci/base"/>
+    </target>
+
+
+    <target name="ci:help:gitversion">
+        <phing-properties-list group="ci/gitversion"/>
+    </target>
+
+
+    <target name="ci:help:fileversion">
+        <phing-properties-list group="ci/fileversion"/>
+    </target>
+
+
+</project>

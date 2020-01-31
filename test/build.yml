@@ -4,3 +4,4 @@ phing:
     composer_commands_before:
       - "composer config --global secure-http true"
       - "composer config --global disable-tls false"
+    composer_update_options: "${project_root}"
