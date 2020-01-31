@@ -8,3 +8,10 @@ phing:
     composer_docker_build_passthru: "false"
     composer_docker_run_args: "--rm"
     composer_commands_before: []
+    docker_registry: ""
+    docker_registry_namespace: ""
+  build:
+    branches:
+      master:
+        regex: ^master
+        docker_push_versions: []
