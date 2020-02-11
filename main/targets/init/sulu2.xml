@@ -42,7 +42,7 @@
             </condition>
         </fail>
 
-        <exec command="composer create-project --prefer-dist --remove-vcs sulu/skeleton:^2 ${project_dir_main}" passthru="true" checkreturn="true" level="info"/>
+        <exec command="composer create-project --prefer-dist --remove-vcs --no-scripts sulu/skeleton:^2 ${project_dir_main}" passthru="true" checkreturn="true" level="info"/>
         <delete dir="${project_dir_main}/.git" quiet="true"/>
 
         <copy todir="${project_root}" overwrite="true">
@@ -54,7 +54,7 @@
             </filterchain>
         </copy>
 
-        <my-configure-composer selector="name" value="my/${project_name}"/>
+        <phing-configure-composer selector="name" value="my/${project_name}"/>
         <phingcall target="composer:update"/>
     </target>
 

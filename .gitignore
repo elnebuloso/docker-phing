@@ -39,6 +39,11 @@
 !/test-lumen6/build.yml
 !/test-lumen6/VERSION
 
+/test-sulu2/*
+!/test-sulu2/build.env
+!/test-sulu2/build.xml
+!/test-sulu2/build.yml
+!/test-sulu2/VERSION
 
 /test-symfony4/*
 !/test-symfony4/build.env

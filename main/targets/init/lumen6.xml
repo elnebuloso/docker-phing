@@ -54,7 +54,7 @@
             </filterchain>
         </copy>
 
-        <my-configure-composer selector="name" value="my/${project_name}"/>
+        <phing-configure-composer selector="name" value="my/${project_name}"/>
         <phingcall target="composer:update"/>
     </target>
 
