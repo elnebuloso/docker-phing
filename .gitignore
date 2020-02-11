@@ -39,6 +39,7 @@
 !/test-lumen6/build.yml
 !/test-lumen6/VERSION
 
+
 /test-symfony4/*
 !/test-symfony4/build.env
 !/test-symfony4/build.xml
