@@ -92,6 +92,10 @@ class ConfigTask extends AbstractTask
      */
     private function loadPropertiesFromFileVersion(): void
     {
+        if (!file_exists($this->getProjectRoot() . '/VERSION')) {
+            return;
+        }
+
         $version = trim(file_get_contents($this->getProjectRoot() . '/VERSION'));
 
         if (empty($version)) {

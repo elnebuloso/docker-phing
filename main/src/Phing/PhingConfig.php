@@ -46,7 +46,7 @@ final class PhingConfig
      */
     public function getProperties($group)
     {
-        return $this->properties[$group];
+        return isset($this->properties[$group]) ? $this->properties[$group] : [];
     }
 
     /**

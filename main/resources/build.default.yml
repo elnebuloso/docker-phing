@@ -13,5 +13,6 @@ phing:
   build:
     branches:
       master:
-        regex: ^master
+        regex: "^master"
+        version: ""
         docker_push_versions: []
