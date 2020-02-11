@@ -28,10 +28,10 @@ if ($command -eq "run")
         $envFile = "--env-file ${dirLocal}/build.env"
     }
 
-    docker run --tty --interactive --rm --volume /var/run/docker.sock:/var/run/docker.sock --volume ${pwd}/main:/srv/phing --volume ${pwd}/VERSION:/srv/VERSION --volume ${dirLocal}:${dirContainer} --workdir ${dirContainer} $envFile ${tag} ${args}
+    docker run --tty --interactive --rm --volume /var/run/docker.sock:/var/run/docker.sock --volume ${pwd}/main:/srv/phing --volume ${dirLocal}:${dirContainer} --workdir ${dirContainer} $envFile ${tag} ${args}
 }
 
 if ($command -eq "bash")
 {
-    docker run --tty --interactive --rm --volume /var/run/docker.sock:/var/run/docker.sock --volume ${pwd}/main:/srv/phing --volume ${pwd}/VERSION:/srv/VERSION --volume ${pwd}:${pwdLinux} --workdir ${pwdLinux} ${tag} bash
+    docker run --tty --interactive --rm --volume /var/run/docker.sock:/var/run/docker.sock --volume ${pwd}/main:/srv/phing --volume ${pwd}:${pwdLinux} --workdir ${pwdLinux} ${tag} bash
 }

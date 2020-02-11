@@ -11,44 +11,44 @@
 
 /test-bolt3/*
 !/test-bolt3/build.env
-!/test-bolt3/build.properties
 !/test-bolt3/build.xml
+!/test-bolt3/build.yml
 !/test-bolt3/VERSION
 
 /test-laravel5/*
 !/test-laravel5/build.env
-!/test-laravel5/build.properties
 !/test-laravel5/build.xml
+!/test-laravel5/build.yml
 !/test-laravel5/VERSION
 
 /test-laravel6/*
 !/test-laravel6/build.env
-!/test-laravel6/build.properties
 !/test-laravel6/build.xml
+!/test-laravel6/build.yml
 !/test-laravel6/VERSION
 
 /test-lumen5/*
 !/test-lumen5/build.env
-!/test-lumen5/build.properties
 !/test-lumen5/build.xml
+!/test-lumen5/build.yml
 !/test-lumen5/VERSION
 
 /test-lumen6/*
 !/test-lumen6/build.env
-!/test-lumen6/build.properties
 !/test-lumen6/build.xml
+!/test-lumen6/build.yml
 !/test-lumen6/VERSION
 
 /test-symfony4/*
 !/test-symfony4/build.env
-!/test-symfony4/build.properties
 !/test-symfony4/build.xml
+!/test-symfony4/build.yml
 !/test-symfony4/VERSION
 
 /test-symfony5/*
 !/test-symfony5/build.env
-!/test-symfony5/build.properties
 !/test-symfony5/build.xml
+!/test-symfony5/build.yml
 !/test-symfony5/VERSION
 
 /phing-2.16.2.phar

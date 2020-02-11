@@ -1,0 +1,3 @@
+phing:
+  properties:
+    project_name: "test-lumen5"
