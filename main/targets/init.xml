@@ -9,6 +9,7 @@
     <import file="${phing_commons_root}/targets/init/laravel6.xml"/>
     <import file="${phing_commons_root}/targets/init/lumen5.xml"/>
     <import file="${phing_commons_root}/targets/init/lumen6.xml"/>
+    <import file="${phing_commons_root}/targets/init/sulu2.xml"/>
     <import file="${phing_commons_root}/targets/init/symfony4.xml"/>
     <import file="${phing_commons_root}/targets/init/symfony5.xml"/>
 
@@ -22,6 +23,7 @@
         <echo message="init:laravel6    ${init_laravel6_description}"/>
         <echo message="init:lumen5      ${init_lumen5_description}"/>
         <echo message="init:lumen6      ${init_lumen6_description}"/>
+        <echo message="init:sulu2       ${init_sulu2_description}"/>
         <echo message="init:symfony4    ${init_symfony4_description}"/>
         <echo message="init:symfony5    ${init_symfony5_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>

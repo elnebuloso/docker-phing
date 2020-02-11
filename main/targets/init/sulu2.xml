@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="init:sulu2">
+
+
+    <property name="init_sulu2_description" value="init sulu2 application" override="true"/>
+
+
+    <target name="init:sulu2:init" hidden="true">
+        <property name="init_sulu2_url" value="sulu2.127.0.0.1.xip.io"/>
+    </target>
+
+
+    <target name="init:sulu2:help" depends="init:sulu2:init">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="${init_sulu2_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+    </target>
+
+
+    <target name="init:sulu2" depends="clean:dist, init:sulu2:init, init:sulu2:before, init:sulu2:main, init:sulu2:after">
+        <echo message="browse application after docker start, using phing start"/>
+        <echo message="${init_sulu2_url}"/>
+    </target>
+
+
+    <target name="init:sulu2:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="init:sulu2:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="init:sulu2:main" hidden="true">
+        <fail message="${project_dir_main} exists for creating sulu2 application">
+            <condition>
+                <available file="${project_dir_main}" type="dir"/>
+            </condition>
+        </fail>
+
+        <exec command="composer create-project --prefer-dist --remove-vcs sulu/skeleton:^2 ${project_dir_main}" passthru="true" checkreturn="true" level="info"/>
+        <delete dir="${project_dir_main}/.git" quiet="true"/>
+
+        <copy todir="${project_root}" overwrite="true">
+            <fileset dir="${phing_commons_root}/resources/init/sulu2/0">
+                <include name="**"/>
+            </fileset>
+            <filterchain>
+                <expandproperties/>
+            </filterchain>
+        </copy>
+
+        <my-configure-composer selector="name" value="my/${project_name}"/>
+        <phingcall target="composer:update"/>
+    </target>
+
+
+</project>
