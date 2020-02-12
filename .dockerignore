@@ -1,11 +1,12 @@
-.git
-.idea
+/.git
+/.idea
 
-test
-test-bolt3
-test-laravel5
-test-laravel6
-test-lumen5
-test-lumen6
-test-symfony4
-test-symfony5
+/test
+/test-bolt3
+/test-laravel5
+/test-laravel6
+/test-lumen5
+/test-lumen6
+/test-sulu2
+/test-symfony4
+/test-symfony5

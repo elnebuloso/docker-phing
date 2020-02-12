@@ -18,6 +18,11 @@ final class PhingConfig
     private array $properties = [];
 
     /**
+     * @var array
+     */
+    private array $propertiesByGroup = [];
+
+    /**
      * @return PhingConfig
      */
     public static function getInstance(): PhingConfig
@@ -30,69 +35,86 @@ final class PhingConfig
     }
 
     /**
-     * @param string $group
      * @param string $key
-     * @param string $value
+     * @param mixed $value
      */
-    public function addProperty($group, $key, $value)
+    public function addProperty(string $key, $value): void
     {
-        $this->properties[$group][$this->getPropertyKey($group, $key)] = trim($value);
+        $this->properties[$key] = $this->getPropertyValue($value);
     }
 
     /**
-     * @param string $group
-     *
+     * @param array $properties
+     */
+    public function addProperties(array $properties): void
+    {
+        foreach ($properties as $key => $value) {
+            $this->addProperty($key, $value);
+        }
+    }
+
+    /**
      * @return array
      */
-    public function getProperties($group)
+    public function getProperties(): array
     {
-        return isset($this->properties[$group]) ? $this->properties[$group] : [];
-    }
+        ksort($this->properties, SORT_NATURAL);
 
-    /**
-     * @return int
-     */
-    public function getLengthOfLongestProperty()
-    {
-        $length = 0;
-
-        foreach ($this->properties as $key => $group) {
-            $current = $this->getLengthOfLongestPropertyInGroup($key);
-
-            if ($current > $length) {
-                $length = $current;
-            }
-        }
-
-        return $length;
-    }
-
-    /**
-     * @param string $group
-     *
-     * @return int
-     */
-    public function getLengthOfLongestPropertyInGroup($group)
-    {
-        $length = 0;
-
-        foreach ($this->properties[$group] as $key => $value) {
-            if (strlen($key) > $length) {
-                $length = strlen($key);
-            }
-        }
-
-        return $length;
+        return $this->properties;
     }
 
     /**
      * @param string $group
      * @param string $key
-     *
+     * @param mixed $value
+     */
+    public function addPropertyByGroup(string $group, string $key, $value): void
+    {
+        $this->propertiesByGroup[$group][$this->getPropertyKeyByGroup($group, $key)] = $this->getPropertyValue($value);
+    }
+
+    /**
+     * @param string $group
+     * @param array $properties
+     */
+    public function addPropertiesByGroup(string $group, array $properties): void
+    {
+        foreach ($properties as $key => $value) {
+            $this->addPropertyByGroup($group, $key, $value);
+        }
+    }
+
+    /**
+     * @param string $group
+     * @return array
+     */
+    public function getPropertiesByGroup($group): array
+    {
+        ksort($this->propertiesByGroup[$group], SORT_NATURAL);
+
+        return isset($this->propertiesByGroup[$group]) ? $this->propertiesByGroup[$group] : [];
+    }
+
+    /**
+     * @param string $group
+     * @param string $key
      * @return string
      */
-    private function getPropertyKey($group, $key)
+    private function getPropertyKeyByGroup($group, $key): string
     {
         return str_replace('/', '_', $group) . '_' . PhingService::camelCaseToUnderscore($key);
+    }
+
+    /**
+     * @param mixed $value
+     * @return string
+     */
+    private function getPropertyValue($value): string
+    {
+        if (is_array($value)) {
+            return implode(',', array_filter(array_map('trim', $value)));
+        }
+
+        return trim($value);
     }
 }

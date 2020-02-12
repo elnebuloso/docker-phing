@@ -14,5 +14,4 @@ phing:
     branches:
       master:
         regex: "^master"
-        version: ""
         docker_push_versions: []

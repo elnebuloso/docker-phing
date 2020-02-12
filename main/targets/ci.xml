@@ -8,15 +8,15 @@
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="target                description"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="ci:help:base           properties populated via git infos"/>
+        <echo message="ci:help:git            properties populated via git"/>
         <echo message="ci:help:gitversion     properties populated via gitversion"/>
         <echo message="ci:help:fileversion    properties populated via fileversion"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
-    <target name="ci:help:base">
-        <phing-properties-list group="ci/base"/>
+    <target name="ci:help:git">
+        <phing-properties-list group="ci/git"/>
     </target>
 
 

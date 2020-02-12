@@ -8,11 +8,10 @@ namespace elnebuloso\Phing;
 final class PhingService
 {
     /**
-     * @param $input
-     *
+     * @param string $input
      * @return string
      */
-    public static function camelCaseToUnderscore($input)
+    public static function camelCaseToUnderscore(string $input): string
     {
         return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $input));
     }

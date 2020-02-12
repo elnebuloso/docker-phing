@@ -12,11 +12,6 @@ use Symfony\Component\Yaml\Yaml;
 class ConfigTask extends AbstractTask
 {
     /**
-     * @var array
-     */
-    private array $values = [];
-
-    /**
      * @return void
      * @throws IOException
      */
@@ -24,15 +19,36 @@ class ConfigTask extends AbstractTask
     {
         $this->prepare();
 
+        $this->loadConfigFile($this->getPhingRoot() . '/resources/build.default.yml');
+        $this->loadConfigFile($this->getProjectRoot() . '/build.yml');
+        $this->loadConfigFile($this->getProjectRoot() . '/build.local.yml');
         $this->loadPropertiesFromGit();
         $this->loadPropertiesFromGitVersion();
         $this->loadPropertiesFromFileVersion();
-        $this->loadDefaultConfig();
-        $this->loadProjectConfig();
-        $this->loadProjectLocalConfig();
-        $this->populateProperties();
 
         $this->cleanup();
+    }
+
+    /**
+     * @param string $config
+     * @return void
+     */
+    private function loadConfigFile(string $config): void
+    {
+        if (!file_exists($config)) {
+            return;
+        }
+
+        $properties = (array) Yaml::parseFile($config);
+
+        if (!isset($properties['phing']['properties'])) {
+            return;
+        }
+
+        PhingConfig::getInstance()->addProperties($properties['phing']['properties']);
+
+        $this->populateProperties();
+        $this->logPropertiesLoaded($config);
     }
 
     /**
@@ -46,19 +62,17 @@ class ConfigTask extends AbstractTask
 
         $output = null;
         exec("git rev-parse --abbrev-ref HEAD", $output);
-        PhingConfig::getInstance()->addProperty('ci/base', 'branch_name', trim(implode('', $output)));
+        PhingConfig::getInstance()->addPropertyByGroup(self::PROPERTY_GROUP_CI_GIT, 'branch_name', implode('', $output));
 
         $output = null;
         exec("git rev-parse HEAD", $output);
-        PhingConfig::getInstance()->addProperty('ci/base', 'sha1', trim(implode('', $output)));
+        PhingConfig::getInstance()->addPropertyByGroup(self::PROPERTY_GROUP_CI_GIT, 'sha1', implode('', $output));
 
         $output = null;
         exec("git rev-parse --short HEAD", $output);
-        PhingConfig::getInstance()->addProperty('ci/base', 'sha1_short', trim(implode('', $output)));
+        PhingConfig::getInstance()->addPropertyByGroup(self::PROPERTY_GROUP_CI_GIT, 'sha1_short', implode('', $output));
 
-        foreach (PhingConfig::getInstance()->getProperties('ci/base') as $key => $value) {
-            $this->getProject()->setProperty($key, $value);
-        }
+        $this->populatePropertiesByGroup(self::PROPERTY_GROUP_CI_GIT);
     }
 
     /**
@@ -72,19 +86,9 @@ class ConfigTask extends AbstractTask
 
         exec("GitVersion", $output);
 
-        $properties = json_decode(implode('', $output), true);
+        PhingConfig::getInstance()->addPropertiesByGroup(self::PROPERTY_GROUP_CI_GITVERSION, (array) json_decode(implode('', $output), true));
 
-        if ($properties !== null) {
-            foreach ($properties as $key => $value) {
-                PhingConfig::getInstance()->addProperty('ci/gitversion', $key, $value);
-            }
-        }
-
-        foreach (PhingConfig::getInstance()->getProperties('ci/gitversion') as $key => $value) {
-            $this->getProject()->setProperty($key, $value);
-        }
-
-        $this->log('ci/gitversion properties loaded');
+        $this->populatePropertiesByGroup(self::PROPERTY_GROUP_CI_GITVERSION);
     }
 
     /**
@@ -106,50 +110,15 @@ class ConfigTask extends AbstractTask
             return;
         }
 
-        PhingConfig::getInstance()->addProperty('ci/fileversion', 'major', $matches[2]);
-        PhingConfig::getInstance()->addProperty('ci/fileversion', 'minor', $matches[3]);
-        PhingConfig::getInstance()->addProperty('ci/fileversion', 'patch', $matches[4]);
-        PhingConfig::getInstance()->addProperty('ci/fileversion', 'semver', $matches[1]);
-        PhingConfig::getInstance()->addProperty('ci/fileversion', 'semver_major', $matches[2]);
-        PhingConfig::getInstance()->addProperty('ci/fileversion', 'semver_minor', $matches[2] . '.' . $matches[3]);
-        PhingConfig::getInstance()->addProperty('ci/fileversion', 'semver_patch', $matches[2] . '.' . $matches[3] . '.' . $matches[4]);
+        PhingConfig::getInstance()->addPropertyByGroup(self::PROPERTY_GROUP_CI_FILEVERSION, 'major', $matches[2]);
+        PhingConfig::getInstance()->addPropertyByGroup(self::PROPERTY_GROUP_CI_FILEVERSION, 'minor', $matches[3]);
+        PhingConfig::getInstance()->addPropertyByGroup(self::PROPERTY_GROUP_CI_FILEVERSION, 'patch', $matches[4]);
+        PhingConfig::getInstance()->addPropertyByGroup(self::PROPERTY_GROUP_CI_FILEVERSION, 'semver', $matches[1]);
+        PhingConfig::getInstance()->addPropertyByGroup(self::PROPERTY_GROUP_CI_FILEVERSION, 'semver_major', $matches[2]);
+        PhingConfig::getInstance()->addPropertyByGroup(self::PROPERTY_GROUP_CI_FILEVERSION, 'semver_minor', $matches[2] . '.' . $matches[3]);
+        PhingConfig::getInstance()->addPropertyByGroup(self::PROPERTY_GROUP_CI_FILEVERSION, 'semver_patch', $matches[2] . '.' . $matches[3] . '.' . $matches[4]);
 
-        foreach (PhingConfig::getInstance()->getProperties('ci/fileversion') as $key => $value) {
-            $this->getProject()->setProperty($key, $value);
-        }
-
-        $this->log('ci/fileversion properties loaded');
-    }
-
-    /**
-     * @return void
-     */
-    private function loadDefaultConfig(): void
-    {
-        $this->values = Yaml::parseFile($this->getPhingRoot() . '/resources/build.default.yml');
-        $this->log('phing default config loaded');
-    }
-
-    /**
-     * @return void
-     */
-    private function loadProjectConfig(): void
-    {
-        $this->values = array_replace_recursive($this->values, Yaml::parseFile($this->getProjectRoot() . '/build.yml'));
-        $this->log('project config loaded');
-    }
-
-    /**
-     * @return void
-     */
-    private function loadProjectLocalConfig(): void
-    {
-        if (!file_exists($this->getProjectRoot() . '/build.local.yml')) {
-            return;
-        }
-
-        $this->values = array_replace_recursive($this->values, Yaml::parseFile($this->getProjectRoot() . '/build.local.yml'));
-        $this->log('project local config loaded');
+        $this->populatePropertiesByGroup(self::PROPERTY_GROUP_CI_FILEVERSION);
     }
 
     /**
@@ -157,13 +126,28 @@ class ConfigTask extends AbstractTask
      */
     private function populateProperties(): void
     {
-        foreach ($this->values['phing']['properties'] as $key => $value) {
-            if (self::COMPOSER_COMMANDS_BEFORE === $key) {
-                $this->getProject()->setProperty($key, implode(',', array_filter(array_map('trim', $value))));
-                continue;
-            }
-
-            $this->getProject()->setProperty($key, trim($value));
+        foreach (PhingConfig::getInstance()->getProperties() as $key => $value) {
+            $this->getProject()->setProperty($key, $value);
         }
+    }
+
+    /**
+     * @param string $group
+     */
+    private function populatePropertiesByGroup(string $group): void
+    {
+        foreach (PhingConfig::getInstance()->getPropertiesByGroup($group) as $key => $value) {
+            $this->getProject()->setProperty($key, $value);
+        }
+
+        $this->logPropertiesLoaded($group);
+    }
+
+    /**
+     * @param string $name
+     */
+    private function logPropertiesLoaded(string $name): void
+    {
+        $this->log('properties loaded: ' . $name);
     }
 }

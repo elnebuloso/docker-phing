@@ -84,7 +84,7 @@ class SemverTask extends AbstractTask
         $this->prepare();
 
         if (!preg_match('#((\d{1,}).(\d{1,}).(\d{1,}))#', $this->string, $matches)) {
-            throw new BuildException('version ist not in the correct format');
+            throw new BuildException('version ist not in the correct semver format');
         }
 
         $this->getProject()->setProperty($this->version, $matches[1]);

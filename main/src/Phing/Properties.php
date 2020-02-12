@@ -15,5 +15,11 @@ interface Properties
 
     const REPORT_PHPMETRICS_DIRECTORIES = 'report_phpmetrics_directories';
 
-    const COMPOSER_COMMANDS_BEFORE = 'composer_commands_before';
+    const PROPERTY_GROUP_BASE = 'base';
+
+    const PROPERTY_GROUP_CI_GIT = 'ci/git';
+
+    const PROPERTY_GROUP_CI_GITVERSION = 'ci/gitversion';
+
+    const PROPERTY_GROUP_CI_FILEVERSION = 'ci/fileversion';
 }

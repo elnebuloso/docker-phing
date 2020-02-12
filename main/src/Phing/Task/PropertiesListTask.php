@@ -32,13 +32,29 @@ class PropertiesListTask extends AbstractTask
     {
         $this->prepare();
 
-        foreach (PhingConfig::getInstance()->getProperties($this->group) as $key => $value) {
-            $length = PhingConfig::getInstance()->getLengthOfLongestPropertyInGroup($this->group) + 4;
-            $key = str_pad($key, $length, ' ', STR_PAD_RIGHT);
-
+        foreach (PhingConfig::getInstance()->getPropertiesByGroup($this->group) as $key => $value) {
+            $key = str_pad($key, $this->getPaddingLength(PhingConfig::getInstance()->getPropertiesByGroup($this->group)), ' ', STR_PAD_RIGHT);
             $this->log($key . $value);
         }
 
         $this->cleanup();
+    }
+
+    /**
+     * @param array $properties
+     * @param int $padding
+     * @return int
+     */
+    private function getPaddingLength(array $properties, int $padding = 4): int
+    {
+        $length = 0;
+
+        foreach ($properties as $key => $value) {
+            if (strlen($key) > $length) {
+                $length = strlen($key);
+            }
+        }
+
+        return $length + $padding;
     }
 }
