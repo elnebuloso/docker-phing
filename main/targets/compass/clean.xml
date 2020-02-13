@@ -7,19 +7,14 @@
     <property name="compass_clean_description" value="compass clean scss" override="true"/>
 
 
-    <target name="compass:clean:init" hidden="true">
-        <echo message="no properties defined"/>
-    </target>
-
-
-    <target name="compass:clean:help" depends="compass:clean:init">
+    <target name="compass:clean:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${compass_clean_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
-    <target name="compass:clean" depends="compass:clean:init, compass:clean:before, compass:clean:main, compass:clean:after">
+    <target name="compass:clean" depends="compass:clean:before, compass:clean:main, compass:clean:after">
         <echo message="successful"/>
     </target>
 

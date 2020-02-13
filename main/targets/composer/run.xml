@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="composer:run">
+
+
+    <target name="composer:run" depends="composer:run:docker, composer:run:phing">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="composer:run:docker" hidden="true">
+        <if>
+            <equals arg1="${composer_runner}" arg2="docker"/>
+            <then>
+                <exec command="docker build ${composer_docker_build_args} --tag ${project_name}-composer --file ${composer_docker_file} ${composer_docker_build_ctx}" passthru="${composer_docker_build_passthru}" checkreturn="true" level="info" dir="${project_root}"/>
+                <foreach list="${composer_commands_before}" param="composer_command" target="composer:run:docker:run"/>
+                <phingcall target="composer:run:docker:run"/>
+            </then>
+        </if>
+    </target>
+
+
+    <target name="composer:run:docker:run" hidden="true">
+        <exec command="docker-run-composer ${composer_docker_run_args} ${project_name}-composer ${composer_command}" passthru="true" checkreturn="true" level="info" dir="${project_dir_main_composer}"/>
+    </target>
+
+
+    <target name="composer:run:phing" hidden="true">
+        <if>
+            <equals arg1="${composer_runner}" arg2="phing"/>
+            <then>
+                <foreach list="${composer_commands_before}" param="composer_command" target="composer:run:phing:run"/>
+                <phingcall target="composer:run:phing:run"/>
+            </then>
+        </if>
+    </target>
+
+
+    <target name="composer:run:phing:run" hidden="true">
+        <exec command="${composer_command}" passthru="true" checkreturn="true" level="info" dir="${project_dir_main_composer}"/>
+    </target>
+
+
+</project>

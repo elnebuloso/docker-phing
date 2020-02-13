@@ -8,13 +8,7 @@
     <property name="test_phplint_output" value="${project_dir_build_reports}/phplint" override="true"/>
 
 
-    <target name="test:phplint:init" hidden="true">
-        <property name="test_phplint_interpreter" value="7.3"/>
-        <property name="test_phplint_halt_on_failure" value="1"/>
-    </target>
-
-
-    <target name="test:phplint:help" depends="test:phplint:init">
+    <target name="test:phplint:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${test_phplint_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
@@ -26,7 +20,7 @@
     </target>
 
 
-    <target name="test:phplint" depends="test:phplint:init, test:phplint:before, test:phplint:main, test:phplint:after">
+    <target name="test:phplint" depends="test:phplint:before, test:phplint:main, test:phplint:after">
         <echo message="successful"/>
     </target>
 
@@ -48,7 +42,7 @@
 
         <phplint interpreter="php${test_phplint_interpreter}" tofile="${test_phplint_output}/${test_phplint_interpreter}/report.txt" haltonfailure="${test_phplint_halt_on_failure}" cachefile="${project_dir_build_tmp}/phplint.cache.${test_phplint_interpreter}" level="info">
             <fileset dir="${project_dir_main}">
-                <patternset refid="patternset_test_phplint"/>
+                <patternset refid="${patternset_test_phplint_id}"/>
             </fileset>
         </phplint>
     </target>

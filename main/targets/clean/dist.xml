@@ -7,19 +7,14 @@
     <property name="clean_dist_description" value="cleanup project distribution directory" override="true"/>
 
 
-    <target name="clean:dist:init" hidden="true">
-        <echo message="no properties defined"/>
-    </target>
-
-
-    <target name="clean:dist:help" depends="clean:dist:init">
+    <target name="clean:dist:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${clean_dist_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
-    <target name="clean:dist" depends="clean:dist:init, clean:dist:before, clean:dist:main, clean:dist:after">
+    <target name="clean:dist" depends="clean:dist:before, clean:dist:main, clean:dist:after">
         <echo message="successful"/>
     </target>
 

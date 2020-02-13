@@ -7,19 +7,14 @@
     <property name="init_bolt3_description" value="init bolt3 application" override="true"/>
 
 
-    <target name="init:bolt3:init" hidden="true">
-        <property name="init_bolt3_url" value="bolt3.127.0.0.1.xip.io"/>
-    </target>
-
-
-    <target name="init:bolt3:help" depends="init:bolt3:init">
+    <target name="init:bolt3:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${init_bolt3_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
-    <target name="init:bolt3" depends="clean:dist, init:bolt3:init, init:bolt3:before, init:bolt3:main, init:bolt3:after">
+    <target name="init:bolt3" depends="clean:dist, init:bolt3:before, init:bolt3:main, init:bolt3:after">
         <echo message="browse application after docker start, using phing start"/>
         <echo message="${init_bolt3_url}"/>
     </target>

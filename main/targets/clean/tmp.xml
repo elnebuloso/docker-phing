@@ -7,19 +7,14 @@
     <property name="clean_tmp_description" value="cleanup project temporary build directory" override="true"/>
 
 
-    <target name="clean:tmp:init" hidden="true">
-        <echo message="no properties defined"/>
-    </target>
-
-
-    <target name="clean:tmp:help" depends="clean:tmp:init">
+    <target name="clean:tmp:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${clean_tmp_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
-    <target name="clean:tmp" depends="clean:tmp:init, clean:tmp:before, clean:tmp:main, clean:tmp:after">
+    <target name="clean:tmp" depends="clean:tmp:before, clean:tmp:main, clean:tmp:after">
         <echo message="successful"/>
     </target>
 

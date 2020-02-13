@@ -7,19 +7,14 @@
     <property name="init_laravel6_description" value="init laravel application" override="true"/>
 
 
-    <target name="init:laravel6:init" hidden="true">
-        <property name="init_laravel6_url" value="laravel6.127.0.0.1.xip.io"/>
-    </target>
-
-
-    <target name="init:laravel6:help" depends="init:laravel6:init">
+    <target name="init:laravel6:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${init_laravel6_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
-    <target name="init:laravel6" depends="clean:dist, init:laravel6:init, init:laravel6:before, init:laravel6:main, init:laravel6:after">
+    <target name="init:laravel6" depends="clean:dist, init:laravel6:before, init:laravel6:main, init:laravel6:after">
         <echo message="browse application after docker start, using phing start"/>
         <echo message="${init_laravel6_url}"/>
     </target>

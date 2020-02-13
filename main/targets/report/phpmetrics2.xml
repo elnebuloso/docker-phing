@@ -9,19 +9,14 @@
     <property name="report_phpmetrics2_output" value="${project_dir_build_reports}/phpmetrics2" override="true"/>
 
 
-    <target name="report:phpmetrics2:init" hidden="true">
-        <echo message="no properties defined"/>
-    </target>
-
-
-    <target name="report:phpmetrics2:help" depends="report:phpmetrics2:init">
+    <target name="report:phpmetrics2:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${report_phpmetrics2_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
-    <target name="report:phpmetrics2" depends="report:phpmetrics2:init, report:phpmetrics2:before, report:phpmetrics2:main, report:phpmetrics2:after">
+    <target name="report:phpmetrics2" depends="report:phpmetrics2:before, report:phpmetrics2:main, report:phpmetrics2:after">
         <echo message="successful"/>
     </target>
 

@@ -7,19 +7,14 @@
     <property name="compass_watch_description" value="compass watch scss" override="true"/>
 
 
-    <target name="compass:watch:init" hidden="true">
-        <echo message="no properties defined"/>
-    </target>
-
-
-    <target name="compass:watch:help" depends="compass:watch:init">
+    <target name="compass:watch:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${compass_watch_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
-    <target name="compass:watch" depends="compass:watch:init, compass:watch:before, compass:watch:main, compass:watch:after">
+    <target name="compass:watch" depends="compass:watch:before, compass:watch:main, compass:watch:after">
         <echo message="successful"/>
     </target>
 

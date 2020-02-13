@@ -8,9 +8,7 @@
 
 
     <target name="docker:build:init" hidden="true">
-        <property name="docker_build_file" value="Dockerfile"/>
-        <property name="docker_build_args" value="--rm --pull --target prod"/>
-        <property name="docker_build_ctx" value="."/>
+        <phing-slugify string="${docker_build_tag}" slug="docker_build_tag_slug"/>
     </target>
 
 
@@ -18,11 +16,13 @@
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${docker_build_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="property             value"/>
+        <echo message="property                 value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="docker_build_file    ${docker_build_file}"/>
-        <echo message="docker_build_args    ${docker_build_args}"/>
-        <echo message="docker_build_ctx     ${docker_build_ctx}"/>
+        <echo message="docker_build_file        ${docker_build_file}"/>
+        <echo message="docker_build_args        ${docker_build_args}"/>
+        <echo message="docker_build_ctx         ${docker_build_ctx}"/>
+        <echo message="docker_build_tag         ${docker_build_tag}"/>
+        <echo message="docker_build_tag_slug    ${docker_build_tag_slug}" level="debug"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
@@ -43,7 +43,7 @@
 
 
     <target name="docker:build:main" hidden="true">
-        <exec command="docker build ${docker_build_args} --tag ${docker_config_image} --file ${docker_build_file} ${docker_build_ctx}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+        <exec command="docker build ${docker_build_args} --tag ${docker_build_tag_slug} --file ${docker_build_file} ${docker_build_ctx}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
     </target>
 
 

@@ -31,14 +31,6 @@
     </patternset>
 
 
-    <!-- report:phpcs -->
-    <patternset id="patternset_report_phpcs">
-        <include name="**/*.php"/>
-        <exclude name="tests/**"/>
-        <exclude name="vendor/**"/>
-    </patternset>
-
-
     <!-- report:phpdepend -->
     <patternset id="patternset_report_phpdepend">
         <include name="**/*.php"/>

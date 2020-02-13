@@ -8,19 +8,14 @@
     <property name="report_phpcpd_output" value="${project_dir_build_reports}/phpcpd" override="true"/>
 
 
-    <target name="report:phpcpd:init" hidden="true">
-        <echo message="no properties defined"/>
-    </target>
-
-
-    <target name="report:phpcpd:help" depends="report:phpcpd:init">
+    <target name="report:phpcpd:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${report_phpcpd_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
-    <target name="report:phpcpd" depends="report:phpcpd:init, report:phpcpd:before, report:phpcpd:main, report:phpcpd:after">
+    <target name="report:phpcpd" depends="report:phpcpd:before, report:phpcpd:main, report:phpcpd:after">
         <echo message="successful"/>
     </target>
 
@@ -41,7 +36,7 @@
 
         <phpcpd pharlocation="${phing_commons_root}/resources/phar/phpcpd-4.1.0.phar">
             <fileset dir="${project_dir_main}">
-                <patternset refid="patternset_report_phpcpd"/>
+                <patternset refid="${patternset_report_phpcpd_id}"/>
             </fileset>
             <formatter type="pmd" outfile="${report_phpcpd_output}/report.xml"/>
         </phpcpd>

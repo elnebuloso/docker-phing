@@ -8,13 +8,7 @@
     <property name="report_phpmd_output" value="${project_dir_build_reports}/phpmd" override="true"/>
 
 
-    <target name="report:phpmd:init" hidden="true">
-        <property name="report_php_md_rulesets" value="cleancode,codesize,design,unusedcode"/>
-        <property name="report_php_md_allowed_file_extensions" value="php,phtml"/>
-    </target>
-
-
-    <target name="report:phpmd:help" depends="report:phpmd:init">
+    <target name="report:phpmd:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${report_phpmd_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
@@ -26,7 +20,7 @@
     </target>
 
 
-    <target name="report:phpmd" depends="report:phpmd:init, report:phpmd:before, report:phpmd:main, report:phpmd:after">
+    <target name="report:phpmd" depends="report:phpmd:before, report:phpmd:main, report:phpmd:after">
         <echo message="successful"/>
     </target>
 
@@ -47,7 +41,7 @@
 
         <phpmd pharlocation="${phing_commons_root}/resources/phar/phpmd-2.8.1.phar" rulesets="${report_php_md_rulesets}" allowedFileExtensions="${report_php_md_allowed_file_extensions}">
             <fileset dir="${project_dir_main}">
-                <patternset refid="patternset_report_phpmd"/>
+                <patternset refid="${patternset_report_phpmd_id}"/>
             </fileset>
             <formatter type="xml" outfile="${report_phpmd_output}/report.xml"/>
         </phpmd>

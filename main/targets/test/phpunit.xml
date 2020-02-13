@@ -8,59 +8,36 @@
     <property name="test_phpunit_output" value="${project_dir_build_reports}/phpunit" override="true"/>
 
 
-    <target name="test:phpunit:init">
-        <property name="test_phpunit_what" value="${project_dir_main}/tests"/>
-        <property name="test_phpunit_bootstrap" value="${project_dir_main}/vendor/autoload.php"/>
-        <property name="test_phpunit_configuration" value="${project_dir_main}/tests/phpunit.xml"/>
-        <property name="test_phpunit_executable" value="phpunit"/>
-        <property name="test_phpunit_docker_file" value="${project_root}/Dockerfile"/>
-        <property name="test_phpunit_docker_build_ctx" value="."/>
-        <property name="test_phpunit_docker_build_args" value="--rm --pull --target dev-phpunit"/>
-        <property name="test_phpunit_docker_run_args" value="--rm"/>
-        <property name="test_phpunit_haltonerror" value="1"/>
-        <property name="test_phpunit_haltonfailure" value="1"/>
-        <property name="test_phpunit_coverage_clover" value="1"/>
-        <property name="test_phpunit_coverage_crap4j" value="1"/>
-        <property name="test_phpunit_coverage_html" value="1"/>
-        <property name="test_phpunit_coverage_php" value="1"/>
-        <property name="test_phpunit_coverage_xml" value="1"/>
-        <property name="test_phpunit_coverage_out" value="1"/>
-        <property name="test_phpunit_log_junit" value="1"/>
-        <property name="test_phpunit_testdox_html" value="1"/>
-        <property name="test_phpunit_testdox_txt" value="1"/>
-        <property name="test_phpunit_options" value=""/>
-    </target>
-
-
-    <target name="test:phpunit:help" depends="test:phpunit:init">
+    <target name="test:phpunit:help">
         <echo message="${test_phpunit_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="property                          value"/>
+        <echo message="property                              value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="test_phpunit_what                 ${test_phpunit_what}"/>
-        <echo message="test_phpunit_bootstrap            ${test_phpunit_bootstrap}"/>
-        <echo message="test_phpunit_configuration        ${test_phpunit_configuration}"/>
-        <echo message="test_phpunit_docker_file          ${test_phpunit_docker_file}"/>
-        <echo message="test_phpunit_docker_build_ctx     ${test_phpunit_docker_build_ctx}"/>
-        <echo message="test_phpunit_docker_build_args    ${test_phpunit_docker_build_args}"/>
-        <echo message="test_phpunit_docker_run_args      ${test_phpunit_docker_run_args}"/>
-        <echo message="test_phpunit_haltonerror          ${test_phpunit_haltonerror}"/>
-        <echo message="test_phpunit_haltonfailure        ${test_phpunit_haltonfailure}"/>
-        <echo message="test_phpunit_coverage_clover      ${test_phpunit_coverage_clover}"/>
-        <echo message="test_phpunit_coverage_crap4j      ${test_phpunit_coverage_crap4j}"/>
-        <echo message="test_phpunit_coverage_html        ${test_phpunit_coverage_html}"/>
-        <echo message="test_phpunit_coverage_php         ${test_phpunit_coverage_php}"/>
-        <echo message="test_phpunit_coverage_xml         ${test_phpunit_coverage_xml}"/>
-        <echo message="test_phpunit_coverage_out         ${test_phpunit_coverage_out}"/>
-        <echo message="test_phpunit_log_junit            ${test_phpunit_log_junit}"/>
-        <echo message="test_phpunit_testdox_html         ${test_phpunit_testdox_html}"/>
-        <echo message="test_phpunit_testdox_txt          ${test_phpunit_testdox_txt}"/>
-        <echo message="test_phpunit_options              ${test_phpunit_options}"/>
+        <echo message="test_phpunit_what                     ${test_phpunit_what}"/>
+        <echo message="test_phpunit_bootstrap                ${test_phpunit_bootstrap}"/>
+        <echo message="test_phpunit_configuration            ${test_phpunit_configuration}"/>
+        <echo message="test_phpunit_docker_file              ${test_phpunit_docker_file}"/>
+        <echo message="test_phpunit_docker_build_ctx         ${test_phpunit_docker_build_ctx}"/>
+        <echo message="test_phpunit_docker_build_args        ${test_phpunit_docker_build_args}"/>
+        <echo message="test_phpunit_docker_build_passthru    ${test_phpunit_docker_build_passthru}"/>
+        <echo message="test_phpunit_docker_run_args          ${test_phpunit_docker_run_args}"/>
+        <echo message="test_phpunit_haltonerror              ${test_phpunit_haltonerror}"/>
+        <echo message="test_phpunit_haltonfailure            ${test_phpunit_haltonfailure}"/>
+        <echo message="test_phpunit_coverage_clover          ${test_phpunit_coverage_clover}"/>
+        <echo message="test_phpunit_coverage_crap4j          ${test_phpunit_coverage_crap4j}"/>
+        <echo message="test_phpunit_coverage_html            ${test_phpunit_coverage_html}"/>
+        <echo message="test_phpunit_coverage_php             ${test_phpunit_coverage_php}"/>
+        <echo message="test_phpunit_coverage_xml             ${test_phpunit_coverage_xml}"/>
+        <echo message="test_phpunit_coverage_out             ${test_phpunit_coverage_out}"/>
+        <echo message="test_phpunit_log_junit                ${test_phpunit_log_junit}"/>
+        <echo message="test_phpunit_testdox_html             ${test_phpunit_testdox_html}"/>
+        <echo message="test_phpunit_testdox_txt              ${test_phpunit_testdox_txt}"/>
+        <echo message="test_phpunit_options                  ${test_phpunit_options}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
-    <target name="test:phpunit" depends="test:phpunit:init, test:phpunit:before, test:phpunit:main, test:phpunit:after">
+    <target name="test:phpunit" depends="test:phpunit:before, test:phpunit:main, test:phpunit:after">
         <echo message="successful"/>
     </target>
 
@@ -78,7 +55,7 @@
     <target name="test:phpunit:main" hidden="true">
         <delete dir="${test_phpunit_output}"/>
         <mkdir dir="${test_phpunit_output}"/>
-        
+
         <property name="test_phpunit_arguments" value="" override="true"/>
 
         <if>
@@ -197,13 +174,9 @@
             </then>
         </if>
 
-        <if>
-            <equals arg1="${project_phpunit_type}" arg2="dockerfile"/>
-            <then>
-                <exec command="docker build ${test_phpunit_docker_build_args} --tag ${project_name}-phpunit --file ${test_phpunit_docker_file} ${test_phpunit_docker_build_ctx}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
-                <exec command="docker-run ${test_phpunit_docker_run_args} ${project_name}-phpunit ${test_phpunit_executable} ${test_phpunit_arguments} ${test_phpunit_what}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
-            </then>
-        </if>
+
+        <exec command="docker build ${test_phpunit_docker_build_args} --tag ${project_name}-phpunit --file ${test_phpunit_docker_file} ${test_phpunit_docker_build_ctx}" passthru="${test_phpunit_docker_build_passthru}" checkreturn="true" level="info" dir="${project_root}"/>
+        <exec command="docker-run ${test_phpunit_docker_run_args} ${project_name}-phpunit ${test_phpunit_executable} ${test_phpunit_arguments} ${test_phpunit_what}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
     </target>
 
 

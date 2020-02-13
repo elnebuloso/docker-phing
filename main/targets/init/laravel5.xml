@@ -7,19 +7,14 @@
     <property name="init_laravel5_description" value="init laravel application" override="true"/>
 
 
-    <target name="init:laravel5:init" hidden="true">
-        <property name="init_laravel5_url" value="laravel5.127.0.0.1.xip.io"/>
-    </target>
-
-
-    <target name="init:laravel5:help" depends="init:laravel5:init">
+    <target name="init:laravel5:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${init_laravel5_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
-    <target name="init:laravel5" depends="clean:dist, init:laravel5:init, init:laravel5:before, init:laravel5:main, init:laravel5:after">
+    <target name="init:laravel5" depends="clean:dist, init:laravel5:before, init:laravel5:main, init:laravel5:after">
         <echo message="browse application after docker start, using phing start"/>
         <echo message="${init_laravel5_url}"/>
     </target>

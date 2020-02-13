@@ -7,12 +7,7 @@
     <property name="composer_install_description" value="composer install" override="true"/>
 
 
-    <target name="composer:install:init" hidden="true">
-        <property name="composer_install_options" value=""/>
-    </target>
-
-
-    <target name="composer:install:help" depends="composer:install:init">
+    <target name="composer:install:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${composer_install_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
@@ -23,7 +18,7 @@
     </target>
 
 
-    <target name="composer:install" depends="composer:install:init, composer:install:before, composer:install:main, composer:run, composer:install:after">
+    <target name="composer:install" depends="composer:install:before, composer:install:main, composer:run, composer:install:after">
         <echo message="successful"/>
     </target>
 

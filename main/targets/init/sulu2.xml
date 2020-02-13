@@ -7,19 +7,14 @@
     <property name="init_sulu2_description" value="init sulu2 application" override="true"/>
 
 
-    <target name="init:sulu2:init" hidden="true">
-        <property name="init_sulu2_url" value="sulu2.127.0.0.1.xip.io"/>
-    </target>
-
-
-    <target name="init:sulu2:help" depends="init:sulu2:init">
+    <target name="init:sulu2:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${init_sulu2_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
-    <target name="init:sulu2" depends="clean:dist, init:sulu2:init, init:sulu2:before, init:sulu2:main, init:sulu2:after">
+    <target name="init:sulu2" depends="clean:dist, init:sulu2:before, init:sulu2:main, init:sulu2:after">
         <echo message="browse application after docker start, using phing start"/>
         <echo message="${init_sulu2_url}"/>
     </target>

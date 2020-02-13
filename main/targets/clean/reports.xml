@@ -7,19 +7,14 @@
     <property name="clean_reports_description" value="cleanup project reports directory" override="true"/>
 
 
-    <target name="clean:reports:init" hidden="true">
-        <echo message="no properties defined"/>
-    </target>
-
-
-    <target name="clean:reports:help" depends="clean:reports:init">
+    <target name="clean:reports:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${clean_reports_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
-    <target name="clean:reports" depends="clean:reports:init, clean:reports:before, clean:reports:main, clean:reports:after">
+    <target name="clean:reports" depends="clean:reports:before, clean:reports:main, clean:reports:after">
         <echo message="successful"/>
     </target>
 

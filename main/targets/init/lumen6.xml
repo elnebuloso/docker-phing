@@ -7,19 +7,14 @@
     <property name="init_lumen6_description" value="init lumen6 application" override="true"/>
 
 
-    <target name="init:lumen6:init" hidden="true">
-        <property name="init_lumen6_url" value="lumen6.127.0.0.1.xip.io"/>
-    </target>
-
-
-    <target name="init:lumen6:help" depends="init:lumen6:init">
+    <target name="init:lumen6:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${init_lumen6_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
-    <target name="init:lumen6" depends="clean:dist, init:lumen6:init, init:lumen6:before, init:lumen6:main, init:lumen6:after">
+    <target name="init:lumen6" depends="clean:dist, init:lumen6:before, init:lumen6:main, init:lumen6:after">
         <echo message="browse application after docker start, using phing start"/>
         <echo message="${init_lumen6_url}"/>
     </target>

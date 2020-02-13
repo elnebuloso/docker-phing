@@ -9,6 +9,7 @@
     <import file="${phing_commons_root}/targets/composer/remove.xml"/>
     <import file="${phing_commons_root}/targets/composer/require.xml"/>
     <import file="${phing_commons_root}/targets/composer/update.xml"/>
+    <import file="${phing_commons_root}/targets/composer/run.xml"/>
 
 
     <target name="composer:help">
@@ -23,51 +24,14 @@
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="property                          value"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="composer_runner                   ${composer_runner}"/>
+        <echo message="composer_runner                   ${composer_runner} (docker|phing)"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="composer_docker_file              ${composer_docker_file}"/>
         <echo message="composer_docker_build_ctx         ${composer_docker_build_ctx}"/>
         <echo message="composer_docker_build_args        ${composer_docker_build_args}"/>
         <echo message="composer_docker_run_args          ${composer_docker_run_args}"/>
         <echo message="composer_docker_build_passthru    ${composer_docker_build_passthru}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-    </target>
-
-
-    <target name="composer:run" depends="composer:run:dockerfile, composer:run:dockerception">
-        <echo message="successful"/>
-    </target>
-
-
-    <target name="composer:run:dockerfile" hidden="true">
-        <if>
-            <equals arg1="${composer_runner}" arg2="dockerfile"/>
-            <then>
-                <exec command="docker build ${composer_docker_build_args} --tag ${project_name}-composer --file ${composer_docker_file} ${composer_docker_build_ctx}" passthru="${composer_docker_build_passthru}" checkreturn="true" level="info" dir="${project_root}"/>
-                <foreach list="${composer_commands_before}" param="composer_command" target="composer:run:dockerfile:run"/>
-                <phingcall target="composer:run:dockerfile:run"/>
-            </then>
-        </if>
-    </target>
-
-
-    <target name="composer:run:dockerfile:run" hidden="true">
-        <exec command="docker-run-composer ${composer_docker_run_args} ${project_name}-composer ${composer_command}" passthru="true" checkreturn="true" level="info" dir="${project_dir_main_composer}"/>
-    </target>
-
-
-    <target name="composer:run:dockerception" hidden="true">
-        <if>
-            <equals arg1="${composer_runner}" arg2="dockerception"/>
-            <then>
-                <foreach list="${composer_commands_before}" param="composer_command" target="composer:run:dockerception:run"/>
-                <phingcall target="composer:run:dockerception:run"/>
-            </then>
-        </if>
-    </target>
-
-
-    <target name="composer:run:dockerception:run" hidden="true">
-        <exec command="${composer_command}" passthru="true" checkreturn="true" level="info" dir="${project_dir_main_composer}"/>
     </target>
 
 

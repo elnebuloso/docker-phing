@@ -1,17 +1,115 @@
 phing:
   properties:
-    npm_executable: "npm"
-    composer_runner: "dockerfile"
+    #
+    # project
+    #
+    project_folder_main: "main"
+    project_folder_main_composer: ""
+    project_folder_main_compass: ""
+    project_folder_main_npm: ""
+    project_folder_build: "build"
+    project_folder_build_tmp: "tmp"
+    project_folder_build_dist: "dist"
+    project_folder_build_reports: "reports"
+
+    #
+    # composer
+    #
+    composer_runner: "docker"
     composer_docker_file: "${project_root}/Dockerfile"
     composer_docker_build_ctx: "."
     composer_docker_build_args: "--rm --pull --target dev-composer"
-    composer_docker_build_passthru: "false"
+    composer_docker_build_passthru: "true"
     composer_docker_run_args: "--rm"
+    composer_install_production_options: ""
+    composer_install_options: ""
+    composer_update_options: ""
     composer_commands_before: []
+
+    #
+    # init
+    #
+    init_bolt3_url: "bolt3.127.0.0.1.xip.io"
+    init_laravel5_url: "laravel5.127.0.0.1.xip.io"
+    init_laravel6_url: "laravel6.127.0.0.1.xip.io"
+    init_lumen5_url: "lumen5.127.0.0.1.xip.io"
+    init_lumen6_url: "lumen6.127.0.0.1.xip.io"
+    init_sulu2_url: "sulu2.127.0.0.1.xip.io"
+    init_symfony4_url: "symfony4.127.0.0.1.xip.io"
+    init_symfony5_url: "symfony5.127.0.0.1.xip.io"
+
+    #
+    # npm
+    #
+    npm_executable: "yarn"
+
+    #
+    # report
+    #
+    report_php_md_rulesets: "cleancode,codesize,design,unusedcode"
+    report_php_md_allowed_file_extensions: "php"
+    report_sonarqube_executable: "sonarqube-scanner"
+    report_sonarqube_host_url: ""
+    report_sonarqube_login: ""
+    report_sonarqube_config: "${project_root}/sonar-project.properties"
+    report_sonarqube_project_key: "${project_name}"
+
+    #
+    # test
+    #
+    test_phplint_interpreter: "7.3"
+    test_phplint_halt_on_failure: "1"
+    test_phpunit_what: "${project_dir_main}/tests"
+    test_phpunit_bootstrap: "${project_dir_main}/vendor/autoload.php"
+    test_phpunit_configuration: "${project_dir_main}/tests/phpunit.xml"
+    test_phpunit_executable: "phpunit"
+    test_phpunit_docker_file: "${project_root}/Dockerfile"
+    test_phpunit_docker_build_ctx: "."
+    test_phpunit_docker_build_args: "--rm --pull --target dev-phpunit"
+    test_phpunit_docker_build_passthru: "true"
+    test_phpunit_docker_run_args: "--rm"
+    test_phpunit_haltonerror: "1"
+    test_phpunit_haltonfailure: "1"
+    test_phpunit_coverage_clover: "1"
+    test_phpunit_coverage_crap4j: "1"
+    test_phpunit_coverage_html: "1"
+    test_phpunit_coverage_php: "1"
+    test_phpunit_coverage_xml: "1"
+    test_phpunit_coverage_out: "1"
+    test_phpunit_log_junit: "1"
+    test_phpunit_testdox_html: "1"
+    test_phpunit_testdox_txt: "1"
+    test_phpunit_options: ""
+
+    #
+    # patternsets
+    #
+    patternset_bundle_project_id: "patternset_bundle_project"
+    patternset_test_phplint_id: "patternset_test_phplint"
+    patternset_report_phpcpd_id: "patternset_report_phpcpd"
+    patternset_report_phpdepend_id: "patternset_report_phpdepend"
+    patternset_report_phploc_id: "patternset_report_phploc"
+    patternset_report_phpmd_id: "patternset_report_phpmd"
+
+    #
+    # docker
+    #
+    docker_compose_up_options: "--build --remove-orphans -d"
+    docker_compose_down_options: "--remove-orphans"
+    docker_compose_pull_options: ""
     docker_registry: ""
     docker_registry_namespace: ""
-  build:
-    branches:
-      master:
-        regex: "^master"
+    docker_build_file: "Dockerfile"
+    docker_build_args: "--rm --pull --target prod"
+    docker_build_ctx: "."
+    docker_build_tag: "${project_name}///${ci_git_sha1}"
+
+  #
+  # branch properties
+  #
+  branches:
+    master:
+      regex: "^master"
+      properties:
+        report_sonarqube_project_version: "${ci_git_commit_time}"
         docker_push_versions: []

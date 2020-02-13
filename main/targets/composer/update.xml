@@ -7,12 +7,7 @@
     <property name="composer_update_description" value="composer update dependencies" override="true"/>
 
 
-    <target name="composer:update:init" hidden="true">
-        <property name="composer_update_options" value=""/>
-    </target>
-
-
-    <target name="composer:update:help" depends="composer:update:init">
+    <target name="composer:update:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${composer_update_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
@@ -23,7 +18,7 @@
     </target>
 
 
-    <target name="composer:update" depends="composer:update:init, composer:update:before, composer:update:main, composer:run, composer:update:after">
+    <target name="composer:update" depends="composer:update:before, composer:update:main, composer:run, composer:update:after">
         <echo message="successful"/>
     </target>
 

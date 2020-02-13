@@ -7,11 +7,6 @@
     <property name="npm_upgrade_description" value="npm upgrade dependencies" override="true"/>
 
 
-    <target name="npm:upgrade:init" hidden="true">
-        <echo message="no properties defined"/>
-    </target>
-
-
     <target name="npm:upgrade:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${npm_upgrade_description}"/>
@@ -19,7 +14,7 @@
     </target>
 
 
-    <target name="npm:upgrade" depends="npm:upgrade:init, npm:upgrade:before, npm:upgrade:main, npm:upgrade:after">
+    <target name="npm:upgrade" depends="npm:upgrade:before, npm:upgrade:main, npm:upgrade:after">
         <echo message="successful"/>
     </target>
 

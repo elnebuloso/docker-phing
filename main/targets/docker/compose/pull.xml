@@ -7,12 +7,7 @@
     <property name="docker_compose_pull_description" value="pull the newest images of the docker compose stack" override="true"/>
 
 
-    <target name="docker:compose:pull:init" hidden="true">
-        <property name="docker_compose_pull_options" value=""/>
-    </target>
-
-
-    <target name="docker:compose:pull:help" depends="docker:compose:pull:init">
+    <target name="docker:compose:pull:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${docker_compose_pull_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
@@ -23,7 +18,7 @@
     </target>
 
 
-    <target name="docker:compose:pull" depends="docker:compose:pull:init, docker:compose:pull:before, docker:compose:pull:main, docker:compose:pull:after">
+    <target name="docker:compose:pull" depends="docker:compose:pull:before, docker:compose:pull:main, docker:compose:pull:after">
         <echo message="successful"/>
     </target>
 

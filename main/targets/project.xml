@@ -17,8 +17,6 @@
         <echo message="project_folder_build_tmp        ${project_folder_build_tmp}"/>
         <echo message="project_folder_build_dist       ${project_folder_build_dist}"/>
         <echo message="project_folder_build_reports    ${project_folder_build_reports}"/>
-        <echo message="project_phpunit_type            dockerfile|dockerception: ${project_phpunit_type} "/>
-        <echo message="project_composer_type           dockerfile|dockerception: ${project_composer_type} "/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="property                        value [do not edit directly]" level="debug"/>
         <echo message="----------------------------------------------------------------------------------------------------" level="debug"/>

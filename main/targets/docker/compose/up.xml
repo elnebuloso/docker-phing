@@ -7,12 +7,7 @@
     <property name="docker_compose_up_description" value="start docker compose stack" override="true"/>
 
 
-    <target name="docker:compose:up:init" hidden="true">
-        <property name="docker_compose_up_options" value="--build --remove-orphans -d"/>
-    </target>
-
-
-    <target name="docker:compose:up:help" depends="docker:compose:up:init">
+    <target name="docker:compose:up:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${docker_compose_up_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
@@ -23,7 +18,7 @@
     </target>
 
 
-    <target name="docker:compose:up" depends="docker:compose:up:init, docker:compose:up:before, docker:compose:up:main, docker:compose:up:after">
+    <target name="docker:compose:up" depends="docker:compose:up:before, docker:compose:up:main, docker:compose:up:after">
         <echo message="successful"/>
     </target>
 

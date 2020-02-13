@@ -7,19 +7,14 @@
     <property name="report_phpmetrics_description" value="phpmetrics scanner, reports of phpmetrics1, phpmetrics2" override="true"/>
 
 
-    <target name="report:phpmetrics:init" hidden="true">
-        <echo message="no properties defined"/>
-    </target>
-
-
-    <target name="report:phpmetrics:help" depends="report:phpmetrics:init">
+    <target name="report:phpmetrics:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${report_phpmetrics_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
-    <target name="report:phpmetrics" depends="report:phpmetrics:init, report:phpmetrics:before, report:phpmetrics:main, report:phpmetrics1, report:phpmetrics2, report:phpmetrics:after">
+    <target name="report:phpmetrics" depends="report:phpmetrics:before, report:phpmetrics:main, report:phpmetrics1, report:phpmetrics2, report:phpmetrics:after">
         <echo message="successful"/>
     </target>
 

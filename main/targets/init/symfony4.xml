@@ -7,19 +7,14 @@
     <property name="init_symfony4_description" value="init symfony4 application" override="true"/>
 
 
-    <target name="init:symfony4:init" hidden="true">
-        <property name="init_symfony4_url" value="symfony4.127.0.0.1.xip.io"/>
-    </target>
-
-
-    <target name="init:symfony4:help" depends="init:symfony4:init">
+    <target name="init:symfony4:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${init_symfony4_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
-    <target name="init:symfony4" depends="clean:dist, init:symfony4:init, init:symfony4:before, init:symfony4:main, init:symfony4:after">
+    <target name="init:symfony4" depends="clean:dist, init:symfony4:before, init:symfony4:main, init:symfony4:after">
         <echo message="browse application after docker start, using phing start"/>
         <echo message="${init_symfony4_url}"/>
     </target>

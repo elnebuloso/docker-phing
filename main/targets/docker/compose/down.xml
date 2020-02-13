@@ -7,12 +7,7 @@
     <property name="docker_compose_down_description" value="stop docker compose stack" override="true"/>
 
 
-    <target name="docker:compose:down:init" hidden="true">
-        <property name="docker_compose_down_options" value="--remove-orphans"/>
-    </target>
-
-
-    <target name="docker:compose:down:help" depends="docker:compose:down:init">
+    <target name="docker:compose:down:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${docker_compose_down_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
@@ -23,7 +18,7 @@
     </target>
 
 
-    <target name="docker:compose:down" depends="docker:compose:down:init, docker:compose:down:before, docker:compose:down:main, docker:compose:down:after">
+    <target name="docker:compose:down" depends="docker:compose:down:before, docker:compose:down:main, docker:compose:down:after">
         <echo message="successful"/>
     </target>
 

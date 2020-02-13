@@ -8,19 +8,14 @@
     <property name="report_phpdepend_output" value="${project_dir_build_reports}/phpdepend" override="true"/>
 
 
-    <target name="report:phpdepend:init" hidden="true">
-        <echo message="no properties defined"/>
-    </target>
-
-
-    <target name="report:phpdepend:help" depends="report:phpdepend:init">
+    <target name="report:phpdepend:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${report_phpdepend_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
-    <target name="report:phpdepend" depends="report:phpdepend:init, report:phpdepend:before, report:phpdepend:main, report:phpdepend:after">
+    <target name="report:phpdepend" depends="report:phpdepend:before, report:phpdepend:main, report:phpdepend:after">
         <echo message="successful"/>
     </target>
 
@@ -42,7 +37,7 @@
 
         <phpdepend pharlocation="${phing_commons_root}/resources/phar/pdepend-2.6.1.phar">
             <fileset dir="${project_dir_main}">
-                <patternset refid="patternset_report_phpdepend"/>
+                <patternset refid="${patternset_report_phpdepend_id}"/>
             </fileset>
             <logger type="jdepend-xml" outfile="${report_phpdepend_output}/report.xml"/>
             <logger type="jdepend-chart" outfile="${report_phpdepend_output}/assets/chart.svg"/>

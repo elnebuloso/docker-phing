@@ -8,19 +8,14 @@
     <property name="report_phploc_output" value="${project_dir_build_reports}/phploc" override="true"/>
 
 
-    <target name="report:phploc:init" hidden="true">
-        <echo message="no properties defined"/>
-    </target>
-
-
-    <target name="report:phploc:help" depends="report:phploc:init">
+    <target name="report:phploc:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${report_phploc_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
-    <target name="report:phploc" depends="report:phploc:init, report:phploc:before, report:phploc:main, report:phploc:after">
+    <target name="report:phploc" depends="report:phploc:before, report:phploc:main, report:phploc:after">
         <echo message="successful"/>
     </target>
 
@@ -41,7 +36,7 @@
 
         <phploc pharlocation="${phing_commons_root}/resources/phar/phploc-5.0.0.phar" reportType="xml" reportName="report" reportDirectory="${report_phploc_output}">
             <fileset dir="${project_dir_main}">
-                <patternset refid="patternset_report_phploc"/>
+                <patternset refid="${patternset_report_phploc_id}"/>
             </fileset>
         </phploc>
 

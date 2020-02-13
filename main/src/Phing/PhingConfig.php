@@ -75,6 +75,16 @@ final class PhingConfig
 
     /**
      * @param string $group
+     * @param string $key
+     * @return string
+     */
+    public function getPropertyByGroup(string $group, string $key): string
+    {
+        return $this->propertiesByGroup[$group][$this->getPropertyKeyByGroup($group, $key)];
+    }
+
+    /**
+     * @param string $group
      * @param array $properties
      */
     public function addPropertiesByGroup(string $group, array $properties): void

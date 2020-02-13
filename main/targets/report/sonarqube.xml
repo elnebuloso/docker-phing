@@ -7,20 +7,7 @@
     <property name="report_sonarqube_description" value="sonarqube scanner code analysis" override="true"/>
 
 
-    <target name="report:sonarqube:init" hidden="true">
-        <property name="report_sonarqube_executable" value="sonarqube-scanner"/>
-        <property name="report_sonarqube_host_url" value=""/>
-        <property name="report_sonarqube_login" value=""/>
-        <property name="report_sonarqube_config" value="${project_root}/sonar-project.properties"/>
-        <property name="report_sonarqube_project_key" value="${project_name}"/>
-        <property name="report_sonarqube_project_version" value="${project_version}"/>
-        <property name="branch_name_release" value="master"/>
-        <property name="branch_name" value="master"/>
-        <property name="build_number" value=""/>
-    </target>
-
-
-    <target name="report:sonarqube:help" depends="report:sonarqube:init">
+    <target name="report:sonarqube:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${report_sonarqube_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
@@ -32,14 +19,11 @@
         <echo message="report_sonarqube_config             ${report_sonarqube_config}"/>
         <echo message="report_sonarqube_project_key        ${report_sonarqube_project_key}"/>
         <echo message="report_sonarqube_project_version    ${report_sonarqube_project_version}"/>
-        <echo message="branch_name_release                 ${branch_name_release}"/>
-        <echo message="branch_name                         ${branch_name}"/>
-        <echo message="build_number                        ${build_number}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
-    <target name="report:sonarqube" depends="report:sonarqube:init, report:sonarqube:before, report:sonarqube:main, report:sonarqube:after">
+    <target name="report:sonarqube" depends="report:sonarqube:before, report:sonarqube:main, report:sonarqube:after">
         <echo message="successful"/>
     </target>
 
@@ -57,32 +41,13 @@
     <target name="report:sonarqube:main" hidden="true">
         <mkdir dir="${project_dir_build_tmp}"/>
 
-        <if>
-            <not>
-                <equals arg1="${branch_name}" arg2="${branch_name_release}"/>
-            </not>
-            <then>
-                <property name="report_sonarqube_project_version" value="${report_sonarqube_project_version}-${branch_name}"/>
-                <if>
-                    <not>
-                        <equals arg1="build_number" arg2=""/>
-                    </not>
-                    <then>
-                        <property name="report_sonarqube_project_version" value="${report_sonarqube_project_version}-${build_number}"/>
-                    </then>
-                </if>
-            </then>
-        </if>
-
-        <echo message="${report_sonarqube_project_version}"/>
-
         <exec executable="${report_sonarqube_executable}" passthru="true" checkreturn="true" level="info" dir="${project_root}">
             <arg line="--define sonar.userHome=${project_dir_build_tmp}"/>
             <arg line="--define sonar.host.url=${report_sonarqube_host_url}"/>
             <arg line="--define sonar.login=${report_sonarqube_login}"/>
             <arg line="--define project.settings=${report_sonarqube_config}"/>
             <arg line="--define sonar.projectKey=${report_sonarqube_project_key}"/>
-            <arg line="--define sonar.project_version=${report_sonarqube_project_version}"/>
+            <arg line="--define sonar.projectVersion=${report_sonarqube_project_version}"/>
         </exec>
     </target>
 
