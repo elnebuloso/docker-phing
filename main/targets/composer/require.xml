@@ -25,7 +25,7 @@
     </target>
 
 
-    <target name="composer:require" depends="composer:require:init, composer:require:before, composer:require:main, composer:run, composer:require:after">
+    <target name="composer:require" depends="composer:require:init, composer:require:before, composer:require:main, composer:require:after">
         <echo message="successful"/>
     </target>
 
@@ -50,6 +50,7 @@
         </if>
 
         <property name="composer_command" value="composer require ${package} ${options}" override="true"/>
+        <runtarget target="composer:run"/>
     </target>
 
 

@@ -15,7 +15,7 @@
             <then>
                 <exec command="docker build ${composer_docker_build_args} --tag ${project_name}-composer --file ${composer_docker_file} ${composer_docker_build_ctx}" passthru="${composer_docker_build_passthru}" checkreturn="true" level="info" dir="${project_root}"/>
                 <foreach list="${composer_commands_before}" param="composer_command" target="composer:run:docker:run"/>
-                <phingcall target="composer:run:docker:run"/>
+                <runtarget target="composer:run:docker:run"/>
             </then>
         </if>
     </target>
@@ -31,7 +31,7 @@
             <equals arg1="${composer_runner}" arg2="phing"/>
             <then>
                 <foreach list="${composer_commands_before}" param="composer_command" target="composer:run:phing:run"/>
-                <phingcall target="composer:run:phing:run"/>
+                <runtarget target="composer:run:phing:run"/>
             </then>
         </if>
     </target>

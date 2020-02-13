@@ -74,7 +74,7 @@
         </copy>
 
         <phing-configure-composer selector="name" value="my/${project_name}"/>
-        <phingcall target="composer:update"/>
+        <runtarget target="composer:update"/>
 
         <!-- https://flex.symfony.com -->
         <!-- https://symfony.com/doc/current/quick_tour/flex_recipes.html -->
@@ -83,10 +83,10 @@
         <if>
             <equals arg1="${type}" arg2="api"/>
             <then>
-                <phingcall target="composer:require">
+                <runtarget target="composer:require">
                     <property name="package" value="api"/>
                     <property name="options" value=""/>
-                </phingcall>
+                </runtarget>
             </then>
         </if>
 
@@ -100,10 +100,10 @@
                 <if>
                     <equals arg1="${install}" arg2="y"/>
                     <then>
-                        <phingcall target="composer:require">
+                        <runtarget target="composer:require">
                             <property name="package" value="profiler"/>
                             <property name="options" value="--dev"/>
-                        </phingcall>
+                        </runtarget>
                     </then>
                 </if>
 
@@ -111,10 +111,10 @@
                 <if>
                     <equals arg1="${install}" arg2="y"/>
                     <then>
-                        <phingcall target="composer:require">
+                        <runtarget target="composer:require">
                             <property name="package" value="annotations"/>
                             <property name="options" value=""/>
-                        </phingcall>
+                        </runtarget>
                     </then>
                 </if>
 
@@ -122,10 +122,10 @@
                 <if>
                     <equals arg1="${install}" arg2="y"/>
                     <then>
-                        <phingcall target="composer:require">
+                        <runtarget target="composer:require">
                             <property name="package" value="twig"/>
                             <property name="options" value=""/>
-                        </phingcall>
+                        </runtarget>
                     </then>
                 </if>
 
@@ -133,10 +133,10 @@
                 <if>
                     <equals arg1="${install}" arg2="y"/>
                     <then>
-                        <phingcall target="composer:require">
+                        <runtarget target="composer:require">
                             <property name="package" value="webpack-encore"/>
                             <property name="options" value=""/>
-                        </phingcall>
+                        </runtarget>
                     </then>
                 </if>
 
@@ -144,10 +144,10 @@
                 <if>
                     <equals arg1="${install}" arg2="y"/>
                     <then>
-                        <phingcall target="composer:require">
+                        <runtarget target="composer:require">
                             <property name="package" value="maker-bundle"/>
                             <property name="options" value="--dev"/>
-                        </phingcall>
+                        </runtarget>
                     </then>
                 </if>
             </then>

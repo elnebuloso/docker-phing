@@ -50,7 +50,7 @@
         </copy>
 
         <phing-configure-composer selector="name" value="my/${project_name}"/>
-        <phingcall target="composer:update"/>
+        <runtarget target="composer:update"/>
     </target>
 
 
