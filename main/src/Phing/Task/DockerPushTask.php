@@ -2,8 +2,17 @@
 
 namespace elnebuloso\Phing\Task;
 
-use ExecTask;
-
-class DockerPushTask extends ExecTask
+/**
+ * Class DockerPushTask
+ */
+class DockerPushTask extends AbstractDockerTask
 {
+    public function main(): void
+    {
+        $this->prepare();
+
+        var_dump(__METHOD__);
+
+        $this->cleanup();
+    }
 }

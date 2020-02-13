@@ -7,9 +7,9 @@ use elnebuloso\Phing\PhingConfig;
 use IOException;
 
 /**
- * Class PropertiesListTask
+ * Class PropertiesGroupListTask
  */
-class PropertiesListTask extends AbstractTask
+class PropertiesGroupListTask extends AbstractTask
 {
     /**
      * @var string

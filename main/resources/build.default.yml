@@ -94,15 +94,15 @@ phing:
     #
     # docker
     #
-    docker_compose_up_options: "--build --remove-orphans -d"
-    docker_compose_down_options: "--remove-orphans"
-    docker_compose_pull_options: ""
     docker_registry: ""
     docker_registry_namespace: ""
     docker_build_file: "Dockerfile"
     docker_build_args: "--rm --pull --target prod"
     docker_build_ctx: "."
     docker_build_tag: "${project_name}///${ci_git_sha1}"
+    docker_compose_up_options: "--build --remove-orphans -d"
+    docker_compose_down_options: "--remove-orphans"
+    docker_compose_pull_options: ""
 
   #
   # branch properties
@@ -112,4 +112,6 @@ phing:
       regex: "^master"
       properties:
         report_sonarqube_project_version: "${ci_git_commit_time}"
-        docker_push_versions: []
+        docker_tag_versions:
+          - "latest"
+          - "${ci_git_commit_time}"

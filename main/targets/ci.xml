@@ -16,17 +16,17 @@
 
 
     <target name="ci:help:git">
-        <phing-properties-list group="ci/git"/>
+        <phing-properties-group-list group="ci/git"/>
     </target>
 
 
     <target name="ci:help:gitversion">
-        <phing-properties-list group="ci/gitversion"/>
+        <phing-properties-group-list group="ci/gitversion"/>
     </target>
 
 
     <target name="ci:help:fileversion">
-        <phing-properties-list group="ci/fileversion"/>
+        <phing-properties-group-list group="ci/fileversion"/>
     </target>
 
 
