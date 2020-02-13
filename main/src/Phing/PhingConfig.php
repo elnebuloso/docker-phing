@@ -78,7 +78,7 @@ final class PhingConfig
      * @param string $key
      * @return string
      */
-    public function getPropertyByGroup(string $group, string $key): string
+    public function getPropertyByGroup(string $group, string $key): ?string
     {
         return $this->propertiesByGroup[$group][$this->getPropertyKeyByGroup($group, $key)];
     }
