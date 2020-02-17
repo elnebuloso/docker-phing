@@ -74,7 +74,7 @@
         </copy>
 
         <phing-configure-composer selector="name" value="my/${project_name}"/>
-        <runtarget target="composer:update"/>
+        <phingcall target="composer:update"/>
 
         <!-- https://flex.symfony.com -->
         <!-- https://symfony.com/doc/current/quick_tour/flex_recipes.html -->
@@ -83,10 +83,9 @@
         <if>
             <equals arg1="${type}" arg2="api"/>
             <then>
-                <runtarget target="composer:require">
-                    <property name="package" value="api"/>
-                    <property name="options" value=""/>
-                </runtarget>
+                <property name="package" value="api" override="true"/>
+                <property name="options" value="" override="true"/>
+                <phingcall target="composer:require"/>
             </then>
         </if>
 
@@ -100,10 +99,9 @@
                 <if>
                     <equals arg1="${install}" arg2="y"/>
                     <then>
-                        <runtarget target="composer:require">
-                            <property name="package" value="profiler"/>
-                            <property name="options" value="--dev"/>
-                        </runtarget>
+                        <property name="package" value="profiler" override="true"/>
+                        <property name="options" value="--dev" override="true"/>
+                        <phingcall target="composer:require"/>
                     </then>
                 </if>
 
@@ -111,10 +109,9 @@
                 <if>
                     <equals arg1="${install}" arg2="y"/>
                     <then>
-                        <runtarget target="composer:require">
-                            <property name="package" value="annotations"/>
-                            <property name="options" value=""/>
-                        </runtarget>
+                        <property name="package" value="annotations" override="true"/>
+                        <property name="options" value="" override="true"/>
+                        <phingcall target="composer:require"/>
                     </then>
                 </if>
 
@@ -122,10 +119,9 @@
                 <if>
                     <equals arg1="${install}" arg2="y"/>
                     <then>
-                        <runtarget target="composer:require">
-                            <property name="package" value="twig"/>
-                            <property name="options" value=""/>
-                        </runtarget>
+                        <property name="package" value="twig" override="true"/>
+                        <property name="options" value="" override="true"/>
+                        <phingcall target="composer:require"/>
                     </then>
                 </if>
 
@@ -133,10 +129,9 @@
                 <if>
                     <equals arg1="${install}" arg2="y"/>
                     <then>
-                        <runtarget target="composer:require">
-                            <property name="package" value="webpack-encore"/>
-                            <property name="options" value=""/>
-                        </runtarget>
+                        <property name="package" value="webpack-encore" override="true"/>
+                        <property name="options" value="" override="true"/>
+                        <phingcall target="composer:require"/>
                     </then>
                 </if>
 
@@ -144,10 +139,9 @@
                 <if>
                     <equals arg1="${install}" arg2="y"/>
                     <then>
-                        <runtarget target="composer:require">
-                            <property name="package" value="maker-bundle"/>
-                            <property name="options" value="--dev"/>
-                        </runtarget>
+                        <property name="package" value="maker-bundle" override="true"/>
+                        <property name="options" value="--dev" override="true"/>
+                        <phingcall target="composer:require"/>
                     </then>
                 </if>
             </then>
