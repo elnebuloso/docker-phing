@@ -35,7 +35,7 @@
 
     <target name="composer:update:main" hidden="true">
         <property name="composer_command" value="composer update --no-suggest --no-ansi --no-interaction ${composer_update_options}" override="true"/>
-        <runtarget target="composer:run"/>
+        <phingcall target="composer:run"/>
     </target>
 
 

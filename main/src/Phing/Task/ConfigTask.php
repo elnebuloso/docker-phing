@@ -121,23 +121,20 @@ class ConfigTask extends AbstractTask
 
         PhingConfig::getInstance()->addProperties($properties['phing']['properties']);
 
-        $this->loadBranchProperties($properties);
         $this->populateProperties();
+        $this->mergePropertiesByBranchName($properties);
         $this->logPropertiesLoaded($config);
     }
 
     /**
      * @param array $properties
      */
-    private function loadBranchProperties(array $properties): void
+    private function mergePropertiesByBranchName(array $properties): void
     {
-        if (!isset($properties['phing']['branches'])) {
-            return;
-        }
-
         $branchName = PhingConfig::getInstance()->getPropertyByGroup(self::PROPERTY_GROUP_CI_GIT, 'branch_name');
+        $branchName = $branchName === null ? 'master' : $branchName;
 
-        foreach ($properties['phing']['branches'] as $key => $branch) {
+        foreach ((array) $properties['phing']['branches'] as $key => $branch) {
             if (!isset($branch['regex'])) {
                 continue;
             }
@@ -151,6 +148,22 @@ class ConfigTask extends AbstractTask
             }
 
             PhingConfig::getInstance()->addProperties($branch['properties']);
+
+            if (!isset($branch['docker_tags'])) {
+                continue;
+            }
+
+            foreach ((array) $branch['docker_tags'] as $tagName => $tag) {
+                $dockerRegistry = trim($this->project->getProperty('docker_registry'), '/');
+                $dockerRegistryNamespace = trim($this->project->getProperty('docker_registry_namespace'), '/');
+                $name = $this->project->getProperty('project_name');
+                $base = implode('/', array_filter([$dockerRegistry, $dockerRegistryNamespace, $name]));
+
+                var_dump($name);
+                PhingConfig::getInstance()->addPropertyByGroup(self::PROPERTY_GROUP_DOCKER_TAG, $tagName, $base . ':' . $tag);
+            }
+
+            $this->populatePropertiesByGroup(self::PROPERTY_GROUP_DOCKER_TAG);
         }
     }
 

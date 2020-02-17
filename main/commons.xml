@@ -32,7 +32,6 @@
 
 
     <import file="${phing_commons_root}/targets/bundle.xml"/>
-    <import file="${phing_commons_root}/targets/ci.xml"/>
     <import file="${phing_commons_root}/targets/clean.xml"/>
     <import file="${phing_commons_root}/targets/compass.xml"/>
     <import file="${phing_commons_root}/targets/composer.xml"/>
@@ -40,6 +39,7 @@
     <import file="${phing_commons_root}/targets/init.xml"/>
     <import file="${phing_commons_root}/targets/npm.xml"/>
     <import file="${phing_commons_root}/targets/project.xml"/>
+    <import file="${phing_commons_root}/targets/properties.xml"/>
     <import file="${phing_commons_root}/targets/report.xml"/>
     <import file="${phing_commons_root}/targets/test.xml"/>
 

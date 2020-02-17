@@ -19,7 +19,7 @@ phing:
     composer_docker_file: "${project_root}/Dockerfile"
     composer_docker_build_ctx: "."
     composer_docker_build_args: "--rm --pull --target dev-composer"
-    composer_docker_build_passthru: "true"
+    composer_docker_build_passthru: "false"
     composer_docker_run_args: "--rm"
     composer_install_production_options: ""
     composer_install_options: ""
@@ -99,7 +99,7 @@ phing:
     docker_build_file: "Dockerfile"
     docker_build_args: "--rm --pull --target prod"
     docker_build_ctx: "."
-    docker_build_tag: "${project_name}///${ci_git_sha1}"
+    docker_build_tag: "${project_name}-${ci_git_sha1}"
     docker_compose_up_options: "--build --remove-orphans -d"
     docker_compose_down_options: "--remove-orphans"
     docker_compose_pull_options: ""
@@ -112,6 +112,5 @@ phing:
       regex: "^master"
       properties:
         report_sonarqube_project_version: "${ci_git_commit_time}"
-        docker_tag_versions:
-          - "latest"
-          - "${ci_git_commit_time}"
+      docker_tags:
+        commit-time: "${ci_git_commit_time}"

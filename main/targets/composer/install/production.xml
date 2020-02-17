@@ -35,7 +35,7 @@
 
     <target name="composer:install:production:main" hidden="true">
         <property name="composer_command" value="composer install --no-suggest --no-ansi --no-interaction --no-dev --optimize-autoloader ${composer_install_production_options}" override="true"/>
-        <runtarget target="composer:run"/>
+        <phingcall target="composer:run"/>
     </target>
 
 

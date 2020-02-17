@@ -4,29 +4,34 @@
 <project>
 
 
-    <target name="ci:help">
+    <target name="properties:help">
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="target                description"/>
+        <echo message="target                    description"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="ci:help:git            properties populated via git"/>
-        <echo message="ci:help:gitversion     properties populated via gitversion"/>
-        <echo message="ci:help:fileversion    properties populated via fileversion"/>
+        <echo message="properties:ci:git            properties populated via git"/>
+        <echo message="properties:ci:gitversion     properties populated via gitversion"/>
+        <echo message="properties:ci:fileversion    properties populated via fileversion"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
-    <target name="ci:help:git">
+    <target name="properties:ci:git">
         <phing-properties-group-list group="ci/git"/>
     </target>
 
 
-    <target name="ci:help:gitversion">
+    <target name="properties:ci:gitversion">
         <phing-properties-group-list group="ci/gitversion"/>
     </target>
 
 
-    <target name="ci:help:fileversion">
+    <target name="properties:ci:fileversion">
         <phing-properties-group-list group="ci/fileversion"/>
+    </target>
+
+
+    <target name="properties:docker:tag">
+        <phing-properties-group-list group="docker/tag"/>
     </target>
 
 

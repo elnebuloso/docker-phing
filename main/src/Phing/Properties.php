@@ -22,4 +22,6 @@ interface Properties
     const PROPERTY_GROUP_CI_GITVERSION = 'ci/gitversion';
 
     const PROPERTY_GROUP_CI_FILEVERSION = 'ci/fileversion';
+
+    const PROPERTY_GROUP_DOCKER_TAG = 'docker/tag';
 }

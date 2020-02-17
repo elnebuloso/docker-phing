@@ -100,7 +100,9 @@ final class PhingConfig
      */
     public function getPropertiesByGroup($group): array
     {
-        ksort($this->propertiesByGroup[$group], SORT_NATURAL);
+        if (isset($this->propertiesByGroup[$group])) {
+            ksort($this->propertiesByGroup[$group], SORT_NATURAL);
+        }
 
         return isset($this->propertiesByGroup[$group]) ? $this->propertiesByGroup[$group] : [];
     }
@@ -112,7 +114,7 @@ final class PhingConfig
      */
     private function getPropertyKeyByGroup($group, $key): string
     {
-        return str_replace('/', '_', $group) . '_' . PhingService::camelCaseToUnderscore($key);
+        return str_replace('/', '_', $group) . '_' . PhingService::camelCaseToUnderscore(str_replace('-', '_', $key));
     }
 
     /**
