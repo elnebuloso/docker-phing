@@ -16,22 +16,22 @@
 
 
     <target name="properties:ci:git">
-        <phing-properties-group-list group="ci/git"/>
+        <phing-properties-list prefix="ci_git"/>
     </target>
 
 
     <target name="properties:ci:gitversion">
-        <phing-properties-group-list group="ci/gitversion"/>
+        <phing-properties-list prefix="ci_gitversion"/>
     </target>
 
 
     <target name="properties:ci:fileversion">
-        <phing-properties-group-list group="ci/fileversion"/>
+        <phing-properties-list prefix="ci_fileversion"/>
     </target>
 
 
     <target name="properties:docker:tag">
-        <phing-properties-group-list group="docker/tag"/>
+        <phing-properties-list prefix="docker_tag"/>
     </target>
 
 

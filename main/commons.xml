@@ -23,10 +23,9 @@
     <taskdef classname="\elnebuloso\Phing\Task\ConfigTask" name="phing-config"/>
     <taskdef classname="\elnebuloso\Phing\Task\ConfigureComposerTask" name="phing-configure-composer"/>
     <taskdef classname="\elnebuloso\Phing\Task\DockerPushTask" name="phing-docker-push"/>
-    <taskdef classname="\elnebuloso\Phing\Task\DockerTagsListTask" name="phing-docker-tags-list"/>
     <taskdef classname="\elnebuloso\Phing\Task\PHPMetrics1DirectoriesTask" name="phing-php-metrics1-directories"/>
     <taskdef classname="\elnebuloso\Phing\Task\PHPMetrics2DirectoriesTask" name="phing-php-metrics2-directories"/>
-    <taskdef classname="\elnebuloso\Phing\Task\PropertiesGroupListTask" name="phing-properties-group-list"/>
+    <taskdef classname="\elnebuloso\Phing\Task\PropertiesListTask" name="phing-properties-list"/>
     <taskdef classname="\elnebuloso\Phing\Task\SemverTask" name="phing-semver"/>
     <taskdef classname="\elnebuloso\Phing\Task\SlugifyTask" name="phing-slugify"/>
 

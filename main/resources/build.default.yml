@@ -112,5 +112,4 @@ phing:
       regex: "^master"
       properties:
         report_sonarqube_project_version: "${ci_git_commit_time}"
-      docker_tags:
-        commit-time: "${ci_git_commit_time}"
+      docker_tags: []

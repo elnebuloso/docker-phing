@@ -2,16 +2,24 @@
 
 namespace elnebuloso\Phing\Task;
 
+use IOException;
+
 /**
  * Class DockerPushTask
  */
-class DockerPushTask extends AbstractDockerTask
+class DockerPushTask extends AbstractTask
 {
+    /**
+     * @throws IOException
+     */
     public function main(): void
     {
         $this->prepare();
 
-        var_dump(__METHOD__);
+        foreach ($this->getProperties(self::PROPERTY_GROUP_DOCKER_TAG) as $key => $value) {
+            $this->getProject()->setProperty('run:docker:push:tag', $value);
+            $this->getProject()->executeTarget('run:docker:push');
+        }
 
         $this->cleanup();
     }

@@ -3,25 +3,24 @@
 namespace elnebuloso\Phing\Task;
 
 use BuildException;
-use elnebuloso\Phing\PhingConfig;
 use IOException;
 
 /**
- * Class PropertiesGroupListTask
+ * Class PropertiesListTask
  */
-class PropertiesGroupListTask extends AbstractTask
+class PropertiesListTask extends AbstractTask
 {
     /**
      * @var string
      */
-    private string $group;
+    private string $prefix;
 
     /**
-     * @param string $group
+     * @param string $prefix
      */
-    public function setGroup(string $group): void
+    public function setPrefix(string $prefix): void
     {
-        $this->group = $group;
+        $this->prefix = $prefix;
     }
 
     /**
@@ -32,9 +31,17 @@ class PropertiesGroupListTask extends AbstractTask
     {
         $this->prepare();
 
-        foreach (PhingConfig::getInstance()->getPropertiesByGroup($this->group) as $key => $value) {
-            $key = str_pad($key, $this->getPaddingLength(PhingConfig::getInstance()->getPropertiesByGroup($this->group)), ' ', STR_PAD_RIGHT);
-            $this->log($key . $value);
+        $length = 0;
+        $properties = $this->getProperties($this->prefix);
+
+        foreach ($properties as $key => $value) {
+            if (strlen($key) > $length) {
+                $length = strlen($key) + 4;
+            }
+        }
+
+        foreach ($properties as $key => $value) {
+            $this->log(str_pad($key, $length, ' ', STR_PAD_RIGHT) . $value);
         }
 
         $this->cleanup();

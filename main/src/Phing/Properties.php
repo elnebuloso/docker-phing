@@ -15,13 +15,11 @@ interface Properties
 
     const REPORT_PHPMETRICS_DIRECTORIES = 'report_phpmetrics_directories';
 
-    const PROPERTY_GROUP_BASE = 'base';
+    const PROPERTY_GROUP_CI_GIT = 'ci_git';
 
-    const PROPERTY_GROUP_CI_GIT = 'ci/git';
+    const PROPERTY_GROUP_CI_GITVERSION = 'ci_gitversion';
 
-    const PROPERTY_GROUP_CI_GITVERSION = 'ci/gitversion';
+    const PROPERTY_GROUP_CI_FILEVERSION = 'ci_fileversion';
 
-    const PROPERTY_GROUP_CI_FILEVERSION = 'ci/fileversion';
-
-    const PROPERTY_GROUP_DOCKER_TAG = 'docker/tag';
+    const PROPERTY_GROUP_DOCKER_TAG = 'docker_tag';
 }

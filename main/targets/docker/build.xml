@@ -7,12 +7,8 @@
     <property name="docker_build_description" value="build a docker image from the projects dockerfile" override="true"/>
 
 
-    <target name="docker:build:init" hidden="true">
+    <target name="docker:build:help">
         <phing-slugify string="${docker_build_tag}" slug="docker_build_tag_slug"/>
-    </target>
-
-
-    <target name="docker:build:help" depends="docker:build:init">
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="${docker_build_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
@@ -21,13 +17,13 @@
         <echo message="docker_build_file        ${docker_build_file}"/>
         <echo message="docker_build_args        ${docker_build_args}"/>
         <echo message="docker_build_ctx         ${docker_build_ctx}"/>
-        <echo message="docker_build_tag         ${docker_build_tag}"/>
+        <echo message="docker_build_tag         ${docker_build_tag}" level="debug"/>
         <echo message="docker_build_tag_slug    ${docker_build_tag_slug}" level="debug"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
 
-    <target name="docker:build" depends="docker:build:init, docker:build:before, docker:build:main, docker:build:after">
+    <target name="docker:build" depends="docker:build:before, docker:build:main, docker:build:after">
         <echo message="successful"/>
     </target>
 
@@ -43,6 +39,7 @@
 
 
     <target name="docker:build:main" hidden="true">
+        <phing-slugify string="${docker_build_tag}" slug="docker_build_tag_slug"/>
         <exec command="docker build ${docker_build_args} --tag ${docker_build_tag_slug} --file ${docker_build_file} ${docker_build_ctx}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
     </target>
 

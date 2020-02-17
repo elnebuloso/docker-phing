@@ -3,6 +3,7 @@
 namespace elnebuloso\Phing\Task;
 
 use BuildException;
+use elnebuloso\Phing\PhingService;
 use elnebuloso\Phing\Properties;
 use IOException;
 use PhingFile;
@@ -75,5 +76,70 @@ abstract class AbstractTask extends Task implements Properties
     protected function getProjectRoot(): string
     {
         return $this->getProject()->getProperty(self::PROJECT_ROOT);
+    }
+
+    /**
+     * @param string $key
+     * @param mixed $value
+     * @param string $prefix
+     */
+    protected function setProperty(string $key, $value, string $prefix = ''): void
+    {
+        if (is_array($value)) {
+            $value = implode(',', array_filter(array_map('trim', $value)));
+        }
+
+        $this->getProject()->setProperty($this->getPropertyKey($key, $prefix), $value);
+    }
+
+    /**
+     * @param string $key
+     * @param string $prefix
+     * @return string
+     */
+    protected function getProperty(string $key, string $prefix = '')
+    {
+        return $this->getProject()->getProperty($this->getPropertyKey($key, $prefix));
+    }
+
+    /**
+     * @param string $prefix
+     * @return array
+     */
+    protected function getProperties(string $prefix = '')
+    {
+        $properties = [];
+
+        foreach ($this->getProject()->getProperties() as $key => $value) {
+            if (strpos($key, $prefix) !== false) {
+                $properties[$key] = $value;
+            }
+        }
+
+        ksort($properties, SORT_NATURAL);
+
+        return $properties;
+    }
+
+    /**
+     * @param string $key
+     * @param string $prefix
+     * @return string
+     */
+    private function getPropertyKey(string $key, string $prefix = '')
+    {
+        $key = str_replace('-', '_', $key);
+        $key = $this->camelCaseToUnderscore($key);
+
+        return $prefix !== '' ? $prefix . '_' . $key : $key;
+    }
+
+    /**
+     * @param string $input
+     * @return string
+     */
+    private function camelCaseToUnderscore(string $input): string
+    {
+        return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $input));
     }
 }

@@ -4,3 +4,18 @@ phing:
     composer_commands_before:
       - "composer config --global secure-http true"
       - "composer config --global disable-tls false"
+    docker_registry: "example.org"
+    docker_registry_namespace: "foo/bar"
+
+  #
+  # branch properties
+  #
+  branches:
+    master:
+      regex: "^master"
+      properties:
+      docker_registry: "example.com"
+      docker_registry_namespace: "foo/bar/baz"
+      docker_tags:
+        latest: "latest"
+        commit_time: "${ci_git_commit_time}"

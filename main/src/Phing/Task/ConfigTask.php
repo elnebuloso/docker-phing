@@ -2,7 +2,6 @@
 
 namespace elnebuloso\Phing\Task;
 
-use elnebuloso\Phing\PhingConfig;
 use IOException;
 use Symfony\Component\Yaml\Yaml;
 
@@ -40,21 +39,21 @@ class ConfigTask extends AbstractTask
 
         $output = null;
         exec("git rev-parse --abbrev-ref HEAD", $output);
-        PhingConfig::getInstance()->addPropertyByGroup(self::PROPERTY_GROUP_CI_GIT, 'branch_name', implode('', $output));
+        $this->setProperty('branch_name', implode('', $output), self::PROPERTY_GROUP_CI_GIT);
 
         $output = null;
         exec("git rev-parse HEAD", $output);
-        PhingConfig::getInstance()->addPropertyByGroup(self::PROPERTY_GROUP_CI_GIT, 'sha1', implode('', $output));
+        $this->setProperty('sha1', implode('', $output), self::PROPERTY_GROUP_CI_GIT);
 
         $output = null;
         exec("git rev-parse --short HEAD", $output);
-        PhingConfig::getInstance()->addPropertyByGroup(self::PROPERTY_GROUP_CI_GIT, 'sha1_short', implode('', $output));
+        $this->setProperty('sha1_short', implode('', $output), self::PROPERTY_GROUP_CI_GIT);
 
         $output = null;
-        exec("git show -s --format=%ct " . PhingConfig::getInstance()->getPropertyByGroup(self::PROPERTY_GROUP_CI_GIT, 'sha1'), $output);
-        PhingConfig::getInstance()->addPropertyByGroup(self::PROPERTY_GROUP_CI_GIT, 'commit_time', implode('', $output));
+        exec("git show -s --format=%ct " . $this->getProperty('sha1', self::PROPERTY_GROUP_CI_GIT), $output);
+        $this->setProperty('commit_time', implode('', $output), self::PROPERTY_GROUP_CI_GIT);
 
-        $this->populatePropertiesByGroup(self::PROPERTY_GROUP_CI_GIT);
+        $this->logPropertiesLoaded(self::PROPERTY_GROUP_CI_GIT);
     }
 
     /**
@@ -68,9 +67,11 @@ class ConfigTask extends AbstractTask
 
         exec("GitVersion", $output);
 
-        PhingConfig::getInstance()->addPropertiesByGroup(self::PROPERTY_GROUP_CI_GITVERSION, (array) json_decode(implode('', $output), true));
+        foreach ((array) json_decode(implode('', $output), true) as $key => $value) {
+            $this->setProperty($key, $value, self::PROPERTY_GROUP_CI_GITVERSION);
+        }
 
-        $this->populatePropertiesByGroup(self::PROPERTY_GROUP_CI_GITVERSION);
+        $this->logPropertiesLoaded(self::PROPERTY_GROUP_CI_GITVERSION);
     }
 
     /**
@@ -92,20 +93,19 @@ class ConfigTask extends AbstractTask
             return;
         }
 
-        PhingConfig::getInstance()->addPropertyByGroup(self::PROPERTY_GROUP_CI_FILEVERSION, 'major', $matches[2]);
-        PhingConfig::getInstance()->addPropertyByGroup(self::PROPERTY_GROUP_CI_FILEVERSION, 'minor', $matches[3]);
-        PhingConfig::getInstance()->addPropertyByGroup(self::PROPERTY_GROUP_CI_FILEVERSION, 'patch', $matches[4]);
-        PhingConfig::getInstance()->addPropertyByGroup(self::PROPERTY_GROUP_CI_FILEVERSION, 'semver', $matches[1]);
-        PhingConfig::getInstance()->addPropertyByGroup(self::PROPERTY_GROUP_CI_FILEVERSION, 'semver_major', $matches[2]);
-        PhingConfig::getInstance()->addPropertyByGroup(self::PROPERTY_GROUP_CI_FILEVERSION, 'semver_minor', $matches[2] . '.' . $matches[3]);
-        PhingConfig::getInstance()->addPropertyByGroup(self::PROPERTY_GROUP_CI_FILEVERSION, 'semver_patch', $matches[2] . '.' . $matches[3] . '.' . $matches[4]);
+        $this->setProperty('major', $matches[2], self::PROPERTY_GROUP_CI_FILEVERSION);
+        $this->setProperty('minor', $matches[3], self::PROPERTY_GROUP_CI_FILEVERSION);
+        $this->setProperty('patch', $matches[4], self::PROPERTY_GROUP_CI_FILEVERSION);
+        $this->setProperty('semver', $matches[1], self::PROPERTY_GROUP_CI_FILEVERSION);
+        $this->setProperty('semver_major', $matches[2], self::PROPERTY_GROUP_CI_FILEVERSION);
+        $this->setProperty('semver_minor', $matches[2] . '.' . $matches[3], self::PROPERTY_GROUP_CI_FILEVERSION);
+        $this->setProperty('semver_patch', $matches[2] . '.' . $matches[3] . '.' . $matches[4], self::PROPERTY_GROUP_CI_FILEVERSION);
 
-        $this->populatePropertiesByGroup(self::PROPERTY_GROUP_CI_FILEVERSION);
+        $this->logPropertiesLoaded(self::PROPERTY_GROUP_CI_FILEVERSION);
     }
 
     /**
      * @param string $config
-     * @return void
      */
     private function loadConfigFile(string $config): void
     {
@@ -115,26 +115,36 @@ class ConfigTask extends AbstractTask
 
         $properties = (array) Yaml::parseFile($config);
 
-        if (!isset($properties['phing']['properties'])) {
-            return;
+        if (isset($properties['phing']['properties']) && is_array($properties['phing']['properties'])) {
+            $this->loadConfigFileProperties($properties['phing']['properties']);
         }
 
-        PhingConfig::getInstance()->addProperties($properties['phing']['properties']);
+        if (isset($properties['phing']['branches']) && is_array($properties['phing']['branches'])) {
+            $this->loadConfigFilePropertiesByBranches($properties['phing']['branches']);
+        }
 
-        $this->populateProperties();
-        $this->mergePropertiesByBranchName($properties);
         $this->logPropertiesLoaded($config);
     }
 
     /**
      * @param array $properties
      */
-    private function mergePropertiesByBranchName(array $properties): void
+    private function loadConfigFileProperties(array $properties): void
     {
-        $branchName = PhingConfig::getInstance()->getPropertyByGroup(self::PROPERTY_GROUP_CI_GIT, 'branch_name');
+        foreach ($properties as $key => $value) {
+            $this->setProperty($key, $value);
+        }
+    }
+
+    /**
+     * @param array $branches
+     */
+    private function loadConfigFilePropertiesByBranches(array $branches): void
+    {
+        $branchName = $this->getProperty('branch_name', self::PROPERTY_GROUP_CI_GIT);
         $branchName = $branchName === null ? 'master' : $branchName;
 
-        foreach ((array) $properties['phing']['branches'] as $key => $branch) {
+        foreach ($branches as $name => $branch) {
             if (!isset($branch['regex'])) {
                 continue;
             }
@@ -143,50 +153,29 @@ class ConfigTask extends AbstractTask
                 continue;
             }
 
-            if (!isset($branch['properties'])) {
-                continue;
+            if (isset($branch['properties']) && is_array($branch['properties'])) {
+                $this->loadConfigFileProperties($branch['properties']);
             }
 
-            PhingConfig::getInstance()->addProperties($branch['properties']);
-
-            if (!isset($branch['docker_tags'])) {
-                continue;
+            if (isset($branch['docker_tags']) && is_array($branch['docker_tags'])) {
+                $this->loadConfigFileDockerTags($branch['docker_tags']);
             }
-
-            foreach ((array) $branch['docker_tags'] as $tagName => $tag) {
-                $dockerRegistry = trim($this->project->getProperty('docker_registry'), '/');
-                $dockerRegistryNamespace = trim($this->project->getProperty('docker_registry_namespace'), '/');
-                $name = $this->project->getProperty('project_name');
-                $base = implode('/', array_filter([$dockerRegistry, $dockerRegistryNamespace, $name]));
-
-                var_dump($name);
-                PhingConfig::getInstance()->addPropertyByGroup(self::PROPERTY_GROUP_DOCKER_TAG, $tagName, $base . ':' . $tag);
-            }
-
-            $this->populatePropertiesByGroup(self::PROPERTY_GROUP_DOCKER_TAG);
         }
     }
 
     /**
-     * @return void
+     * @param array $tags
      */
-    private function populateProperties(): void
+    private function loadConfigFileDockerTags(array $tags): void
     {
-        foreach (PhingConfig::getInstance()->getProperties() as $key => $value) {
-            $this->getProject()->setProperty($key, $value);
-        }
-    }
+        foreach ($tags as $key => $tag) {
+            $dockerRegistry = trim($this->project->getProperty('docker_registry'), '/');
+            $dockerRegistryNamespace = trim($this->project->getProperty('docker_registry_namespace'), '/');
+            $name = $this->project->getProperty('project_name');
+            $base = implode('/', array_filter([$dockerRegistry, $dockerRegistryNamespace, $name]));
 
-    /**
-     * @param string $group
-     */
-    private function populatePropertiesByGroup(string $group): void
-    {
-        foreach (PhingConfig::getInstance()->getPropertiesByGroup($group) as $key => $value) {
-            $this->getProject()->setProperty($key, $value);
+            $this->setProperty($key, $base . ':' . $tag, self::PROPERTY_GROUP_DOCKER_TAG);
         }
-
-        $this->logPropertiesLoaded($group);
     }
 
     /**
