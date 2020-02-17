@@ -73,12 +73,19 @@
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="phing commons version: ${phing_commons_version}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="targets          description"/>
+        <echo message="targets            description"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
-        <echo message="bundle:help      show available bundling targets"/>
-        <echo message="clean:help       show available cleaning targets"/>
-        <echo message="compass:help     show available compass / scss targets"/>
-        <echo message="composer:help    show available composer targets"/>
+        <echo message="bundle:help        show available bundling targets"/>
+        <echo message="clean:help         show available cleaning targets"/>
+        <echo message="compass:help       show available compass / scss targets"/>
+        <echo message="composer:help      show available composer targets"/>
+        <echo message="docker:help        show available docker targets"/>
+        <echo message="init:help          show available init targets"/>
+        <echo message="npm:help           show available npm targets"/>
+        <echo message="project:help       show available project targets"/>
+        <echo message="properties:help    show available properties targets"/>
+        <echo message="report:help        show available report targets"/>
+        <echo message="test:help          show available test targets"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 
