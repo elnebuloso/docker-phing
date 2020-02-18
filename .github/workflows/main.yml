@@ -1,0 +1,11 @@
+name: Main workflow
+
+on: [push]
+
+jobs:
+  main:
+    name: Main
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
