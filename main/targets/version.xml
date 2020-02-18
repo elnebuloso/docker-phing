@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project>
+
+
+    <import file="${phing_commons_root}/targets/version/file/update.xml"/>
+    <import file="${phing_commons_root}/targets/version/file/commit.xml"/>
+    <import file="${phing_commons_root}/targets/version/file/tag.xml"/>
+
+
+    <target name="version:help">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="target                 description"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="version:file:update    ${version_file_update_description}"/>
+        <echo message="version:file:commit    ${version_file_commit_description}"/>
+        <echo message="version:file:tag       ${version_file_tag_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+    </target>
+
+
+</project>

@@ -20,12 +20,15 @@
 
 
     <autoloader autoloaderpath="${phing_commons_root}/vendor/autoload.php"/>
-    <taskdef classname="\elnebuloso\Phing\Task\ConfigTask" name="phing-config"/>
     <taskdef classname="\elnebuloso\Phing\Task\ConfigureComposerTask" name="phing-configure-composer"/>
     <taskdef classname="\elnebuloso\Phing\Task\DockerPushTask" name="phing-docker-push"/>
     <taskdef classname="\elnebuloso\Phing\Task\PHPMetrics1DirectoriesTask" name="phing-php-metrics1-directories"/>
     <taskdef classname="\elnebuloso\Phing\Task\PHPMetrics2DirectoriesTask" name="phing-php-metrics2-directories"/>
     <taskdef classname="\elnebuloso\Phing\Task\PropertiesListTask" name="phing-properties-list"/>
+    <taskdef classname="\elnebuloso\Phing\Task\PropertiesLoaderGitTask" name="phing-properties-loader-git"/>
+    <taskdef classname="\elnebuloso\Phing\Task\PropertiesLoaderGitversionTask" name="phing-properties-loader-gitversion"/>
+    <taskdef classname="\elnebuloso\Phing\Task\PropertiesLoaderFileversionTask" name="phing-properties-loader-fileversion"/>
+    <taskdef classname="\elnebuloso\Phing\Task\PropertiesLoaderConfigFileTask" name="phing-properties-loader-config-file"/>
     <taskdef classname="\elnebuloso\Phing\Task\SemverTask" name="phing-semver"/>
     <taskdef classname="\elnebuloso\Phing\Task\SlugifyTask" name="phing-slugify"/>
 
@@ -41,9 +44,13 @@
     <import file="${phing_commons_root}/targets/properties.xml"/>
     <import file="${phing_commons_root}/targets/report.xml"/>
     <import file="${phing_commons_root}/targets/test.xml"/>
+    <import file="${phing_commons_root}/targets/version.xml"/>
 
 
-    <phing-config/>
+    <phing-properties-loader-git/>
+    <phing-properties-loader-gitversion/>
+    <phing-properties-loader-fileversion/>
+    <phing-properties-loader-config-file/>
 
 
     <property name="project_dir_main" value="${project_root}/${project_folder_main}"/>
@@ -86,6 +93,7 @@
         <echo message="properties:help    show available properties targets"/>
         <echo message="report:help        show available report targets"/>
         <echo message="test:help          show available test targets"/>
+        <echo message="version:help       show available version targets"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 

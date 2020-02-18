@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="version:file:update">
+
+
+    <property name="version_file_update_description" value="update the project version in major/minor/patch level" override="true"/>
+
+
+    <target name="version:file:update:init" hidden="true">
+        <property name="release" value="Bugfix"/>
+    </target>
+
+
+    <target name="version:file:update:help">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="${version_file_update_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="property   value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="release    ${release} [Major|Minor|Bugfix]"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+    </target>
+
+
+    <target name="version:file:update" depends="version:file:update:init, version:file:update:before, version:file:update:main, version:file:update:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="version:file:update:before" hidden="true">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="version:file:update:after" hidden="true">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="version:file:update:main" hidden="true">
+        <version releasetype="${release}" file="${project_root}/VERSION" property="ci_fileversion_semver"/>
+        <phing-properties-loader-fileversion/>
+        <phing-properties-list prefix="ci_fileversion"/>
+    </target>
+
+
+</project>

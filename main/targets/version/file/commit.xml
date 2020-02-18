@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="version:file:commit">
+
+
+    <property name="version_file_commit_description" value="commit the project version back to the repository" override="true"/>
+
+
+    <target name="version:file:commit:init" hidden="true">
+        <property name="version_file_commit_message" value="phing version file commit"/>
+    </target>
+
+
+    <target name="version:file:commit:help" depends="version:file:commit:init">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="${version_file_commit_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="property                       value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="version_file_commit_message    ${version_file_commit_message}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+    </target>
+
+
+    <target name="version:file:commit" depends="version:file:commit:init, version:file:commit:before, version:file:commit:main, version:file:commit:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="version:file:commit:before" hidden="true">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="version:file:commit:after" hidden="true">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="version:file:commit:main" hidden="true">
+        <exec command="git pull origin ${ci_git_branch_name}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+        <exec command="git add VERSION" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+        <exec command="git commit -m &quot;${version_file_commit_message} ${ci_fileversion_semver}&quot;" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+        <exec command="git push --push-option=ci.skip origin HEAD:${ci_git_branch_name}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+    </target>
+
+
+</project>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="version:file:tag">
+
+
+    <property name="version_file_tag_description" value="commit the project version back to the repository" override="true"/>
+
+
+    <target name="version:file:tag:init" hidden="true">
+        <property name="version_file_tag_message" value="phing version file tagging"/>
+    </target>
+
+
+    <target name="version:file:tag:help" depends="version:file:tag:init">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="${version_file_tag_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="property                    value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="version_file_tag_message    ${version_file_tag_message}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+    </target>
+
+
+    <target name="version:file:tag" depends="version:file:tag:init, version:file:tag:before, version:file:tag:main, version:file:tag:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="version:file:tag:before" hidden="true">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="version:file:tag:after" hidden="true">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="version:file:tag:main" hidden="true">
+        <exec command="git tag -f -a ${ci_fileversion_semver} -m &quot;${version_file_tag_message}&quot;" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+        <exec command="git push origin ${ci_fileversion_semver} --force" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+    </target>
+
+
+</project>
