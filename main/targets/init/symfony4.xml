@@ -37,6 +37,15 @@
             </condition>
         </fail>
 
+        <copy todir="${project_root}" overwrite="true">
+            <fileset dir="${phing_commons_root}/resources/init/symfony4/0">
+                <include name="**"/>
+            </fileset>
+            <filterchain>
+                <expandproperties/>
+            </filterchain>
+        </copy>
+
         <input propertyname="type" defaultValue="">type (min|api|max)</input>
 
         <!-- https://symfony.com/doc/current/setup.html -->
@@ -49,7 +58,7 @@
                 <equals arg1="${type}" arg2="api"/>
             </or>
             <then>
-                <exec command="composer create-project --prefer-dist --remove-vcs symfony/skeleton:^4 ${project_dir_main}" passthru="true" checkreturn="true" level="info"/>
+                <phing-composer-run command="composer create-project --prefer-dist --remove-vcs symfony/skeleton:^4 ${project_dir_main}" directory="${project_root}"/>
             </then>
         </if>
 
@@ -58,23 +67,13 @@
         <if>
             <equals arg1="${type}" arg2="max"/>
             <then>
-                <exec command="composer create-project --prefer-dist --remove-vcs symfony/website-skeleton:^4 ${project_dir_main}" passthru="true" checkreturn="true" level="info"/>
+                <phing-composer-run command="composer create-project --prefer-dist --remove-vcs symfony/website-skeleton:^4 ${project_dir_main}" directory="${project_root}"/>
             </then>
         </if>
 
         <delete dir="${project_dir_main}/.git" quiet="true"/>
 
-        <copy todir="${project_root}" overwrite="true">
-            <fileset dir="${phing_commons_root}/resources/init/symfony4/0">
-                <include name="**"/>
-            </fileset>
-            <filterchain>
-                <expandproperties/>
-            </filterchain>
-        </copy>
-
         <phing-configure-composer selector="name" value="my/${project_name}"/>
-        <phingcall target="composer:update"/>
 
         <!-- https://flex.symfony.com -->
         <!-- https://symfony.com/doc/current/quick_tour/flex_recipes.html -->
@@ -83,10 +82,7 @@
         <if>
             <equals arg1="${type}" arg2="api"/>
             <then>
-                <phingcall target="composer:require">
-                    <property name="package" value="api" override="true"/>
-                    <property name="options" value="" override="true"/>
-                </phingcall>
+                <phing-composer-run command="composer require api"/>
             </then>
         </if>
 
@@ -100,10 +96,7 @@
                 <if>
                     <equals arg1="${install}" arg2="y"/>
                     <then>
-                        <phingcall target="composer:require">
-                            <property name="package" value="profiler" override="true"/>
-                            <property name="options" value="--dev" override="true"/>
-                        </phingcall>
+                        <phing-composer-run command="composer require profiler --dev"/>
                     </then>
                 </if>
 
@@ -111,10 +104,7 @@
                 <if>
                     <equals arg1="${install}" arg2="y"/>
                     <then>
-                        <phingcall target="composer:require">
-                            <property name="package" value="annotations" override="true"/>
-                            <property name="options" value="" override="true"/>
-                        </phingcall>
+                        <phing-composer-run command="composer require annotations"/>
                     </then>
                 </if>
 
@@ -122,10 +112,7 @@
                 <if>
                     <equals arg1="${install}" arg2="y"/>
                     <then>
-                        <phingcall target="composer:require">
-                            <property name="package" value="twig" override="true"/>
-                            <property name="options" value="" override="true"/>
-                        </phingcall>
+                        <phing-composer-run command="composer require twig"/>
                     </then>
                 </if>
 
@@ -133,10 +120,7 @@
                 <if>
                     <equals arg1="${install}" arg2="y"/>
                     <then>
-                        <phingcall target="composer:require">
-                            <property name="package" value="webpack-encore" override="true"/>
-                            <property name="options" value="" override="true"/>
-                        </phingcall>
+                        <phing-composer-run command="composer require webpack-encore"/>
                     </then>
                 </if>
 
@@ -144,10 +128,7 @@
                 <if>
                     <equals arg1="${install}" arg2="y"/>
                     <then>
-                        <phingcall target="composer:require">
-                            <property name="package" value="maker-bundle" override="true"/>
-                            <property name="options" value="--dev" override="true"/>
-                        </phingcall>
+                        <phing-composer-run command="composer require maker-bundle --dev"/>
                     </then>
                 </if>
             </then>

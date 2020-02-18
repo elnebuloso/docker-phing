@@ -54,25 +54,25 @@
 
 
     <target name="start">
-        <runtarget target="clean:dist"/>
-        <runtarget target="docker:compose:up"/>
-        <runtarget target="docker:compose:ps"/>
+        <phingcall target="clean:dist"/>
+        <phingcall target="docker:compose:up"/>
+        <phingcall target="docker:compose:ps"/>
     </target>
 
 
     <target name="stop">
-        <runtarget target="docker:compose:down"/>
+        <phingcall target="docker:compose:down"/>
     </target>
 
 
     <target name="reports">
-        <runtarget target="clean:reports"/>
-        <runtarget target="test:phplint"/>
-        <runtarget target="report:phpcpd"/>
-        <runtarget target="report:phpdepend"/>
-        <runtarget target="report:phploc"/>
-        <runtarget target="report:phpmd"/>
-        <runtarget target="report:phpmetrics"/>
+        <phingcall target="clean:reports"/>
+        <phingcall target="test:phplint"/>
+        <phingcall target="report:phpcpd"/>
+        <phingcall target="report:phpdepend"/>
+        <phingcall target="report:phploc"/>
+        <phingcall target="report:phpmd"/>
+        <phingcall target="report:phpmetrics"/>
     </target>
 
 

@@ -37,9 +37,6 @@
             </condition>
         </fail>
 
-        <exec command="composer create-project --prefer-dist --no-interaction --remove-vcs --ignore-platform-reqs bolt/composer-install:^3 ${project_dir_main}" passthru="true" checkreturn="true" level="info"/>
-        <delete dir="${project_dir_main}/.git" quiet="true"/>
-
         <copy todir="${project_root}" overwrite="true">
             <fileset dir="${phing_commons_root}/resources/init/bolt3/0">
                 <include name="**"/>
@@ -49,8 +46,10 @@
             </filterchain>
         </copy>
 
+        <phing-composer-run command="composer create-project --prefer-dist --no-interaction --remove-vcs --ignore-platform-reqs bolt/composer-install:^3 ${project_dir_main}" directory="${project_root}"/>
+        <delete dir="${project_dir_main}/.git" quiet="true"/>
+
         <phing-configure-composer selector="name" value="my/${project_name}"/>
-        <phingcall target="composer:update"/>
     </target>
 
 

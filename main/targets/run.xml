@@ -17,12 +17,12 @@
 
 
     <target name="run:composer:docker" hidden="true">
-        <exec command="docker-run-composer ${composer_docker_run_args} ${project_name}-composer ${run_composer_command}" passthru="true" checkreturn="true" level="info" dir="${project_dir_main_composer}"/>
+        <exec command="docker-run-composer ${composer_docker_run_args} ${project_name}-composer ${run_composer_command}" passthru="true" checkreturn="true" level="info" dir="${run_composer_directory}"/>
     </target>
 
 
     <target name="run:composer:phing" hidden="true">
-        <exec command="${run_composer_command}" passthru="true" checkreturn="true" level="info" dir="${project_dir_main_composer}"/>
+        <exec command="${run_composer_command}" passthru="true" checkreturn="true" level="info" dir="${run_composer_directory}"/>
     </target>
 
 
