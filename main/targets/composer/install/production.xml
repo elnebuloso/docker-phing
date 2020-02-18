@@ -34,8 +34,7 @@
 
 
     <target name="composer:install:production:main" hidden="true">
-        <property name="composer_command" value="composer install --no-suggest --no-ansi --no-interaction --no-dev --optimize-autoloader ${composer_install_production_options}" override="true"/>
-        <phingcall target="composer:run"/>
+        <phing-composer-run command="composer install --no-suggest --no-ansi --no-interaction --no-dev --optimize-autoloader ${composer_install_production_options}"/>
     </target>
 
 

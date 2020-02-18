@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project>
+
+
+    <target name="run:docker:push" hidden="true">
+        <phing-slugify string="${docker_build_tag}" slug="docker_build_tag_slug"/>
+        <exec command="docker tag ${docker_build_tag_slug} ${run_docker_push_tag}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+        <exec command="docker push ${run_docker_push_tag}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+    </target>
+
+
+    <target name="run:composer:docker:build" hidden="true">
+        <exec command="docker build ${composer_docker_build_args} --tag ${project_name}-composer --file ${composer_docker_file} ${composer_docker_build_ctx}" passthru="${composer_docker_build_passthru}" checkreturn="true" level="info" dir="${project_root}"/>
+    </target>
+
+
+    <target name="run:composer:docker" hidden="true">
+        <exec command="docker-run-composer ${composer_docker_run_args} ${project_name}-composer ${run_composer_command}" passthru="true" checkreturn="true" level="info" dir="${project_dir_main_composer}"/>
+    </target>
+
+
+    <target name="run:composer:phing" hidden="true">
+        <exec command="${run_composer_command}" passthru="true" checkreturn="true" level="info" dir="${project_dir_main_composer}"/>
+    </target>
+
+
+</project>

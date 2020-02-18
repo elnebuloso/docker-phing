@@ -83,9 +83,10 @@
         <if>
             <equals arg1="${type}" arg2="api"/>
             <then>
-                <property name="package" value="api" override="true"/>
-                <property name="options" value="" override="true"/>
-                <phingcall target="composer:require"/>
+                <phingcall target="composer:require">
+                    <property name="package" value="api" override="true"/>
+                    <property name="options" value="" override="true"/>
+                </phingcall>
             </then>
         </if>
 
@@ -99,9 +100,10 @@
                 <if>
                     <equals arg1="${install}" arg2="y"/>
                     <then>
-                        <property name="package" value="profiler" override="true"/>
-                        <property name="options" value="--dev" override="true"/>
-                        <phingcall target="composer:require"/>
+                        <phingcall target="composer:require">
+                            <property name="package" value="profiler" override="true"/>
+                            <property name="options" value="--dev" override="true"/>
+                        </phingcall>
                     </then>
                 </if>
 
@@ -109,9 +111,10 @@
                 <if>
                     <equals arg1="${install}" arg2="y"/>
                     <then>
-                        <property name="package" value="annotations" override="true"/>
-                        <property name="options" value="" override="true"/>
-                        <phingcall target="composer:require"/>
+                        <phingcall target="composer:require">
+                            <property name="package" value="annotations" override="true"/>
+                            <property name="options" value="" override="true"/>
+                        </phingcall>
                     </then>
                 </if>
 
@@ -119,9 +122,10 @@
                 <if>
                     <equals arg1="${install}" arg2="y"/>
                     <then>
-                        <property name="package" value="twig" override="true"/>
-                        <property name="options" value="" override="true"/>
-                        <phingcall target="composer:require"/>
+                        <phingcall target="composer:require">
+                            <property name="package" value="twig" override="true"/>
+                            <property name="options" value="" override="true"/>
+                        </phingcall>
                     </then>
                 </if>
 
@@ -129,9 +133,10 @@
                 <if>
                     <equals arg1="${install}" arg2="y"/>
                     <then>
-                        <property name="package" value="webpack-encore" override="true"/>
-                        <property name="options" value="" override="true"/>
-                        <phingcall target="composer:require"/>
+                        <phingcall target="composer:require">
+                            <property name="package" value="webpack-encore" override="true"/>
+                            <property name="options" value="" override="true"/>
+                        </phingcall>
                     </then>
                 </if>
 
@@ -139,9 +144,10 @@
                 <if>
                     <equals arg1="${install}" arg2="y"/>
                     <then>
-                        <property name="package" value="maker-bundle" override="true"/>
-                        <property name="options" value="--dev" override="true"/>
-                        <phingcall target="composer:require"/>
+                        <phingcall target="composer:require">
+                            <property name="package" value="maker-bundle" override="true"/>
+                            <property name="options" value="--dev" override="true"/>
+                        </phingcall>
                     </then>
                 </if>
             </then>

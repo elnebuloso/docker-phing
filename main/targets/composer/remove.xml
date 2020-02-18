@@ -49,8 +49,7 @@
             </then>
         </if>
 
-        <property name="composer_command" value="composer remove ${package} ${options}" override="true"/>
-        <phingcall target="composer:run"/>
+        <phing-composer-run command="composer remove ${package} ${options}"/>
     </target>
 
 

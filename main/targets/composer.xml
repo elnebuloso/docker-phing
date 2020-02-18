@@ -9,7 +9,6 @@
     <import file="${phing_commons_root}/targets/composer/remove.xml"/>
     <import file="${phing_commons_root}/targets/composer/require.xml"/>
     <import file="${phing_commons_root}/targets/composer/update.xml"/>
-    <import file="${phing_commons_root}/targets/composer/run.xml"/>
 
 
     <target name="composer:help">

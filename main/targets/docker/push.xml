@@ -34,11 +34,4 @@
     </target>
 
 
-    <target name="run:docker:push" hidden="true">
-        <phing-slugify string="${docker_build_tag}" slug="docker_build_tag_slug"/>
-        <exec command="docker tag ${docker_build_tag_slug} ${run:docker:push:tag}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
-        <exec command="docker push ${run:docker:push:tag}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
-    </target>
-
-
 </project>

@@ -34,8 +34,7 @@
 
 
     <target name="composer:update:main" hidden="true">
-        <property name="composer_command" value="composer update --no-suggest --no-ansi --no-interaction ${composer_update_options}" override="true"/>
-        <phingcall target="composer:run"/>
+        <phing-composer-run command="composer update --no-suggest --no-ansi --no-interaction ${composer_update_options}"/>
     </target>
 
 
