@@ -1,6 +1,9 @@
 name: Main workflow
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   main:
@@ -8,4 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
+      - name: Versioning
+        run: |
+          export VERSION=$(cat ./VERSION)
+          export MAJOR=$(cat ./VERSION | cut -d. -f1)
+          export MINOR=$(cat ./VERSION | cut -d. -f2)
+          export PATCH=$(cat ./VERSION | cut -d. -f3)
+          echo $VERSION
+          echo $MAJOR
