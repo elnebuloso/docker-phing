@@ -1,6 +1,6 @@
 # docker-phing
 
-![Main workflow](https://github.com/elnebuloso/docker-phing/workflows/Main%20workflow/badge.svg)
+![Release](https://github.com/elnebuloso/docker-phing/workflows/Release/badge.svg)
 [![Docker Pulls](https://img.shields.io/docker/pulls/elnebuloso/phing.svg)](https://hub.docker.com/r/elnebuloso/phing)
 [![GitHub](https://img.shields.io/github/license/elnebuloso/docker-ansible.svg)](https://github.com/elnebuloso/docker-phing)
 
