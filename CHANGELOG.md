@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [4.2.0] - 2020-02-19
+- added init application target for https://getgrav.org/
+- updated sulu2 docker-compose stack
+
+
 ## [4.1.0] - 2020-02-19
 - README.md Updates
 - added Phing Runner Bash Script

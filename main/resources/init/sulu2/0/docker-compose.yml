@@ -16,3 +16,21 @@ services:
     environment:
       VIRTUAL_HOST: ${init_sulu2_url}
       PHPEXT_ENABLE_XDEBUG: "no"
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: sulu2
+      MYSQL_ROOT_PASSWORD: welcome
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:4.9
+    environment:
+      VIRTUAL_HOST: ${init_sulu2_pma_url}
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: welcome
+    depends_on:
+      - db

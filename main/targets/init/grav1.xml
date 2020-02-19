@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="init:grav1">
+
+
+    <property name="init_grav1_description" value="init grav1 application" override="true"/>
+
+
+    <target name="init:grav1:help">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="${init_grav1_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+    </target>
+
+
+    <target name="init:grav1" depends="clean:dist, init:grav1:before, init:grav1:main, init:grav1:after">
+        <echo message="browse application after docker start, using phing start"/>
+        <echo message="${init_grav1_url}"/>
+    </target>
+
+
+    <target name="init:grav1:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="init:grav1:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="init:grav1:main" hidden="true">
+        <fail message="${project_dir_main} exists for creating grav1 application">
+            <condition>
+                <available file="${project_dir_main}" type="dir"/>
+            </condition>
+        </fail>
+
+        <copy todir="${project_root}" overwrite="true">
+            <fileset dir="${phing_commons_root}/resources/init/grav1/0">
+                <include name="**"/>
+            </fileset>
+            <filterchain>
+                <expandproperties/>
+            </filterchain>
+        </copy>
+
+        <phing-composer-run command="composer create-project --prefer-dist --no-interaction --remove-vcs --ignore-platform-reqs getgrav/grav:^1 ${project_dir_main}" directory="${project_root}"/>
+        <delete dir="${project_dir_main}/.git" quiet="true"/>
+
+        <phing-configure-composer selector="name" value="my/${project_name}"/>
+    </target>
+
+
+</project>

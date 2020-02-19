@@ -111,6 +111,86 @@ phing TARGETNAME
 phing TARGETNAME:help
 ```
 
+### init bolt3 application
+
+- initialises the latest bolt3 application in your project directory
+- http://bolt3.127.0.0.1.xip.io
+
+```
+phing init:bolt3
+phing start
+```
+
+### init grav1 application
+
+- initialises the latest grav1 application in your project directory
+- http://grav1.127.0.0.1.xip.io
+
+```
+phing init:grav1
+phing start
+```
+
+### init laravel5 application
+
+- initialises the latest laravel5 application in your project directory
+- http://laravel5.127.0.0.1.xip.io
+
+```
+phing init:laravel5
+phing start
+```
+
+### init laravel6 application
+
+- initialises the latest laravel6 application in your project directory
+- http://laravel6.127.0.0.1.xip.io
+
+```
+phing init:laravel6
+phing start
+```
+
+### init lumen5 application
+
+- initialises the latest lumen5 application in your project directory
+- http://lumen5.127.0.0.1.xip.io
+
+```
+phing init:lumen5
+phing start
+```
+
+### init lumen6 application
+
+- initialises the latest lumen6 application in your project directory
+- http://lumen6.127.0.0.1.xip.io
+
+```
+phing init:lumen6
+phing start
+```
+
+### init symfony4 application
+
+- initialises the latest symfony4 application in your project directory
+- http://symfony4.127.0.0.1.xip.io
+
+```
+phing init:symfony4
+phing start
+```
+
+### init symfony5 application
+
+- initialises the latest symfony5 application in your project directory
+- http://symfony5.127.0.0.1.xip.io
+
+```
+phing init:symfony5
+phing start
+```
+
 ## available tools
 
 - **docker** *19.03.6*

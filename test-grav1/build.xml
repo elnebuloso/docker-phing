@@ -4,7 +4,7 @@
 <project name="application" basedir="." default="help">
 
 
-    <import file="/srv/phing/commons/lumen5.xml"/>
+    <import file="/srv/phing/commons/grav1.xml"/>
 
 
     <target name="help" depends="commons:help">
@@ -25,7 +25,7 @@
             </fileset>
         </delete>
         <delete dir="${project_dir_main}"/>
-        <phingcall target="init:lumen5"/>
+        <phingcall target="init:grav1"/>
     </target>
 
 

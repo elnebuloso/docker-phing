@@ -30,11 +30,13 @@ phing:
     # init
     #
     init_bolt3_url: "bolt3.127.0.0.1.xip.io"
+    init_grav1_url: "grav1.127.0.0.1.xip.io"
     init_laravel5_url: "laravel5.127.0.0.1.xip.io"
     init_laravel6_url: "laravel6.127.0.0.1.xip.io"
     init_lumen5_url: "lumen5.127.0.0.1.xip.io"
     init_lumen6_url: "lumen6.127.0.0.1.xip.io"
     init_sulu2_url: "sulu2.127.0.0.1.xip.io"
+    init_sulu2_pma_url: "sulu2-pma.127.0.0.1.xip.io"
     init_symfony4_url: "symfony4.127.0.0.1.xip.io"
     init_symfony5_url: "symfony5.127.0.0.1.xip.io"
 

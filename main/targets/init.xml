@@ -5,6 +5,7 @@
 
 
     <import file="${phing_commons_root}/targets/init/bolt3.xml"/>
+    <import file="${phing_commons_root}/targets/init/grav1.xml"/>
     <import file="${phing_commons_root}/targets/init/laravel5.xml"/>
     <import file="${phing_commons_root}/targets/init/laravel6.xml"/>
     <import file="${phing_commons_root}/targets/init/lumen5.xml"/>
@@ -19,6 +20,7 @@
         <echo message="target           description"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
         <echo message="init:bolt3       ${init_bolt3_description}"/>
+        <echo message="init:grav1       ${init_grav1_description}"/>
         <echo message="init:laravel5    ${init_laravel5_description}"/>
         <echo message="init:laravel6    ${init_laravel6_description}"/>
         <echo message="init:lumen5      ${init_lumen5_description}"/>
