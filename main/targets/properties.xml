@@ -11,6 +11,7 @@
         <echo message="properties:ci:git            properties populated via git"/>
         <echo message="properties:ci:gitversion     properties populated via gitversion"/>
         <echo message="properties:ci:fileversion    properties populated via fileversion"/>
+        <echo message="properties:docker:tag        properties populated via docker tagging"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>
     </target>
 

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project default="docker:login">
+
+
+    <property name="docker_login_description" value="login into a docker registry" override="true"/>
+
+
+    <target name="docker:login:init" hidden="true">
+        <property name="hostname" value=""/>
+        <property name="username" value=""/>
+        <property name="password" value=""/>
+    </target>
+
+
+    <target name="docker:login:help" depends="docker:login:init">
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="${docker_login_description}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="property   value"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="hostname    ${hostname}"/>
+        <echo message="username    ${username}"/>
+        <echo message="password    ${password}"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+    </target>
+
+
+    <target name="docker:login" depends="docker:login:init, docker:login:before, docker:login:main, docker:login:after">
+        <echo message="successful"/>
+    </target>
+
+
+    <target name="docker:login:before" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="docker:login:after" hidden="true">
+        <echo message="no actions defined"/>
+    </target>
+
+
+    <target name="docker:login:main" hidden="true">
+        <exec command="echo &quot;${password}&quot; | docker login --username &quot;${username}&quot; --password-stdin ${hostname}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+    </target>
+
+
+</project>

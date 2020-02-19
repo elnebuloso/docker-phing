@@ -4,7 +4,7 @@
 <project name="application" basedir="." default="help">
 
 
-    <import file="/srv/phing/commons/standard.xml"/>
+    <import file="/srv/phing/commons/base.xml"/>
 
 
     <target name="help" depends="commons:help">

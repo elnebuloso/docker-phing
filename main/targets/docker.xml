@@ -8,6 +8,7 @@
     <import file="${phing_commons_root}/targets/docker/compose/ps.xml"/>
     <import file="${phing_commons_root}/targets/docker/compose/pull.xml"/>
     <import file="${phing_commons_root}/targets/docker/compose/up.xml"/>
+    <import file="${phing_commons_root}/targets/docker/login.xml"/>
     <import file="${phing_commons_root}/targets/docker/build.xml"/>
     <import file="${phing_commons_root}/targets/docker/push.xml"/>
 
@@ -20,6 +21,7 @@
         <echo message="docker:compose:ps            ${docker_compose_ps_description}"/>
         <echo message="docker:compose:pull          ${docker_compose_pull_description}"/>
         <echo message="docker:compose:up            ${docker_compose_up_description}"/>
+        <echo message="docker:login                 ${docker_login_description}"/>
         <echo message="docker:build                 ${docker_build_description}"/>
         <echo message="docker:push                  ${docker_push_description}"/>
         <echo message="----------------------------------------------------------------------------------------------------"/>

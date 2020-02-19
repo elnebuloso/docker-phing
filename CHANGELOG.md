@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [4.1.0] - 2020-02-19
+- README.md Updates
+- added Phing Runner Bash Script
+- added Phing Runner Powershell Script
+- renamed commons/standard.xml to commons/base.xml
+- added docker login target
+
+
 ## [4.0.0] - 2020-02-19
 - configuration update
 - configuration via yml file
