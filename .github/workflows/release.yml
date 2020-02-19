@@ -12,6 +12,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
+      - name: Configuration
+        run: |
+          echo "::set-env name=TAG::elnebuloso/phing"
       - name: Version
         run: |
           export MAJOR=$(cat ./VERSION | cut -d. -f1)
@@ -20,7 +23,6 @@ jobs:
           echo "::set-env name=MAJOR::$MAJOR"
           echo "::set-env name=MINOR::$MINOR"
           echo "::set-env name=PATCH::$PATCH"
-          echo "::set-env name=TAG::elnebuloso/phing"
       - name: Build
         run: |
           docker run --rm --volume /var/run/docker.sock:/var/run/docker.sock --workdir /srv/phing --volume $(pwd)/main:/srv/phing composer install --no-suggest --no-ansi --no-interaction --no-dev --optimize-autoloader
