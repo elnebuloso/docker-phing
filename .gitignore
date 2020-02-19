@@ -15,6 +15,12 @@
 !/test-bolt3/build.yml
 !/test-bolt3/VERSION
 
+/test-grav1/*
+!/test-grav1/build.env
+!/test-grav1/build.xml
+!/test-grav1/build.yml
+!/test-grav1/VERSION
+
 /test-laravel5/*
 !/test-laravel5/build.env
 !/test-laravel5/build.xml
