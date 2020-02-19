@@ -115,73 +115,73 @@ phing TARGETNAME:help
 
 ### dockerception tools with defaults
 
-### [closure-compiler](docker/bin/closure-compiler.sh)
+### [closure-compiler](https://github.com/elnebuloso/docker-phing/blob/master/docker/bin/closure-compiler.sh)
 
 ```
 PHING_CLOSURE_COMPILER=elnebuloso/google-closure-compiler:latest
 ```
 
-### [compass](docker/bin/compass.sh)
+### [compass](https://github.com/elnebuloso/docker-phing/blob/master/docker/bin/compass.sh)
 
 ```
 PHING_COMPASS=elnebuloso/compass:latest
 ```
 
-### [composer](docker/bin/composer.sh)
+### [composer](https://github.com/elnebuloso/docker-phing/blob/master/docker/bin/composer.sh)
 
 ```
 PHING_COMPOSER=composer
 ```
 
-### [csso](docker/bin/csso.sh)
+### [csso](https://github.com/elnebuloso/docker-phing/blob/master/docker/bin/csso.sh)
 
 ```
 PHING_CSSO=elnebuloso/csso-cli:latest
 ```
 
-### [csso](docker/bin/helm.sh)
+### [csso](https://github.com/elnebuloso/docker-phing/blob/master/docker/bin/helm.sh)
 
 ```
 PHING_CSSO=alpine/helm:latest
 ```
 
-### [npm](docker/bin/npm.sh)
+### [npm](https://github.com/elnebuloso/docker-phing/blob/master/docker/bin/npm.sh)
 
 ```
 PHING_NPM=node:lts-alpine
 ```
 
-### [phpmetrics1](docker/bin/phpmetrics1.sh)
+### [phpmetrics1](https://github.com/elnebuloso/docker-phing/blob/master/docker/bin/phpmetrics1.sh)
 
 ```
 PHING_PHPMETRICS1=elnebuloso/php-phpmetrics:1
 ```
 
-### [phpmetrics2](docker/bin/phpmetrics2.sh)
+### [phpmetrics2](https://github.com/elnebuloso/docker-phing/blob/master/docker/bin/phpmetrics2.sh)
 
 ```
 PHING_PHPMETRICS2=elnebuloso/php-phpmetrics:2
 ```
 
-### [prettier](docker/bin/prettier.sh)
+### [prettier](https://github.com/elnebuloso/docker-phing/blob/master/docker/bin/prettier.sh)
 
 ```
 PHING_PHPMETRICS2=elnebuloso/prettier:latest
 ```
 
-### [prettier](docker/bin/prettier.sh)
+### [prettier](https://github.com/elnebuloso/docker-phing/blob/master/docker/bin/prettier.sh)
 
 ```
 PHING_PRETTIER=elnebuloso/prettier:latest
 ```
 
-### [sonarqube-scanner](docker/bin/sonarqube-scanner.sh)  
+### [sonarqube-scanner](https://github.com/elnebuloso/docker-phing/blob/master/docker/bin/sonarqube-scanner.sh)  
 
 ```
 PHING_SONARQUBE_SCANNER=elnebuloso/sonarqube-scanner:latest
 ```
 
-### [yarn](docker/bin/yarn.sh)
+### [yarn](https://github.com/elnebuloso/docker-phing/blob/master/docker/bin/yarn.sh)
 
 ```
 PHING_YARN=node:lts-alpine
