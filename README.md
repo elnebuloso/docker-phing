@@ -1,3 +1,5 @@
+<img src="https://cdn.rawgit.com/standard/standard/master/sticker.svg" alt="Standard - JavaScript Style Guide" width="200">
+
 # docker-phing
 
 ![Release](https://github.com/elnebuloso/docker-phing/workflows/Release/badge.svg)
