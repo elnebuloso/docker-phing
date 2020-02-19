@@ -12,7 +12,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
-
       - name: Version
         run: |
           export MAJOR=$(cat ./VERSION | cut -d. -f1)
@@ -21,23 +20,12 @@ jobs:
           echo "::set-env name=MAJOR::$MAJOR"
           echo "::set-env name=MINOR::$MINOR"
           echo "::set-env name=PATCH::$PATCH"
-
       - name: Build
         run: |
           docker run --rm --volume /var/run/docker.sock:/var/run/docker.sock --workdir /srv/phing --volume $(pwd)/main:/srv/phing composer install --no-suggest --no-ansi --no-interaction --no-dev --optimize-autoloader
           docker build --tag elnebuloso/phing --pull --rm --no-cache --file Dockerfile .
-#          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-#          docker tag elnebuloso/phing elnebuloso/phing:${MAJOR}.${MINOR}.${PATCH}
-#          docker tag elnebuloso/phing elnebuloso/phing:${MAJOR}.${MINOR}
-#          docker tag elnebuloso/phing elnebuloso/phing:${MAJOR}
-#          docker push elnebuloso/phing:${MAJOR}.${MINOR}.${PATCH}
-#          docker push elnebuloso/phing:${MAJOR}.${MINOR}
-#          docker push elnebuloso/phing:${MAJOR}
-
       - name: Release
         run: |
-#          docker run --rm --volume /var/run/docker.sock:/var/run/docker.sock --workdir /srv/phing --volume $(pwd)/main:/srv/phing composer install --no-suggest --no-ansi --no-interaction --no-dev --optimize-autoloader
-#          docker build --tag elnebuloso/phing --pull --rm --no-cache --file Dockerfile .
           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
           docker tag elnebuloso/phing elnebuloso/phing:${MAJOR}.${MINOR}.${PATCH}
           docker tag elnebuloso/phing elnebuloso/phing:${MAJOR}.${MINOR}
