@@ -59,13 +59,13 @@ docker pull elnebuloso/phing \
        --volume $(pwd):$(pwd) \
        --workdir $(pwd) \
        --env-file $(pwd)/build.env \
-       elnebuloso/phing phing ${@:1}
+       elnebuloso/phing:4 phing ${@:1}
 ```
 
 ## run script (windows powershell)
 
 ```
-$dockerImage = "elnebuloso/phing"
+$dockerImage = "elnebuloso/phing:4"
 $pwd = [string](Get-Location)
 $pwd = $pwd.Replace("\", "/")
 $pwdLinux = "/host_mnt/" + $pwd.Replace(":", "").ToLower()
