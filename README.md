@@ -1,4 +1,4 @@
-<img src="https://cdn.rawgit.com/standard/standard/master/sticker.svg" alt="Standard - JavaScript Style Guide" width="200">
+<img src="https://raw.githubusercontent.com/elnebuloso/docker-phing/master/logo.png"/>
 
 # docker-phing
 
