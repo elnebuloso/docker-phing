@@ -4,10 +4,6 @@
 <project name="application" basedir="." default="help">
 
 
-    <property file="build.properties"/>
-    <property file="build.properties.local"/>
-
-
     <import file="/srv/phing/commons/sulu2.xml"/>
 
 
