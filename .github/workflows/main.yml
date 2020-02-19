@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
       - name: Versioning
-        run:
+        run: |
           export MAJOR=$(cat ./VERSION | cut -d. -f1)
           export MINOR=$(cat ./VERSION | cut -d. -f2)
           export PATCH=$(cat ./VERSION | cut -d. -f3)
