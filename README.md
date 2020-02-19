@@ -1,6 +1,6 @@
 # docker-phing
 
-[![Build Status](https://travis-ci.com/elnebuloso/docker-phing.svg?branch=master)](https://travis-ci.com/elnebuloso/docker-phing)
+![Main workflow](https://github.com/elnebuloso/docker-phing/workflows/Main%20workflow/badge.svg)
 [![Docker Pulls](https://img.shields.io/docker/pulls/elnebuloso/phing.svg)](https://hub.docker.com/r/elnebuloso/phing)
 [![GitHub](https://img.shields.io/github/license/elnebuloso/docker-ansible.svg)](https://github.com/elnebuloso/docker-phing)
 
@@ -18,26 +18,29 @@ Dockerized Phing + Commons for Continuous Integration
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project name="application" basedir="." default="commons:help">
-
-    <property file="build.properties"/>
-    <property file="build.properties.local"/>
-    
+   
     <import file="/srv/phing/commons/standard.xml"/>
     
 </project>
 ```
 
-####  create build.env file
+#### create build.yml file
+
+- build.yml file will be placed in your project root directory
+
+```
+phing:
+  properties:
+    project_name: "phing"
+```
+
+
+#### (optional) create build.env file
 
 - build.env file will be placed in your project root directory
 - will hold environment configurations for phing
 
-####  create build.properties file
-
-- build.properties file will be placed in your project root directory
-- project_name = the_name_of_your_project
-
-#### create VERSION file
+#### (optional) create VERSION file
 
 - VERSION file will be placed in your project root directory
 - will hold the semver version of your project

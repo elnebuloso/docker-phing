@@ -4,8 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-- configuration via yml
-- removed base:init, base:help
+
+## [4.0.0] - 2020-02-19
+- configuration update
+- configuration via yml file
+- properties overrides via branch configuration
+
 
 ## [3.7.0] - 2020-01-23
 - fixed resource files
