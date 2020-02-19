@@ -22,6 +22,8 @@ class PropertiesLoaderGitTask extends AbstractPropertiesLoaderTask
             return;
         }
 
+        exec("git rev-parse --verify HEAD");
+
         $output = null;
         exec("git rev-parse --abbrev-ref HEAD", $output);
         $this->setProperty('branch_name', implode('', $output), self::PROPERTY_GROUP_CI_GIT);
