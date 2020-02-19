@@ -6,6 +6,15 @@
 
 Dockerized Phing + Commons for Continuous Integration
 
+## github
+
+- https://github.com/elnebuloso/docker-phing
+
+## docker
+
+- https://hub.docker.com/r/elnebuloso/phing
+- https://hub.docker.com/r/elnebuloso/phing/tags
+
 ## usage
 
 ### configure
