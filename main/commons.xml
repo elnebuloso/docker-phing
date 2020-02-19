@@ -49,12 +49,12 @@
     <import file="${phing_commons_root}/targets/version.xml"/>
 
 
-    <phing-properties-loader-git/>
-    <phing-properties-loader-gitversion/>
     <phing-properties-loader-fileversion/>
+    <phing-properties-loader-gitversion/>
+    <phing-properties-loader-git/>
     <phing-properties-loader-config-file/>
 
-
+    
     <property name="project_dir_main" value="${project_root}/${project_folder_main}"/>
     <property name="project_dir_main_composer" value="${project_root}/${project_folder_main}/${project_folder_main_composer}"/>
     <property name="project_dir_main_compass" value="${project_root}/${project_folder_main}/${project_folder_main_compass}"/>

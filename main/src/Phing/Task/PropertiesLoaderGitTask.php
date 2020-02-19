@@ -22,21 +22,12 @@ class PropertiesLoaderGitTask extends AbstractPropertiesLoaderTask
             return;
         }
 
-        $output = null;
-        exec("git rev-parse --abbrev-ref HEAD", $output);
-        exec("git rev-parse --abbrev-ref HEAD", $output);
-        $this->setProperty('branch_name', implode('', $output), self::PROPERTY_GROUP_CI_GIT);
+        $this->setProperty('branch_name', $this->getProject()->getProperty('ci_gitversion_branch_name'), self::PROPERTY_GROUP_CI_GIT);
+        $this->setProperty('sha1', $this->getProject()->getProperty('ci_gitversion_sha'), self::PROPERTY_GROUP_CI_GIT);
+        $this->setProperty('sha1_short', $this->getProject()->getProperty('ci_gitversion_short_sha'), self::PROPERTY_GROUP_CI_GIT);
 
         $output = null;
-        exec("git rev-parse HEAD", $output);
-        $this->setProperty('sha1', implode('', $output), self::PROPERTY_GROUP_CI_GIT);
-
-        $output = null;
-        exec("git rev-parse --short HEAD", $output);
-        $this->setProperty('sha1_short', implode('', $output), self::PROPERTY_GROUP_CI_GIT);
-
-        $output = null;
-        exec("git show -s --format=%ct " . $this->getProperty('sha1', self::PROPERTY_GROUP_CI_GIT), $output);
+        exec("git show -s --format=%ct " . $this->getProject()->getProperty('ci_gitversion_sha'), $output);
         $this->setProperty('commit_time', implode('', $output), self::PROPERTY_GROUP_CI_GIT);
 
         $this->logPropertiesLoaded(true);
