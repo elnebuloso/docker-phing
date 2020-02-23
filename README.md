@@ -4,7 +4,7 @@
 
 ![Release](https://github.com/elnebuloso/docker-phing/workflows/Release/badge.svg)
 [![Docker Pulls](https://img.shields.io/docker/pulls/elnebuloso/phing.svg)](https://hub.docker.com/r/elnebuloso/phing)
-[![GitHub](https://img.shields.io/github/license/elnebuloso/docker-ansible.svg)](https://github.com/elnebuloso/docker-phing)
+[![GitHub](https://img.shields.io/github/license/elnebuloso/docker-phing.svg)](https://github.com/elnebuloso/docker-phing)
 
 Dockerized Phing + Commons for Continuous Integration
 
