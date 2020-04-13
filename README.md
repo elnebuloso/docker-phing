@@ -47,6 +47,10 @@ Dockerized Phing + Commons for Continuous Integration
 ```
 
 ```
+<import file="/srv/phing/commons/grav1.xml"/>
+```
+
+```
 <import file="/srv/phing/commons/laravel5.xml"/>
 ```
 
@@ -60,6 +64,10 @@ Dockerized Phing + Commons for Continuous Integration
 
 ```
 <import file="/srv/phing/commons/lumen6.xml"/>
+```
+
+```
+<import file="/srv/phing/commons/sulu2.xml"/>
 ```
 
 ```
@@ -168,6 +176,16 @@ phing start
 
 ```
 phing init:lumen6
+phing start
+```
+
+### init sulu2 application
+
+- initialises the latest sulu2 application in your project directory
+- http://sulu2.127.0.0.1.xip.io
+
+```
+phing init:sulu2
 phing start
 ```
 

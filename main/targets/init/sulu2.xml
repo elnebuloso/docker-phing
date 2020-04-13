@@ -50,6 +50,21 @@
         <delete dir="${project_dir_main}/.git" quiet="true"/>
 
         <phing-configure-composer selector="name" value="my/${project_name}"/>
+
+        <reflexive>
+            <fileset dir="${project_dir_main}">
+                <include pattern=".env*"/>
+            </fileset>
+            <filterchain>
+                <replaceregexp>
+                    <regexp pattern="APP_ENV=(.*)" replace="APP_ENV=dev"/>
+                    <regexp pattern="APP_SECRET=(.*)" replace="APP_SECRET=02bc4596-914c-48e4-b50b-f9200e053efa"/>
+                    <regexp pattern="MAILER_URL=(.*)" replace="MAILER_URL=smtp://mailcatcher:1025"/>
+                    <regexp pattern="DATABASE_URL=(.*)" replace="DATABASE_URL=mysql://root:welcome@db:3306/sulu2?serverVersion=5.7"/>
+                    <regexp pattern="SULU_ADMIN_EMAIL=(.*)" replace="SULU_ADMIN_EMAIL=root@${init_sulu2_url}"/>
+                </replaceregexp>
+            </filterchain>
+        </reflexive>
     </target>
 
 

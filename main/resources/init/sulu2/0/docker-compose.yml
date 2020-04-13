@@ -34,3 +34,9 @@ services:
       PMA_PASSWORD: welcome
     depends_on:
       - db
+
+  mailcatcher:
+    image: schickling/mailcatcher
+    environment:
+      VIRTUAL_HOST: ${init_sulu2_mail_url}
+      VIRTUAL_PORT: 1080
