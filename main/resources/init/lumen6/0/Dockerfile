@@ -23,6 +23,7 @@ RUN echo "setup development layer" \
     && chmod 777 -R /tmp \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
+        git \
         unzip \
     && apt-get -y autoremove \
     && apt-get -y autoclean \
