@@ -13,7 +13,9 @@ RUN echo "configure" \
     && echo 'PassEnv APP_ENV' > /etc/apache2/conf-enabled/expose-env.conf \
     && if [ -d /app/main/var ]; then chmod 0755 -R /app/main/var ; fi \
     && if [ -d /app/main/var ]; then chown www-data:www-data -R /app/main/var ; fi \
-    && if [ -f /app/main/bin/console ]; then chmod +x /app/main/bin/console ; fi
+    && if [ -f /app/main/bin/console ]; then chmod +x /app/main/bin/console ; fi \
+    && if [ -f /app/main/bin/adminconsole ]; then chmod +x /app/main/bin/adminconsole ; fi \
+    && if [ -f /app/main/bin/websiteconsole ]; then chmod +x /app/main/bin/websiteconsole ; fi
 
 #
 # development layer
