@@ -22,13 +22,22 @@ class PropertiesLoaderGitTask extends AbstractPropertiesLoaderTask
             return;
         }
 
-        $this->setProperty('branch_name', $this->getProject()->getProperty('ci_gitversion_branch_name'), self::PROPERTY_GROUP_CI_GIT);
-        $this->setProperty('sha1', $this->getProject()->getProperty('ci_gitversion_sha'), self::PROPERTY_GROUP_CI_GIT);
-        $this->setProperty('sha1_short', $this->getProject()->getProperty('ci_gitversion_short_sha'), self::PROPERTY_GROUP_CI_GIT);
+        $branchName = null;
+        exec("git rev-parse --abbrev-ref HEAD", $branchName);
+        $this->setProperty('branch_name', implode('', $branchName), self::PROPERTY_GROUP_CI_GIT);
 
-        $output = null;
-        exec("git show -s --format=%ct " . $this->getProject()->getProperty('ci_gitversion_sha'), $output);
-        $this->setProperty('commit_time', implode('', $output), self::PROPERTY_GROUP_CI_GIT);
+        $sha1 = null;
+        exec("git rev-parse HEAD", $sha1);
+        $this->setProperty('sha1', implode('', $sha1), self::PROPERTY_GROUP_CI_GIT);
+
+        $sha1Short = null;
+        exec("git rev-parse HEAD | cut -c 1-8", $sha1Short);
+        $this->setProperty('sha1_short', implode('', $sha1Short), self::PROPERTY_GROUP_CI_GIT);
+
+        $commitTime = null;
+        echo "git show -s --format=%ct $sha1";
+        exec("git show -s --format=%ct " . $this->getProject()->getProperty('ci_git_sha1'), $commitTime);
+        $this->setProperty('commit_time', implode('', $commitTime), self::PROPERTY_GROUP_CI_GIT);
 
         $this->logPropertiesLoaded(true);
 

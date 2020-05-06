@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [4.3.1] - 2020-05-06
+- properties:ci:git updated, not using gitversion
+- gitversion exception on shallow git fetch
+
+
 ## [4.3.0] - 2020-05-06
 - updated php dependencies
 - update gitversion to https://github.com/gittools/gitversion/releases/tag/5.3.2
