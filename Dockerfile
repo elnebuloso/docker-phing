@@ -95,11 +95,11 @@ RUN echo "install kubectl" \
     && rm -rf /tmp/*
 
 #
-# install GitVersion
+# install gitversion
 #
-RUN curl -sSL https://github.com/GitTools/GitVersion/releases/download/5.1.3/gitversion-linux-5.1.3.tar.gz -o /tmp/gitversion.tar.gz \
+RUN curl -sSL https://github.com/GitTools/GitVersion/releases/download/5.3.2/gitversion-ubuntu.18.04-x64-5.3.2.tar.gz -o /tmp/gitversion.tar.gz \
     && tar -xzvf /tmp/gitversion.tar.gz -C /usr/local/bin \
-    && chmod +x /usr/local/bin/GitVersion \
+    && chmod +x /usr/local/bin/gitversion \
     && rm -rf /tmp/*
 
 COPY docker/bin /usr/local/bin

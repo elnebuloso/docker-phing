@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [4.3.0] - 2020-05-06
+- updated php dependencies
+- update gitversion to https://github.com/gittools/gitversion/releases/tag/5.3.2
+  - gitversion bin name changed
+
+
 ## [4.2.4] - 2020-04-13
 - updated grav1 init
 - updated sulu2 init
@@ -84,7 +90,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
 ## [2.12.0] - 2020-01-11
-- added GitVersion
+- added gitversion
 - updated docker:build target with new config variables, defined by docker config task
 - updated docker:push target with new config variables, defined by docker config task
 

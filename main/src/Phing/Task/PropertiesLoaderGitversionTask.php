@@ -22,7 +22,7 @@ class PropertiesLoaderGitversionTask extends AbstractPropertiesLoaderTask
             return;
         }
 
-        exec("GitVersion", $output);
+        exec("gitversion", $output);
 
         foreach ((array) json_decode(implode('', $output), true) as $key => $value) {
             $this->setProperty($key, $value, self::PROPERTY_GROUP_CI_GITVERSION);
