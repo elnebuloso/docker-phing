@@ -1,4 +1,4 @@
-$dockerImage = "phing-dev"
+$dockerImage = "elnebuloso/phing:4"
 $pwd = [string](Get-Location)
 $pwd = $pwd.Replace("\", "/")
 $pwdLinux = "/host_mnt/" + $pwd.Replace(":", "").ToLower()

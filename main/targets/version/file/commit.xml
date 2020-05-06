@@ -41,7 +41,7 @@
     <target name="version:file:commit:main" hidden="true">
         <exec command="git add VERSION" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
         <exec command="git commit -m &quot;${version_file_commit_message} ${ci_fileversion_semver}&quot;" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
-        <exec command="git push --push-option=ci.skip origin HEAD:${ci_git_branch_name}" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
+        <exec command="git push --push-option=ci.skip origin" passthru="true" checkreturn="true" level="info" dir="${project_root}"/>
     </target>
 
 
