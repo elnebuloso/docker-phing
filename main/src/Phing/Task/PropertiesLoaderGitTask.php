@@ -35,7 +35,6 @@ class PropertiesLoaderGitTask extends AbstractPropertiesLoaderTask
         $this->setProperty('sha1_short', implode('', $sha1Short), self::PROPERTY_GROUP_CI_GIT);
 
         $commitTime = null;
-        echo "git show -s --format=%ct $sha1";
         exec("git show -s --format=%ct " . $this->getProject()->getProperty('ci_git_sha1'), $commitTime);
         $this->setProperty('commit_time', implode('', $commitTime), self::PROPERTY_GROUP_CI_GIT);
 
