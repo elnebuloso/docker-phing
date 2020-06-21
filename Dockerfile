@@ -111,8 +111,10 @@ RUN echo "configure /usr/local/bin" \
     && chmod +x /usr/local/bin/*
 
 RUN echo "add development user" \
-    && useradd --uid 1000 --user-group development \
-    && usermod -aG docker development
+    && useradd --uid 1000 --shell /bin/bash --user-group development
+
+RUN echo "add development user to docker group" \
+    && usermod -a -G docker development
 
 ENV PHING_COMPOSER_CACHE_VOLUME f81440c9-814d-492c-b30b-08920e854b00
 ENV PHING_NPM_CACHE_VOLUME 92f97451-da6b-4236-a026-80c42df19c0b
