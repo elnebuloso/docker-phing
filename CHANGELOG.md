@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [4.4.0] - 2020-06-21
+- add development user and group with id 1000 to use in context like wsl2 etc.
+
+
 ## [4.3.1] - 2020-05-06
 - properties:ci:git updated, not using gitversion
 - gitversion exception on shallow git fetch
