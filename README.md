@@ -1,5 +1,3 @@
-<img src="https://raw.githubusercontent.com/elnebuloso/docker-phing/master/logo.png" width="100%"/>
-
 # docker-phing
 
 ![abandoned](https://img.shields.io/badge/project-abandoned-red)
